@@ -7,7 +7,7 @@ git remote add origin git@github.com:LiveNL/mijnwkpool.git
 git pull origin master
 ````
 
-**Project naar github doen
+**Project naar github doen**
 ````
 git add .
 git commit -am "berichtje"
