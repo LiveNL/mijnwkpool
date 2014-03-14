@@ -25,28 +25,19 @@ set :rbenv_roles, :all
 
 set :rails_env, 'production'
 
+# Add this to the settings section at the top:
+set :ping_url, "https://www.mijnwkpool.com/ping"
+
 namespace :deploy do
-
-  task :start, :roles => :app, :except => { :no_release => true } do
-    run "cd #{current_path} && bundle exec passenger start --socket /tmp/passenger.socket --daemonize --environment production"
+  task :start do ; end
+  task :stop do ; end
+  task :restart, roles: :app, except: { no_release: true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
-  task :stop, :roles => :app, :except => { :no_release => true } do
-    run "cd #{current_path} && bundle exec passenger stop --pid-file tmp/pids/passenger.pid"
-  end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path, 'tmp', 'restart.txt')}"
+  task :ping do
+    system "curl --silent #{fetch(:ping_url)}"
   end
 end
 
-  after :publishing, :restart
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
-end
+# Add this to automatically ping the server after a restart:
+after "deploy:restart", "deploy:ping"
