@@ -26,18 +26,24 @@ set :rbenv_roles, :all
 set :rails_env, 'production'
 
 # Add this to the settings section at the top:
-set :ping_url, "https://www.mijnwkpool.com/ping"
+set :ping_url, "http://dev.mijnwkpool.com/ping"
 
 namespace :deploy do
-  task :start do ; end
-  task :stop do ; end
-  task :restart, roles: :app, except: { no_release: true } do
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
   end
+
+  after :publishing, :restart
+
   task :ping do
     system "curl --silent #{fetch(:ping_url)}"
   end
-end
 
-# Add this to automatically ping the server after a restart:
-after "deploy:restart", "deploy:ping"
+  after :restart, :ping
+
+end
