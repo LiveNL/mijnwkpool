@@ -9,8 +9,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
-gem 'pg', group: :production
-
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
@@ -19,4 +17,8 @@ end
 
 group :doc do
   gem 'sdoc', require: false
+end
+
+group :production do
+	gem 'pg'
 end
