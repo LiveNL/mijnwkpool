@@ -1,3 +1,3 @@
 class Pool < ActiveRecord::Base
-	has_many :poolmembership
+	has_many :poolmemberships
 end
