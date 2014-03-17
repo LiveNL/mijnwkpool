@@ -13,6 +13,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
+  gem 'rspec-rails'
 end
 
 group :doc do
@@ -21,4 +22,9 @@ end
 
 group :production do
 	gem 'pg'
+end
+
+group :test do
+	gem 'selenium-webdriver'
+	gem 'capybara'
 end

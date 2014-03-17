@@ -1,5 +1,6 @@
 Wkpool::Application.routes.draw do
 
+  get "pool/index"
   root  "test#index"
 
   get 'ping' => proc {|env| [200, {}, ['pong']] }
