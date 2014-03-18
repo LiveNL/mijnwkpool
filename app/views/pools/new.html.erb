@@ -1,0 +1,12 @@
+<%= form_for @pool, url: {action: "create"} do |f| %>
+  Name: <%= f.text_field :name %> <br/>
+  	Image: <%= f.text_field :image %> <br/><br/>
+  Public:<br/>
+  No : <%= f.radio_button :public, false %><br />
+	Yes: <%= f.radio_button :public, true %><br />
+
+<br/>
+     Password:<%= f.password_field :password %> <br/>
+
+  <%= f.submit "Create" %>
+<% end %>
