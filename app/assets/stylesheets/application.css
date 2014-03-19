@@ -9,10 +9,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require font-awesome
+ *= require reset
+ *= require grid
  *= require_tree .
  */
 
-.field_with_errors input {
-	border:1px solid red;
-	background-color: #F9DBDB;
-}
+
+ 

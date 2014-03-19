@@ -9,6 +9,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
+gem "font-awesome-rails"
+
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails'

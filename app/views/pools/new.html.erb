@@ -1,18 +1,57 @@
 <%= form_for @pool, url: {action: "create"} do |f| %>
-	Name: <%= f.text_field :name %> <br/>
-	Image: <%= f.text_field :image %> <br/>
-	<br/>
-	Public? <br/>
-	Public: <%= f.radio_button :public, true, :checked => true %><br />
-	Private : <%= f.radio_button :public, false, :checked => false %><br />
+<div class="container cf">
+      <div class="steps">
+        <div class="step active">
+          1. <span class="pure-hidden-phone">Pool informatie</span>
+        </div><div class="step">
+          2. <span class="pure-hidden-phone">Bevestigen</span>
+        </div><div class="step">
+          3. <span class="pure-hidden-phone">Vrienden uitnodigen</span>
+        </div>
+      </div>
 
-	<div id="private_pool_enabled">
-		Password: <%= f.password_field :password %>
-		Password confirmation: <%= f.password_field :password_confirmation %>
-	</div> 
-	
-	<%= error_message_for(:password, :prepend_text => "Het wachtwoord moet minimaal 7 tekens. ") %> 
-	<%= error_message_for(:password_confirmation, :prepend_text => "<br/> De wachtwoorden komen niet overeen. ") %> 
-	<br/>
-	<%= f.submit "Pool aanmaken" %> 
-<% end %>
+      <h1>1. Pool informatie</h1>
+      <form action="step2.html">
+        <div class="pure-g-r">
+            <div class="pure-u-1-3">
+              <div class="avatar">
+                <img src="http://placehold.it/265x265" alt="placeholder">
+                <button class="fullwidth primary" type="button">Afbeelding bewerken</button>
+                <!-- <%= f.text_field :image %> -->
+              </div>
+            </div><div class="pure-u-2-3">
+              <div class="form_container_steps">
+                <div class="field">
+                  <label for="poolnaam">Pool naam</label>
+                  <%= f.text_field :name %>
+                </div>
+                <div class="field">
+                  <label for="prive">Priv&eacute; pool?</label>
+                  Public: <%= f.radio_button :public, true, :checked => true %>
+                  Private:<%= f.radio_button :public, false, :checked => false %>
+                </div>
+                <div id="private_pool_enabled">
+                  <div class="field">
+                    <label for="poolnaam">Wachtwoord</label>
+                    <%= f.password_field :password %>
+                    <span><%= error_message_for(:password, :prepend_text => "Het wachtwoord moet minimaal 7 tekens. ") %></span>
+                  </div>
+                  <div class="field">
+                    <label for="poolnaam">Wachtwoord herhalen</label>
+                    <%= f.password_field :password_confirmation %>
+                    <span><%= error_message_for(:password_confirmation, :prepend_text => "<br/> De wachtwoorden komen niet overeen. ") %> </span>
+                  </div>
+                </div>
+                <%= f.button "Volgende stap", :class => 'primary' %> 
+            </div>
+          </div>
+      </div>
+      </form>
+    </div>
+
+
+    <% end %>
+
+
+
+
