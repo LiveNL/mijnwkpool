@@ -1,5 +1,4 @@
 class PoolsController < ApplicationController
-  
   def new
     @pool = Pool.new
   end
