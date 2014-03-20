@@ -27,17 +27,11 @@
                 </div>
 
 
-                
-                <article>
-                  <label for="prive">Priv&eacute; pool?</label>
 
-                  <input id="pool_public_true" name="pool[public]" type="radio"  value="true" checked="checked"/>
-                  <label for="pool_public_true">Public</label>
-
-
-                  <%= f.radio_button :public, false, :checked => false %>
-                  <label for="pool_public_false">Private </label>
-                </article>
+                <div class="field">
+                  <label for="prive">Priv&eacute; pool?</label><input id="pool_public_true" name="pool[public]" type="radio"  value="true" checked="checked"/>
+                  <label for="pool_public_true">Public</label><%= f.radio_button :public, false, :checked => false %><label for="pool_public_false">Private</label>
+                </div>
 
 
 
@@ -54,7 +48,7 @@
                     <span><%= error_message_for(:password_confirmation, :prepend_text => "<br/> De wachtwoorden komen niet overeen. ") %> </span>
                   </div>
                 </div>
-                <%= f.button "Volgende stap", :class => 'primary' %> 
+                <%= f.button "Volgende stap", :class => 'primary' %>
             </div>
           </div>
       </div>

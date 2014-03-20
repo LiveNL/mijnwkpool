@@ -170,6 +170,36 @@ input[type=password]:focus {
   display: block;
   margin-top: 10px;
 }
+.field input[type="radio"]{
+  width: 125px;
+  display: none;
+  padding-top:10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+}
+input[type="radio"] + label{
+  background-color: #ECF0F1;
+  border: none;
+  box-shadow: 0 3px 0 0 #D2D7D3;
+  color: #696969;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 50px;
+  line-height: 50px;
+  margin: 0;
+  outline: none;
+  padding: 0 20px;
+  -webkit-appearance: none;
+}
+input[type="radio"]:checked + label{
+  background-color: #3FC380;
+  color: #FFFFFF;
+  box-shadow: 0 3px 0 0 #35a970;
+}
 button {
   background-color: #ECF0F1;
   border: none;

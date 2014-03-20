@@ -14,36 +14,4 @@
  *= require grid
  *= require_tree .
  */
-article input[type="text"], input[type="radio"], input[type="password"]{
-	width: 425px;
-	border-bottom: 2px solid #A9A9A9;
-	box-sizing:border-box;
-	border:0;
-	border-bottom: 5px solid #CCCCCB;
 
-}
-article input[type="radio"]{
-	width: 125px;
-	display: none;
-	padding-top:10px;
-	padding-left: 15px;
-	padding-right: 15px;
-	padding-bottom: 10px;
-}
-input[type="radio"] + label{
-	background: gray;
-	font-family: 'Droid Sans', sans-serif;
-	font-size: 16px;
-	height: 150px;
-	padding-top:10px;
-	padding-left: 15px;
-	padding-right: 15px;
-}
-input[type="radio"]:checked + label{
-
-	border:0;
-	background: #2ECC71;
-	border-bottom: 5px solid #27AE60;
-	font-family: 'Droid Sans', sans-serif;
-	font-size: 16px;
-} 
