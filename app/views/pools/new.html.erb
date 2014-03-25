@@ -31,42 +31,45 @@
                 <button class="fullwidth primary" type="button">Afbeelding bewerken</button>
                 <!-- <%= f.text_field :image %> -->
               </div>
-            </div><div class="pure-u-2-3">
+            </div>
+            
+            <div class="pure-u-2-3">
               <div class="form_container_steps">
                 <div class="field">
                   <label for="poolnaam">Pool naam</label>
                   <%= f.text_field :name %>
                   <span class="field_with_errors">
-<% if @pool.errors.any? %>
-  <%= @pool.errors[:name].to_sentence(:two_words_connector => " en ") %>
-<% end %>
-
+                    <% if @pool.errors.any? %>
+                      <%= @pool.errors[:name].to_sentence(two_words_connector: '<br />').html_safe %>
+                    <% end %>
                 </div>
 
-
-
-                <div class="field">
+               <div class="field">
                   <label for="prive">Priv&eacute; pool?</label>
-
                   <input id="pool_public_true" name="pool[public]" type="radio"  value="true" checked="checked"/>
-                  
                   <label for="pool_public_true">Public</label><%= f.radio_button :public, false, :checked => false %><label for="pool_public_false">Private</label>
                 </div>
-
-
-
 
                 <div id="private_pool_enabled">
                   <div class="field">
                     <label for="poolnaam">Wachtwoord</label>
                     <%= f.password_field :password %>
-                    <span class="field_with_errors"><%= error_message_password1(:password) %></span>
+                    <span class="field_with_errors">
+                      <% if @pool.errors.any? %>
+                        <%= @pool.errors[:password].to_sentence(two_words_connector: '<br />').html_safe %>
+                      <% end %>
                   </div>
+
                   <div class="field">
                     <label for="poolnaam">Wachtwoord herhalen</label>
                     <%= f.password_field :password_confirmation %>
-                    <span class="field_with_errors"><%= error_message_password2(:password_confirmation) %> </span>
+                    <span class="field_with_errors">
+                    <% if @pool.errors.any? %>
+                      <%= @pool.errors[:password_confirmation].to_sentence(two_words_connector: '<br />').html_safe %>
+                    <% end %>
+                    </span>
                   </div>
+
                 </div>
                 <%= f.button "Volgende stap", :class => 'primary' %>
             </div>
