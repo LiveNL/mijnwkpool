@@ -247,6 +247,24 @@ button.primary:hover {
 
 
 
+.field_with_errors input {
+   border:1px solid red;
+   box-shadow: 0 2px 0 0 red;
+ }
+
+.field_with_errors {
+   color: red;
+ }
+
+.field_with_errors input[type=text]:focus,
+.field_with_errors input[type=password]:focus {
+  border-color: red;
+  box-shadow: 0 2px 0 0 red;
+}
+
+
+
+
 
 @media (max-width: 480px) {
   .prev span {
