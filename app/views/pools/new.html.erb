@@ -28,7 +28,7 @@
                   <%= f.text_field :name %>
                   <span class="field_with_errors">
                     <% if @pool.errors.any? %>
-                      <%= @pool.errors[:name].to_sentence(two_words_connector: '<br />').html_safe %>
+                      <%= @pool.errors[:name].to_sentence(words_connector: '<br />', two_words_connector: '<br />', last_word_connector: '<br />').html_safe %>
                     <% end %>
                   </span>
                 </div>
