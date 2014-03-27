@@ -8,7 +8,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-
+gem "bcrypt-ruby", :require => "bcrypt"
 gem "font-awesome-rails"
 
 group :development do
