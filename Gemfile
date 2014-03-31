@@ -8,14 +8,16 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
-gem "bcrypt-ruby", :require => "bcrypt"
-gem "font-awesome-rails"
+gem 'bcrypt-ruby', require: 'bcrypt'
+gem 'font-awesome-rails'
 
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'rspec-rails'
+
+  gem 'rubocop'
 end
 
 group :doc do
@@ -23,10 +25,10 @@ group :doc do
 end
 
 group :production do
-	gem 'pg'
+  gem 'pg'
 end
 
 group :test do
-	gem 'selenium-webdriver'
-	gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'capybara'
 end
