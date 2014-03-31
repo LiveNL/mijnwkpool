@@ -44,4 +44,8 @@ class Pool < ActiveRecord::Base
     self.password = ''
     self.password_confirmation = ''
   end
+
+  def self.total_steps
+    2
+  end
 end

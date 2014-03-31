@@ -16,6 +16,7 @@ body {
 h1 {
   color: #F9690E;
   font-size: 2rem;
+  font-weight: 600;
   line-height: 1.5;
   margin: 1.5rem 0;
   text-align: center;
@@ -200,7 +201,8 @@ input[type="radio"]:checked + label{
   color: #FFFFFF;
   box-shadow: 0 3px 0 0 #35a970;
 }
-button {
+button,
+.btn {
   background-color: #ECF0F1;
   border: none;
   box-shadow: 0 3px 0 0 #D2D7D3;
@@ -217,21 +219,26 @@ button {
   padding: 0 20px;
   -webkit-appearance: none;
 }
-button.primary {
+button.primary,
+.btn.primary {
   background-color: #3FC380;
   color: #FFFFFF;
   box-shadow: 0 3px 0 0 #35a970;
 }
-button.fullwidth {
+button.fullwidth,
+.btn.fullwidth {
   width: 100%;
 }
-button.inline {
+button.inline,
+.btn.inline {
   display: inline-block;
 }
-button:hover {
+button:hover,
+.btn:hover {
   background-color: #D2D7D3;
 }
-button.primary:hover {
+button.primary:hover,
+.btn.primary:hover {
   background-color: #35a970;
 }
 .next {
@@ -240,12 +247,9 @@ button.primary:hover {
 .prev {
   float: left;
 }
-.private_area {
+#private_pool_enabled {
   display: none;
 }
-
-
-
 
 .field_with_errors input {
    border:1px solid red;
@@ -261,8 +265,6 @@ button.primary:hover {
   border-color: red;
   box-shadow: 0 2px 0 0 red;
 }
-
-
 
 
 
@@ -309,4 +311,8 @@ button.primary:hover {
     margin: 40px auto;
     width: 880px;
   }
+}
+
+.hide {
+  display: none !important;
 }
