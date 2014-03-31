@@ -15,7 +15,10 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
+
   gem 'rspec-rails'
+  gem 'guard-rspec', require: false
+  gem 'terminal-notifier-guard'
 
   gem 'rubocop'
 end
