@@ -1,6 +1,7 @@
 class PoolsController < ApplicationController
   def new
-    @pool = Pool.new
+    wizard = ModelWizard.new(Pool, session).start
+    @pool = wizard.object
   end
 
   def create
