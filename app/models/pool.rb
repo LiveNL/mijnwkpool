@@ -1,5 +1,6 @@
 class Pool < ActiveRecord::Base
-  include BCrypt
+  include BCrypt, MultiStepModel
+
   has_many :poolmemberships
   has_many :users, through: :poolmemberships
   before_save :clear_passwords, if: :public_pool?
