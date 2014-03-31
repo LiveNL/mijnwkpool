@@ -8,7 +8,7 @@ class PoolsController < ApplicationController
     if @pool.save
       @pool.poolmemberships.create(:user => current_user, :role => 1)
       redirect_to :controller => 'pools', :action => "index"
-      else 
+    else 
     render "new"
     end 
   end
