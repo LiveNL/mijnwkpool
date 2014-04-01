@@ -1,8 +1,7 @@
 class Pool < ActiveRecord::Base
   include MultiStepModel
 
-  has_secure_password
-
+  has_secure_password validations: false
   has_many :poolmemberships
   has_many :users, through: :poolmemberships
 
@@ -12,8 +11,15 @@ class Pool < ActiveRecord::Base
   validates_format_of :name, with: /\A(([a-zA-Z0-9]+[-_]{0,1})+)\z/, message: 'Het is niet toegestaan meerdere \'-_\' achter elkaar te plaatsen.'
 
   # Password
-  validates_length_of :password, in: 5..35, if: :private_pool?, message: '* Het wachtwoord moet minimaal 5 karakters!'
-  validates_confirmation_of :password, if: :private_pool?, message: '* De wachtwoorden komen niet overeen!'
+  validates :password, 
+            :presence => false,   
+            :allow_blank => false,
+            :length => { :minimum => 5, message: '* Het wachtwoord moet minimaal 5 karakters!'}
+
+  validates_confirmation_of :password, 
+            :presence => false,   
+            :allow_blank => false,
+            :message => '* De wachtwoorden komen niet overeen!' 
 
   def public_pool?
     is_public == true

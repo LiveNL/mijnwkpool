@@ -31,16 +31,20 @@
                 <script>$(function(){$("#private_pool_enabled").show();})</script>
               <% end %>
             </div>
+              <% if !@pool.is_public? %>               
+
             <div id="private_pool_enabled">
               <div class="field">
                 <label for="poolnaam">Wachtwoord</label>
                 <p>
-                  <span class='password'><% @pool.password.length.times do %>*<% end %></span>
+                  <span class='password'>
+                    <% @pool.password.length.times do %>*<% end %></span>
                   <span class='hide password'><%= @pool.password %></span>
                 </p>
                 <p><a class="togglepassword" href="#">Toon wachtwoord</a><a class="togglepassword hide" href="#">Verberg wachtwoord</a></p>
               </div>
             </div>
+              <% end %>
 
             <%= f.submit "Vorige stap", :class => %w(prev btn), :name => 'back_button' %>
             <%= f.submit "Volgende stap", :class => %w(primary next btn) %>
