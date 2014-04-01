@@ -3,8 +3,8 @@ require 'spec_helper'
 describe PoolsController do
   describe 'Post create' do
     it 'must have a current_user to create a pool' do
-      # pool = Pool.create
-      # post 'create', pool: { name: 'current_user' }
+      Pool.create
+      post 'create', pool: { name: 'current_user' }
     end
   end
 end

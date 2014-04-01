@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Pool do
 
-  let(:pool) { Pool.new(name: 'The Next Web Leeuwarden') }
+  let(:pool) { Pool.new(name: 'The_Next_Web_Leeuwarden') }
 
   it 'is invalid without password if private' do
     pool.public = false
@@ -44,5 +44,17 @@ describe Pool do
 
     expect(pool).not_to be_valid
 
+  end
+
+  it 'name is valid' do
+    pool.public = true
+    pool.name = 'The-Next-Web_Leeuwarden123'
+    expect(pool).to be_valid
+  end
+
+  it 'name is invalid' do
+    pool.public = true
+    pool.name = 'The__Next--Web Leeuwarden123  '
+    expect(pool).not_to be_valid
   end
 end

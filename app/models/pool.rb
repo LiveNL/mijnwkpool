@@ -9,7 +9,7 @@ class Pool < ActiveRecord::Base
   # Name
   validates_length_of :name, in: 3..35, message: '* De pool naam moet tussen 3-35 karakters hebben.'
   validates :name, uniqueness: { message: '* Deze pool naam is al bezet.' }
-  validates_format_of :name, with: /\A[a-zA-Z0-9]+[ _-]{,1}\z/, message: 'Het is niet toegestaan meerdere \'-_ \' achter elkaar te plaatsen.'
+  validates_format_of :name, with: /\A(([a-zA-Z0-9]+[-_]{0,1})+)\z/, message: 'Het is niet toegestaan meerdere \'-_\' achter elkaar te plaatsen.'
 
   # Password
   validates_length_of :password_confirmation, in: 5..35, if: :private_pool?, message: '* Het wachtwoord moet minimaal 5 karakters!'
