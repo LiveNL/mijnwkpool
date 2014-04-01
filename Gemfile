@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'font-awesome-rails'
+gem "paperclip", '~> 4.1'
 
 group :development do
   gem 'capistrano'
