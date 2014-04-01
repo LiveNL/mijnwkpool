@@ -23,11 +23,12 @@
               <p><%= @pool.name %></p>
             </div>
             <div class="field">
-              <label for="prive">Priv&eacute; pool?</label>
+              <label for="prive">Privacy</label>
               <% if @pool.public %>
-                <%= f.radio_button :public, true, :checked => true, :disabled => true %><label for="pool_public_true">Public</label><%= f.radio_button :public, false, :checked => false, :disabled => true %><label for="pool_public_false">Private</label>
+                <p>Nee</p>
               <% else %>
-                <%= f.radio_button :public, true, :checked => false, :disabled => true %><label for="pool_public_true">Public</label><%= f.radio_button :public, false, :checked => true, :disabled => true %><label for="pool_public_false">Private</label>
+                <p>Ja</p>
+                <script>$(function(){$("#private_pool_enabled").show();})</script>
               <% end %>
             </div>
             <div id="private_pool_enabled">

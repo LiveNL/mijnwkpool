@@ -30,11 +30,11 @@
               </span>
             </div>
             <div class="field">
-              <label for="prive">Priv&eacute; pool?</label>
+              <label for="prive">Privacy</label>
               <% if @pool.public || @pool.public.nil? %>
-                <%= f.radio_button :public, true, :checked => true %><label for="pool_public_true">Public</label><%= f.radio_button :public, false, :checked => false %><label for="pool_public_false">Private</label>
+                <%= f.radio_button :public, true, :checked => true %><label for="pool_public_true">Openbaar</label><%= f.radio_button :public, false, :checked => false %><label for="pool_public_false">Priv&eacute;</label>
               <% else %>
-                <%= f.radio_button :public, true, :checked => false %><label for="pool_public_true">Public</label><%= f.radio_button :public, false, :checked => true %><label for="pool_public_false">Private</label>
+                <%= f.radio_button :public, true, :checked => false %><label for="pool_public_true">Openbaar</label><%= f.radio_button :public, false, :checked => true %><label for="pool_public_false">Priv&eacute;</label>
               <% end %>
             </div>
             <div id="private_pool_enabled">

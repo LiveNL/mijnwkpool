@@ -118,15 +118,24 @@ a:active {
 }
 
 .avatar {
+  position: relative;
   margin: 0 auto;
   max-width: 265px;
-  padding-bottom: 30px;
   text-align: center;
 }
 
-.avatar img + button {
+.avatar img {
   margin-top: 10px;
+  position: relative;
 }
+
+.avatar button{
+  bottom: 5%;
+  position: absolute;
+  max-width: 90%;
+  left: 5%;
+}
+
 .field {
   margin-bottom: 30px;
 }
@@ -205,6 +214,7 @@ button,
 .btn {
   background-color: #ECF0F1;
   border: none;
+  border-radius: 0;
   box-shadow: 0 3px 0 0 #D2D7D3;
   color: #696969;
   cursor: pointer;
@@ -276,8 +286,13 @@ button.primary:hover,
 
 @media (max-width: 679px) {
   .avatar {
-    max-width: 305px;
-    padding-bottom: 0;
+    margin-bottom: 30px;
+    max-width: 265px;
+  }
+
+  .avatar button {
+    left: 5%;
+    max-width: 90%;
   }
 }
 
@@ -291,7 +306,6 @@ button.primary:hover,
   }
   .avatar {
     margin: 0;
-    padding-bottom: 0;
   }
   .form_container_steps {
     padding-left: 30px;
