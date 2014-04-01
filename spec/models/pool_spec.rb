@@ -24,12 +24,12 @@ describe Pool do
     pool.password_confirmation = 'ikbenwacht'
 
     pool.save
-    expect(pool.password).to equal('')
+    expect(pool.password).to eq('')
 
     pool.password = 'ikbenechtwelwachtwoord'
 
     pool.save
-    expect(pool.password).to equal('')
+    expect(pool.password).to eq('')
 
   end
 
