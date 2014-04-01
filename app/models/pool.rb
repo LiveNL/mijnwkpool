@@ -11,12 +11,14 @@ class Pool < ActiveRecord::Base
   validates_format_of :name, with: /\A(([a-zA-Z0-9]+[-_]{0,1})+)\z/, message: 'Het is niet toegestaan meerdere \'-_\' achter elkaar te plaatsen.'
 
   # Password
-  validates :password, 
+  validates :password,
+            if: :private_pool?,
             :presence => false,   
             :allow_blank => false,
             :length => { :minimum => 5, message: '* Het wachtwoord moet minimaal 5 karakters!'}
 
   validates_confirmation_of :password, 
+            if: :private_pool?,
             :presence => false,   
             :allow_blank => false,
             :message => '* De wachtwoorden komen niet overeen!' 

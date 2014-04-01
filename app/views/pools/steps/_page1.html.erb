@@ -32,9 +32,15 @@
             <div class="field">
               <label for="prive">Privacy</label>
               <% if @pool.is_public || @pool.is_public.nil? %>
-                <%= f.radio_button :is_public, true, :checked => true %><label for="pool_is_public_true">Openbaar</label><%= f.radio_button :is_public, false, :checked => false %><label for="pool_is_public_false">Priv&eacute;</label>
+                <%= f.radio_button :is_public, true, :checked => true %>
+                <label for="pool_is_public_true">Openbaar</label>
+                <%= f.radio_button :is_public, false, :checked => false %>
+                <label for="pool_is_public_false">Priv&eacute;</label>
               <% else %>
-                <%= f.radio_button :is_public, true, :checked => false %><label for="pool_is_public_true">Openbaar</label><%= f.radio_button :is_public, false, :checked => true %><label for="pool_is_public_false">Priv&eacute;</label>
+                <%= f.radio_button :is_public, true, :checked => false %>
+                <label for="pool_is_public_true">Openbaar</label>
+                <%= f.radio_button :is_public, false, :checked => true %>
+                <label for="pool_is_public_false">Priv&eacute;</label>
               <% end %>
             </div>
             <div id="private_pool_enabled">

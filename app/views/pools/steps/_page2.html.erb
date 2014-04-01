@@ -25,9 +25,9 @@
             <div class="field">
               <label for="prive">Privacy</label>
               <% if @pool.is_public? %>
-                <p>Nee</p>
+                <p>Openbare pool</p>
               <% else %>
-                <p>Ja</p>
+                <p>Priv&eacute; pool</p>
                 <script>$(function(){$("#private_pool_enabled").show();})</script>
               <% end %>
             </div>
