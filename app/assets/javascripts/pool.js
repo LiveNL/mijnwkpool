@@ -1,5 +1,5 @@
 $(function() {
-  $input = $("input:radio[name='pool[public]']");
+  $input = $("input:radio[name='pool[is_public]']");
   $.each($input,function(k,v) {
     togglePasswordFields(v);
   });

@@ -21,10 +21,11 @@
             <div class="field">
               <label for="poolnaam">Pool naam</label>
               <p><%= @pool.name %></p>
+              <p><%= @pool.inspect %></p>
             </div>
             <div class="field">
               <label for="prive">Privacy</label>
-              <% if @pool.public %>
+              <% if @pool.is_public? %>
                 <p>Nee</p>
               <% else %>
                 <p>Ja</p>
