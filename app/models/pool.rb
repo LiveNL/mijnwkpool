@@ -1,10 +1,10 @@
 class Pool < ActiveRecord::Base
-  include BCrypt, MultiStepModel
+  include MultiStepModel
+
+  has_secure_password
 
   has_many :poolmemberships
   has_many :users, through: :poolmemberships
-  before_save :clear_passwords, if: :public_pool?
-  # before_save :password_validation, :encrypt_password, if: :private_pool?
 
   # Name
   validates_length_of :name, in: 3..35, message: '* De pool naam moet tussen 3-35 karakters hebben.'
@@ -21,26 +21,6 @@ class Pool < ActiveRecord::Base
 
   def private_pool?
     is_public == false
-  end
-
-  # def password_validation
-  #   validates_length_of :password, in: 5..35, if: :private_pool?
-  # end
-
-  def password
-    @password ||= Password.new(password_hash)
-  end
-
-  def password=(new_password)
-    @password = Password.create(new_password)
-    self.password_hash = @password
-  end
-
-  def encrypt_password
-    if password.present?
-      self.password_salt = BCrypt::Engine.generate_salt
-      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
-    end
   end
 
   def clear_passwords
