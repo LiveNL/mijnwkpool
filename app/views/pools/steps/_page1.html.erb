@@ -14,9 +14,10 @@
     <div class="pure-g-r">
         <div class="pure-u-1-3">
           <div class="avatar">
-            <img src="http://placehold.it/265x265" alt="placeholder">
-            <button class="fullwidth primary" type="button">Afbeelding bewerken</button>
-
+            <!-- <img src="http://placehold.it/265x265" alt="placeholder"> -->
+            <!-- <button class="fullwidth primary" type="button">Afbeelding bewerken</button> -->
+            <%= image_tag @pool.avatar.url(:small) %>
+            <%= f.file_field :avatar, class: %w(primary fullwidth btn) %>
           </div>
         </div><div class="pure-u-2-3">
           <div class="form_container_steps">
