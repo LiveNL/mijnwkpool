@@ -214,6 +214,7 @@ button,
   margin: 0;
   outline: none;
   padding: 0 20px;
+  text-decoration: none;
   -webkit-appearance: none;
 }
 button.primary,
@@ -318,7 +319,7 @@ button.primary:hover,
     margin-left: 5px;
   }
   :not(.prev) + .next {
-    float: none;
+    float: left;
   }
 }
 

@@ -28,10 +28,10 @@ class Pool < ActiveRecord::Base
   has_attached_file :avatar,
                     styles: {
                       medium: '500x500>',
-                      small: '265x265#',
+                      small: '265x265>',
                       thumb: '100x100#'
                     },
-                    default_url: '/images/pool/:style/missing.png'
+                    default_url: 'pool/:style/missing.png'
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   before_post_process :check_file_size
