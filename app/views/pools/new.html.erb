@@ -1,0 +1,4 @@
+<%= form_for @pool do |f| %>
+  <%= f.hidden_field :current_step, value: @pool.current_step %>
+  <%= render "pools/steps/page#{@pool.current_step + 1}", f: f %>
+<% end %>

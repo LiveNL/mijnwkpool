@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140316135830) do
+ActiveRecord::Schema.define(version: 20140401124547) do
 
   create_table "poolmemberships", force: true do |t|
     t.integer  "user_id"
@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 20140316135830) do
 
   create_table "pools", force: true do |t|
     t.string   "name"
-    t.boolean  "public"
+    t.boolean  "is_public"
     t.string   "image"
-    t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
   create_table "users", force: true do |t|
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140316135830) do
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",      default: false
   end
 
 end
