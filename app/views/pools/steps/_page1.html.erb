@@ -9,6 +9,9 @@
     </div>
   </div>
 
+  <%= f.file_field :avatar_temp %>
+  <%= image_tag @pool.avatar.url %>
+
   <h1>1. Pool informatie</h1>
   <form action="step2.html">
     <div class="pure-g-r">

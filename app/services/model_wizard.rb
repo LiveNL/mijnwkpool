@@ -5,6 +5,8 @@ class ModelWizard
     @object_or_class = object_or_class
     @session = session
     @params = params
+    @params[:pool][:avatar_temp] = params[:pool][:avatar_temp].path if params && params[:pool][:avatar_temp]     
+    # @params[:avatar_temp] = params[:avatar_temp].path if params && params.key?(:avatar_temp)     
     @param_key = param_key || ActiveModel::Naming.param_key(object_or_class)
     @session_params = "#{@param_key}_params".to_sym
   end

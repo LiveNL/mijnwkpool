@@ -7,6 +7,18 @@ class PoolsController < ApplicationController
   def create
     wizard = ModelWizard.new(Pool, session, params).process
     @pool = wizard.object
+    # @pool = Pool.create (pool_params)
+    if wizard.save
+      @pool.poolmemberships.create(user: current_user, role: 1)
+      redirect_to controller: 'pools', action: 'index'
+    else
+      render :new
+    end
+  end
+
+  def update
+      wizard = ModelWizard.new(Pool, session, params).process
+    @pool = wizard.object
     if wizard.save
       @pool.poolmemberships.create(user: current_user, role: 1)
       redirect_to controller: 'pools', action: 'index'
@@ -16,9 +28,7 @@ class PoolsController < ApplicationController
   end
 
   private
-
   def pool_params
-    params.require(:pool).permit(:name, :image, :is_public, :password,
-                                 :password_confirmation)
+    params.require(:pool).permit(:name, :image, :is_public, :password, :password_confirmation, :avatar)
   end
 end
