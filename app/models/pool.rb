@@ -1,6 +1,4 @@
 class Pool < ActiveRecord::Base
-  include MultiStepModel
-
   has_secure_password validations: false
   has_many :poolmemberships
   has_many :users, through: :poolmemberships
@@ -50,10 +48,6 @@ class Pool < ActiveRecord::Base
   def clear_passwords
     self.password = ''
     self.password_confirmation = ''
-  end
-
-  def self.total_steps
-    2
   end
 
   def check_file_size

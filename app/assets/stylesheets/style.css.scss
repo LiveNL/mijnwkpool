@@ -119,7 +119,7 @@ a:active {
 .avatar .btn{
   bottom: 5%;
   position: absolute;
-  max-width: 90%;
+  width: 90%;
   left: 5%;
 }
 
@@ -210,7 +210,7 @@ button,
   font-size: 1rem;
   font-weight: 400;
   height: 50px;
-  /*line-height: 50px;*/
+  line-height: 50px;
   margin: 0;
   outline: none;
   padding: 0 20px;
@@ -237,6 +237,20 @@ button:hover,
 button.primary:hover,
 .btn.primary:hover {
   background-color: #35a970;
+}
+.btn.fileupload{
+  overflow: hidden;
+}
+.btn.fileupload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  fot-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
 }
 .next {
   float: right;
