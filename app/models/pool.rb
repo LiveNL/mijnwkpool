@@ -1,14 +1,25 @@
 class Pool < ActiveRecord::Base
-  include MultiStepModel
-
   has_secure_password validations: false
   has_many :poolmemberships
   has_many :users, through: :poolmemberships
 
+  before_save :clear_passwords, if: :public_pool?
+
   # Name
-  validates_length_of :name,in: 3..35, message: '* De pool naam moet tussen 3-35 karakters hebben.'
-  validates :name, uniqueness: { message: '* Deze pool naam is al bezet.' }
-  validates_format_of :name, with: /\A(([a-zA-Z0-9]+[-_]{0,1})+)\z/, message: 'Het is niet toegestaan meerdere \'-_\' achter elkaar te plaatsen.'
+  validates :name,
+            length: {
+              minimum: 3,
+              maximum: 35,
+              message: '* De pool naam moet tussen 3-35 karakters hebben.'
+            },
+            uniqueness: {
+              message: '* Deze pool naam is al bezet.'
+            },
+            format: {
+              with: /\A(([a-zA-Z0-9]+[-_]{0,1})+)\z/,
+              message: 'Het is niet toegestaan meerdere \'-_\' achter elkaar te
+                        plaatsen.'
+            }
 
   # Password
   validates :password,
@@ -18,22 +29,19 @@ class Pool < ActiveRecord::Base
             length: {
               minimum: 5,
               message: '* Het wachtwoord moet minimaal 5 karakters!'
+            },
+            confirmation: {
+              message: '* De wachtwoorden komen niet overeen!'
             }
-
-  validates_confirmation_of :password,
-                            if: :private_pool?,
-                            presence: false,
-                            allow_blank: false,
-                            message: '* De wachtwoorden komen niet overeen!'
 
   # Avatar
   has_attached_file :avatar,
                     styles: {
                       medium: '500x500>',
-                      small: '265x265#',
+                      small: '265x265>',
                       thumb: '100x100#'
                     },
-                    default_url: '/images/pool/:style/missing.png'
+                    default_url: 'pool/:style/missing.png'
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   before_post_process :check_file_size
@@ -48,12 +56,7 @@ class Pool < ActiveRecord::Base
   end
 
   def clear_passwords
-    self.password = ''
-    self.password_confirmation = ''
-  end
-
-  def self.total_steps
-    2
+    self.password_digest = ''
   end
 
   def check_file_size

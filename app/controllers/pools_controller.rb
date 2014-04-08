@@ -1,18 +1,18 @@
 class PoolsController < ApplicationController
   def new
-    wizard = ModelWizard.new(Pool, session).start
-    @pool = wizard.object
+    @pool = Pool.new
   end
 
   def create
-    wizard = ModelWizard.new(Pool, session, params).process
-    @pool = wizard.object
-    if wizard.save
-      @pool.poolmemberships.create(user: current_user, role: 1)
-      redirect_to controller: 'pools', action: 'index'
+    @pool = Pool.new(pool_params)
+    if @pool.save
+      render 'confirmation'
     else
-      render :new
+      render 'new'
     end
+  end
+
+  def update
   end
 
   private

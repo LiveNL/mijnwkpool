@@ -1,4 +1,103 @@
-<%= form_for @pool, html: { multipart: true } do |f| %>
-  <%= f.hidden_field :current_step, value: @pool.current_step %>
-  <%= render "pools/steps/page#{@pool.current_step + 1}", f: f %>
+<%= form_for Pool.new, html: { multipart: true } do |f| %>
+<div class="container cf">
+  <div class="steps">
+    <div class="step active">
+      1. <span class="pure-hidden-phone">Pool informatie</span>
+    </div><div class="step">
+      2. <span class="pure-hidden-phone">Bevestigen</span>
+    </div><div class="step">
+      3. <span class="pure-hidden-phone">Vrienden uitnodigen</span>
+    </div>
+  </div>
+
+  <h1>1. Pool informatie</h1>
+  <form action="step2.html">
+    <div class="pure-g-r">
+        <div class="pure-u-1-3">
+          <div class="avatar">
+            <%= image_tag @pool.avatar.url(:small), id: 'uploadPreview' %>
+
+
+            <div class="btn primary fileupload">
+            	<span>Bewerk afbeelding</span>
+            	<%= f.file_field :avatar, class: "upload", id: "uploadImage", onchange: "PreviewImage();" %>
+						</div>
+            <script type="text/javascript">
+
+              function PreviewImage() {
+                  var oFReader = new FileReader();
+                  oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+                  oFReader.onload = function (oFREvent) {
+                      document.getElementById("uploadPreview").src = oFREvent.target.result;
+                  };
+              }
+
+          </script>
+          </div>
+        </div><div class="pure-u-2-3">
+          <div class="form_container_steps">
+
+              <% if @pool.errors[:name].empty? %>
+                <div class="field">
+              <% else %>
+                <div class="field field_with_errors">
+              <% end %>
+              <label for="poolnaam">Pool naam</label>
+              <%= f.text_field :name %>
+              <span>
+                <% if @pool.errors.any? %>
+                  <%= @pool.errors[:name].to_sentence(words_connector: '<br />', two_words_connector: '<br />', last_word_connector: '<br />').html_safe %>
+                <% end %>
+              </span>
+            </div>
+            <div class="field">
+              <label for="prive">Privacy</label>
+              <% if @pool.is_public || @pool.is_public.nil? %>
+                <%= f.radio_button :is_public, true, :checked => true %>
+                <label for="pool_is_public_true">Openbaar</label>
+                <%= f.radio_button :is_public, false, :checked => false %>
+                <label for="pool_is_public_false">Priv&eacute;</label>
+              <% else %>
+                <%= f.radio_button :is_public, true, :checked => false %>
+                <label for="pool_is_public_true">Openbaar</label>
+                <%= f.radio_button :is_public, false, :checked => true %>
+                <label for="pool_is_public_false">Priv&eacute;</label>
+              <% end %>
+            </div>
+            <div id="private_pool_enabled">
+              <% if @pool.errors[:password].empty? %>
+                <div class="field">
+              <% else %>
+                <div class="field field_with_errors">
+              <% end %>
+                <label for="poolnaam">Wachtwoord</label>
+                <%= f.password_field :password %>
+                <span>
+                  <% if @pool.errors.any? %>
+                    <%= @pool.errors[:password].to_sentence(two_words_connector: '<br />').html_safe %>
+                  <% end %>
+                </span>
+              </div>
+              <% if @pool.errors[:password_confirmation].empty? %>
+                <div class="field">
+              <% else %>
+                <div class="field field_with_errors">
+              <% end %>
+                <label for="poolnaam">Wachtwoord herhalen</label>
+                <%= f.password_field :password_confirmation %>
+                <span>
+                  <% if @pool.errors.any? %>
+                    <%= @pool.errors[:password_confirmation].to_sentence(two_words_connector: '<br />').html_safe %>
+                  <% end %>
+                </span>
+              </div>
+            </div>
+
+            <%= f.submit "Volgende stap", :class => %w(primary next btn) %>
+          </div>
+        </div>
+    </div>
+  </form>
+</div>
 <% end %>
