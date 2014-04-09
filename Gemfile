@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'font-awesome-rails'
 gem 'paperclip', '~> 4.1'
+gem 'react-rails'
 
 group :development do
   gem 'capistrano'
