@@ -1,4 +1,12 @@
 class PoolsController < ApplicationController
+
+  respond_to :json, :html
+
+  def index 
+    @pools = Pool.all
+    respond_with(@pools = Pool.all)
+  end
+
   def new
     @pool = Pool.new
   end
@@ -10,6 +18,12 @@ class PoolsController < ApplicationController
     else
       render 'new'
     end
+
+  end
+
+  def show
+    @pool = Pool.find(params[:id])
+
   end
 
   def update

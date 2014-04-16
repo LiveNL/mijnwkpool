@@ -12,6 +12,8 @@ gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'font-awesome-rails'
 gem 'paperclip', '~> 4.1'
 gem 'react-rails'
+gem 'railsy_backbone'
+gem 'handlebars_assets'
 
 group :development do
   gem 'capistrano'

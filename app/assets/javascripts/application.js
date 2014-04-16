@@ -13,5 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require react
+//= require handlebars.runtime
+//= require underscore
+//= require backbone
+//= require railsy_backbone.sync
+//= require railsy_backbone.datalink
+//= require backbone/backbone
 //= require_tree .

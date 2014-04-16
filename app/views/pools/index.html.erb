@@ -2,6 +2,9 @@
 <p>Find me in app/views/pool/index.html.erb</p>
 
 <a href="pools/new">hoi</a>
-<div id="example"></div>
 
-<script> React.renderComponent(FilterableProductTable( {products:PRODUCTS} ), document.querySelector("#example")); </script>
+<%= javascript_tag do %>
+  App.initialize();
+<% end %>
+
+<div id="list-pools"></div>
