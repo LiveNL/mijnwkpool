@@ -73,70 +73,28 @@
       </div>
       <div class='pool-list'>
         <ul>
-          <li class='private'>
-            <div class='view-table'>
-              <a class='grey pool-list-inner view-row' href='#modal' rel='modal:open'>
-                <div class='pool-list-img'>
-                  <%= image_tag('pool/thumb/missing.png') %>
-                </div>
-                <div class='pool-list-txt'>
-                  <h2>The Next Web Leeuwarden</h2>
-                  <p>15/35</p>
-                </div>
-                <div class='pool-list-lock'>
-                  <i class='fa fa-lock lock'></i>
-                </div>
-              </a>
-            </div>
-          </li>
-          <li class='public'>
-            <div class='view-table'>
-              <a class='grey pool-list-inner view-row' href='#modal2' rel='modal:open'>
-                <div class='pool-list-img'>
-                  <%= image_tag('pool/thumb/missing.png') %>
-                </div>
-                <div class='pool-list-txt'>
-                  <h2>Peter &amp; Friends</h2>
-                  <p>15/35</p>
-                </div>
-                <div class='pool-list-lock'>
-                  <i class='fa fa-unlock lock'></i>
-                </div>
-              </a>
-            </div>
-          </li>
-          <li class='private'>
-            <div class='view-table'>
-              <a class='grey pool-list-inner view-row' href='#'>
-                <div class='pool-list-img'>
-                  <%= image_tag('pool/thumb/missing.png') %>
-                </div>
-                <div class='pool-list-txt'>
-                  <h2>The Next Web Leeuwarden</h2>
-                  <p>15/35</p>
-                </div>
-                <div class='pool-list-lock'>
-                  <i class='fa fa-lock lock'></i>
-                </div>
-              </a>
-            </div>
-          </li>
-          <li class='public'>
-            <div class='view-table'>
-              <a class='grey pool-list-inner view-row' href='#'>
-                <div class='pool-list-img'>
-                  <%= image_tag('pool/thumb/missing.png') %>
-                </div>
-                <div class='pool-list-txt'>
-                  <h2>Peter &amp; Friends</h2>
-                  <p>15/35</p>
-                </div>
-                <div class='pool-list-lock'>
-                  <i class='fa fa-unlock lock'></i>
-                </div>
-              </a>
-            </div>
-          </li>
+          <% @pools.each do |pool| %>
+            <li class='private'>
+              <div class='view-table'>
+                <a class='grey pool-list-inner view-row' href='#modal' rel='modal:open'>
+                  <div class='pool-list-img'>
+                    <%= image_tag pool.avatar.url(:small) %>
+                  </div>
+                  <div class='pool-list-txt'>
+                    <h2><%= pool.name %></h2>
+                    <p>15/35</p>
+                  </div>
+                  <div class='pool-list-lock'>
+                    <% if pool.is_public? %>
+                      <i class='fa fa-unlock lock'></i>
+                    <% else %>
+                      <i class='fa fa-lock lock'></i>
+                    <% end %>
+                  </div>
+                </a>
+              </div>
+            </li>
+          <% end %>
         </ul>
       </div>
       <div class='pagination'>
