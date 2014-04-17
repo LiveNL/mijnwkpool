@@ -78,11 +78,11 @@
               <div class='view-table'>
                 <a class='grey pool-list-inner view-row' href='#modal' rel='modal:open'>
                   <div class='pool-list-img'>
-                    <%= image_tag pool.avatar.url(:small) %>
+                    <%= image_tag pool.avatar.url(:thumb) %>
                   </div>
                   <div class='pool-list-txt'>
                     <h2><%= pool.name %></h2>
-                    <p>15/35</p>
+                    <p><%= pool.poolmemberships.count %> / <%= pool.maximum_membership %></p>
                   </div>
                   <div class='pool-list-lock'>
                     <% if pool.is_public? %>
