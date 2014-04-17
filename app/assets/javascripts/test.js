@@ -84,7 +84,7 @@ var SearchBar = React.createClass({displayName: 'SearchBar',
     }
 });
 
-var FilterableProductTable = React.createBackboneClass({displayName: 'FilterableProductTable',
+var FilterableProductTable = React.createClass({displayName: 'FilterableProductTable',
     getInitialState: function() {
         return {
             filterText: '',

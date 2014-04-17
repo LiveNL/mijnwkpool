@@ -6,5 +6,7 @@
 <%= javascript_tag do %>
   App.initialize();
 <% end %>
+<div id="example"></div>
 
 <div id="list-pools"></div>
+<script> React.renderComponent(FilterableProductTable( {products:PRODUCTS} ), document.body); </script>    <script src="test.js"></script>
