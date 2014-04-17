@@ -20,7 +20,7 @@
   }
 
   .close-modal {
-    background: image_url('close.png') no-repeat 0 0;
+    background: image-url('close.png') no-repeat 0 0;
     display: block;
     height: 30px;
     position: absolute;
@@ -32,7 +32,7 @@
 }
 
 .modal-spinner {
-  background: image_url('spinner.gif') $color-grey-darker no-repeat center center;
+  background: image-url('spinner.gif') $color-grey-darker no-repeat center center;
   border-radius: 8px;
   display: none;
   height: 64px;
