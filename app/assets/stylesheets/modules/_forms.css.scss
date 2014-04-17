@@ -1,0 +1,140 @@
+input[type=text],
+input[type=password] {
+  @include font-size($font-size);
+  border-color: $color-grey-light;
+  border-style: solid;
+  border-width: 1px 1px 3px 1px;
+  border-radius: 0;
+  color: $color-grey-medium;
+  display: block;
+  font-family: $font-family;
+  font-weight: $font-weight;
+  height: 50px;
+  padding: 0 10px;
+  outline: none;
+  width: 100%;
+  -webkit-appearance: none;
+
+  &:focus {
+    border-color: $color-grey-medium;
+  }
+}
+
+.checkbox {
+  & + .checkbox {
+    margin-top: 5px;
+  }
+  input[type=checkbox],
+  input[type=radio] {
+    display: none;
+
+    & + label {
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      cursor: pointer;
+      display: inline-block;
+      height: 17px;
+      line-height: 17px;
+      padding-left: 17+15px;
+    }
+
+    &:checked + label {
+      background-position: 0 -17px;
+    }
+  }
+
+  label {
+    background-image: image-url('checkbox.png');
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
+
+
+.form-field {
+  @include clearfix;
+
+  & + .form-field {
+    padding-top: 30px;
+  }
+
+  &.inline {
+    input[type=radio],
+    input[type=checkbox] {
+      display:none;
+
+      &:checked + label {
+        @extend .btn.green;
+      }
+
+      & + label {
+        @extend .btn;
+        @extend .btn.grey;
+        @extend .left;
+      }
+    }
+  }
+
+  &.error {
+
+    label {
+      color: $color-red-light;
+    }
+
+    input {
+      color: $color-red-light;
+      border-color: $color-red-light;
+    }
+  }
+}
+
+.slider {
+  margin-right: 2px;
+  .minmax {
+    @include clearfix;
+    margin-bottom: 15px;
+  }
+  .mintext {
+    @extend .left;
+    color: $color-grey-medium;
+  }
+  .maxtext {
+    @extend .right;
+    color: $color-grey-medium;
+  }
+}
+
+.form-search {
+  @include clearfix;
+  div {
+    overflow: hidden;
+  }
+  button {
+    float: right;
+    margin-left: 10px;
+  }
+
+  @include respond-to(mobile) {
+    button {
+      box-shadow: none;
+      height: 50px;
+      line-height: 50px;
+      margin-left: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    input {
+      border-width: 1px;
+    }
+  }
+}
+
+label {
+  color: $color-grey-medium;
+  display: block;
+  margin-bottom: 10px;
+}

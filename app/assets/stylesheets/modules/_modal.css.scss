@@ -1,0 +1,62 @@
+.modal {
+  background-color: #FFF;
+  box-shadow: 0 3px 0 0 $color-grey-light;
+  display: none;
+  padding: 30px;
+  width: 90%;
+
+  @include respond-to(small) {
+    width: 600px;
+  }
+
+  h1 {
+    margin: 0;
+    text-align: left;
+  }
+
+  p {
+    color: $color-grey-medium;
+    margin-top: 10px;
+  }
+
+  .close-modal {
+    background: image_url('close.png') no-repeat 0 0;
+    display: block;
+    height: 30px;
+    position: absolute;
+    right: -18px;
+    text-indent: -9999px;
+    top: -26px;
+    width: 30px;
+  }
+}
+
+.modal-spinner {
+  background: image_url('spinner.gif') $color-grey-darker no-repeat center center;
+  border-radius: 8px;
+  display: none;
+  height: 64px;
+  left: 50%;
+  margin-right: -32px;
+  margin-top: -32px;
+  position: fixed;
+  top: 50%;
+  width: 64px;
+}
+
+.modal-btns {
+  margin-top: 20px;
+  & > div {
+    float: right;
+  }
+  & > div + div {
+    margin-top: 10px;
+    @include respond-to(small) {
+      margin-top: 0;
+    }
+  }
+}
+
+.modalpassword {
+  margin-top: 20px;
+}

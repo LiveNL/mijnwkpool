@@ -10,8 +10,5 @@
  *
  *= require_self
  *= require font-awesome
- *= require reset
- *= require grid
- *= require_tree .
+ *= require all
  */
-

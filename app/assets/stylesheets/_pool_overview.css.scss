@@ -1,0 +1,192 @@
+.pool-filter {
+  border-bottom: 1px solid $color-grey-light;
+
+  @include respond-to(small) {
+    padding: 30px;
+  }
+
+  h3 {
+    margin-bottom: 20px;
+  }
+
+  .filter-box + .filter-box {
+    margin-top: 20px;
+    @include respond-to(small) {
+      margin-top: 0;
+    }
+  }
+
+  .filter-handle {
+    @include clearfix;
+    color: $color-grey-medium;
+    cursor: pointer;
+    padding: 0 20px;
+
+    @include respond-to(small) {
+      display: none;
+    }
+
+    &:hover,
+    &:active {
+      * {
+        color: $color-grey-dark;
+      }
+    }
+
+    h2 {
+      float:left;
+      line-height: 50px;
+    }
+
+    .filter-arrow {
+      float: right;
+      @include font-size($font-size * 2);
+      line-height: 50px;
+    }
+  }
+
+  .filter-overview {
+    display: none;
+    padding: 5px 20px 20px;
+
+    @include respond-to(small) {
+      display: block;
+      padding: 0;
+    }
+    &.show {
+      display: block
+    }
+  }
+
+  .filter-submit {
+    margin-top: 30px;
+  }
+}
+
+.pool-list {
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    @include clearfix;
+    border-bottom: 1px solid $color-grey-light;
+    display: block;
+    padding: 15px 20px;
+
+    @include respond-to(small) {
+      padding: 30px;
+    }
+  }
+
+  .pool-list-inner {
+    text-decoration: none;
+
+    &:hover * {
+      color: $color-grey-dark;
+    }
+  }
+
+  .pool-list-img {
+    display: none;
+    padding-right: 30px;
+    vertical-align: middle;
+    width: 110px;
+    white-space: nowrap;
+
+    @include respond-to(small) {
+      display: table-cell;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .pool-list-txt {
+    vertical-align: middle;
+  }
+
+  .pool-list-lock {
+    vertical-align: middle;
+    width: 60px;
+
+    .lock {
+      @include font-size($font-size * 2);
+      padding-left: 30px;
+    }
+
+  }
+}
+
+.pagination {
+  @include clearfix;
+  padding: 15px 10px;
+  text-align: center;
+
+  @include respond-to(small) {
+    padding: 30px;
+  }
+
+  .pages {
+    margin: 0 auto;
+    @extend .view-table;
+    @include respond-to(small) {
+      width: auto;
+    }
+  }
+
+  .btn {
+    float: left;
+
+    .text {
+      display: none;
+      @include respond-to(small) {
+        display: inline;
+      }
+    }
+  }
+
+  .prev,
+  .next {
+    width: 50px;
+    @include respond-to(small) {
+      width: auto;
+    }
+  }
+
+  .page-title {
+    vertical-align: middle;
+    @include respond-to(small) {
+      display: none;
+    }
+  }
+
+  .page-btns {
+    display: none;
+    @include respond-to(small) {
+      display: table-cell;
+    }
+  }
+}
+
+.pool-list-small {
+  ul {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  li {
+    display: block;
+
+    a {
+      border-bottom: 1px solid $color-grey-light;
+      display: block;
+      padding: 20px 0;
+      text-decoration: none;
+
+    }
+  }
+}
