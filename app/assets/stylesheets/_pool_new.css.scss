@@ -1,0 +1,39 @@
+.avatar {
+  position: relative;
+  margin: 0 auto;
+  max-width: 305px;
+  padding: 20px;
+  text-align: center;
+
+  @include respond-to(small) {
+    max-width: 265px;
+    margin: 30px 0px 30px 20px;
+    padding: 0;
+  }
+
+  img {
+    border: 1px solid $color-grey-light;
+    display: block;
+    position: relative;
+  }
+
+  .btn {
+    margin-top: 10px;
+
+    @include respond-to(small) {
+      bottom: 5%;
+      left: 5%;
+      position: absolute;
+      right: 5%;
+    }
+  }
+}
+
+.pool_new_form {
+  padding: 20px;
+
+  @include respond-to(small) {
+    margin: 30px 20px 30px 10px;
+    padding: 0;
+  }
+}

@@ -44,7 +44,7 @@ input[type=password] {
   }
 
   label {
-    background-image: image-url('checkbox.png');
+    background-image: image_url('checkbox.png');
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -59,7 +59,10 @@ input[type=password] {
   @include clearfix;
 
   & + .form-field {
-    padding-top: 30px;
+    padding-top: 20px;
+    @include respond-to(small) {
+      padding-top: 30px;
+    }
   }
 
   &.inline {
@@ -89,6 +92,18 @@ input[type=password] {
       color: $color-red-light;
       border-color: $color-red-light;
     }
+
+    span {
+      color: $color-red-light;
+      display: block;
+      margin-top: 10px;
+    }
+  }
+
+  label {
+    color: $color-grey-medium;
+    display: block;
+    margin-bottom: 10px;
   }
 }
 
@@ -131,10 +146,4 @@ input[type=password] {
       border-width: 1px;
     }
   }
-}
-
-label {
-  color: $color-grey-medium;
-  display: block;
-  margin-bottom: 10px;
 }
