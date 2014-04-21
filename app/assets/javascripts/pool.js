@@ -91,3 +91,31 @@ function rangeSlider() {
     }
   });
 }
+function rangeSlider2() {
+  var Link = $.noUiSlider.Link;
+
+  $('.rangeslider').noUiSlider({
+    start: [ 5 ],
+    step: 5,
+    behaviour: 'snap',
+    range: {
+      'min': 5,
+      'max': 65
+    },
+    connect: 'lower',
+    serialization: {
+      lower: [
+        new Link({
+          target: $('.slider').find('.min'),
+        }),
+        new Link({
+          target: $('.slider').find('.mintext'),
+          method: "text"
+        })
+      ],
+      format: {
+        decimals: 0
+      }
+    }
+  });
+}

@@ -54,6 +54,17 @@
                 </span>
               </div>
 
+              <div class="form-field">
+                <label>Aantal deelnemers</label>
+                <div class='slider'>
+                  <div class='minmax'>
+                    <div class='mintext'></div>
+                    <%= f.hidden_field :maximum_membership, :class => 'min' %>
+                  </div>
+                  <div class='rangeslider'></div>
+                </div>
+              </div>
+
               <div class="form-field inline">
                 <label>Toegankelijkheid</label>
                 <% if @pool.is_public || @pool.is_public.nil? %>
@@ -128,3 +139,7 @@
       </div>
     </div>
 </div>
+
+<%= javascript_tag do %>
+  rangeSlider2();
+<% end %>

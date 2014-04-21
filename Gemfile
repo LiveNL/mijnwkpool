@@ -22,6 +22,7 @@ group :development do
   gem 'terminal-notifier-guard'
 
   gem 'rubocop'
+  gem 'quiet_assets'
 end
 
 group :doc do
