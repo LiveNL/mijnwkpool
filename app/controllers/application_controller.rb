@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def current_user
-    @current_user ||= User.find(1) # (session[:user_id]) if session[:user_id]
-  end
+  	def current_user
+    	@current_user ||= User.find(1) # (session[:user_id]) if session[:user_id]
+  	end
+
+  	def second_user
+		@second_user ||= User.find(2) # (session[:user_id]) if session[:user_id]
+	end
 end
