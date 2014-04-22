@@ -74,9 +74,9 @@
       <div class='pool-list'>
         <ul>
           <% @pools.each do |pool| %>
-            <li class='private'>
+            <li>
               <div class='view-table'>
-                <a class='grey pool-list-inner view-row' href='#modal2' rel='modal:open'>
+                <a class='grey pool-list-inner view-row' href='#pool<%= pool.id %>' rel='modal:open'>
                   <div class='pool-list-img'>
                     <%= image_tag pool.avatar.url(:thumb) %>
                   </div>
@@ -92,6 +92,37 @@
                     <% end %>
                   </div>
                 </a>
+              </div>
+              <div id='pool<%= pool.id %>' style='display:none'>
+              <% if pool.is_public? %>
+                <h1>Bij '<%= pool.name %>' aansluiten?</h1>
+                <p>Weet je zeker dat jij je bij '<%= pool.name %>' wil aansluiten?</p>
+                <%= form_tag poolmemberships_path do %>
+                  <div class='grid-r modal-btns'>
+                    <div class='default-1 small-1-2'>
+                      <%= submit_tag "Ja, ik sluit mij aan", :class => 'btn green fullwidth' %>
+                      <%= hidden_field_tag :pool_id, pool.id %>
+                    </div>
+                    <div class='default-1 small-1-2'>
+                      <%= link_to 'Nee, ik wil verder zoeken', pools_path, :class => 'btn grey fullwidth' %>
+                    </div>
+                  </div>
+                <% end %>
+              <% else %>
+                <h1>Wachtwoord '<%= pool.name %>'</h1>
+                <p>Bevestig het wachtwoord van '<%= pool.name %>' om toegang te krijgen.</p>
+                <div class='form-search modalpassword'>
+                  <%= form_tag poolmemberships_path do %>
+                    <button class='green'>
+                      <i class='fa fa-chevron-right'></i>
+                    </button>
+                    <div>
+                      <%= password_field_tag :password  %>
+                      <%= hidden_field_tag :pool_id, pool.id %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
               </div>
             </li>
           <% end %>
@@ -150,115 +181,6 @@
   </div>
 </div>
 
-<div id='modal' style='display:none'>
-  <h1>Bij 'Peter & Friends' aansluiten?</h1>
-  <p>Weet je zeker dat jij je bij 'Peter & Friends' wil aansluiten?</p>
-  <div class='grid-r modal-btns'>
-    <div class='default-1 small-1-2'>
-      <input class='btn green fullwidth' type='submit' value='Ja, ik sluit mij aan'>
-    </div>
-    <div class='default-1 small-1-2'>
-      <input class='btn grey fullwidth' type='submit' value='Nee, ik wil verder zoeken'>
-    </div>
-  </div>
-</div>
-<div id='modal2' style='display:none'>
-  <h1>Wachtwoord 'Peter &amp; Friends'</h1>
-  <p>Bevestig het wachtwoord van 'Peter &amp; Friends' om toegang te krijgen.</p>
-  <div class='form-search modalpassword'>
-    <form action='#'>
-      <button class='green'>
-        <i class='fa fa-chevron-right'></i>
-      </button>
-      <div>
-        <input placeholder='Wachtwoord' type='text'>
-      </div>
-    </form>
-  </div>
-</div>
-
 <%= javascript_tag do %>
   rangeSlider();
 <% end %>
-
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-<table>
-  <thead>
-    <tr>
-      <th>Pool (selectionpassword)</th>
-      <th>Passworded?</th>
-    </tr>
-  </thead>
-  <% @pools.each do |pool| %>
-  <tr>
-    <td>
-      <%= pool.name %>
-    </td>
-    <td>  
-    
-      <% if pool.password_digest.empty? %>
-
-                <p><a href="#p<%= pool.id %>" rel="modal:open">Open pool</a></p>
-
-        <div id="p<%= pool.id %>" style="display:none;">
-          <h1> Bij '<%= pool.name %>' aansluiten?</h1>
-
-          <p>Weet je zeker dat jij je bij '<%= pool.name %>' wil aansluiten?</p>
-          <br/>
-          <div class="ex2-selection">
-            <%= form_tag poolmemberships_path do %>
-              <p>
-                <%= hidden_field_tag :pool_id, pool.id %>
-              </p>
-              <div class="hiddenbackfield1">
-                <%= link_to 'Nee, ik wil verder zoeken', pools_path %> 
-                <%= submit_tag "Log in" %>
-              </div>
-
-               <div class="hiddenbackfield2">
-                <%= submit_tag "Log in" %>
-                <%= link_to 'Nee, ik wil verder zoeken', pools_path %> 
-              </div>             
-
-            <% end %>
-          </div>
-        </div>
-
-      <% else %>
-
-           <p><a href="#pp<%= pool.id %>" rel="modal:open">Private pool</a></p>
-        <div id="pp<%= pool.id %>" style="display:none;">
-          <h1>'<%= pool.name %>' is beveiligd.</h1>
-
-        <p>Bevestig het wachtwoord van '<%= pool.name %>' om toegang te krijgen.</p>
-          <br/>
-          <div class="ex2-selection2">
-            <%= form_tag poolmemberships_path do %>
-              <%= password_field_tag :password  %>
-                <%= hidden_field_tag :pool_id, pool.id %>
-              <p><%= submit_tag ">" %></p>
-            <% end %>
-            </div>
-        </div> 
-
-      <% end %>
-
-
-    </td>
-  </tr>
-  <% end %>
-</table>
-
-  <br/>
-  <hr/>
-  <br/>
-    <%= render "shared/login" %>
-  <br/>
-  <br/>
-  <br/>
