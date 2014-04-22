@@ -1,0 +1,58 @@
+.flash {
+  background-color: $color-grey-light;
+  font-weight: bold;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+
+  -webkit-transform: translateY(-200px);
+  -webkit-animation: slideDown 2.5s 0.5s 1 ease forwards;
+  -moz-transform:    translateY(-200px);
+  -moz-animation:    slideDown 2.5s 0.5s 1 ease forwards;
+
+  &.error {
+    background-color: $color-red-light;
+    color: #fff;
+  }
+
+  &.success {
+    background-color: $color-green-light;
+    color: #fff;
+  }
+}
+.flash-inner {
+  display: table;
+  margin: 0 auto;
+  max-width: 1000px;
+  position: relative;
+}
+.flash-text {
+  @include font-size($font-size);
+  @include respond-to(small) {
+    @include font-size($font-size * 1.5);
+  }
+  display: table-cel;
+  padding: 20px 10px 20px 20px;
+  vertical-align: middle;
+}
+.flash-close {
+  padding-left: 10px;
+  padding-right: 20px;
+  vertical-align: middle;
+}
+.flash-close-btn {
+  background-color: rgba(0,0,0,.2);
+  cursor: pointer;
+  padding: 10px;
+}
+
+@-webkit-keyframes slideDown {
+    0%, 100% { -webkit-transform: translateY(-200px); }
+    10%, 90% { -webkit-transform: translateY(0px); }
+}
+@-moz-keyframes slideDown {
+    0%, 100% { -moz-transform: translateY(-200px); }
+    10%, 90% { -moz-transform: translateY(0px); }
+}
