@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
-	has_secure_password validations: false
-	
-  	has_many :poolmemberships
-  	has_many :pools, through: :poolmemberships
+  has_secure_password validations: false
 
-    validates :name,
+  has_many :poolmemberships
+  has_many :pools, through: :poolmemberships
+
+  validates :name,
             length: {
               minimum: 2,
               maximum: 35,
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
               message: '* Deze naam is al bezet.'
             }
 
-    validates :nickname,
+  validates :nickname,
             length: {
               minimum: 2,
               maximum: 35,
@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
               message: '* Deze nicknaam is al bezet.'
             }
 
-    validates :email,
+  validates :email,
             uniqueness: {
               message: '* Dit e-mail adres is al in gebruik.'
             },
@@ -33,9 +33,7 @@ class User < ActiveRecord::Base
               message: 'Voer een geldig e-mail adres in!'
             }
 
-
-    validates :password,
-            
+  validates :password,
             presence: false,
             allow_blank: false,
             length: {
@@ -44,5 +42,5 @@ class User < ActiveRecord::Base
             },
             confirmation: {
               message: '* De wachtwoorden komen niet overeen!'
-            }    
+            }
 end

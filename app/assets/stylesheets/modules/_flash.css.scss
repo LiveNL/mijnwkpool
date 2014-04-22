@@ -8,9 +8,9 @@
   z-index: 10;
 
   -webkit-transform: translateY(-200px);
-  -webkit-animation: slideDown 2.5s 0.5s 1 ease forwards;
+  -webkit-animation: slideDown 4s 0.25s 1 ease forwards;
   -moz-transform:    translateY(-200px);
-  -moz-animation:    slideDown 2.5s 0.5s 1 ease forwards;
+  -moz-animation:    slideDown 4s 0.25s 1 ease forwards;
 
   &.error {
     background-color: $color-red-light;

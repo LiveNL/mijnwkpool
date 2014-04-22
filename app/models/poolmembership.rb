@@ -5,7 +5,6 @@ class Poolmembership < ActiveRecord::Base
 
   MAXIMUM_COURSES = 3
 
-  #TODO
   validate on: :create do
     if user.poolmemberships.size >= MAXIMUM_COURSES
       errors.add :user, "can only apply for #{MAXIMUM_COURSES} courses. Please remove one."
