@@ -11,10 +11,12 @@ class PoolmembershipsController < ApplicationController
       poolmembership = Poolmembership.new(user: current_user, pool_id: pool_id, role: 0)
       poolmembership.save
       redirect_to pools_path
+      flash[:success] = "Succes! Je bent aangesloten bij '#{pool.name}'!"
     elsif pool.is_public?
       poolmembership = Poolmembership.new(user: current_user, pool_id: pool_id, role: 0)
       poolmembership.save
       redirect_to pools_path
+      flash[:success] = "Succes! Je bent aangesloten bij '#{pool.name}'!"
     else
       flash[:error] = 'Je hebt geen toestemming om je bij deze pool aan te sluiten'
       redirect_to :back
