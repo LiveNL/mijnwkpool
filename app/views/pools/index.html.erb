@@ -180,3 +180,77 @@
 <%= javascript_tag do %>
   rangeSlider();
 <% end %>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pool (selectionpassword)</th>
+      <th>Passworded?</th>
+    </tr>
+  </thead>
+  <% @pools.each do |pool| %>
+  <tr>
+    <td>
+      <%= pool.name %>
+    </td>
+    <td>  
+    
+      <% if pool.password_digest.empty? %>
+
+                <p><a href="#p<%= pool.id %>" rel="modal:open">Open pool</a></p>
+
+        <div id="p<%= pool.id %>" style="display:none;">
+          <h1> Bij '<%= pool.name %>' aansluiten?</h1>
+
+          <p>Weet je zeker dat jij je bij '<%= pool.name %>' wil aansluiten?</p>
+          <br/>
+          <div class="ex2-selection">
+            <%= form_tag poolmemberships_path do %>
+              <p>
+                <%= hidden_field_tag :pool_id, pool.id %>
+              </p>
+              <div class="hiddenbackfield1">
+                <%= link_to 'Nee, ik wil verder zoeken', pools_path %> 
+                <%= submit_tag "Log in" %>
+              </div>
+
+               <div class="hiddenbackfield2">
+                <%= submit_tag "Log in" %>
+                <%= link_to 'Nee, ik wil verder zoeken', pools_path %> 
+              </div>             
+
+            <% end %>
+          </div>
+        </div>
+
+      <% else %>
+
+           <p><a href="#pp<%= pool.id %>" rel="modal:open">Private pool</a></p>
+        <div id="pp<%= pool.id %>" style="display:none;">
+          <h1>'<%= pool.name %>' is beveiligd.</h1>
+
+        <p>Bevestig het wachtwoord van '<%= pool.name %>' om toegang te krijgen.</p>
+          <br/>
+          <div class="ex2-selection2">
+            <%= form_tag poolmemberships_path do %>
+              <%= password_field_tag :password  %>
+                <%= hidden_field_tag :pool_id, pool.id %>
+              <p><%= submit_tag ">" %></p>
+            <% end %>
+            </div>
+        </div> 
+
+      <% end %>
+
+
+    </td>
+  </tr>
+  <% end %>
+</table>

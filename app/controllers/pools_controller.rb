@@ -9,8 +9,9 @@ class PoolsController < ApplicationController
 
   def create
     @pool = Pool.new(pool_params)
-    if @pool.save
-      render 'confirmation'
+     if @pool.save
+        @pool.poolmemberships.create(user: current_user, role: 1)
+        render 'confirmation'
     else
       render 'new'
     end
