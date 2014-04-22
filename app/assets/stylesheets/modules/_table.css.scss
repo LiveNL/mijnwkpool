@@ -1,0 +1,10 @@
+.view-table {
+    display:table;
+    width:100%;
+}
+.view-row {
+    display:table-row;
+}
+.view-row > div {
+    display: table-cell;
+}

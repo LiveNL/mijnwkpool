@@ -1,0 +1,31 @@
+// Breakpoints
+$break_mobile: 766px; // mobile
+$break_s: 767px; // small
+$break_m: 992px; // medium
+$break_l: 1240px; // large
+
+// Font Weights
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+// Base Font
+$font-family: 'Droid Sans', sans-serif;
+$font-weight: $font-weight-normal;
+$font-size: 16/10;
+$line-height: 1.4;
+
+// Colors
+$color-green-light: #3fc380;
+$color-green-dark: #35a970;
+$color-blue-light: #4097d8;
+$color-blue-dark: #337fb6;
+$color-orange-light: #ff6819;
+$color-orange-dark: #c54f11;
+$color-red-light: #ef4836;
+$color-red-dark: #e02612;
+
+$color-grey-lighter: #ebebeb;
+$color-grey-light: #cccccc;
+$color-grey-medium: #959595;
+$color-grey-dark: #3f3f3e;
+$color-grey-darker: #1d1d1b;

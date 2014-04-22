@@ -1,0 +1,71 @@
+$step-height: 50;
+
+.steps {
+  display: table;
+  margin: 0 auto;
+  padding-top: 20px;
+  @include respond-to(small) {
+    padding-top: 30px;
+  }
+
+  .step {
+    background-color: $color-grey-lighter;
+    color: $color-grey-dark;
+    float: left;
+    height: #{$step-height}px;
+    line-height: #{$step-height}px;
+    padding: 0 20px;
+    position: relative;
+
+    & + .step {
+      margin-left: 30px;
+    }
+
+    &:after {
+      border-bottom: #{$step-height/2}px solid transparent;
+      border-left: #{$step-height/2}px solid $color-grey-lighter;
+      border-top: #{$step-height/2}px solid transparent;
+      content: "";
+      display: block;
+      height: 0;
+      left: 100%;
+      position: absolute;
+      top: 0;
+      width: 0;
+    }
+
+    &:before {
+      border-bottom: #{$step-height/2}px solid $color-grey-lighter;
+      border-left: #{$step-height/2}px solid transparent;
+      border-top: #{$step-height/2}px solid $color-grey-lighter;
+      content: "";
+      display: block;
+      height: 0;
+      right: 100%;
+      position: absolute;
+      top: 0;
+      width: 0;
+    }
+
+    &.active {
+      background-color: $color-orange-light;
+      color: #FFFFFF;
+
+      &:after {
+        border-left-color: $color-orange-light;
+      }
+      &:before {
+        border-bottom-color: $color-orange-light;
+        border-top-color: $color-orange-light;
+      }
+    }
+
+    &:first-child:before {
+      border-bottom-color: transparent;
+      border-top-color: transparent;
+    }
+    &:last-child:after {
+      border-left-color: transparent;
+    }
+  }
+}

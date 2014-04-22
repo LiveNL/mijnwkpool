@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408111952) do
+ActiveRecord::Schema.define(version: 20140417123756) do
 
   create_table "poolmemberships", force: true do |t|
     t.integer  "user_id"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140408111952) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "maximum_membership"
+    t.integer  "maximum_membership",  default: 0
   end
 
   create_table "users", force: true do |t|

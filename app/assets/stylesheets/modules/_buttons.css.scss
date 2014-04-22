@@ -1,0 +1,87 @@
+@mixin btnboxshadow($color) {
+  box-shadow: 0 3px 0 0 $color;
+}
+
+button,
+.btn {
+  @include font-size($font-size);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  display: block;
+  font-family: $font-family;
+  font-weight: $font-weight;
+  margin: 0;
+  outline: none;
+  padding: 14px 20px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-appearance: none;
+
+  &.grey {
+    @include btnboxshadow($color-grey-light);
+    background-color: $color-grey-lighter;
+    color: $color-grey-dark;
+
+    &:hover,
+    &:active {
+      background-color: $color-grey-light;
+    }
+  }
+
+  &.green {
+    @include btnboxshadow($color-green-dark);
+    background-color: $color-green-light;
+    color: #FFF;
+
+    &:hover,
+    &:active {
+      background-color: $color-green-dark;
+    }
+  }
+
+  &.blue {
+    @include btnboxshadow($color-blue-dark);
+    background-color: $color-blue-light;
+    color: #FFF;
+
+    &:hover,
+    &:active {
+      background-color: $color-blue-dark;
+    }
+  }
+
+  &.orange {
+    @include btnboxshadow($color-orange-dark);
+    background-color: $color-orange-light;
+    color: #FFF;
+
+    &:hover,
+    &:active {
+      background-color: $color-orange-dark;
+    }
+  }
+
+  &.fullwidth {
+    width: 100%;
+  }
+
+  &.fileupload{
+    overflow: hidden;
+
+    input.upload {
+      position: absolute;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      width: 100%;
+    }
+  }
+
+}

@@ -22,6 +22,26 @@ $(function() {
       }
     });
   });
+
+  // Filter handles
+  $('.filter-handle').on('click', function() {
+    var $fa = $(this).find('.fa');
+    if($fa.hasClass('fa-caret-right')) {
+      $fa.removeClass('fa-caret-right').addClass('fa-caret-down');
+    } else {
+      $fa.removeClass('fa-caret-down').addClass('fa-caret-right');
+    }
+    $(this).next().toggleClass('show');
+  });
+
+  $('.form-search input').focus( function() {
+    $(this).addClass('active');
+  });
+
+  $('.form-search input').blur( function() {
+    $(this).removeClass('active');
+  });
+
 });
 
 function togglePasswordFields(e) {
@@ -32,4 +52,70 @@ function togglePasswordFields(e) {
       $("#private_pool_enabled").show();
     }
   }
+}
+
+function rangeSlider() {
+  var Link = $.noUiSlider.Link;
+
+  $('.rangeslider').noUiSlider({
+    start: [ 15, 65 ],
+    step: 5,
+    behaviour: 'snap',
+    range: {
+      'min': 5,
+      'max': 65
+    },
+    connect: true,
+    serialization: {
+      lower: [
+        new Link({
+          target: $('.slider').find('.min'),
+        }),
+        new Link({
+          target: $('.slider').find('.mintext'),
+          method: "text"
+        })
+      ],
+      upper: [
+        new Link({
+          target: $('.slider').find('.max')
+        }),
+        new Link({
+          target: $('.slider').find('.maxtext'),
+          method: "text"
+        })
+      ],
+      format: {
+        decimals: 0
+      }
+    }
+  });
+}
+function rangeSlider2() {
+  var Link = $.noUiSlider.Link;
+
+  $('.rangeslider').noUiSlider({
+    start: [ 5 ],
+    step: 5,
+    behaviour: 'snap',
+    range: {
+      'min': 5,
+      'max': 65
+    },
+    connect: 'lower',
+    serialization: {
+      lower: [
+        new Link({
+          target: $('.slider').find('.min'),
+        }),
+        new Link({
+          target: $('.slider').find('.mintext'),
+          method: "text"
+        })
+      ],
+      format: {
+        decimals: 0
+      }
+    }
+  });
 }
