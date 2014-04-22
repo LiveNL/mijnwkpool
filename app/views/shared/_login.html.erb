@@ -1,0 +1,6 @@
+  <% if current_user %>
+    Hallo, <%= current_user.nickname %> ||
+    <%= link_to "Log out", log_out_path %>
+  <% else %> 
+    <%= render template: "sessions/new" %>
+  <% end %>
