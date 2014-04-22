@@ -1,11 +1,25 @@
 class PoolmembershipsController < ApplicationController
-	def new
-	end
+  def new
+  end
 
-	def create
-		pool_id = params[:pool_id]
-		poolmembership = Poolmembership.new(user: second_user, pool_id: pool_id, role: 0)
-		poolmembership.save
-		redirect_to '/pools'
-	end
+  def create
+    pool_id = params[:pool_id]
+    password = params[:password]
+    pool = Pool.find(pool_id)
+
+    if password && pool.authenticate(password) && !pool.is_public?
+      poolmembership = Poolmembership.new(user: second_user, pool_id: pool_id, role: 0)
+      poolmembership.save
+      redirect_to '/pools'
+    else
+      flash[:error] = 'Je hebt geen toestemming om je bij deze pool aan te sluiten'
+      redirect_to :back
+    end
+
+    if pool.is_public?
+      poolmembership = Poolmembership.new(user: second_user, pool_id: pool_id, role: 0)
+      poolmembership.save
+      redirect_to '/pools'
+    end
+  end
 end
