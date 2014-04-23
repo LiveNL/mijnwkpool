@@ -42,7 +42,8 @@ class Pool < ActiveRecord::Base
   has_attached_file :avatar,
                     styles: {
                       medium: '500x500>',
-                      small: '265x265>'
+                      small: '265x265>',
+                      thumb: '100x100#'
                     },
                     default_url: 'pool/:style/missing.png'
 
