@@ -9,7 +9,7 @@ input[type=password] {
   display: block;
   font-family: $font-family;
   font-weight: $font-weight;
-  height: 50px;
+  height: 53px;
   padding: 0 10px;
   outline: none;
   width: 100%;
@@ -136,7 +136,7 @@ input[type=password] {
   @include respond-to(mobile) {
     button {
       box-shadow: none;
-      height: 50px;
+      height: 53px;
       line-height: 50px;
       margin-left: 0;
       padding-top: 0;

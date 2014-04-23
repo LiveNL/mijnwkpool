@@ -8,8 +8,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
+  <% flash.each do |key, value| %>
+    <div id="flash" class="flash <%= key %>">
+      <div class="flash-inner">
+        <div class="view-row">
+          <div class="flash-text"><%= value %></div>
+          <div id="flashClose" class="flash-close">
+            <i class="fa fa-times flash-close-btn"></i>
+          </div>
+        </div>
+      </div>
+      <script>flashMessage();</script>
+    </div>
+  <% end %>
 <div class='wrapper'>
   <div class='content-wrapper'>
+  <%= render "shared/login" %>
     <%= yield %>
   </div>
 </div>

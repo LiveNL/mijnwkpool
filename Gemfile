@@ -23,6 +23,7 @@ group :development do
 
   gem 'rubocop'
   gem 'quiet_assets'
+  gem 'debugger'
 end
 
 group :doc do

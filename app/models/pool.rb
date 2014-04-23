@@ -5,6 +5,10 @@ class Pool < ActiveRecord::Base
 
   before_save :clear_passwords, if: :public_pool?
 
+  # Memberships
+  validates :maximum_membership, inclusion: { in: 5..65 }
+  validate :value_is_multiple_of_five
+
   # Name
   validates :name,
             length: {
@@ -62,5 +66,11 @@ class Pool < ActiveRecord::Base
   def check_file_size
     valid?
     errors[:avatar_file_size].blank?
+  end
+
+  def value_is_multiple_of_five
+    unless maximum_membership % 5 == 0
+      errors.add(:maximum_membership, 'must be multiple of 5')
+    end
   end
 end

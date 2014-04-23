@@ -3,6 +3,9 @@ AllCops:
     - db/**
     - config/**
 
+LineLength:
+  Max: 100
+
 Documentation:
   Enabled: false
 
