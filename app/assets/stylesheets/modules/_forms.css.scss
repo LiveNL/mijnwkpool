@@ -60,9 +60,6 @@ input[type=password] {
 
   & + .form-field {
     padding-top: 20px;
-    @include respond-to(small) {
-      padding-top: 30px;
-    }
   }
 
   &.inline {
@@ -100,10 +97,28 @@ input[type=password] {
     }
   }
 
+  &.action > div + div {
+    margin-top: 10px;
+    @include respond-to(small) {
+      margin-top: 0;
+    }
+  }
+
+  &.login {
+    input:first-child {
+      border-bottom-width: 0;
+      height: 50px;
+
+      &:focus {
+        border-bottom-width: 1px;
+      }
+    }
+  }
+
   label {
     color: $color-grey-medium;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 }
 
@@ -146,4 +161,17 @@ input[type=password] {
       border-width: 1px;
     }
   }
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    $color-grey-light;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    $color-grey-light;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    $color-grey-light;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    $color-grey-light;
 }

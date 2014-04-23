@@ -1,0 +1,7 @@
+.register-form,
+.login-form {
+  padding: 20px;
+  @include respond-to(small) {
+    padding: 30px;
+  }
+}

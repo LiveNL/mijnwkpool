@@ -2,12 +2,14 @@ Wkpool::Application.routes.draw do
   resources :pools, :users, :poolmemberships
 
   resources :sessions, only: [:new, :create, :destroy]
- 
-  get "log_out" => "sessions#destroy", :as => "log_out"
 
-  root  "pools#new"
+  get 'logout' => 'sessions#destroy', :as => 'log_out'
+  get 'login' => 'sessions#new', :as => 'log_in'
+  get 'register' => 'users#new', :as => 'register'
 
-  get 'ping' => proc {|env| [200, {}, ['pong']] }
+  root  'pools#new'
+
+  get 'ping' => proc { |env| [200, {}, ['pong']] }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

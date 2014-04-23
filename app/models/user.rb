@@ -9,9 +9,6 @@ class User < ActiveRecord::Base
               minimum: 2,
               maximum: 35,
               message: '* Je naam moet tussen de 2 en 35 karakters lang zijn.'
-            },
-            uniqueness: {
-              message: '* Deze naam is al bezet.'
             }
 
   validates :nickname,
@@ -21,7 +18,7 @@ class User < ActiveRecord::Base
               message: '* Je nickname moet tussen de 2 en 35 karakters lang zijn.'
             },
             uniqueness: {
-              message: '* Deze nicknaam is al bezet.'
+              message: '* Deze alias is al bezet.'
             }
 
   validates :email,
