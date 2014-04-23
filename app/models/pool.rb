@@ -5,8 +5,9 @@ class Pool < ActiveRecord::Base
 
   before_save :clear_passwords, if: :public_pool?
 
-  # Memberships
-  validates_inclusion_of :maximum_membership, :in => 5..65
+  # Memberships (image breaker)
+  
+   validates_inclusion_of :maximum_membership, :in => 5..65
   validate :value_is_multiple_of_five
 
   # Name
@@ -46,6 +47,8 @@ class Pool < ActiveRecord::Base
                       thumb: '100x100#'
                     },
                     default_url: 'pool/:style/missing.png'
+
+  p "Henk"
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   before_post_process :check_file_size

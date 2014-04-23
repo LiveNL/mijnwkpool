@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140422112746) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "maximum_membership", default: 0
+    t.integer  "maximum_membership",  default: 0
   end
 
   create_table "users", force: true do |t|

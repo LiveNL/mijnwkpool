@@ -1,6 +1,8 @@
 class PoolsController < ApplicationController
   def index
-    @pools = Pool.where('id > ?', 0).paginate(:page => params[:page], :per_page => 5)
+
+  @pools = Pool.search(params[:search]).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
+
   end
 
   def new
@@ -29,7 +31,7 @@ class PoolsController < ApplicationController
 
   def pool_params
     params.require(:pool).permit(:name, :image, :is_public, :password,
-                                 :password_confirmation, :avatar,
-                                 :maximum_membership)
+                                 :password_confirmation,
+                                 :maximum_membership, :avatar)
   end
 end
