@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
+  def welcome
+  end
+
   private
 
   def second_user

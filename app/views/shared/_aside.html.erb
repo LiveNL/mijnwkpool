@@ -1,0 +1,29 @@
+<% if current_user %>
+<div class='box aside'>
+  <div class='side-header'>
+    <h2>Mijn pools</h2>
+  </div>
+  <div class='pool-list-small'>
+    <% if current_user.poolmemberships.count > 0 %>
+    <ul>
+    <% current_user.poolmemberships.each do |pool| %>
+      <li>
+        <%= link_to pool_path(pool.pool_id),:class => 'grey' do %>
+          <%= Pool.find(pool.pool_id).name %>
+        <% end %>
+      </li>
+    <% end %>
+    </ul>
+    <% else %>
+    <br>
+    <p>Bij 0 pools aangesloten</p>
+    <br>
+    <% end %>
+    <%= link_to 'Bij pool aansluiten', pools_path, :class => 'green btn'%>
+    <br>
+    <%= link_to 'Een pool aanmaken', new_pool_path, :class => 'green btn'%>
+    <br>
+    <%= link_to 'User aanmaken', register_path, :class => 'green btn'%>
+  </div>
+</div>
+<% end %>

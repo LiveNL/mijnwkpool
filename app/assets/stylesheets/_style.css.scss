@@ -68,19 +68,7 @@ img {
     }
     .form-search {
       float: right;
-
-      input {
-        width: 200px;
-        -webkit-transition: all 500ms ease;
-        -moz-transition: all 500ms ease;
-        -ms-transition: all 500ms ease;
-        -o-transition: all 500ms ease;
-        transition: all 500ms ease;
-
-        &.active {
-          width: 250px;
-        }
-      }
+      width: 300px;
     }
   }
 }

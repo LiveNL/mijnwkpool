@@ -1,8 +1,9 @@
 class PoolsController < ApplicationController
   def index
+    @pools = Pool.search(params[:search]).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
+  end
 
-  @pools = Pool.search(params[:search]).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
-
+  def show
   end
 
   def new
@@ -25,6 +26,10 @@ class PoolsController < ApplicationController
   end
 
   def update
+  end
+
+  def invite
+    @pool = Pool.find(params[:id])
   end
 
   private

@@ -6,3 +6,11 @@ function flashMessage() {
      flash.style.display = 'none';
    }, false);
 }
+
+function contentflashMessage() {
+  close = document.getElementById("flashClose");
+   close.addEventListener('click', function() {
+     flash = document.getElementById("contentflash");
+     flash.style.display = 'none';
+   }, false);
+}

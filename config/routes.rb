@@ -1,11 +1,17 @@
 Wkpool::Application.routes.draw do
-  resources :pools, :users, :poolmemberships
+  scope '/app' do
+    get 'welcome' => 'application#welcome', :as => 'welcome'
+    get 'pools/:id/invite' => 'pools#invite', :as => 'invite_pool'
+    resources :pools, :users, :poolmemberships
+  end
 
   resources :sessions, only: [:new, :create, :destroy]
 
   get 'logout' => 'sessions#destroy', :as => 'log_out'
   get 'login' => 'sessions#new', :as => 'log_in'
   get 'register' => 'users#new', :as => 'register'
+
+  get 'app' => 'users#dashboard', :as => 'app_root'
 
   root  'pools#new'
 
