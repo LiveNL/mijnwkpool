@@ -1,4 +1,27 @@
 $(function() {
+
+  // Filter handles
+  $('.filter-handle').on('click', function() {
+    var $fa = $(this).find('.fa');
+    if($fa.hasClass('fa-caret-right')) {
+      $fa.removeClass('fa-caret-right').addClass('fa-caret-down');
+    } else {
+      $fa.removeClass('fa-caret-down').addClass('fa-caret-right');
+    }
+    $(this).next().toggleClass('show');
+  });
+
+  $('.form-search input').focus( function() {
+    $(this).addClass('active');
+  });
+
+  $('.form-search input').blur( function() {
+    $(this).removeClass('active');
+  });
+
+});
+
+function poolPassword() {
   $input = $("input:radio[name='pool[is_public]']");
   $.each($input,function(k,v) {
     togglePasswordFields(v);
@@ -22,27 +45,7 @@ $(function() {
       }
     });
   });
-
-  // Filter handles
-  $('.filter-handle').on('click', function() {
-    var $fa = $(this).find('.fa');
-    if($fa.hasClass('fa-caret-right')) {
-      $fa.removeClass('fa-caret-right').addClass('fa-caret-down');
-    } else {
-      $fa.removeClass('fa-caret-down').addClass('fa-caret-right');
-    }
-    $(this).next().toggleClass('show');
-  });
-
-  $('.form-search input').focus( function() {
-    $(this).addClass('active');
-  });
-
-  $('.form-search input').blur( function() {
-    $(this).removeClass('active');
-  });
-
-});
+}
 
 function togglePasswordFields(e) {
   if(e.checked) {
