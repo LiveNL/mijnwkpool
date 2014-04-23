@@ -1,6 +1,6 @@
 class PoolsController < ApplicationController
   def index
-    @pools = Pool.all
+    @pools = Pool.where('id > ?', 0).paginate(:page => params[:page], :per_page => 5)
   end
 
   def new
@@ -9,7 +9,7 @@ class PoolsController < ApplicationController
 
   def create
     @pool = Pool.new(pool_params)
-    if current_user.poolmemberships.count == 3
+    if current_user.poolmemberships.count == 500
       flash[:error] = 'Je zit al in 3 pools.'
       redirect_to pools_path
     else

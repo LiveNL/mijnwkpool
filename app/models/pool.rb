@@ -6,7 +6,7 @@ class Pool < ActiveRecord::Base
   before_save :clear_passwords, if: :public_pool?
 
   # Memberships
-  validates :maximum_membership, inclusion: { in: 5..65 }
+  validates_inclusion_of :maximum_membership, :in => 5..65
   validate :value_is_multiple_of_five
 
   # Name
@@ -42,8 +42,7 @@ class Pool < ActiveRecord::Base
   has_attached_file :avatar,
                     styles: {
                       medium: '500x500>',
-                      small: '265x265>',
-                      thumb: '100x100#'
+                      small: '265x265>'
                     },
                     default_url: 'pool/:style/missing.png'
 
@@ -72,5 +71,10 @@ class Pool < ActiveRecord::Base
     unless maximum_membership % 5 == 0
       errors.add(:maximum_membership, 'must be multiple of 5')
     end
+  end
+  
+  def self.search(query)
+    # where(:title, query) -> This would return an exact match of the query
+    where("name like ?", "%#{query}%") 
   end
 end
