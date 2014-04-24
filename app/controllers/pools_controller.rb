@@ -1,6 +1,7 @@
-require 'will_paginate/array' 
-
 class PoolsController < ApplicationController
+  require 'will_paginate/array' 
+  skip_before_filter :ensure_user, :only => [:show]
+
   def index
     @pools = Pool.all
       if !params[:search].nil?
@@ -10,23 +11,18 @@ class PoolsController < ApplicationController
       openpool = params[:openpool] # "value1"
       case openpool
       when '0'
-        flash[:notice] = 'Alle pools'
       when '1'
         @pools = Pool.where(:is_public => true)
-        flash[:notice] = 'Openbare pools'
       when '2'
         @pools = Pool.where(:is_public => false)
-        flash[:notice] = 'Prive pools'
       else
       end
 
       poolspace = params[:poolspace] # "value1"
       case poolspace 
       when '1'
-        flash[:notice] = 'Tonen'
       when '2'
         @pools = Pool.verbergen
-        flash[:notice] = 'Verbergen'      
       else
       end
     @pools = @pools.paginate(:page => params[:page], :per_page => 5)

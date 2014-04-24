@@ -1,6 +1,6 @@
 Wkpool::Application.routes.draw do
   scope '/app' do
-    get 'welcome' => 'application#welcome', :as => 'welcome'
+    get 'welcome' => 'users#welcome', :as => 'welcome'
     get 'pools/:id/invite' => 'pools#invite', :as => 'invite_pool'
     resources :pools, :users, :poolmemberships
   end
@@ -13,7 +13,7 @@ Wkpool::Application.routes.draw do
 
   get 'app' => 'users#dashboard', :as => 'app_root'
 
-  root  'pools#new'
+  root  'application#home'
 
   get 'ping' => proc { |env| [200, {}, ['pong']] }
 

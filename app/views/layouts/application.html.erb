@@ -60,7 +60,7 @@
         </div>
         <% if current_user %>
           <div class="user">
-            <a href="<%= url_for user_path(current_user.id) %>" class="grey">
+            <a href="<%= url_for app_root_path(current_user.id) %>" class="grey">
               <div class="user-name">
                 <%= current_user.nickname %>
               </div>

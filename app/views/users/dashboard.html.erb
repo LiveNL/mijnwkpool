@@ -4,7 +4,8 @@
       <div class="content-header">
         <h1>Dashboard</h1>
       </div>
-
+        
+      <% if current_user.poolmemberships.count < 1 %>
       <div id="contentflash" class="contentflash error">
         <div class="view-table">
           <div class="view-row">
@@ -15,8 +16,9 @@
             </div>
           </div>
         </div>
-        <script>contentflashMessage();</script>
+          <script>contentflashMessage();</script>
       </div>
+      <% end %>
 
       <div class='pool-filter'>
         <div class='filter-handle'>
