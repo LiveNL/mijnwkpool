@@ -1,0 +1,259 @@
+header{
+  height:65px;
+  background-color: #FFFFFF;
+  position: fixed;
+  z-index: 99999;
+  width:100%;
+
+  @include respond-to(small) {
+      height:100px;
+    }
+}
+
+.home{
+  .content-wrapper {
+    max-width:100%;
+    margin:0 auto;
+  }
+}
+
+.arrowdown{
+  background-image: image_url('arrowdown.png');
+  width: 48px;
+  height:48px;
+  display: none;
+  position: absolute;
+  bottom:30px;
+  left: 50%;
+  margin-left: -24px;
+}
+
+.arrowup{
+  background-image: image_url('arrowup.png');
+  width: 48px;
+  height:48px;
+  display: block;
+  position: absolute;
+  bottom:30px;
+  left: 50%;
+  margin-left: -24px;
+}
+
+.hiddenarrow
+  {
+    margin-bottom: 60px;
+    opacity:0.4;
+    filter:alpha(opacity=40); /* For IE8 and earlier */
+    display: none;
+  }
+
+.home-section{
+  overflow: hidden;
+
+  .content-wrapper{
+    max-width: 992px;
+
+    @include respond-to(large) {
+      max-width: 1200px;
+      }
+  }
+}
+
+#slide1{
+  display: none;
+  @include respond-to(small) {
+    display: block;
+      background-image: image_url('slide1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:750px;
+    width:100%;
+
+      .home-content{
+        width:382px;
+      height:802px;
+      margin-top: 25%;
+      margin-right:175px;
+      padding-top:135px;
+      padding-left: 55px;
+      padding-right: 55px;
+      background-image: image_url('phone.png');
+      background-repeat: no-repeat;
+      }
+    }
+
+  position:relative;
+  width:90%;
+  margin:0 auto;
+
+  .home-title{
+    width:380px;
+    margin-top: 30%;
+    margin-left: 20px;
+
+    h1{
+      color:#FFFFFF;
+      @include font-size($font-size * 2.5);
+      text-shadow: 0px 2px 0px rgba(102, 102, 102, 1);
+    }
+  }
+
+
+
+  .home-content{
+    h2{
+      color:$color-orange-light;
+    }
+
+    p{
+      padding:5px 0;
+      width:100%;
+    }
+  }
+}
+
+#slide2{
+  background-color: $color-orange-light;
+  background-image: image_url('slide2.png');
+  background-repeat: no-repeat;
+  background-position:110% bottom;
+  background-size: 70%;
+  position:relative;
+  height:750px;
+  display:none;
+
+  @include respond-to(small) {
+      display:block;
+    }
+
+  .home-content{
+    width:400px;
+    padding-top: 20%;
+    margin-left: 20px;
+  }
+
+  h1{
+    @include font-size($font-size * 2.5);
+    color:#262b35;
+  }
+
+  p{
+    color:#FFFFFF;
+  }
+}
+
+#slide3{
+  background-color: #eeeeee;
+  background-image: image_url('slide6.png');
+  background-repeat: no-repeat;
+  background-position:center 460px;
+  background-size: 890px;
+  position:relative;
+  height:750px;
+  display:none;
+
+  @include respond-to(small) {
+      display:block;
+    }
+
+
+  .home-content{
+    width:420px;
+    margin: 0 auto;
+    padding-top: 180px;
+  }
+
+  h1{
+    @include font-size($font-size * 2.5);
+  }
+
+  p{
+    color:#3f3f3e;
+  }
+}
+
+#slide4{
+  background-color: #262b35;
+  background-image: image_url('slide5.png');
+  background-repeat: no-repeat;
+  background-position:-280px 10%;
+  background-size:80%;
+  position:relative;
+  height:750px;
+  display:none;
+
+  @include respond-to(small) {
+      display:block;
+    }
+
+  .home-content{
+    width:420px;
+    padding-top: 270px;
+    margin-right:70px;
+  }
+
+  h1{
+    @include font-size($font-size * 2.5);
+  }
+
+  p{
+    color:#FFFFFF;
+  }
+}
+
+@include respond-to(small) {
+    .arrowdown{
+      display: block;
+    }
+
+  }
+
+.homewrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+#mobile {
+  background-image: image_url('slide1.png');
+  background-position: center;
+  background-size: cover;
+  @include respond-to(small) {
+    display: none;
+  }
+
+  h1 {
+    color: #FFF;
+    padding: 90px 20px 0 20px;
+    text-shadow: 0px 3px 1px rgba(0,0,0,0.5);
+  }
+  .bottommobile {
+    bottom: 5%;
+    left: 5%;
+    position: absolute;
+    width: 90%;
+  }
+}
+.sessionsbtn {
+  display: none;
+
+  @include respond-to(small) {
+    display: block;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.home-email {
+  display: none;
+  @include respond-to(small) {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 20px;
+  }
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wkpool</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+  <% flash.each do |key, value| %>
+    <div id="flash" class="flash <%= key %>">
+      <div class="flash-inner">
+        <div class="view-row">
+          <div class="flash-text"><%= value %></div>
+          <div id="flashClose" class="flash-close">
+            <i class="fa fa-times flash-close-btn"></i>
+          </div>
+        </div>
+      </div>
+      <script>flashMessage();</script>
+    </div>
+  <% end %>
+  <div class='wrapper'>
+    <div class="header-wrapper">
+      <div class="header-inner">
+        <div class="logo">
+          <a href="#">
+            <div class="default-hide small-show">
+              <img src="<%= image_path('logo-big.svg') %>" alt="mijnwkpool" height='60'>
+            </div>
+            <div class="small-hide">
+              <img src="<%= image_path('logo-small.svg') %>" alt="mijnwkpool" height='50'>
+            </div>
+          </a>
+        </div>
+        <div class="sessionsbtn">
+          <%= link_to 'Login', log_in_path, :class => 'grey' %> | <%= link_to 'Registreren', register_path, :class => 'grey' %>
+        </div>
+        <div class="home-email">
+          <a href="mailto:info@mijnwkpool.com">info@mijnwkpool.com</a>
+        </div>
+      </div>
+    </div>
+    <div class='content-homewrapper'>
+
+<div id="mobile">
+  <h1>Welkom bij mijnwkpool</h1>
+  <div class="form-field action-stacked bottommobile">
+    <div>
+      <%= link_to 'Login', log_in_path, :class => 'btn green' %>
+    </div>
+    <div>
+      <%= link_to 'Ik heb nog geen account', register_path, :class => 'btn grey' %>
+    </div>
+  </div>
+  <script>
+    $('#mobile').height($(window).height());
+  </script>
+</div>
+
+<section class="home-section" id="slide1">
+  <div class="homewrapper">
+    <div class="home-title left">
+      <h1>Beleef het WK op een andere manier met mijnwkpool.</h1>
+    </div>
+    <div class="home-content right">
+      <h2>Registreren?</h2>
+      <p>
+        Vanaf nu is het mogelijk om je aan te melden bij mijnwkpool. Om hiermee te beginnen moet je op de onderstaande knop drukken.
+      </p>
+       <p><button class="green fullwidth" type="submit">Registreren</button></p>
+       <p><button class="grey fullwidth" type="submit">Ik heb al een account</button></p>
+    </div>
+    <a class="arrowdown" href="#slide2"></a>
+  </div>
+</section>
+
+<section class="home-section" id="slide2">
+  <div class="homewrapper">
+    <div class="home-content">
+      <h1>Weg met die 'Excel pooltjes'</h1>
+      <p>
+        Ook een beetje klaar met die pooltjes op je werk, met vrienden of familie welke je weer met Excel laten werken? Mijnwkpool biedt de oplossing, een online pool systeem voor jou. Dus niet meer oneindig veel mails met tussenstanden en wijzigingen. Gewoon alles online, en ook nog eens goed te bekijken op je tablet of telefoon.
+      </p>
+    </div>
+    <a class="arrowup hiddenarrow" href="#slide1"></a>
+    <a class="arrowdown" href="#slide3"></a>
+  </div>
+</section>
+
+<section class="home-section" id="slide3">
+  <div class="homewrapper">
+    <div class="home-content">
+      <h1>Voorspel</h1>
+      <p>
+        Ook een beetje klaar met die pooltjes op je werk, met vrienden op familie welke je weer met Excel laten werken? Mijnwkpool biedt de oplossing, een online pool systeem voor jou. Dus niet meer oneindig veel mails met tussenstanden en wijzigingen. Gewoon alles online, en ook nog eens goed te bekijken op je tablet of telefoon.
+      </p>
+    </div>
+    <a class="arrowup hiddenarrow" href="#slide2"></a>
+    <a class="arrowdown" href="#slide4"></a>
+  </div>
+</section>
+<section class="home-section" id="slide4">
+  <div class="homewrapper">
+    <div class="home-content right">
+      <h1>Meer dan alleen een WK pool</h1>
+      <p>
+        Ook een beetje klaar met die pooltjes op je werk, met vrienden of familie welke je weer met Excel laten werken? Mijnwkpool biedt de oplossing, een online pool systeem voor jou. Dus niet meer oneindig veel mails met tussenstanden en wijzigingen. Gewoon alles online, en ook nog eens goed te bekijken op je tablet of telefoon.
+      </p>
+    </div>
+    <a class="arrowup" href="#slide1"></a>
+  </div>
+</section>
+
+<script>
+if ($('#slide1').height() < $(window).height()) {
+  $('#slide1').css('height', $(window).height());
+};
+if ($('#slide2').height() < $(window).height()) {
+  $('#slide2').css('height', $(window).height());
+};
+if ($('#slide3').height() < $(window).height()) {
+  $('#slide3').css('height', $(window).height());
+};
+if ($('#slide4').height() < $(window).height()) {
+  $('#slide4').css('height', $(window).height());
+};
+  // $('#slide1').css('height', $(window).height());
+  // $('#slide2').css('height', $(window).height());
+  // $('#slide3').css('height', $(window).height());
+  // $('#slide4').css('height', $(window).height());
+
+  jQuery(document).ready(function($) {
+
+    $(".arrowdown").click(function(event){
+      event.preventDefault();
+      $('html,body').animate({scrollTop:$(this.hash).offset().top}, 1000);
+    });
+  });
+  jQuery(document).ready(function($) {
+
+    $(".arrowup").click(function(event){
+      event.preventDefault();
+      $('html,body').animate({scrollTop:$(this.hash).offset().top}, 1000);
+    });
+  });
+
+
+var display = false;
+
+$(".hiddenarrow, .arrowdown").hover(function () {
+    display = true;
+    setTimeout(function () {
+        if (display === true) {
+            $('.hiddenarrow').fadeIn(100);
+        }
+    }, 100);
+}, function () {
+    display = false;
+    setTimeout(function () {
+        if (display === false) {
+            $('.hiddenarrow').fadeOut(100);
+        }
+    }, 400);
+});
+</script>
+
+
+    </div>
+  </div>
+</body>
+</html>
