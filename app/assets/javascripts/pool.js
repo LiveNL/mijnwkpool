@@ -57,6 +57,16 @@ function togglePasswordFields(e) {
   }
 }
 
+function togglePubliclist(e) {
+  if(e.checked) {
+    if (e.value == 'true') {
+      $("#private_pool_enabled").hide();
+    } else {
+      $("#private_pool_enabled").show();
+    }
+  }
+}
+
 function rangeSlider() {
   var Link = $.noUiSlider.Link;
 

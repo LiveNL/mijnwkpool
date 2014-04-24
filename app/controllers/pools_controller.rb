@@ -1,8 +1,22 @@
 class PoolsController < ApplicationController
   def index
-
-  @pools = Pool.search(params[:search]).paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
-
+    @pools = Pool.all
+    if !params[:search].nil?
+      @pools = Pool.search(params[:search])
+    end
+    openpool = params[:openpool] # "value1"
+    case openpool
+    when '0'
+      flash[:notice] = 'Alle pools'
+    when '1'
+      @pools = Pool.where(:is_public => true)
+      flash[:notice] = 'Openbare pools'
+    when '2'
+      @pools = Pool.where(:is_public => false)
+      flash[:notice] = 'Prive pools'
+    else
+    end
+    @pools = @pools.paginate(:page => params[:page], :per_page => 5).order("created_at DESC")
   end
 
   def new
@@ -32,6 +46,6 @@ class PoolsController < ApplicationController
   def pool_params
     params.require(:pool).permit(:name, :image, :is_public, :password,
                                  :password_confirmation,
-                                 :maximum_membership, :avatar)
+                                 :maximum_membership, :avatar, :poolmemberships)
   end
 end

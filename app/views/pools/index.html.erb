@@ -21,29 +21,30 @@
               <div class='small-1-3 filter-box'>
                 <h3>Toegankelijkheid</h3>
                 <div class='form-field'>
-                  <div class='checkbox'>
-                    <input checked id='fp1' name='filter[public]' type='radio'>
+                <div class='checkbox'>
+                    <input checked id='fp1' name='openpool' type='radio' value="0">
                     <label for='fp1'>Alle pools</label>
                   </div>
                   <div class='checkbox'>
-                    <input id='fp2' name='filter[public]' type='radio'>
+                    <input id='fp2' name='openpool' type='radio' value="1">
                     <label for='fp2'>Openbare pools</label>
                   </div>
                   <div class='checkbox'>
-                    <input id='fp3' name='filter[public]' type='radio'>
+                    <input id='fp3' name='openpool' type='radio' value="2">
                     <label for='fp3'>Prive pools</label>
                   </div>
                 </div>
+
               </div>
               <div class='small-1-3 filter-box'>
                 <h3>Volle pools</h3>
                 <div class='form-field'>
                   <div class='checkbox'>
-                    <input checked id='fvp1' name='filter[full]' type='radio'>
+                    <input checked id='fvp1' name='poolspace' type='radio' value="1">
                     <label for='fvp1'>Tonen</label>
                   </div>
                   <div class='checkbox'>
-                    <input id='fvp2' name='filter[full]' type='radio'>
+                    <input id='fvp2' name='poolspace' type='radio' value="2">
                     <label for='fvp2'>Verbergen</label>
                   </div>
                 </div>
@@ -53,16 +54,17 @@
                 <div class='slider'>
                   <div class='minmax'>
                     <div class='mintext'></div>
-                    <input class='min' name='filter[min]' type='hidden'>
+                    <input class='min' name='players' type='hidden'>
                     <div class='maxtext'></div>
-                    <input class='max' name='filter[max]' type='hidden'>
+                    <input class='max' name='players' type='hidden'>
                   </div>
                   <div class='rangeslider'></div>
                 </div>
               </div>
             </div>
-            <div class='small-0 filter-submit'>
-              <input class='btn green fullwidth' type='submit' value='Filters toepassen'>
+            <div class=' filter-submit'>
+              <input class='btn green fullwidth' type='submit' value='Filters toepassen'>                
+
             </div>
           </form>
         </div>
