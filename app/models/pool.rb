@@ -21,8 +21,8 @@ class Pool < ActiveRecord::Base
             },
             format: {
               with: /\A(([a-zA-Z0-9]+[-_'\s]{0,1})+)\z/,
-              message: 'Het is niet toegestaan meerdere - _ of \'  achter elkaar te
-                        plaatsen. Een voorbeeld van een pool naam is "Henk\'s pool"'
+              message: 'Het is niet toegestaan meerdere spaties, "-", "_" of "\" achter elkaar te
+                        plaatsen.'
             }
 
   # Password
@@ -77,7 +77,7 @@ class Pool < ActiveRecord::Base
   end
 
   def self.verbergen
-    Pool.find_by_sql "select name, maximum_membership, is_public 
+    Pool.find_by_sql "select *
     from Pools p
     where p.maximum_membership >
     (

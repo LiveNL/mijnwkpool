@@ -3,29 +3,35 @@ class PoolsController < ApplicationController
   skip_before_filter :ensure_user, :only => [:show]
 
   def index
-    @pools = Pool.all
+      openpool = params[:openpool] # "value1"
+      case openpool
+        when '0'
+          @pools = Pool.all
+          if params[:playerssearch1]
+            @pools = Pool.where("maximum_membership >= ? AND maximum_membership <= ?", params[:playerssearch1], params[:playerssearch2])
+          end
+        when '1'
+          @pools = Pool.find_by_sql ["select * from pools where 
+          (maximum_membership >= ? AND maximum_membership <= ?) AND (is_public == ?)", params[:playerssearch1], params[:playerssearch2], true]
+        when '2'
+          @pools = Pool.find_by_sql ["select * from pools where 
+          (maximum_membership >= ? AND maximum_membership <= ?) AND (is_public == ?)", params[:playerssearch1], params[:playerssearch2], false]
+        else
+          @pools = Pool.all
+      end
+      poolspace = params[:poolspace] # "value1"
+      case poolspace 
+        when '1'
+        when '2'
+          @pools = Pool.find_by_sql ["select * from pools p where 
+            (maximum_membership >= ? AND maximum_membership <= ?) AND 
+            p.maximum_membership > (select count(*) from poolmemberships pm where pm.pool_id = p.id )", 
+            params[:playerssearch1], params[:playerssearch2]]  
+        else
+      end
       if !params[:search].nil?
         @pools = Pool.search(params[:search])
       end
-
-      openpool = params[:openpool] # "value1"
-      case openpool
-      when '0'
-      when '1'
-        @pools = Pool.where(:is_public => true)
-      when '2'
-        @pools = Pool.where(:is_public => false)
-      else
-      end
-
-      poolspace = params[:poolspace] # "value1"
-      case poolspace 
-      when '1'
-      when '2'
-        @pools = Pool.verbergen
-      else
-      end
-    # @pools = @pools.paginate(:page => params[:page], :per_page => 5)
   end
 
   def new
@@ -34,7 +40,7 @@ class PoolsController < ApplicationController
 
   def create
     @pool = Pool.new(pool_params)
-    if current_user.poolmemberships.count == 500
+    if current_user.poolmemberships.count == 3
       flash[:error] = 'Je zit al in 3 pools.'
       redirect_to pools_path
     else
