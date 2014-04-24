@@ -47,6 +47,7 @@
     display: none;
   }
   .#{$media}-show {
+    display: block;
     display: initial;
   }
 }

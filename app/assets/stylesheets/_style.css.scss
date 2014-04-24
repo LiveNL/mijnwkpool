@@ -21,16 +21,20 @@ img {
   max-width: 100%;
 }
 
-.wrapper {
+.content-wrapper {
+  padding-top: 70px;
+
   @include respond-to(small) {
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
+    padding-top: 100px;
   }
 
   @include respond-to(medium) {
     margin-left: auto;
     margin-right: auto;
+    margin-top: 40px;
   }
 
   @include respond-to(large) {

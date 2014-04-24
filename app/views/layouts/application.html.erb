@@ -21,11 +21,61 @@
       <script>flashMessage();</script>
     </div>
   <% end %>
-<div class='wrapper'>
-  <%= render "shared/login" %>
-  <div class='content-wrapper'>
-    <%= yield %>
+  <div id="mobile-nav" class="mobile-nav closed">
+    <a id="nav-close-btn" class="nav-close-btn" href="#">
+      <i class="fa fa-times"></i>
+    </a>
+    <ul>
+      <li><%= link_to 'Dashboard', app_root_path %></li>
+      <li><%= link_to 'Pool aansluiten', pools_path %></li>
+      <li><%= link_to 'Pool aanmaken', new_pool_path %></li>
+    </ul>
   </div>
-</div>
+  <div class='wrapper'>
+    <div class="header-wrapper">
+      <div class="header-inner">
+        <div class="logo">
+          <a href="#">
+            <div class="default-hide small-show">
+              <img src="<%= image_path('logo-big.svg') %>" alt="mijnwkpool" height='60'>
+            </div>
+            <div class="small-hide">
+              <img src="<%= image_path('logo-small.svg') %>" alt="mijnwkpool" height='50'>
+            </div>
+          </a>
+        </div>
+        <div class="nav">
+          <div class="default-hide medium-show">
+            <ul>
+              <li><%= link_to 'Dashboard', app_root_path, :class => 'grey' %></li>
+              <li><%= link_to 'Pool aansluiten', pools_path, :class => 'grey' %></li>
+              <li><%= link_to 'Pool aanmaken', new_pool_path, :class => 'grey' %></li>
+            </ul>
+          </div>
+          <div class="medium-hide">
+            <a class="nav-btn" id="nav-open-btn" href="#">
+              <i class="fa fa-bars"></i> MENU
+            </a>
+          </div>
+        </div>
+        <% if current_user %>
+          <div class="user">
+            <a href="<%= url_for user_path(current_user.id) %>" class="grey">
+              <div class="user-name">
+                <%= current_user.nickname %>
+              </div>
+              <div class="user-icon">
+                <i class="fa fa-user"></i>
+              </div>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class='content-wrapper'>
+      <%= yield %>
+    </div>
+  </div>
+  <script>menuButton();</script>
 </body>
 </html>
