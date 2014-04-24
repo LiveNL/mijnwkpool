@@ -20,9 +20,9 @@ class Pool < ActiveRecord::Base
               message: '* Deze pool naam is al bezet.'
             },
             format: {
-              with: /\A(([a-zA-Z0-9]+[-_]{0,1})+)\z/,
-              message: 'Het is niet toegestaan meerdere \'-_\' achter elkaar te
-                        plaatsen.'
+              with: /\A(([a-zA-Z0-9]+[-_'\s]{0,1})+)\z/,
+              message: 'Het is niet toegestaan meerdere - _ of \'  achter elkaar te
+                        plaatsen. Een voorbeeld van een pool naam is "Henk\'s pool"'
             }
 
   # Password
