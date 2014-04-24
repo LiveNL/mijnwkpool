@@ -41,6 +41,10 @@ class PoolsController < ApplicationController
   def update
   end
 
+  def invite
+    @pool = Pool.find(params[:id])
+  end
+
   private
 
   def pool_params

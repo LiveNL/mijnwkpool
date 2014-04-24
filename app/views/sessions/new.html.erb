@@ -1,10 +1,28 @@
-<%= form_for(:session, url: sessions_path) do |f| %>
+<div class="grid-r">
+  <div class="default-hide small-1-6 medium-1-4">&nbsp;</div>
+  <div class="small-2-3 medium-1-2">
+    <div class="box">
+      <div class="content-header">
+        <h1>Login</h1>
+      </div>
+      <div class="login-form">
+        <%= form_for(:session, url: sessions_path) do |f| %>
+          <div class="form-field login">
+            <%= f.text_field :email, :placeholder => 'Email' %>
+            <%= f.password_field :password, :placeholder => 'Wachtwoord'%>
+          </div>
 
- 	<%= f.label :email %>
-	<%= f.text_field :email %>
-
-  	<%= f.label :password %>
-	<%= f.password_field :password %>
-
-	<%= f.submit "Log in" %>
-<% end %>
+          <div class="form-field action">
+            <div class='default-1 small-1-2'>
+              <%= f.submit "Login", :class => 'btn green fullwidth' %>
+            </div>
+            <div class='default-1 small-1-2'>
+              <%= link_to 'Ik heb nog geen account', '/register', :class => 'btn grey fullwidth' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="default-hide small-1-6 medium-1-4">&nbsp;</div>
+</div>

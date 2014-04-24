@@ -1,0 +1,37 @@
+<div class="grid-r">
+  <div class="medium-3-4">
+    <div class="box">
+      <div class="steps">
+        <div class="step active">
+          1. <span class="default-hide small-show">Pool informatie</span>
+        </div>
+        <div class="step active">
+          2. <span class="default-hide small-show">Bevestigen</span>
+        </div>
+        <div class="step active">
+          3. <span class="default-hide small-show">Vrienden uitnodigen</span>
+        </div>
+      </div>
+
+      <div class="content-header">
+        <h1>3. Vrienden uitnodigen</h1>
+      </div>
+
+      <div class="pool-invite">
+        <p>Helaas is de functie om je vrienden uit te nodigen nog niet af. Om het toch nog makkelijk voor je te maken kun je hieronder de link naar je pool kopi&euml;ren om deze zo te delen met je vrienden op whatsapp, twitter, facebook of wat voor medium wat je maar kan bedenken.</p>
+
+        <div class='form-search'>
+          <button class='green' type='submit'>
+            <i class='fa fa-link'></i>
+          </button>
+          <div>
+            <input onclick="this.select();" readonly="readonly" type="text" value="<%= (request.base_url) + (url_for @pool) %>">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/aside" %>
+  </div>
+</div>

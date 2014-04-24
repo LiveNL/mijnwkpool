@@ -1,0 +1,13 @@
+.pool-invite {
+  padding: 20px;
+  @include respond-to(small) {
+    padding: 30px;
+  }
+
+  p {
+    margin-bottom: 20px;
+    @include respond-to(small) {
+      margin-bottom: 30px;
+    }
+  }
+}

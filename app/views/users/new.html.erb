@@ -1,19 +1,97 @@
-<%= form_for @user do |f| %>
-	<% if @user.errors.any? %>
-		<div class="error_messages">
-			<h2>Form is invalid</h2>
-			<ul>
-			<% for message in @user.errors.full_messages %>
-			<li><%= message %></li>
-			<% end %>
-			</ul>
-		</div>
-	<% end %>
+<div class="grid-r">
+  <div class="default-hide small-1-6 medium-1-4">&nbsp;</div>
+  <div class="small-2-3 medium-1-2">
+    <div class="box">
+      <div class="content-header">
+        <h1>Registreren</h1>
+      </div>
+      <div class="register-form">
+        <%= form_for @user do |f| %>
+          <% if @user.errors[:name].empty? %>
+            <div class="form-field">
+          <% else %>
+            <div class="form-field error">
+          <% end %>
+            <%= f.label :name, 'Naam' %>
+            <%= f.text_field :name %>
+            <span>
+            	<% if @user.errors.any? %>
+                <%= @user.errors[:name].to_sentence(words_connector: '<br />', two_words_connector: '<br />', last_word_connector: '<br />').html_safe %>
+              <% end %>
+            </span>
+          </div>
 
-	<p><%= f.label :name %><br /><%= f.text_field :name %></p>
-	<p><%= f.label :nickname %><br /><%= f.text_field :nickname %></p>
-	<p><%= f.label :email %><br /><%= f.text_field :email %></p>
-	<p><%= f.label :password %><br /><%= f.password_field :password %></p>
-	<p><%= f.label :password_confirmation %><br /><%= f.password_field :password_confirmation %></p>
-	<p><%= f.submit %></p>
-<% end %>
+          <% if @user.errors[:name].empty? %>
+            <div class="form-field">
+          <% else %>
+            <div class="form-field error">
+          <% end %>
+            <%= f.label :email %>
+            <%= f.text_field :email %>
+            <span>
+            	<% if @user.errors.any? %>
+                <%= @user.errors[:email].to_sentence(words_connector: '<br />', two_words_connector: '<br />', last_word_connector: '<br />').html_safe %>
+              <% end %>
+            </span>
+          </div>
+
+          <% if @user.errors[:nickname].empty? %>
+            <div class="form-field">
+          <% else %>
+            <div class="form-field error">
+          <% end %>
+            <%= f.label :nickname %>
+            <%= f.text_field :nickname %>
+            <span>
+            	<% if @user.errors.any? %>
+                <%= @user.errors[:nickname].to_sentence(words_connector: '<br />', two_words_connector: '<br />', last_word_connector: '<br />').html_safe %>
+              <% end %>
+            </span>
+          </div>
+
+          <% if @user.errors[:password].empty? %>
+            <div class="form-field">
+          <% else %>
+            <div class="form-field error">
+          <% end %>
+            <%= f.label :password, 'Wachtwoord' %>
+            <%= f.password_field :password %>
+            <span>
+            	<% if @user.errors.any? %>
+                <%= @user.errors[:password].to_sentence(words_connector: '<br />', two_words_connector: '<br />', last_word_connector: '<br />').html_safe %>
+              <% end %>
+            </span>
+          </div>
+
+          <% if @user.errors[:password_confirmation].empty? %>
+            <div class="form-field">
+          <% else %>
+            <div class="form-field error">
+          <% end %>
+            <%= f.label :password_confirmation, 'Wachtwoord herhalen' %>
+            <%= f.password_field :password_confirmation %>
+            <span>
+            	<% if @user.errors.any? %>
+                <%= @user.errors[:password_confirmation].to_sentence(words_connector: '<br />', two_words_connector: '<br />', last_word_connector: '<br />').html_safe %>
+              <% end %>
+            </span>
+          </div>
+
+          <div class="form-field">
+            <p>Door op aanmelden te klikken ga je akkoord met de <a href="#">gebuikersvoorwaarden</a> en het <a href="">privacybeleid</a> van mijnwkpool.</p>
+          </div>
+
+          <div class="form-field action">
+            <div class='default-1 small-1-2'>
+              <%= f.submit "Aanmelden", :class => 'btn green fullwidth' %>
+            </div>
+            <div class='default-1 small-1-2'>
+              <%= link_to 'Ik heb al een account', '/login', :class => 'btn grey fullwidth' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="default-hide small-1-6 medium-1-4">&nbsp;</div>
+</div>

@@ -1,6 +1,5 @@
-$(function() {
-
-  // Filter handles
+// Filter handles
+function filterHandle() {
   $('.filter-handle').on('click', function() {
     var $fa = $(this).find('.fa');
     if($fa.hasClass('fa-caret-right')) {
@@ -10,16 +9,7 @@ $(function() {
     }
     $(this).next().toggleClass('show');
   });
-
-  $('.form-search input').focus( function() {
-    $(this).addClass('active');
-  });
-
-  $('.form-search input').blur( function() {
-    $(this).removeClass('active');
-  });
-
-});
+}
 
 function poolPassword() {
   $input = $("input:radio[name='pool[is_public]']");
