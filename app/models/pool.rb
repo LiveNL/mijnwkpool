@@ -6,8 +6,7 @@ class Pool < ActiveRecord::Base
   before_save :clear_passwords, if: :public_pool?
 
   # Memberships (image breaker)
-  
-   validates_inclusion_of :maximum_membership, :in => 5..65
+  validates_inclusion_of :maximum_membership, :in => 5..65
   validate :value_is_multiple_of_five
 
   # Name
@@ -77,6 +76,30 @@ class Pool < ActiveRecord::Base
     end
   end
   
+  def self.tonen
+    Pool.find_by_sql "select name, maximum_membership, is_public 
+    from Pools p
+    where p.maximum_membership >=
+    (
+    select count(*)
+    from poolmemberships pm
+    where pm.pool_id = p.id
+    )
+    "
+  end
+
+  def self.verbergen
+    Pool.find_by_sql "select name, maximum_membership, is_public 
+    from Pools p
+    where p.maximum_membership >
+    (
+    select count(*)
+    from poolmemberships pm
+    where pm.pool_id = p.id
+    )
+    "
+  end
+
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
     where("name like ?", "%#{query}%") 
