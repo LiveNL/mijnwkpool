@@ -75,18 +75,6 @@ class Pool < ActiveRecord::Base
       errors.add(:maximum_membership, 'must be multiple of 5')
     end
   end
-  
-  def self.tonen
-    Pool.find_by_sql "select name, maximum_membership, is_public 
-    from Pools p
-    where p.maximum_membership >=
-    (
-    select count(*)
-    from poolmemberships pm
-    where pm.pool_id = p.id
-    )
-    "
-  end
 
   def self.verbergen
     Pool.find_by_sql "select name, maximum_membership, is_public 
