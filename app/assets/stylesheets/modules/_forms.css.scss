@@ -104,6 +104,10 @@ input[type=password] {
     }
   }
 
+  &.action-stacked > div + div {
+    margin-top: 10px;
+  }
+
   &.login {
     input:first-child {
       border-bottom-width: 0;

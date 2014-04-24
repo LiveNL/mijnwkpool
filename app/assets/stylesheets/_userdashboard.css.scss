@@ -1,0 +1,60 @@
+.notifications {
+  padding: 0;
+
+  @include respond-to(small) {
+    padding: 0px 30px 30px 30px
+  }
+}
+.notification-header {
+  border-bottom: 1px solid $color-grey-light;
+  padding: 20px;
+  @include respond-to(small) {
+    padding: 30px 0;
+  }
+}
+
+
+.notification-list {
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    @include clearfix;
+    border-bottom: 1px solid $color-grey-light;
+    display: block;
+    padding: 15px 20px;
+
+    @include respond-to(small) {
+      padding: 30px 0;
+    }
+  }
+
+  .notification-list-inner {
+    text-decoration: none;
+  }
+
+  .notification-list-icon {
+    display: table-cell;
+    padding-right: 30px;
+    text-align: center;
+    vertical-align: middle;
+    width: 60px;
+    white-space: nowrap;
+    @include respond-to(small) {
+      width: 110px;
+    }
+
+    i {
+      @include font-size($font-size * 1.5);
+      @include respond-to(small) {
+        @include font-size($font-size * 2);
+      }
+    }
+  }
+
+  .notification-list-txt {
+    vertical-align: middle;
+  }
+}

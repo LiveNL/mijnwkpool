@@ -22,6 +22,8 @@
     color: #fff;
   }
 }
+
+
 .flash-inner {
   display: table;
   margin: 0 auto;
@@ -55,4 +57,35 @@
 @-moz-keyframes slideDown {
     0%, 100% { -moz-transform: translateY(-200px); }
     10%, 90% { -moz-transform: translateY(0px); }
+}
+
+.contentflash-text {
+  @include font-size($font-size);
+  display: table-cel;
+  padding: 20px 10px 20px 20px;
+  vertical-align: middle;
+}
+
+.contentflash {
+  width: 100%;
+  &.error {
+    background-color: $color-red-light;
+    color: #fff;
+  }
+
+  &.success {
+    background-color: $color-green-light;
+    color: #fff;
+  }
+}
+
+.flashcontent-icon {
+  background-color: rgba(0,0,0,.1);
+  text-align: center;
+  vertical-align: middle;
+  width: 20%;
+
+  i {
+    @include font-size($font-size * 1.5);
+  }
 }

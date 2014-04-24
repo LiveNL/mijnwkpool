@@ -1,0 +1,10 @@
+.welcome-box {
+  padding: 20px;
+  @include respond-to(small) {
+    padding: 30px;
+  }
+
+  p {
+    margin-bottom: 30px;
+  }
+}
