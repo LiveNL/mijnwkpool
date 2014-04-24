@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
+  layout 'home'
   def welcome
   end
 
