@@ -18,16 +18,15 @@
       </div>
 
       <div class="pool-invite">
-        <p>Helaas is de functie om je vrienden uit te nodigen nog niet af. Om het toch nog makkelijk voor je te maken kun je hieronder de link naar je pool kopi&euml;ren om deze zo te delen met je vrienden op whatsapp, twitter, facebook of wat voor medium wat je maar kan bedenken.</p>
-
+        <p>Door de onderstaande link te kopieren en te versturen, kun je mensen naar jouw zojuist aangemaakte wk pool leiden. Klik eenmaal op de link om deze te selecteren kopieer deze om te delen met al je vrienden!
+        </p>
         <div class='form-search'>
-          <button class='green' type='submit'>
-            <i class='fa fa-link'></i>
-          </button>
           <div>
             <input onclick="this.select();" readonly="readonly" type="text" value="<%= (request.base_url) + (url_for @pool) %>">
           </div>
         </div>
+        </br>
+          <%= link_to 'Klik om door te gaan naar jouw pool', pool_path(@pool.id),:class => 'btn green' %>
       </div>
     </div>
   </div>

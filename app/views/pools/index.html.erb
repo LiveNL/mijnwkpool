@@ -2,7 +2,7 @@
   <div class='medium-3-4'>
     <div class='box'>
       <div class='content-header'>
-        <h1>Pool overzicht</h1>
+        <h1>Alle pools</h1>
         <div class="form-search">
           <%= form_tag(pools_path, :method => "get", id: "search-form") do %>
             <button class='green'>
@@ -13,6 +13,9 @@
             </div>
           <% end %>
         </div>
+      </div>
+      <div class='pool-filter'>
+        <p>Om mee te kunnen spelen in een pool dien je deze in de lijst aan te klikken. Wanneer deze niet publiekelijk is zul je het wachtwoord in moeten voeren. Klik op de groene knop om door te gaan.</p>
       </div>
       <div class='pool-filter'>
         <div class='filter-handle'>
@@ -130,7 +133,7 @@
           <% end %>
         </ul>
       </div>
-      <div class='pagination'>
+<!--  <div class='pagination'>
         <div class='pages'>
           <div class='view-row'>
             <div class='prev'>
@@ -139,8 +142,8 @@
                 <span class='text'>Vorige</span>
               </a>
             </div>
-            <div class='page-btns'>
-            <%= will_paginate @pools %>
+            <div class='page-btns'> 
+            < %= will_paginate @pools %>
               <a class='btn green' href='#'>1</a>
               <a class='btn grey' href='#'>2</a>
               <a class='btn grey' href='#'>3</a>
@@ -157,8 +160,8 @@
               </a>
             </div>
           </div>
-        </div>
-      </div>
+        </div> 
+      </div> -->
     </div>
   </div>
   <div class='default-0 medium-1-4'>

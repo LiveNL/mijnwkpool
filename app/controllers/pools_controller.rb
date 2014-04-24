@@ -25,7 +25,7 @@ class PoolsController < ApplicationController
         @pools = Pool.verbergen
       else
       end
-    @pools = @pools.paginate(:page => params[:page], :per_page => 5)
+    # @pools = @pools.paginate(:page => params[:page], :per_page => 5)
   end
 
   def new
@@ -45,6 +45,11 @@ class PoolsController < ApplicationController
         render 'new'
       end
     end
+  end
+
+  def show
+@pool = Pool.find(params[:id])
+@pool.users
   end
 
   def update

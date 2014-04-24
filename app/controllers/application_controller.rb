@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   def ensure_user
     if current_user
     else 
+    flash[:error] = 'Registreer of log in als gebruiker om deze pagina te bekijken.'
     redirect_to root_path  
     end
   end

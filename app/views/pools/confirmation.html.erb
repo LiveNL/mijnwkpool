@@ -14,7 +14,7 @@
       </div>
 
       <div class="content-header">
-        <h1>2. Pool bevestigen</h1>
+        <h1>2. Pool gegevens</h1>
       </div>
 
       <div class="grid-r">
@@ -28,6 +28,11 @@
               <div class="form-field">
               <%= label :name, 'Pool naam' %>
               <h3><%= @pool.name %></h3>
+            </div>
+
+            <div class="form-field">
+              <%= label :maximum_membership, 'Maximaal aantal spelers' %>
+              <h3><%= @pool.maximum_membership %></h3>
             </div>
 
             <div class="form-field inline">
