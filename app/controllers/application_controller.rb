@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
-  layout 'home'
   def welcome
   end
 
@@ -19,7 +18,8 @@ class ApplicationController < ActionController::Base
 
   def ensure_user
     if current_user
-    else 
+    else
+    "ensure_user" 
     flash[:error] = 'Registreer of log in als gebruiker om deze pagina te bekijken.'
     redirect_to root_path  
     end

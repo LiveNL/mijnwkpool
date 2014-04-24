@@ -13,7 +13,7 @@ Wkpool::Application.routes.draw do
 
   get 'app' => 'users#dashboard', :as => 'app_root'
 
-  root  'application#home'
+  root  'pages#home'
 
   get 'ping' => proc { |env| [200, {}, ['pong']] }
 
