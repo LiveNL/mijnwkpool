@@ -116,10 +116,20 @@
 
     .lock {
       @include font-size($font-size * 2);
-      padding-left: 30px;
+      padding-left: 21px;
+    }
+
+    .unlock {
+      @include font-size($font-size * 2);
+      padding-left: 21px;
     }
 
   }
+  // .pool-list-viewpool {
+  //   @include font-size($font-size * 2);
+  //   vertical-align: middle;
+  //   width: 60px;
+  // }
 }
 
 .pagination {

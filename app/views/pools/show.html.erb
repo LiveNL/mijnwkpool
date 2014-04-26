@@ -3,7 +3,7 @@
   <div class='medium-3-4'>
     <div class='box'>
       <div class='content-header'>
-        <h1>Speler overzicht</h1>
+        <h1>Speler overzicht - <%= @pool.name %></h1>
       </div>
       <div class='pool-list'>
         <ul>
@@ -12,7 +12,7 @@
               <div class='view-table'>
                 <a class='grey pool-list-inner view-row'>
                   <div class='pool-list-txt'>
-                    <p><%= user.nickname %></p>
+                    <%= link_to user.nickname, user_path(user), :class => 'grey pool-list-inner view-row' %>
                   </div>
                 </a>
               </div>

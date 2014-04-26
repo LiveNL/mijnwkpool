@@ -92,17 +92,20 @@
                   </div>
                   <div class='pool-list-lock'>
                     <% if pool.is_public? %>
-                      <i class='fa fa-unlock lock'></i>
+                      <i class='fa fa-unlock unlock'></i>
                     <% else %>
                       <i class='fa fa-lock lock'></i>
                     <% end %>
                   </div>
+<!--                   <div class='pool-list-viewpool'>
+                    <i class='fa fa-list'></i>
+                  </div> -->
                 </a>
               </div>
               <div id='pool<%= pool.id %>' style='display:none'>
               <% if pool.is_public? %>
                 <h1>Bij '<%= pool.name %>' aansluiten?</h1>
-                <p>Weet je zeker dat jij je bij '<%= pool.name %>' wil aansluiten?</p>
+                <p>Weet je zeker dat jij je bij '<%= pool.name %>' wil aansluiten? Bekijk <%= link_to "hier", pool_path(pool)%> de pool.</p>
                 <%= form_tag poolmemberships_path do %>
                   <div class='grid-r modal-btns'>
                     <div class='default-1 small-1-2'>
@@ -116,7 +119,7 @@
                 <% end %>
               <% else %>
                 <h1>Wachtwoord '<%= pool.name %>'</h1>
-                <p>Bevestig het wachtwoord van '<%= pool.name %>' om toegang te krijgen.</p>
+                <p>Bevestig het wachtwoord van '<%= pool.name %>' om toegang te krijgen. Bekijk <%= link_to "hier", pool_path(pool)%> de pool.</p>
                 <div class='form-search modalpassword'>
                   <%= form_tag poolmemberships_path do %>
                     <button class='green' type='submit'>
