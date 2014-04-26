@@ -69,8 +69,8 @@
       <p>
         Vanaf nu is het mogelijk om je aan te melden bij mijnwkpool. Om hiermee te beginnen moet je op de onderstaande knop drukken.
       </p>
-       <p><button class="green fullwidth" type="submit">Registreren</button></p>
-       <p><button class="grey fullwidth" type="submit">Ik heb al een account</button></p>
+        <p><%= link_to 'Registreren', register_path, :class => 'btn green' %></p>
+        <p><%= link_to 'Ik heb al een account', log_in_path, :class => 'btn grey' %></p>
     </div>
     <a class="arrowdown" href="#slide2"></a>
   </div>
