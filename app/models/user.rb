@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :poolmemberships
   has_many :pools, through: :poolmemberships
+  before_validation :downcase_email
 
   validates :name,
             length: {
@@ -40,4 +41,10 @@ class User < ActiveRecord::Base
             confirmation: {
               message: '* De wachtwoorden komen niet overeen!'
             }
+
+private
+
+  def downcase_email
+    self.email = self.email.downcase if self.email.present?
+  end
 end
