@@ -1,11 +1,34 @@
-<% @users.each do |user| %>
+<% title "Gebruikerslijst" %>
+<div class='grid-r'>
+  <div class='medium-3-4'>
+    <div class='box'>
+      <div class='content-header'>
+        <h1>Gebruikerslijst</h1>
+      </div>
+      <div class='pool-list'>
+        <ul>
+          <% @users.each do |user| %>
+            <li>
+              <div class='view-table'>
+                <a class='grey pool-list-inner view-row'>
+                  <div class='pool-list-txt'>
+                    <a class='grey pool-list-inner view-row' href="users/<%= user.id%>"><p><%= user.nickname %></p></a>
+                  </div>
+                </a>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/aside" %>
+  </div>
+</div>
 
-<%= user.name %> - <%= user.email %> <br/>
-
+<%= javascript_tag do %>
+  filterHandle();
+  rangeSlider();
 <% end %>
-
-<br/>
-<br/>
-<br/>
-<a href="users/new">New template</a>
 
