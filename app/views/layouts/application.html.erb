@@ -30,6 +30,7 @@
       <li><%= link_to 'Dashboard', app_root_path %></li>
       <li><%= link_to 'Alle pools', pools_path %></li>
       <li><%= link_to 'Pool aanmaken', new_pool_path %></li>
+      <li><%= link_to 'Gebruikerslijst', users_path %></li>
     </ul>
   </div>
   <div class='wrapper'>
@@ -49,10 +50,10 @@
         <div class="nav">
           <div class="default-hide medium-show">
             <ul>
-              <li><%= link_to 'Dashboard', app_root_path, :class => 'grey' %></li>
-              <li><%= link_to 'Alle pools', pools_path, :class => 'grey' %></li>
-              <li><%= link_to 'Pool aanmaken', new_pool_path, :class => 'grey' %></li>
-              <li><%= link_to 'Gebruikerslijst', users_path, :class => 'grey' %></li>
+              <li <%= is_active?(app_root_path) %>><%= link_to 'Dashboard', app_root_path, :class => 'grey' %></li>
+              <li <%= is_active?(pools_path) %>><%= link_to 'Alle pools', pools_path, :class => 'grey' %></li>
+              <li <%= is_active?(new_pool_path) %>><%= link_to 'Pool aanmaken', new_pool_path, :class => 'grey' %></li>
+              <li <%= is_active?(users_path) %>><%= link_to 'Gebruikerslijst', users_path, :class => 'grey' %></li>
             </ul>
           </div>
           <div class="medium-hide">
