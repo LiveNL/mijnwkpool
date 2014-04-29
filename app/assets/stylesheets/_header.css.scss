@@ -73,6 +73,10 @@
           color: #FFF;
         }
       }
+      &.active a {
+        background-color: $color-orange-light;
+        color: #FFF;
+      }
     }
   }
 }

@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class=' filter-submit'>
-              <input class='btn green fullwidth' type='submit' value='Filters toepassen'>                
+              <input class='btn green fullwidth' type='submit' value='Filters toepassen'>
 
             </div>
           </form>
@@ -119,7 +119,7 @@
                 <% end %>
               <% else %>
                 <h1>Wachtwoord '<%= pool.name %>'</h1>
-                <p>Bevestig het wachtwoord van '<%= pool.name %>' om toegang te krijgen. Bekijk <%= link_to "hier", pool_path(pool)%> de pool.</p>
+                <p>Bevestig het wachtwoord van '<%= pool.name %>' om toegang te krijgen. <!-- Bekijk <%= link_to "hier", pool_path(pool)%> de pool. --></p>
                 <div class='form-search modalpassword'>
                   <%= form_tag poolmemberships_path do %>
                     <button class='green' type='submit'>
@@ -146,7 +146,7 @@
                 <span class='text'>Vorige</span>
               </a>
             </div>
-            <div class='page-btns'> 
+            <div class='page-btns'>
             < %= will_paginate @pools %>
               <a class='btn green' href='#'>1</a>
               <a class='btn grey' href='#'>2</a>
@@ -164,7 +164,7 @@
               </a>
             </div>
           </div>
-        </div> 
+        </div>
       </div> -->
     </div>
   </div>
