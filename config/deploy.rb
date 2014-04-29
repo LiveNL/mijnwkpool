@@ -4,7 +4,7 @@ lock '3.1.0'
 set :application, 'Mijn_Wk_Pool'
 set :repo_url, 'git@github.com:LiveNL/mijnwkpool.git'
 
-set :branch, 'master'
+set :branch, 'beta1'
 set :deploy_to, '/var/www/mijnwkpool.com/dev2'
 set :scm, :git
 set :use_sudo, false
