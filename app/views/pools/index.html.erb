@@ -119,7 +119,7 @@
                 <% end %>
               <% else %>
                 <h1>Wachtwoord '<%= pool.name %>'</h1>
-                <p>Bevestig het wachtwoord van '<%= pool.name %>' om toegang te krijgen. <!-- Bekijk <%= link_to "hier", pool_path(pool)%> de pool. --></p>
+                <p>Bevestig het wachtwoord van '<%= pool.name %>' om toegang te krijgen. Bekijk <%= link_to "hier", pool_path(pool)%> de pool. </p>
                 <div class='form-search modalpassword'>
                   <%= form_tag poolmemberships_path do %>
                     <button class='green' type='submit'>
