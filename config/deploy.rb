@@ -44,6 +44,7 @@ namespace :deploy do
     system "curl --silent #{fetch(:ping_url)}"
   end
 
+  after :publishing, :restart
   after :restart, :ping
   after :finishing, 'deploy:cleanup'
 end
