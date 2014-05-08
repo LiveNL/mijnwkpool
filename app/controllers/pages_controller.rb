@@ -1,9 +1,9 @@
 class PagesController < ApplicationController
-	def home
+  def home
     if current_user
       redirect_to app_root_path
     else
-      render layout: "home"
+      render layout: 'home'
     end
-	end
+  end
 end

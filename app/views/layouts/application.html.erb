@@ -24,42 +24,48 @@
   <% end %>
 
   <% if current_user %>
+    <div id="mobile-nav" class="mobile-nav closed">
+      <a id="nav-close-btn" class="nav-close-btn" href="#">
+        <i class="fa fa-times"></i>
+      </a>
+      <ul>
+        <li><%= link_to 'Dashboard', app_root_path %></li>
+        <li><%= link_to 'Alle pools', pools_path %></li>
+      </ul>
+      <ul>
 
-  <div id="mobile-nav" class="mobile-nav closed">
-    <a id="nav-close-btn" class="nav-close-btn" href="#">
-      <i class="fa fa-times"></i>
-    </a>
-    <ul>
-      <li><%= link_to 'Dashboard', app_root_path %></li>
-      <li><%= link_to 'Alle pools', pools_path %></li>
-    </ul>
-    <ul>
-      <% if current_user.poolmemberships.count > 0 %>
-        <ul>
-          <% current_user.poolmemberships.each do |pool| %>
-            <li>
-              <%= link_to pool_path(pool.pool_id),:class => 'grey' do %>
-                <%= Pool.find(pool.pool_id).name %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-        <% else %>
-        <br>
-        <p>Bij 0 pools aangesloten</p>
-        <br>
-      <% end %>
-    </ul>
-    <ul>
-      <ul></ul>
-      <li><%= link_to 'Pool aanmaken', new_pool_path %></li>
-    </ul>
-  </div>
+        <% if current_user.poolmemberships.count > 0 %>
+          <ul>
+            <% current_user.poolmemberships.each do |pool| %>
+              <li>
+                <%= link_to pool_path(pool.pool_id),:class => 'grey' do %>
+                  <%= Pool.find(pool.pool_id).name %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+          <% else %>
+          <br>
+          <p>Bij 0 pools aangesloten</p>
+          <br>
+        <% end %>
+
+      </ul>
+      <ul>
+        <li><%= link_to 'Pool aanmaken', new_pool_path %></li>
+      </ul>
+    </div>
+  <% end %>
+
   <div class='wrapper'>
     <div class="header-wrapper">
       <div class="header-inner">
         <div class="logo">
-          <%= link_to app_root_path do %>
+          <% if current_user %>
+            <a href="<%= url_for app_root_path %>">
+          <% else %>
+            <a href="<%= url_for root_path %>">
+          <% end %>
             <div class="default-hide small-show">
               <img src="<%= image_path('logo-big.svg') %>" alt="mijnwkpool" height='60'>
             </div>
@@ -67,21 +73,24 @@
               <img src="<%= image_path('logo-small.svg') %>" alt="mijnwkpool" height='50'>
             </div>
           </a>
-          <% end %>
         </div>
-        <div class="nav">
-          <div class="default-hide medium-show">
-            <ul>
-              <li <%= is_active?(app_root_path) %>><%= link_to 'Dashboard', app_root_path, :class => 'grey' %></li>
-              <li <%= is_active?(pools_path) %>><%= link_to 'Alle pools', pools_path, :class => 'grey' %></li>
-            </ul>
+
+        <% if current_user %>
+          <div class="nav">
+            <div class="default-hide medium-show">
+              <ul>
+                <li <%= is_active?(app_root_path) %>><%= link_to 'Dashboard', app_root_path, :class => 'grey' %></li>
+                <li <%= is_active?(pools_path) %>><%= link_to 'Alle pools', pools_path, :class => 'grey' %></li>
+              </ul>
+            </div>
+            <div class="medium-hide">
+              <a class="nav-btn" id="nav-open-btn" href="#">
+                <i class="fa fa-bars"></i> MENU
+              </a>
+            </div>
           </div>
-          <div class="medium-hide">
-            <a class="nav-btn" id="nav-open-btn" href="#">
-              <i class="fa fa-bars"></i> MENU
-            </a>
-          </div>
-        </div>
+        <% end %>
+
         <% if current_user %>
           <div class="user">
             <a href="<%= url_for users_path%>/<%=(current_user.id) %>" class="grey">
@@ -93,12 +102,18 @@
               </div>
             </a> <%= link_to 'Log uit', log_out_path, :class => 'grey' %>
           </div>
+        <% else %>
+          <div class="sessionsbtn">
+            <ul>
+              <li><a class="grey" href="<%= url_for log_in_path %>"><i class="fa fa-sign-in"></i>  Login</a></li>
+              <li><a class="grey" href="<%= url_for register_path %>"><i class="fa fa-pencil-square-o"></i>  Registreren</a></li>
+              <li class="default-hide medium-show"><a class="grey" href="mailto:info@mijnwkpool.com"><i class="fa fa-envelope-o"></i>  info@mijnwkpool.com</a></li>
+            </ul>
+          </div>
+          <div class="default-hide small-show medium-hide email_home"><a class="grey" href="mailto:info@mijnwkpool.com"><i class="fa fa-envelope-o"></i>  info@mijnwkpool.com</a></div>
         <% end %>
       </div>
     </div>
-
-    <% else %>
-    <% end %>
 
     <div class='content-wrapper'>
       <%= yield %>
