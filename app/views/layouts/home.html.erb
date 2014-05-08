@@ -35,11 +35,13 @@
           </a>
         </div>
         <div class="sessionsbtn">
-          <%= link_to 'Login', log_in_path, :class => 'grey' %> | <%= link_to 'Registreren', register_path, :class => 'grey' %>
+          <ul>
+            <li><a class="grey" href="<%= url_for log_in_path %>"><i class="fa fa-sign-in"></i>  Login</a></li>
+            <li><a class="grey" href="<%= url_for register_path %>"><i class="fa fa-pencil-square-o"></i>  Registreren</a></li>
+            <li class="default-hide medium-show"><a class="grey" href="mailto:info@mijnwkpool.com"><i class="fa fa-envelope-o"></i>  info@mijnwkpool.com</a></li>
+          </ul>
         </div>
-        <div class="home-email">
-          <a href="mailto:info@mijnwkpool.com">info@mijnwkpool.com</a>
-        </div>
+        <div class="default-hide small-show medium-hide email_home"><a class="grey" href="mailto:info@mijnwkpool.com"><i class="fa fa-envelope-o"></i>  info@mijnwkpool.com</a></div>
       </div>
     </div>
     <div class='content-homewrapper'>

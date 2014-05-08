@@ -240,7 +240,16 @@ header{
     display: block;
     position: absolute;
     right: 20px;
-    bottom: 10px;
+    bottom: 39px;
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      float: right;
+      margin-left: 20px;
+    }
   }
 
   a {
@@ -248,12 +257,11 @@ header{
   }
 }
 
-.home-email {
-  display: none;
+.email_home {
+  a {text-decoration: none;}
   @include respond-to(small) {
-    display: block;
     position: absolute;
-    top: 5px;
-    right: 20px;
+    left: 20px;
+    top: 39px;
   }
 }
