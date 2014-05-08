@@ -70,11 +70,13 @@
 
         &:hover {
           background-color: $color-orange-light;
+          box-shadow: 0 2px 0 $color-orange-dark;
           color: #FFF;
         }
       }
       &.active a {
         background-color: $color-orange-light;
+        box-shadow: 0 2px 0 $color-orange-dark;
         color: #FFF;
       }
     }
