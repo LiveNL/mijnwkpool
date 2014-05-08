@@ -31,29 +31,25 @@
       <ul>
         <li><%= link_to 'Dashboard', app_root_path %></li>
         <li><%= link_to 'Alle pools', pools_path %></li>
-      </ul>
-      <ul>
-
-        <% if current_user.poolmemberships.count > 0 %>
-          <ul>
-            <% current_user.poolmemberships.each do |pool| %>
-              <li>
-                <%= link_to pool_path(pool.pool_id),:class => 'grey' do %>
-                  <%= Pool.find(pool.pool_id).name %>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-          <% else %>
-          <br>
-          <p>Je zit nog niet in een pool.</p>
-          <br>
-        <% end %>
-
-      </ul>
-      <ul>
         <li><%= link_to 'Pool aanmaken', new_pool_path %></li>
       </ul>
+
+      <% if current_user.poolmemberships.count > 0 %>
+        <h3>Mijn pools</h3>
+        <ul>
+          <% current_user.poolmemberships.each do |pool| %>
+            <li>
+              <%= link_to pool_path(pool.pool_id) do %>
+                <%= Pool.find(pool.pool_id).name %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+        <% else %>
+        <ul>
+          <li><a>Bij 0 pools aangesloten</a></li>
+        </ul>
+      <% end %>
     </div>
   <% end %>
 
