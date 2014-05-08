@@ -70,13 +70,13 @@
 
         &:hover {
           background-color: $color-orange-light;
-          box-shadow: 0 2px 0 $color-orange-dark;
+          box-shadow: 0 3px 0 $color-orange-dark;
           color: #FFF;
         }
       }
       &.active a {
         background-color: $color-orange-light;
-        box-shadow: 0 2px 0 $color-orange-dark;
+        box-shadow: 0 3px 0 $color-orange-dark;
         color: #FFF;
       }
     }
@@ -139,7 +139,7 @@
   background-color: $color-grey-darker;
   height: 100%;
   left: 0;
-  overflow: hidden;
+  overflow: auto;
   padding-top: 60px;
   position: fixed;
   top: 0;
