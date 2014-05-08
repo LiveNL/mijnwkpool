@@ -32,7 +32,6 @@
     <ul>
       <li><%= link_to 'Dashboard', app_root_path %></li>
       <li><%= link_to 'Alle pools', pools_path %></li>
-      <li><%= link_to 'Gebruikerslijst', users_path %></li>
     </ul>
     <ul>
       <% if current_user.poolmemberships.count > 0 %>
@@ -75,7 +74,6 @@
             <ul>
               <li <%= is_active?(app_root_path) %>><%= link_to 'Dashboard', app_root_path, :class => 'grey' %></li>
               <li <%= is_active?(pools_path) %>><%= link_to 'Alle pools', pools_path, :class => 'grey' %></li>
-              <li <%= is_active?(users_path) %>><%= link_to 'Gebruikerslijst', users_path, :class => 'grey' %></li>
             </ul>
           </div>
           <div class="medium-hide">
