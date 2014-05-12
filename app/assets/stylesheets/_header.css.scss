@@ -61,7 +61,7 @@
     list-style: none;
 
     li {
-      display: inline-block;
+      float: left;
       a {
         display: block;
         line-height: 100px;
@@ -69,15 +69,15 @@
         text-decoration: none;
 
         &:hover {
-          background-color: $color-orange-light;
-          box-shadow: 0 3px 0 $color-orange-dark;
-          color: #FFF;
+          background-color: $color-grey-lighter;
+          box-shadow: 0 3px 0 $color-grey-medium;
+          color: $color-grey-dark;
         }
       }
       &.active a {
-        background-color: $color-orange-light;
-        box-shadow: 0 3px 0 $color-orange-dark;
-        color: #FFF;
+        background-color: $color-grey-lighter;
+        box-shadow: 0 3px 0 $color-grey-medium;
+        color: $color-grey-dark;
       }
     }
   }
