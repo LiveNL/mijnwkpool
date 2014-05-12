@@ -1,16 +1,9 @@
 class PagesController < ApplicationController
-layout :home_layout
-
-	def home
-	end
-
-  def home_layout
-    # Check if logged in, because current_user could be nil.
+  def home
     if current_user
-      "application"
+      redirect_to app_root_path
     else
-      "home"
+      render layout: 'home'
     end
   end
-
 end

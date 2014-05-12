@@ -1,3 +1,4 @@
+<% title "Alle pools" %>
 <div class='grid-r'>
   <div class='medium-3-4'>
     <div class='box'>
@@ -14,8 +15,8 @@
           <% end %>
         </div>
       </div>
-      <div class='pool-filter'>
-        <p>Om mee te kunnen spelen in een pool dien je deze in de lijst aan te klikken. Wanneer deze niet publiekelijk is zul je het wachtwoord in moeten voeren. Klik op de groene knop om door te gaan.</p>
+      <div class='pool-help'>
+        <p>Om mee te kunnen spelen in een pool dien je deze in de lijst aan te klikken. Wanneer deze niet publiekelijk is, zul je het wachtwoord in moeten voeren. Klik op de groene knop om door te gaan.</p>
       </div>
       <div class='pool-filter'>
         <div class='filter-handle'>
@@ -70,7 +71,7 @@
               </div>
             </div>
             <div class=' filter-submit'>
-              <input class='btn green fullwidth' type='submit' value='Filters toepassen'>                
+              <input class='btn green fullwidth' type='submit' value='Filters toepassen'>
 
             </div>
           </form>
@@ -91,17 +92,20 @@
                   </div>
                   <div class='pool-list-lock'>
                     <% if pool.is_public? %>
-                      <i class='fa fa-unlock lock'></i>
+                      <i class='fa fa-unlock unlock'></i>
                     <% else %>
                       <i class='fa fa-lock lock'></i>
                     <% end %>
                   </div>
+<!--                   <div class='pool-list-viewpool'>
+                    <i class='fa fa-list'></i>
+                  </div> -->
                 </a>
               </div>
               <div id='pool<%= pool.id %>' style='display:none'>
               <% if pool.is_public? %>
                 <h1>Bij '<%= pool.name %>' aansluiten?</h1>
-                <p>Weet je zeker dat jij je bij '<%= pool.name %>' wil aansluiten?</p>
+                <p>Weet je zeker dat jij je bij '<%= pool.name %>' wil aansluiten? Bekijk <%= link_to "hier", pool_path(pool)%> de pool.</p>
                 <%= form_tag poolmemberships_path do %>
                   <div class='grid-r modal-btns'>
                     <div class='default-1 small-1-2'>
@@ -115,7 +119,7 @@
                 <% end %>
               <% else %>
                 <h1>Wachtwoord '<%= pool.name %>'</h1>
-                <p>Bevestig het wachtwoord van '<%= pool.name %>' om toegang te krijgen.</p>
+                <p>Bevestig het wachtwoord van '<%= pool.name %>' om toegang te krijgen. Bekijk <%= link_to "hier", pool_path(pool)%> de pool. </p>
                 <div class='form-search modalpassword'>
                   <%= form_tag poolmemberships_path do %>
                     <button class='green' type='submit'>
@@ -142,7 +146,7 @@
                 <span class='text'>Vorige</span>
               </a>
             </div>
-            <div class='page-btns'> 
+            <div class='page-btns'>
             < %= will_paginate @pools %>
               <a class='btn green' href='#'>1</a>
               <a class='btn grey' href='#'>2</a>
@@ -160,7 +164,7 @@
               </a>
             </div>
           </div>
-        </div> 
+        </div>
       </div> -->
     </div>
   </div>

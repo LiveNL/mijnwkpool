@@ -4,7 +4,7 @@ lock '3.1.0'
 set :application, 'Mijn_Wk_Pool'
 set :repo_url, 'git@github.com:LiveNL/mijnwkpool.git'
 
-set :branch, 'master'
+set :branch, 'beta1'
 set :deploy_to, '/var/www/mijnwkpool.com/dev'
 set :scm, :git
 set :use_sudo, false
@@ -12,7 +12,7 @@ set :format, :pretty
 set :log_level, :info
 
 set :ssh_options, {
-  forward_agent: true,
+  forward_agent: true
 }
 
 set :keep_releases, 5
@@ -25,25 +25,26 @@ set :rbenv_roles, :all
 
 set :rails_env, 'production'
 
+set :linked_files, %w{config/database.yml}
+set :linked_dirs, %w{bin log tmp vendor/bundle public/system}
+
 # Add this to the settings section at the top:
-set :ping_url, "http://dev.mijnwkpool.com/ping"
+set :ping_url, 'http://dev.mijnwkpool.com/ping'
 
 namespace :deploy do
 
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
       execute :touch, release_path.join('tmp/restart.txt')
     end
   end
-
-  after :publishing, :restart
 
   task :ping do
     system "curl --silent #{fetch(:ping_url)}"
   end
 
+  after :publishing, :restart
   after :restart, :ping
-
+  after :finishing, 'deploy:cleanup'
 end

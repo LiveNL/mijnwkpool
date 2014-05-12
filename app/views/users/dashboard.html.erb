@@ -1,10 +1,11 @@
+<% title "Dashboard" %>
 <div class="grid-r">
   <div class="medium-3-4">
    <div class="box">
       <div class="content-header">
         <h1>Dashboard</h1>
       </div>
-        
+
       <% if current_user.poolmemberships.count < 1 %>
       <div id="contentflash" class="contentflash error">
         <div class="view-table">
@@ -86,7 +87,29 @@
                    <p> <i class="fa fa-file-text"></i>
                   </div>
                   <div class='notification-list-txt'>
-                    Mijnwkpool - admin</p>
+                    <p>mijnwkpool - Administrator <small>- Patch notes - woensdag 7 mei 2014</small></p>
+                    <h3>
+                      - ‘Mijn pools’ toegevoegd aan het mobiele menu.<br/>
+                      - Gebruikersnamen linken naar desbetreffende profielen.<br/>
+                      - Individuele pools bekijken via pool pop-up in ‘Alle pools’.<br/>
+                      - Links geüpdatet.<br/>
+                      - E-mailadressen bij inloggen en registreren zijn niet meer hoofdlettergevoelig.<br/>
+                      - Tekst updates.<br/>
+                      - Overige bug fixes en verbeteringen.
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class='view-table'>
+                <div class='grey notification-list-inner view-row' href='#modal' rel='modal:open'>
+                  <div class='notification-list-icon'>
+                   <p> <i class="fa fa-file-text"></i>
+                  </div>
+                  <div class='notification-list-txt'>
+                    <p>mijnwkpool - Administrator</p>
                     <h3>Welkom in je mijnwkpool dashboard, in de toekomst zullen hier meldingen van je pools, vrienden en mijnwkpool verschijnen. Ook zullen hier gegevens komen te staan en kun je jezelf onder andere terugvinden in tussenstanden. Momenteel draait mijnwkpool nog in een testfase. Wanneer je problemen ervaart of suggesties hebt, voel je vrij om dit te melden.</h3>
                   </div>
                 </div>

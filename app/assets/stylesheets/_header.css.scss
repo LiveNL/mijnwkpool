@@ -70,8 +70,14 @@
 
         &:hover {
           background-color: $color-orange-light;
+          box-shadow: 0 3px 0 $color-orange-dark;
           color: #FFF;
         }
+      }
+      &.active a {
+        background-color: $color-orange-light;
+        box-shadow: 0 3px 0 $color-orange-dark;
+        color: #FFF;
       }
     }
   }
@@ -117,6 +123,7 @@
     margin-left: 0;
     @include respond-to(small) {
       margin-left: 5px;
+      padding-right: 15px;
     }
   }
 
@@ -132,7 +139,7 @@
   background-color: $color-grey-darker;
   height: 100%;
   left: 0;
-  overflow: hidden;
+  overflow: auto;
   padding-top: 60px;
   position: fixed;
   top: 0;
@@ -146,6 +153,13 @@
 
   &.closed {
     left: -240px;
+  }
+
+  h3 {
+    @include font-size($font-size * 1.5);
+    color: #ff6819;
+    font-weight: bold;
+    padding: 50px 20px 10px;
   }
 
   ul {

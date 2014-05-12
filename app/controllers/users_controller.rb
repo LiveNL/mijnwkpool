@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_filter :ensure_user, :only => [:create, :new]
   def index
+    @users = User.all
   end
 
   def new
