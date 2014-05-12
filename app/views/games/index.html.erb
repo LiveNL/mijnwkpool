@@ -1,0 +1,67 @@
+Original score: <br/>
+        <%= @games.score1 %> - <%= @games.score2 %>
+  <br/>
+  <br/>
+  <br/>
+
+
+Uitslag van Peter: <br/>
+
+<% @predictions.each do |prediction| %>
+  <%= prediction.score1 %> - <%= prediction.score2 %> <br/>
+<% end %>
+
+
+<% @predictions.each do |prediction| %>
+  <br/>
+  <br/>
+
+  <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2  %>
+    +10 punten
+  <% elsif @games.score2 == prediction.score2 %>
+    +8 punten
+  <% elsif @games.score1 == prediction.score1 %>
+    +5 punten
+  <% else %>
+    +0 punten
+  <% end %>
+
+<% end %>
+
+<br/>
+<br/>
+<br/>
+<hr/>
+<br/>
+<br/>
+<br/>
+
+<% @predictions.each do |prediction| %>
+  <br/>
+  <br/>
+
+  <% if @games.score1 == prediction.score1 %>
+    <% if @games.score2 == prediction.score2 %>
+      <%= @games.score1 %> - <%= @games.score2 %> is gelijk aan <%= prediction.score1 %> - <%= prediction.score2 %> <br/> 
+      Wat ben jij goed! - 50 punten!
+    <% else %>
+      <%= @games.score1 %> is gelijk aan <%= prediction.score1 %> <br/>+10 points
+    <% end %>
+
+  <% else %>
+    <%= @games.score1 %> is niet gelijk aan <%= prediction.score1 %> <br/> +0 punten knuppel
+  <% end %>
+
+<% end %>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
