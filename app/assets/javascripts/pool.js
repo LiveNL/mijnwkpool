@@ -47,11 +47,11 @@ function togglePasswordFields(e) {
   }
 }
 
-function rangeSlider() {
+function rangeSlider(minus,maxus) {
   var Link = $.noUiSlider.Link;
 
   $('.rangeslider').noUiSlider({
-    start: [ 5, 65 ],
+    start: [ minus, maxus ],
     step: 5,
     behaviour: 'snap',
     range: {
