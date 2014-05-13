@@ -16,19 +16,32 @@ Uitslag van Peter: <br/>
   <br/>
   <br/>
   <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2 && @games.score1 > @games.score2 && prediction.score1 > prediction.score2 %>
-    +15 punten (toto incl)
-  <% elsif @games.score1 == prediction.score1 && @games.score2 == prediction.score2  %>
-    +10 punten
-  <% elsif @games.score2 == prediction.score2 %>
-    +5 punten
+    +12 punten - Toto + 2 getallen + bonus
+
+  <% elsif @games.score1 > @games.score2 && prediction.score1 > prediction.score2 %>
+    <% if @games.score1 == prediction.score1 %>
+      +7 punten - Toto is goed + Getal 1 goed
+    <% else %>
+      +5 punten - Toto is goed
+    <% end %>
+
   <% elsif @games.score1 == prediction.score1 %>
-    +5 punten
+    +2 punten - Getal 1 goed
+
+  <% elsif @games.score2 == prediction.score2 %>
+    +2 punten - Getal 2 goed
+
   <% else %>
     +0 punten
   <% end %>
-
 <% end %>
-<hr/>
+
+
+
+
+
+
+<!-- <hr/>
 
 <% @predictions.each do |prediction| %>
   <br/>
@@ -38,13 +51,13 @@ Uitslag van Peter: <br/>
     Toto goed
     
   <% else %>
-    +0 punten
+    Toto fout
   <% end %>
 
-<% end %>
+<% end %> -->
 
 
-
+<!-- 
 <br/>
 <br/>
 <br/>
@@ -82,3 +95,4 @@ Uitslag van Peter: <br/>
 <br/>
 <br/>
 <br/>
+ -->
