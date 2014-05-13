@@ -63,6 +63,17 @@ button,
     }
   }
 
+  &.red {
+    @include btnboxshadow($color-red-dark);
+    background-color: $color-red-light;
+    color: #FFF;
+
+    &:hover,
+    &:active {
+      background-color: $color-red-dark;
+    }
+  }
+
   &.fullwidth {
     width: 100%;
   }

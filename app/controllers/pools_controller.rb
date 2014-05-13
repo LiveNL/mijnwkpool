@@ -63,8 +63,9 @@ class PoolsController < ApplicationController
   end
 
   def show
-@pool = Pool.find(params[:id])
-@pool.users
+    @pool = Pool.find(params[:id])
+    @my_pool = @pool.users.where(id: current_user.id).count > 0 ? true : false
+    @poolmember = @pool.poolmemberships.where(user_id: current_user.id).first
   end
 
   def update

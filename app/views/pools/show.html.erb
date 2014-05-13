@@ -6,7 +6,11 @@
         <h1>Speler overzicht - <%= @pool.name %></h1>
       </div>
       <div class="content-header">
-        <a href="#pool<%= @pool.id %>" class="btn green" rel='modal:open'>Meld je aan bij deze pool</a>
+        <% if @my_pool %>
+          <a href="#pool<%= @pool.id %>" class="btn red" rel='modal:open'><i class="fa fa-times"></i> Meld je af bij deze pool</a>
+        <% else %>
+          <a href="#pool<%= @pool.id %>" class="btn green" rel='modal:open'><i class="fa fa-users"></i> Meld je aan bij deze pool</a>
+        <% end %>
       </div>
       <div class='pool-list'>
         <ul>
@@ -32,34 +36,49 @@
 
 
 <div id='pool<%= @pool.id %>' style='display:none'>
-<% if @pool.is_public? %>
-  <h1>Bij '<%= @pool.name %>' aansluiten?</h1>
-  <p>Weet je zeker dat jij je bij '<%= @pool.name %>' wil aansluiten?</p>
-  <%= form_tag poolmemberships_path do %>
-    <div class='grid-r modal-btns'>
-      <div class='default-1 small-1-2'>
-        <%= submit_tag "Ja, ik sluit mij aan", :class => 'btn green fullwidth' %>
-        <%= hidden_field_tag :pool_id, @pool.id %>
-      </div>
-      <div class='default-1 small-1-2'>
-        <%= link_to 'Nee, ik wil verder zoeken', pools_path, :class => 'btn grey fullwidth' %>
-      </div>
+<% if @my_pool %>
+  <h1>'<%= @pool.name %>' verlaten?</h1>
+  <p>Weet je zeker dat je '<%= @pool.name %>' wilt verlaten?</p>
+  <div class='grid-r modal-btns'>
+    <div class='default-1 small-1-2'>
+      <%= link_to @poolmember, class:'btn green fullwidth', method: :delete do %>
+        Ja, ik meld mij af
+      <% end %>
     </div>
-  <% end %>
+    <div class='default-1 small-1-2'>
+      <button class="btn grey fullwidth" type="button" onclick="$.modal.close();">Nee, ik wil blijven</button>
+    </div>
+  </div>
 <% else %>
-  <h1>Wachtwoord '<%= @pool.name %>'</h1>
-  <p>Bevestig het wachtwoord van '<%= @pool.name %>' om toegang te krijgen.</p>
-  <div class='form-search modalpassword'>
+  <% if @pool.is_public? %>
+    <h1>Bij '<%= @pool.name %>' aansluiten?</h1>
+    <p>Weet je zeker dat jij je bij '<%= @pool.name %>' wil aansluiten?</p>
     <%= form_tag poolmemberships_path do %>
-      <button class='green' type='submit'>
-        <i class='fa fa-chevron-right'></i>
-      </button>
-      <div>
-        <%= password_field_tag :password  %>
-        <%= hidden_field_tag :pool_id, @pool.id %>
+      <div class='grid-r modal-btns'>
+        <div class='default-1 small-1-2'>
+          <%= submit_tag "Ja, ik sluit mij aan", :class => 'btn green fullwidth' %>
+          <%= hidden_field_tag :pool_id, @pool.id %>
+        </div>
+        <div class='default-1 small-1-2'>
+          <%= link_to 'Nee, ik wil verder zoeken', pools_path, :class => 'btn grey fullwidth' %>
+        </div>
       </div>
     <% end %>
-  </div>
+  <% else %>
+    <h1>Wachtwoord '<%= @pool.name %>'</h1>
+    <p>Bevestig het wachtwoord van '<%= @pool.name %>' om toegang te krijgen.</p>
+    <div class='form-search modalpassword'>
+      <%= form_tag poolmemberships_path do %>
+        <button class='green' type='submit'>
+          <i class='fa fa-chevron-right'></i>
+        </button>
+        <div>
+          <%= password_field_tag :password  %>
+          <%= hidden_field_tag :pool_id, @pool.id %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
 </div>
 

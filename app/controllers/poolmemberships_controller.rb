@@ -36,4 +36,10 @@ class PoolmembershipsController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @poolmembership = Poolmembership.find(params[:id])
+    @poolmembership.destroy
+    redirect_to app_root_path
+  end
 end
