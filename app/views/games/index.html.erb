@@ -12,13 +12,47 @@ Uitslag van Peter: <br/>
 <% end %>
 
 
+
+<% @predictions.each do |prediction| %>
+  <br/>
+  <br/>
+  <% if @games.score1 < @games.score2 && prediction.score1 < prediction.score2 %>
+    <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2 %>
+      +12 punten - Toto + 2 getallen + bonus
+    <% elsif @games.score2 == prediction.score2 %>
+      +7 punten - Toto + getal 2 goed
+    <%else%>
+      +5 punten - Toto goed
+    <%end%>
+
+
+  
+  <% else %>    
+    <% if @games.score1 == prediction.score1 %>
+      +2 punten - Getal 1 goed
+    <% elsif @games.score2 == prediction.score2 %>
+      +2 punten - Getal 2 goed
+      <% else %>
+      +0 punten - you suck
+    <%end%>
+  <% end %>
+<% end %>
+
+  <br/>
+  <br/>  <br/>
+  <br/>  <br/>
+  <br/>
+
+
+
+
+
 <% @predictions.each do |prediction| %>
   <br/>
   <br/>
   <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2 && @games.score1 > @games.score2 && prediction.score1 > prediction.score2 %>
     +12 punten - Toto + 2 getallen + bonus
-
-  <% elsif @games.score1 > @games.score2 && prediction.score1 > prediction.score2 %>
+  <% elsif @games.score1 > @games.score2 && prediction.score1 > prediction.score2 %>  
     <% if @games.score1 == prediction.score1 %>
       +7 punten - Toto is goed + Getal 1 goed
     <% else %>
@@ -26,13 +60,14 @@ Uitslag van Peter: <br/>
     <% end %>
 
   <% elsif @games.score1 == prediction.score1 %>
-    +2 punten - Getal 1 goed
+  +2 punten - Getal 1 goed
 
   <% elsif @games.score2 == prediction.score2 %>
-    +2 punten - Getal 2 goed
+  +2 punten - Getal 2 goed
 
   <% else %>
-    +0 punten
+  +0 punten
+
   <% end %>
 <% end %>
 
