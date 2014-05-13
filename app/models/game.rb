@@ -1,3 +1,3 @@
 class Game < ActiveRecord::Base
-  has_many :prediction
+  belongs_to :team
 end

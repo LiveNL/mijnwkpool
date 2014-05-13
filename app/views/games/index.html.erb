@@ -1,69 +1,51 @@
-Original score: <br/>
-        <% if @games.score1 == nil && @games.score2 == nil %>
-          x - x
-          <% else %>
-          <%= @games.score1 %> - <%= @games.score2 %>
-          <% end %>
-  <br/>
-  <br/>
-  <br/>
+<%= link_to 'New template', new_game_path %><br/>
 
 
-Uitslag van Peter: <br/>
+<table>
+    <tr>
+      <th>Afbeelding team 1</th>
+      <th>Score 1</th>
+      <th>Score 2</th>
+      <th>Afbeelding team 2</th>
+    </tr>
 
+    <% @games.each do |game| %>
 
+      <tr> 
+        <td><%= game.team1_id %></td>
+        <td><%= game.score1 %></td>
+        <td><%= game.score2 %></td>
+        <td><%= game.team2_id %></td>
 
-
-
-<% @predictions.each do |prediction| %>
-  <br/>
-  <br/>
-
-
-<% if @games.score1 == nil && @games.score2 == nil %>
-  <%= prediction.score1 %> - <%= prediction.score2 %>
-
-<% else %>
-
-  <% if @games.score1 < @games.score2 && prediction.score1 < prediction.score2 %>
-    <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2 %>
-      <%= prediction.score1 %> - <%= prediction.score2 %> || +12 punten - Toto + 2 getallen + bonus
-    <% elsif @games.score2 == prediction.score2 %>
-      <%= prediction.score1 %> - <%= prediction.score2 %> || +7 punten - Toto + getal 2 goed
-    <%else%>
-      <%= prediction.score1 %> - <%= prediction.score2 %> || +5 punten - Toto goed
-    <%end%>
-
-  <% elsif @games.score1 > @games.score2 && prediction.score1 > prediction.score2 %>
-    <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2 %>
-      <%= prediction.score1 %> - <%= prediction.score2 %> || +12 punten - Toto + 2 getallen + bonus
-    <% elsif @games.score2 == prediction.score2 %>
-      <%= prediction.score1 %> - <%= prediction.score2 %> || +7 punten - Toto + getal 2 goed
-    <%else%>
-      <%= prediction.score1 %> - <%= prediction.score2 %> || +5 punten - Toto goed
-    <%end%>
-
-
-
-
-  <% elsif @games.score1 == @games.score2 && prediction.score1 == prediction.score2 %>
-    <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2 %>
-      <%= prediction.score1 %> - <%= prediction.score2 %> || +12 punten - Toto + 2 getallen + bonus
-    <%else%>
-      <%= prediction.score1 %> - <%= prediction.score2 %> || +5 punten - Toto goed
-    <%end%>
-
-
-
-
-  <% else %>    
-    <% if @games.score1 == prediction.score1 %>
-      <%= prediction.score1 %> - <%= prediction.score2 %> || +2 punten - Getal 1 goed
-    <% elsif @games.score2 == prediction.score2 %>
-      <%= prediction.score1 %> - <%= prediction.score2 %> || +2 punten - Getal 2 goed
-      <% else %>
-      <%= prediction.score1 %> - <%= prediction.score2 %> || +0 punten - you suck
-    <%end%>
+        <td><%= button_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
   <% end %>
+
+</table>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<table>
+    <tr>
+      <th>Afbeelding</th>
+      <th>Naam</th>
+      <th>Poule</th>
+      <th>opbokken</th>
+    </tr>
+
+    <% @teams.each do |team| %>
+      <tr class="eventlist1"> 
+        <td>
+          <%= image_tag team.avatar.url(:thumb) %>    
+        </td>
+        <td><%= team.name %></td>
+        <td><%= team.poule %></td>
+
+        <td><%= button_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
   <% end %>
-<% end %>
+</table>
