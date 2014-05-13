@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422112746) do
+ActiveRecord::Schema.define(version: 20140512124107) do
+
+  create_table "games", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "score1"
+    t.integer  "score2"
+  end
 
   create_table "poolmemberships", force: true do |t|
     t.integer  "user_id"
@@ -32,6 +39,13 @@ ActiveRecord::Schema.define(version: 20140422112746) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "maximum_membership",  default: 0
+  end
+
+  create_table "predictions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "score1"
+    t.integer  "score2"
   end
 
   create_table "users", force: true do |t|
