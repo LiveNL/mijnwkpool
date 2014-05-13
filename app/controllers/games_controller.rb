@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.find(2)
+    @games = Game.find(3)
     @predictions = Prediction.all
 
 
