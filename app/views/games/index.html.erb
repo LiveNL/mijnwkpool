@@ -26,7 +26,30 @@ Uitslag van Peter: <br/>
     <%end%>
 
 
-  
+
+  <% elsif @games.score1 > @games.score2 && prediction.score1 > prediction.score2 %>
+    <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2 %>
+      +12 punten - Toto + 2 getallen + bonus
+    <% elsif @games.score2 == prediction.score2 %>
+      +7 punten - Toto + getal 2 goed
+    <%else%>
+      +5 punten - Toto goed
+    <%end%>
+
+
+
+
+  <% elsif @games.score1 == @games.score2 && prediction.score1 == prediction.score2 %>
+    <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2 %>
+      +12 punten - Toto + 2 getallen + bonus
+    <% elsif @games.score2 == prediction.score2 %>
+      +7 punten - Toto + getal 2 goed
+    <%else%>
+      +5 punten - Toto goed
+    <%end%>
+
+
+
   <% else %>    
     <% if @games.score1 == prediction.score1 %>
       +2 punten - Getal 1 goed
@@ -37,97 +60,3 @@ Uitslag van Peter: <br/>
     <%end%>
   <% end %>
 <% end %>
-
-  <br/>
-  <br/>  <br/>
-  <br/>  <br/>
-  <br/>
-
-
-
-
-
-<% @predictions.each do |prediction| %>
-  <br/>
-  <br/>
-  <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2 && @games.score1 > @games.score2 && prediction.score1 > prediction.score2 %>
-    +12 punten - Toto + 2 getallen + bonus
-  <% elsif @games.score1 > @games.score2 && prediction.score1 > prediction.score2 %>  
-    <% if @games.score1 == prediction.score1 %>
-      +7 punten - Toto is goed + Getal 1 goed
-    <% else %>
-      +5 punten - Toto is goed
-    <% end %>
-
-  <% elsif @games.score1 == prediction.score1 %>
-  +2 punten - Getal 1 goed
-
-  <% elsif @games.score2 == prediction.score2 %>
-  +2 punten - Getal 2 goed
-
-  <% else %>
-  +0 punten
-
-  <% end %>
-<% end %>
-
-
-
-
-
-
-<!-- <hr/>
-
-<% @predictions.each do |prediction| %>
-  <br/>
-  <br/>
-
-  <% if @games.score1 > @games.score2 && prediction.score1 > prediction.score2  %>
-    Toto goed
-    
-  <% else %>
-    Toto fout
-  <% end %>
-
-<% end %> -->
-
-
-<!-- 
-<br/>
-<br/>
-<br/>
-<hr/>
-<br/>
-<br/>
-<br/>
-
-<% @predictions.each do |prediction| %>
-  <br/>
-  <br/>
-
-  <% if @games.score1 == prediction.score1 %>
-    <% if @games.score2 == prediction.score2 %>
-      <%= @games.score1 %> - <%= @games.score2 %> is gelijk aan <%= prediction.score1 %> - <%= prediction.score2 %> <br/> 
-      Wat ben jij goed! - 50 punten!
-    <% else %>
-      <%= @games.score1 %> is gelijk aan <%= prediction.score1 %> <br/>+10 points
-    <% end %>
-
-  <% else %>
-    <%= @games.score1 %> is niet gelijk aan <%= prediction.score1 %> <br/> +0 punten knuppel
-  <% end %>
-
-<% end %>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
- -->
