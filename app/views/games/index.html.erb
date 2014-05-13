@@ -1,84 +1,34 @@
-Original score: <br/>
-        <%= @games.score1 %> - <%= @games.score2 %>
-  <br/>
-  <br/>
-  <br/>
+<h1>Listing games</h1>
 
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>team 1</th>
+      <th>team 2</th>
+      <th>score 1</th>
+      <th>score 2</th>
+    </tr>
+  </thead>
 
-Uitslag van Peter: <br/>
-
-<% @predictions.each do |prediction| %>
-  <%= prediction.score1 %> - <%= prediction.score2 %> <br/>
-<% end %>
-
-
-<% @predictions.each do |prediction| %>
-  <br/>
-  <br/>
-  <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2 && @games.score1 > @games.score2 && prediction.score1 > prediction.score2 %>
-    +15 punten (toto incl)
-  <% elsif @games.score1 == prediction.score1 && @games.score2 == prediction.score2  %>
-    +10 punten
-  <% elsif @games.score2 == prediction.score2 %>
-    +5 punten
-  <% elsif @games.score1 == prediction.score1 %>
-    +5 punten
-  <% else %>
-    +0 punten
-  <% end %>
-
-<% end %>
-<hr/>
-
-<% @predictions.each do |prediction| %>
-  <br/>
-  <br/>
-
-  <% if @games.score1 > @games.score2 && prediction.score1 > prediction.score2  %>
-    Toto goed
-    
-  <% else %>
-    +0 punten
-  <% end %>
-
-<% end %>
-
-
-
-<br/>
-<br/>
-<br/>
-<hr/>
-<br/>
-<br/>
-<br/>
-
-<% @predictions.each do |prediction| %>
-  <br/>
-  <br/>
-
-  <% if @games.score1 == prediction.score1 %>
-    <% if @games.score2 == prediction.score2 %>
-      <%= @games.score1 %> - <%= @games.score2 %> is gelijk aan <%= prediction.score1 %> - <%= prediction.score2 %> <br/> 
-      Wat ben jij goed! - 50 punten!
-    <% else %>
-      <%= @games.score1 %> is gelijk aan <%= prediction.score1 %> <br/>+10 points
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+      <td>          
+        <td><h2><%= game.team_id1 %></td>
+        <td><h2><%= game.team_id2 %></td>
+        <td><h2><%= game.score1 %></h2></td>
+        <td><h2><%= game.score2 %></h2></td>
+        <td><%= link_to 'Show', game %></td>
+        <td><%= link_to 'Edit', edit_game_path(game) %></td>
+        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
     <% end %>
+  </tbody>
+</table>
 
-  <% else %>
-    <%= @games.score1 %> is niet gelijk aan <%= prediction.score1 %> <br/> +0 punten knuppel
-  <% end %>
+<br>
 
-<% end %>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+<%= link_to 'New Game', new_game_path %>
+
+

@@ -1,0 +1,29 @@
+<%= form_for(@game) do |f| %>
+  <%= f.label :score1, 'Score 1' %>
+  <%= f.text_field :score1 %>
+
+  <%= f.label :score2, 'Score 2' %>
+  <%= f.text_field :score2 %>
+
+  <%= f.label :team_id1, 'Team 1' %>
+  <%= collection_select(:game, :team_id1, Team.all, :id, :name, {:prompt => 'Kies team 1'})%>
+
+  <%= f.label :team_id2, 'Team 2' %>
+  <%= collection_select(:game, :team_id2, Team.all, :id, :name, {:prompt => 'Kies team 2'})%>
+
+  <% if @game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% @game.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
