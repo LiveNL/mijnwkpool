@@ -15,11 +15,12 @@ Uitslag van Peter: <br/>
 <% @predictions.each do |prediction| %>
   <br/>
   <br/>
-
-  <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2  %>
+  <% if @games.score1 == prediction.score1 && @games.score2 == prediction.score2 && @games.score1 > @games.score2 && prediction.score1 > prediction.score2 %>
+    +15 punten (toto incl)
+  <% elsif @games.score1 == prediction.score1 && @games.score2 == prediction.score2  %>
     +10 punten
   <% elsif @games.score2 == prediction.score2 %>
-    +8 punten
+    +5 punten
   <% elsif @games.score1 == prediction.score1 %>
     +5 punten
   <% else %>
@@ -27,6 +28,22 @@ Uitslag van Peter: <br/>
   <% end %>
 
 <% end %>
+<hr/>
+
+<% @predictions.each do |prediction| %>
+  <br/>
+  <br/>
+
+  <% if @games.score1 > @games.score2 && prediction.score1 > prediction.score2  %>
+    Toto goed
+    
+  <% else %>
+    +0 punten
+  <% end %>
+
+<% end %>
+
+
 
 <br/>
 <br/>

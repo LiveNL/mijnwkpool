@@ -3,6 +3,11 @@ class GamesController < ApplicationController
     @games = Game.find(1)
     @predictions = Prediction.all
 
+
+end
+
+
+def mmyes
     if @games.score1 == @predictions.score1 && @games.score2 == @predictions.score2
       puts '+10 punten'
     elsif @games.score2 == @predictions.score2
@@ -14,5 +19,3 @@ class GamesController < ApplicationController
     end
   end
 end
-
-
