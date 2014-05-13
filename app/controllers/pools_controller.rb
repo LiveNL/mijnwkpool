@@ -3,11 +3,11 @@ class PoolsController < ApplicationController
   skip_before_filter :ensure_user, :only => [:show]
 
   def index
-      @openpool = params[:openpool] || 0
-      @poolspace = params[:poolspace] || 1
+      @openpool = params[:openpool] || '0'
+      @poolspace = params[:poolspace] || '1'
       @poolsearch = params[:search]
-      @playerssearch1 = params[:playerssearch1] || 5
-      @playerssearch2 = params[:playerssearch2] || 65
+      @playerssearch1 = params[:playerssearch1] || '5'
+      @playerssearch2 = params[:playerssearch2] || '65'
       case @openpool
         when '0'
           @pools = Pool.all
