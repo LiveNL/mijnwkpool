@@ -12,6 +12,21 @@
   <%= f.label :team2_id, 'Team 2' %>
   <%= select_tag "team2_id", options_from_collection_for_select(Team.all, "id", "name")%>
 
+<br/>
+<br/>
+    <%= f.date_select :date %><br/><br/>
+    <%= f.time_select :time %>
+<br/>
+<br/>
+
+<select id="gametype"name="gametype">
+  <option value="Poule">Poule</option>
+  <option value="Knockout">Knockout</option>
+  <option value="Kwartfinale">Kwartfinale</option>
+  <option value="Halve finale">Halve finale</option>
+</select>
+<br/>
+<br/>
 
   <div class="actions">
     <%= f.submit %>
