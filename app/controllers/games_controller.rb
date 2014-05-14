@@ -11,7 +11,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     if @game.save
-      @game.gameteams.create(game_id: 1, team1_id: 2, team2_id: 5)
+      @game.gameteams.create(team1_id: 1, team2_id: 2)
       flash[:success] = 'Game toegevoegd.'
       redirect_to games_path
     else
