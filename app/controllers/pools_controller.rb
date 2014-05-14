@@ -24,6 +24,8 @@ class PoolsController < ApplicationController
       if !@poolsearch.nil?
         @pools = Pool.search(params[:search])
       end
+
+      @pools = @pools.paginate(:page => params[:page], :per_page => 1)
   end
 
   def new
