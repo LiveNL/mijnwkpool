@@ -18,7 +18,7 @@ class PoolsController < ApplicationController
       end
 
       if @poolspace == '2'
-        @pools = @pools.verbergen
+        @pools = @pools.hide_private
       end
 
       if !@poolsearch.nil?

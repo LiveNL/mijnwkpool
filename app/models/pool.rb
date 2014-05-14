@@ -74,7 +74,7 @@ class Pool < ActiveRecord::Base
     end
   end
 
-  def self.verbergen
+  def self.hide_private
     find_by_sql "select *
     from Pools p
     where p.maximum_membership >
