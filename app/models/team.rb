@@ -1,5 +1,6 @@
 class Team < ActiveRecord::Base
- has_many :games
+  has_many :gameteams
+  has_many :games, through: :gameteams
   
   has_attached_file :avatar,
                   styles: {

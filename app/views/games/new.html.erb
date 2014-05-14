@@ -1,16 +1,12 @@
 <a href="../teams">Index</a><br/>
-<%= form_for @game do |f| %>
+<%= form_for Game.new, html: { multipart: true } do |f| %>
   <%= f.label :score1, 'Score 1' %>
   <%= f.text_field :score1 %>
 
   <%= f.label :score2, 'Score 2' %>
   <%= f.text_field :score2 %>
 
-  <%= f.label :team1_id, 'Team 1' %>
-  <%= collection_select(:game, :team1_id, Team.all, :id, :name, {:prompt => 'Kies team 1'})%>
 
-  <%= f.label :team2_id, 'Team 2' %>
-  <%= collection_select(:game, :team2_id, Team.all, :id, :name, {:prompt => 'Kies team 2'})%>
 
   <% if @game.errors.any? %>
     <div id="error_explanation">

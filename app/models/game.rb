@@ -1,3 +1,4 @@
 class Game < ActiveRecord::Base
-  belongs_to :team
+  has_many :gameteams
+  has_many :teams, through: :gameteams
 end
