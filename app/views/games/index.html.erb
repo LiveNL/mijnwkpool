@@ -38,13 +38,13 @@
       <th>Naam team 2</th>
     </tr>
 
-    <% Gameteam.all.each do |f| %>
+    <% @games.each do |f| %>
 
       <tr> 
         <td><%= Team.find(f.team1_id).name %></td>
         <td><%= image_tag Team.find(f.team1_id).avatar.url(:thumb) %></td>
-        <td><%= Game.find(f.game_id).score1 %></td>
-        <td><%= Game.find(f.game_id).score2 %></td>
+        <td><%= f.score1 %></td>
+        <td><%= f.score2 %></td>
         <td><%= image_tag Team.find(f.team2_id).avatar.url(:thumb) %></td>
         <td><%= Team.find(f.team2_id).name %></td>
       </tr>
