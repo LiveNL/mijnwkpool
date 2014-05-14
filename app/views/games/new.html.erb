@@ -1,26 +1,30 @@
 <a href="../teams">Index</a><br/>
-<%= form_for @team do |f| %>
-<%= image_tag @team.avatar.url(:small), id: 'uploadPreview' %>
-<%= f.file_field :avatar, class: "upload", id: "uploadImage", onchange: "PreviewImage();" %>
+<%= form_for @game do |f| %>
+  <%= f.label :score1, 'Score 1' %>
+  <%= f.text_field :score1 %>
 
-              <script type="text/javascript">
-                function PreviewImage() {
-                    var oFReader = new FileReader();
-                    oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+  <%= f.label :score2, 'Score 2' %>
+  <%= f.text_field :score2 %>
 
-                    oFReader.onload = function (oFREvent) {
-                        document.getElementById("uploadPreview").src = oFREvent.target.result;
-                    };
-                }
-              </script>
-              <br/>
-              <br/>
-<%= f.label :name, 'Naam' %>
-            <%= f.text_field :name %>
-            <%= f.label :poule, 'Poule' %>
-            <%= f.text_field :poule %>
+  <%= f.label :team1_id, 'Team 1' %>
+  <%= collection_select(:game, :team1_id, Team.all, :id, :name, {:prompt => 'Kies team 1'})%>
 
-            <button class="green" type="submit">
-                  myes 
-                </button>
+  <%= f.label :team2_id, 'Team 2' %>
+  <%= collection_select(:game, :team2_id, Team.all, :id, :name, {:prompt => 'Kies team 2'})%>
+
+  <% if @game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% @game.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
