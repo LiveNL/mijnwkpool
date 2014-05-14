@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :poolmemberships
   has_many :pools, through: :poolmemberships
   before_validation :downcase_email
+  before_create { generate_token(:auth_token) }
 
   validates :name,
             length: {
@@ -40,9 +41,23 @@ class User < ActiveRecord::Base
             },
             confirmation: {
               message: '* De wachtwoorden komen niet overeen!'
-            }
+            },
+            if: :password
 
-private
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+
+  private
 
   def downcase_email
     self.email = self.email.downcase if self.email.present?

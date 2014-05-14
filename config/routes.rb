@@ -6,6 +6,7 @@ Wkpool::Application.routes.draw do
   end
 
   resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets
 
   get 'logout' => 'sessions#destroy', :as => 'log_out'
   get 'login' => 'sessions#new', :as => 'log_in'

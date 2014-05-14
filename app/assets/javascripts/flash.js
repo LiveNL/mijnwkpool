@@ -1,16 +1,14 @@
 // flash message
 function flashMessage() {
-  close = document.getElementById("flashClose");
-   close.addEventListener('click', function() {
-     flash = document.getElementById("flash");
-     flash.style.display = 'none';
-   }, false);
+  $("#flashClose").click(function(e) {
+    $("#flash").hide();
+    e.preventDefault();
+  });
 }
 
 function contentflashMessage() {
-  close = document.getElementById("flashClose");
-   close.addEventListener('click', function() {
-     flash = document.getElementById("contentflash");
-     flash.style.display = 'none';
-   }, false);
+  $("#flashClose").click(function(e) {
+    $("#flash").hide();
+    e.preventDefault();
+  });
 }
