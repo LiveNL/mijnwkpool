@@ -1,0 +1,19 @@
+<a href="../teams">Index</a><br/>
+<%= form_for (@game) do |f| %>
+  <%= f.label :score1, 'Score 1' %>
+  <%= f.text_field :score1 %>
+
+  <%= f.label :score2, 'Score 2' %>
+  <%= f.text_field :score2 %>
+
+  <%= f.label :team1_id, 'Team 1' %>
+  <%= select_tag "team1_id", options_from_collection_for_select(Team.all, "id", "name")%>
+
+  <%= f.label :team2_id, 'Team 2' %>
+  <%= select_tag "team2_id", options_from_collection_for_select(Team.all, "id", "name")%>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

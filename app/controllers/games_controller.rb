@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+    before_action :set_game, only: [:show, :edit, :update, :destroy]
+
   def index
     @games = Game.all
     @teams = Team.all
@@ -7,6 +9,10 @@ class GamesController < ApplicationController
   def new
     @game = Game.new
   end
+  # GET /games/1/edit
+  def edit
+  end
+
 
   def create
     @game = Game.new(game_params)
@@ -20,12 +26,30 @@ class GamesController < ApplicationController
     end
   end
 
+  # PATCH/PUT /scores/1
+  # PATCH/PUT /scores/1.json
+  def update
+    respond_to do |format|
+      if @game.update(game_params)
+        format.html { redirect_to games_path, notice: 'Score was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @game.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # def destroy
   #   @game = Game.find(params[:id])
   #   @game.destroy
   # end
 
 private
+    # Use callbacks to share common setup or constraints between actions.
+  def set_game
+    @game = Game.find(params[:id])
+  end
 
   def game_params
     params.require(:game).permit(:score1, :score2, :team1_id, :team2_id)
