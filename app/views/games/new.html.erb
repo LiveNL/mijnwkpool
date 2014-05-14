@@ -1,12 +1,16 @@
 <a href="../teams">Index</a><br/>
-<%= form_for Game.new, html: { multipart: true } do |f| %>
+<%= form_for @game do |f| %>
   <%= f.label :score1, 'Score 1' %>
   <%= f.text_field :score1 %>
 
   <%= f.label :score2, 'Score 2' %>
   <%= f.text_field :score2 %>
 
+  <%= f.label :team1_id, 'Team 1' %>
+  <%= select(:team, :team1_id, Team.all.collect {|p| [ p.name, p.id ] }) %>
 
+  <%= f.label :team2_id, 'Team 2' %>
+  <%= select(:team, :team2_id, Team.all.collect {|p| [ p.name, p.id ] }) %>
 
   <% if @game.errors.any? %>
     <div id="error_explanation">

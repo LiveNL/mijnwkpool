@@ -11,7 +11,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     if @game.save
-      @game.gameteams.create(team1_id: 1, team2_id: 2)
+      @game.gameteams.create(team1_id: (params[:team1_id]), team2_id: (params[:team2_id]))
       flash[:success] = 'Game toegevoegd.'
       redirect_to games_path
     else
@@ -19,10 +19,14 @@ class GamesController < ApplicationController
     end
   end
 
+  # def destroy
+  #   @game = Game.find(params[:id])
+  #   @game.destroy
+  # end
 
 private
 
   def game_params
-    params.require(:game).permit(:score1, :score2)
+    params.require(:game).permit(:score1, :score2, :team1_id, :team2_id)
   end
 end

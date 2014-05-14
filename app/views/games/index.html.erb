@@ -12,9 +12,10 @@
     <% @games.each do |game| %>
 
       <tr> 
-        <td><%= game.gameteams.name%></td>
+        <td></td>
         <td><%= game.score1 %></td>
         <td><%= game.score2 %></td>
+        <td></td>
         
 
         <td><%= button_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
