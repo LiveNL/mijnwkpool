@@ -78,6 +78,6 @@ class Pool < ActiveRecord::Base
     # where(:title, query) -> This would return an exact match of the query
     # where("name like ?", "%#{query}%")
     t = self.arel_table
-    where(t[:name].matches("%#{query}"))
+    where(t[:name].matches("%#{query}%"))
   end
 end
