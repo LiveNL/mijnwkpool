@@ -51,10 +51,6 @@
   <% end %>
 
 </table>
-
-
-
-
 <% current_user.poolmemberships.each do |pool| %>
       <li>
         <%= link_to pool_path(pool.pool_id),:class => 'grey' do %>
