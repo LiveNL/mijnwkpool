@@ -74,19 +74,7 @@ class Pool < ActiveRecord::Base
     end
   end
 
-  def self.hide_private
-    find_by_sql "select *
-    from Pools p
-    where p.maximum_membership >
-    (
-      select count(*)
-      from poolmemberships pm
-      where pm.pool_id = p.id
-    )
-    "
-  end
-
-  def self.search(query)
+  def search(query)
     # where(:title, query) -> This would return an exact match of the query
     where("name like ?", "%#{query}%")
   end

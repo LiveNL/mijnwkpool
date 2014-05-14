@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   has_many :poolmemberships
   has_many :pools, through: :poolmemberships
   before_validation :downcase_email
-  before_create { generate_token(:auth_token) }
 
   validates :name,
             length: {

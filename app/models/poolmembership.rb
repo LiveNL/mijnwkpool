@@ -1,5 +1,5 @@
 class Poolmembership < ActiveRecord::Base
-  belongs_to :pool
+  belongs_to :pool, counter_cache: true
   belongs_to :user
   validates_uniqueness_of :user_id, scope: [:pool_id]
 

@@ -9,7 +9,7 @@ class PoolsController < ApplicationController
       @playerssearch1 = params[:playerssearch1] || '5'
       @playerssearch2 = params[:playerssearch2] || '65'
 
-      @pools = Pool.includes(:poolmemberships).where(
+      @pools = Pool.where(
         maximum_membership: (@playerssearch1..@playerssearch2)
       )
 
@@ -18,7 +18,7 @@ class PoolsController < ApplicationController
       end
 
       if @poolspace == '2'
-        @pools = @pools.hide_private
+        @pools = @pools.where("maximum_membership > poolmemberships_count")
       end
 
       if !@poolsearch.nil?
