@@ -8,7 +8,7 @@
     <ul>
     <% current_user.poolmemberships.each do |pool| %>
       <li>
-        <%= link_to pool_path(pool.pool_id),:class => 'grey' do %>
+        <%= link_to prediction_pool_path(pool.pool_id),:class => 'grey' do %>
           <%= Pool.find(pool.pool_id).name %>
         <% end %>
       </li>

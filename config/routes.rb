@@ -2,6 +2,8 @@ Wkpool::Application.routes.draw do
   scope '/app' do
     get 'users/welcome' => 'users#welcome', :as => 'welcome'
     get 'pools/:id/invite' => 'pools#invite', :as => 'invite_pool'
+    get 'pools/:id/prediction' => 'pools#prediction', :as => 'prediction_pool'
+
     resources :pools, :users, :poolmemberships, :games, :predictions, :teams
   end
 

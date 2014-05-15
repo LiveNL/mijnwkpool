@@ -3,6 +3,7 @@ class PoolsController < ApplicationController
   skip_before_filter :ensure_user, :only => [:show]
 
   def index
+
       openpool = params[:openpool] # "value1"
       case openpool
         when '0'
@@ -53,6 +54,13 @@ class PoolsController < ApplicationController
     end
   end
 
+  def prediction
+    @pool = Pool.find(params[:id])
+    @pool.users
+    @games = Game.all
+    @prediction = Prediction.new
+  end
+
   def show
 @pool = Pool.find(params[:id])
 @pool.users
@@ -70,6 +78,7 @@ class PoolsController < ApplicationController
   def pool_params
     params.require(:pool).permit(:name, :image, :is_public, :password,
                                  :password_confirmation,
-                                 :maximum_membership, :avatar)
+                                 :maximum_membership, :avatar, :score1, :prediction1)
+
   end
 end
