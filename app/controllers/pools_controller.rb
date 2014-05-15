@@ -54,13 +54,6 @@ class PoolsController < ApplicationController
     end
   end
 
-  def prediction
-    @pool = Pool.find(params[:id])
-    @pool.users
-    @games = Game.all
-    @prediction = Prediction.new
-  end
-
   def show
 @pool = Pool.find(params[:id])
 @pool.users

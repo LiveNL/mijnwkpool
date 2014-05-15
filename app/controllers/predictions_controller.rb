@@ -4,6 +4,12 @@ class PredictionsController < ApplicationController
     @predictions = Prediction.all
   end
 
+  def new
+    @prediction = Prediction.new
+    @pool = Pool.all
+    @game = Game.all
+  end
+
   def create
   	@prediction = Prediction.new(prediction_params)
   	 	if @prediction.save
@@ -17,6 +23,6 @@ class PredictionsController < ApplicationController
   end
   private
   def prediction_params
-    params.require(:prediction).permit(:score1, :game)
+    params.require(:prediction).permit(:score1, :game, :prediction1, :prediction2, :game_id)
   end
 end
