@@ -58,11 +58,12 @@ class PoolsController < ApplicationController
     @pool = Pool.find(params[:id])
     @games = Game.all
     @prediction = Prediction.new
+    @poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id)
   end
 
   def show
-@pool = Pool.find(params[:id])
-@pool.users
+    @pool = Pool.find(params[:id])
+    @pool.users
   end
 
   def update

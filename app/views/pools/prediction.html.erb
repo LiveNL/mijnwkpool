@@ -19,15 +19,15 @@
                       <% end %> 
                     </td>
                     <td><%= Team.find(game.team2_id).name %></td>
-                    <td><%= form_for Prediction.new do |f| %>
+                    <td><%= form_for @prediction do |f| %>
                           <%= f.label :prediction1, 'prediction 1' %>
                           <%= f.text_field :prediction1 %>
                           <%= f.label :prediction2, 'prediction 2' %>
                           <%= f.text_field :prediction2 %>
                           <%= hidden_field_tag :game_id, game.id %>
-                          <%= hidden_field_tag :poolmembership_id, Poolmembership.find(current_user.id && @pool.id).id %>
+                          <%= hidden_field_tag :poolmembership_id, @poolmembership.id %>
   
-                          Poolmembership id: <%= Poolmembership.all(:conditions => {:user_id => current_user.id, :pool_id => @pool.id}).to_s %>
+                          Poolmembership id: <%= debug @poolmembership %>
                           <br/>
                           <br/>
                           Poolmembership <%= Poolmembership.find(current_user.id).id %><br/>
@@ -35,8 +35,11 @@
                           Pool_id <%= Poolmembership.find(current_user.id).pool_id %><br/>
                           <br/>
                           <br/>
+
                           Current user id: <%= current_user.id %> <br/>
                           Current pool id: <%= @pool.id %><br/>
+
+                          Current game id: <%= game.id %><br/>
 
                           
                           

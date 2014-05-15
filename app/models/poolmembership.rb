@@ -1,6 +1,7 @@
 class Poolmembership < ActiveRecord::Base
   belongs_to :pool
   belongs_to :user
+  has_many :predictions
   validates_uniqueness_of :user_id, scope: [:pool_id]
 
   MAXIMUM_COURSES = 3
