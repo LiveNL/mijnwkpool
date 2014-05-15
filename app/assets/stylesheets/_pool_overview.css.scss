@@ -84,7 +84,7 @@
     padding: 15px 20px;
 
     @include respond-to(small) {
-      padding: 30px;
+      padding: 15px 30px;
     }
   }
 

@@ -25,7 +25,7 @@ class PoolsController < ApplicationController
         @pools = Pool.search(params[:search])
       end
 
-      @pools = @pools.paginate(:page => params[:page], :per_page => 1)
+      @pools = @pools.paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
