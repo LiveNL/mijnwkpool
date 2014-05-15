@@ -7,14 +7,13 @@ class PredictionsController < ApplicationController
   def new
     @games = Game.all
     @prediction = Prediction.new
+    # @current_pool = Poolmembership.all(:conditions => {:user_id => current_user.id, :pool_id => pool.id})
   end
 
   def create
     @prediction = Prediction.new(prediction_params)
   	@prediction.game_id = params[:game_id]
     @prediction.poolmembership_id = params[:poolmembership_id]
-    
-    
   	 	if @prediction.save
         redirect_to predictions_path
       else
