@@ -36,7 +36,7 @@ class PoolsController < ApplicationController
   end
 
   def new
-    @pool = Pool.new
+    @pool = Pool.all
   end
 
   def create
@@ -56,7 +56,6 @@ class PoolsController < ApplicationController
 
   def prediction
     @pool = Pool.find(params[:id])
-    @pool.users
     @games = Game.all
     @prediction = Prediction.new
   end

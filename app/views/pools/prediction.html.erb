@@ -27,16 +27,18 @@
                           <%= hidden_field_tag :game_id, game.id %>
                           <%= hidden_field_tag :poolmembership_id, Poolmembership.find(current_user.id && @pool.id).id %>
   
-                          Poolmembership id: <%= Poolmembership.all(:conditions => {:user_id => current_user.id, :pool_id => @pool.id}) %>
+                          Poolmembership id: <%= Poolmembership.all(:conditions => {:user_id => current_user.id, :pool_id => @pool.id}).to_s %>
                           <br/>
                           <br/>
-                          Poolmembership <%= Poolmembership.find(current_user.id && @pool.id).id %><br/>
-                          User_id <%= Poolmembership.find(current_user.id && @pool.id).user_id %><br/>
-                          Pool_id <%= Poolmembership.find(current_user.id && @pool.id).pool_id %><br/>
+                          Poolmembership <%= Poolmembership.find(current_user.id).id %><br/>
+                          User_id <%= Poolmembership.find(current_user.id).user_id %><br/>
+                          Pool_id <%= Poolmembership.find(current_user.id).pool_id %><br/>
                           <br/>
                           <br/>
-                          Current user id: <%= @current.user.id %>
+                          Current user id: <%= current_user.id %> <br/>
+                          Current pool id: <%= @pool.id %><br/>
 
+                          
                           
                           
                           <br/>
