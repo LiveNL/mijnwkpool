@@ -140,57 +140,6 @@
   // }
 }
 
-.pagination {
-  @include clearfix;
-  padding: 15px 10px;
-  text-align: center;
-
-  @include respond-to(small) {
-    padding: 30px;
-  }
-
-  .pages {
-    margin: 0 auto;
-    @extend .view-table;
-    @include respond-to(small) {
-      width: auto;
-    }
-  }
-
-  .btn {
-    float: left;
-
-    .text {
-      display: none;
-      @include respond-to(small) {
-        display: inline;
-      }
-    }
-  }
-
-  .prev,
-  .next {
-    width: 50px;
-    @include respond-to(small) {
-      width: auto;
-    }
-  }
-
-  .page-title {
-    vertical-align: middle;
-    @include respond-to(small) {
-      display: none;
-    }
-  }
-
-  .page-btns {
-    display: none;
-    @include respond-to(small) {
-      display: table-cell;
-    }
-  }
-}
-
 .pool-list-small {
   ul {
     list-style: none;

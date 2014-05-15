@@ -122,8 +122,17 @@
           <% end %>
         </ul>
       </div>
-      <div class='pagination'>
-      <%= will_paginate @pools %>
+      <div class='poolpagination'>
+        <div class='pages'>
+          <div class='view-row'>
+            <div class="page-large">
+            <%= will_paginate @pools, previous_label: "<i class='fa fa-chevron-left'></i> Vorige", next_label: "Volgende <i class='fa fa-chevron-right'></i>", inner_window: 1, outer_window: 0 %>
+            </div>
+            <div class="page-small">
+            <%= will_paginate @pools, previous_label: "<i class='fa fa-chevron-left'></i> Vorige", next_label: "Volgende <i class='fa fa-chevron-right'></i>", page_links: false %>
+            </div>
+          </div>
+        </div>
         <!-- <div class='pages'>
           <div class='view-row'>
             <div class='prev'>

@@ -74,6 +74,17 @@ button,
     }
   }
 
+  &.grey-dark {
+    @include btnboxshadow($color-grey-darker);
+    background-color: $color-grey-dark;
+    color: #FFF;
+
+    &:hover,
+    &:active {
+      background-color: $color-grey-darker;
+    }
+  }
+
   &.fullwidth {
     width: 100%;
   }
