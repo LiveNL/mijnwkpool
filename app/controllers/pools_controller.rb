@@ -36,7 +36,7 @@ class PoolsController < ApplicationController
   end
 
   def new
-    @pool = Pool.all
+    @pool = Pool.new
   end
 
   def create
