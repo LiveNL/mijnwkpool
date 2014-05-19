@@ -15,22 +15,22 @@ class PoolmembershipsController < ApplicationController
         poolmembership = Poolmembership.new(user: current_user, pool_id: pool_id, role: 0)
         if poolmembership.save
           redirect_to pool_path(pool)
-          flash[:success] = "Succes! Je bent aangesloten bij '#{pool.name}'!"
+          flash[:success] = "Succes! Je bent aangesloten bij '#{pool.name}'."
         else
-          flash[:error] = 'Je kunt niet twee keer dezelfde pool joinen of in meer dan 3 pools tegelijk meespelen'
+          flash[:error] = 'Je kunt niet twee keer dezelfde pool joinen of in meer dan 3 pools tegelijk meespelen.'
           redirect_to pool_path(pool)
         end
       elsif pool.is_public?
         poolmembership = Poolmembership.new(user: current_user, pool_id: pool_id, role: 0)
         if poolmembership.save
           redirect_to pool_path(pool)
-          flash[:success] = "Succes! Je bent aangesloten bij '#{pool.name}'!"
+          flash[:success] = "Succes! Je bent aangesloten bij '#{pool.name}'."
         else
-          flash[:error] = 'Je kunt niet twee keer dezelfde pool joinen of in meer dan 3 pools tegelijk meespelen'
+          flash[:error] = 'Je kunt niet twee keer dezelfde pool joinen of in meer dan 3 pools tegelijk meespelen.'
           redirect_to pool_path(pool)
         end
       else
-        flash[:error] = 'Je hebt geen toestemming om je bij deze pool aan te sluiten'
+        flash[:error] = 'Je hebt geen toestemming om je bij deze pool aan te sluiten.'
         redirect_to pool_path(pool)
 
       end

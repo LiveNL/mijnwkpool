@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
             },
             format: {
               with: /[a-zA-Z0-9._%-]+@(?:[a-zA-Z0-9-]+\.)+(com|net|org|info|biz|me|edu|gov|nl)/,
-              message: 'Voer een geldig e-mailadres in!'
+              message: 'Voer een geldig e-mailadres in.'
             }
 
   validates :password,
@@ -36,10 +36,10 @@ class User < ActiveRecord::Base
             allow_blank: false,
             length: {
               minimum: 5,
-              message: '* Het wachtwoord moet minimaal 5 karakters!'
+              message: '* Het wachtwoord moet minimaal 5 karakters zijn.'
             },
             confirmation: {
-              message: '* De wachtwoorden komen niet overeen!'
+              message: '* De wachtwoorden komen niet overeen.'
             },
             if: :password
 

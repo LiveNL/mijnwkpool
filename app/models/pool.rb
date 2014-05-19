@@ -32,10 +32,10 @@ class Pool < ActiveRecord::Base
             allow_blank: false,
             length: {
               minimum: 5,
-              message: '* Het wachtwoord moet minimaal 5 karakters zijn!'
+              message: '* Het wachtwoord moet minimaal 5 karakters zijn.'
             },
             confirmation: {
-              message: '* De wachtwoorden komen niet overeen!'
+              message: '* De wachtwoorden komen niet overeen.'
             }
 
   # Avatar

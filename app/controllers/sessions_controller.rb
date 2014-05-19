@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to app_root_path
     else
-      flash[:error] = 'Incorrecte combinatie'
+      flash[:error] = 'Incorrecte combinatie.'
       redirect_to :back
     end
   end
