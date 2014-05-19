@@ -57,6 +57,9 @@ table {
 
   &.rank {
     tbody > tr {
+      & > td a {
+        color: $color-grey-dark;
+      }
       & > td:first-child {
         color: $color-grey-medium;
         text-align: center;
@@ -72,6 +75,10 @@ table {
 
         & > td {
           color: #FFF;
+
+          & a {
+            color: #FFF;
+          }
         }
       }
     }

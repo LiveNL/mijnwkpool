@@ -31,7 +31,7 @@
             <% @pool.users.each_with_index do |user, index| %>
             <tr>
               <td><%= index + 1 %></td>
-              <td><%= user.name %></td>
+              <td><%= link_to user.nickname, user_path(user) %></td>
               <td>0</td>
             </tr>
             <% end %>
