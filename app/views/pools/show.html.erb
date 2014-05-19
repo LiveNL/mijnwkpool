@@ -3,7 +3,7 @@
   <div class='medium-3-4'>
     <div class='box'>
       <div class='content-header'>
-        <h1>Speler overzicht - <%= @pool.name %></h1>
+        <h1><%= @pool.name %></h1>
       </div>
 
       <div class="content-header">
@@ -16,7 +16,7 @@
           <% end %>
         <% else %>
           <% if @pool.poolmemberships_count == @pool.maximum_membership %>
-            <button type="button" class="dark pool-sign-in">Deze pool is vol</button>
+            <button type="button" class="grey-dark pool-sign-in">Deze pool is vol</button>
           <% else %>
             <a href="#pool<%= @pool.id %>" class="btn green pool-sign-in" rel='modal:open'><i class="fa fa-users"></i> Meld je aan bij deze pool</a>
           <% end %>
