@@ -5,13 +5,19 @@
       <div class='content-header'>
         <h1>Speler overzicht - <%= @pool.name %></h1>
       </div>
-      <div class="content-header">
-        <% if @my_pool %>
+
+      <% if @my_pool %>
+        <% if @poolmember.role == 0 %>
+        <div class="content-header">
           <a href="#pool<%= @pool.id %>" class="btn red" rel='modal:open'><i class="fa fa-times"></i> Meld je af bij deze pool</a>
-        <% else %>
-          <a href="#pool<%= @pool.id %>" class="btn green" rel='modal:open'><i class="fa fa-users"></i> Meld je aan bij deze pool</a>
+        </div>
         <% end %>
-      </div>
+      <% else %>
+        <div class="content-header">
+          <a href="#pool<%= @pool.id %>" class="btn green" rel='modal:open'><i class="fa fa-users"></i> Meld je aan bij deze pool</a>
+        </div>
+      <% end %>
+
       <div class='pool-list'>
         <ul>
           <% @pool.users.each do |user| %>

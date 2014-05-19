@@ -3,7 +3,7 @@ class Poolmembership < ActiveRecord::Base
   belongs_to :user
   validates_uniqueness_of :user_id, scope: [:pool_id]
 
-  MAXIMUM_COURSES = 3
+  MAXIMUM_COURSES = 5
 
   validate on: :create do
     if user.poolmemberships.size >= MAXIMUM_COURSES

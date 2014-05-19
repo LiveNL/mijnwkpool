@@ -29,8 +29,8 @@ class PoolsController < ApplicationController
   end
 
   def new
-    if current_user.poolmemberships.count == 99
-      flash[:error] = 'Je zit al in 3 pools.'
+    if current_user.poolmemberships.count == 5
+      flash[:error] = 'Je zit al in 5 pools.'
       redirect_to :back
     else
       @pool = Pool.new
@@ -39,8 +39,8 @@ class PoolsController < ApplicationController
 
   def create
     @pool = Pool.new(pool_params)
-    if current_user.poolmemberships.count == 99
-      flash[:error] = 'Je zit al in 3 pools.'
+    if current_user.poolmemberships.count == 5
+      flash[:error] = 'Je zit al in 5 pools.'
       redirect_to :back
     else
       if @pool.save
