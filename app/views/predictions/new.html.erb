@@ -26,8 +26,6 @@
                           <%= f.text_field :prediction2 %>
                           <%= hidden_field_tag :game_id, game.id %>
                           <%= hidden_field_tag :poolmembership_id, Poolmembership.find(current_user.id).id %>
-  
-                          Poolmembership id: <%= Poolmembership.find(current_user.id).id %>
                           <br/>
                           <%= f.submit %>
                           <br/>
