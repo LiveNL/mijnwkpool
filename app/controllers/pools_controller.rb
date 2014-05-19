@@ -63,7 +63,6 @@ class PoolsController < ApplicationController
 
   def show
     @pool = Pool.find(params[:id])
-    @pool.users
   end
 
   def update
