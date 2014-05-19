@@ -47,6 +47,7 @@
                 <div class="form-field error">
               <% end %>
                 <%= f.label :name, 'Pool naam' %>
+                <input type="text" style='display:none' />
                 <%= f.text_field :name, autocomplete: "off" %>
                 <span>
                   <% if @pool.errors.any? %>
@@ -87,7 +88,9 @@
                 <% else %>
                   <div class="form-field error">
                 <% end %>
+
                   <%= f.label :password, 'Wachtwoord' %>
+                  <input type="password" style='display:none' />
                   <%= f.password_field :password, autocomplete: "off" %>
                   <span>
                     <% if @pool.errors.any? %>
