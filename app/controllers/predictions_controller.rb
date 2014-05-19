@@ -15,7 +15,7 @@ class PredictionsController < ApplicationController
   	@prediction.game_id = params[:game_id]
     @prediction.poolmembership_id = params[:poolmembership_id]
   	 	if @prediction.save
-        redirect_to predictions_path
+        redirect_to pools_path
       else
         render 'new'
       end
