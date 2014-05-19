@@ -12,10 +12,14 @@
         </span>
         <% if @my_pool %>
           <% if @poolmember.role == 0 %>
-            <a href="#pool<%= @pool.id %>" class="btn red pool-sign-in" rel='modal:open'><i class="fa fa-times"></i>Meld je af bij deze pool</a>
+            <a href="#pool<%= @pool.id %>" class="btn red pool-sign-in" rel='modal:open'><i class="fa fa-times"></i> Meld je af bij deze pool</a>
           <% end %>
         <% else %>
-          <a href="#pool<%= @pool.id %>" class="btn green pool-sign-in" rel='modal:open'><i class="fa fa-users"></i>Meld je aan bij deze pool</a>
+          <% if @pool.poolmemberships_count == @pool.maximum_membership %>
+            <button type="button" class="dark pool-sign-in">Deze pool is vol</button>
+          <% else %>
+            <a href="#pool<%= @pool.id %>" class="btn green pool-sign-in" rel='modal:open'><i class="fa fa-users"></i> Meld je aan bij deze pool</a>
+          <% end %>
         <% end %>
       </div>
 
@@ -89,9 +93,3 @@
   <% end %>
 <% end %>
 </div>
-
-<%= javascript_tag do %>
-  filterHandle();
-  rangeSlider();
-<% end %>
-
