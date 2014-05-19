@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514222211) do
+ActiveRecord::Schema.define(version: 20140519115248) do
 
   create_table "games", force: true do |t|
     t.datetime "created_at"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20140514222211) do
     t.string   "password_digest"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.boolean  "subscribed",             default: false
   end
 
 end

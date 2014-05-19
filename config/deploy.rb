@@ -25,7 +25,7 @@ set :rbenv_roles, :all
 
 set :rails_env, 'production'
 
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/application.yml}
 set :linked_dirs, %w{bin log tmp vendor/bundle public/system}
 
 # Add this to the settings section at the top:

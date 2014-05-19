@@ -12,6 +12,8 @@ gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'font-awesome-rails'
 gem 'paperclip', '~> 4.1'
 gem 'will_paginate'
+gem 'gibbon'
+gem 'figaro'
 
 group :development do
   gem 'capistrano'

@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :pools, through: :poolmemberships
   before_validation :downcase_email
 
+  after_create :subscribe, if: :subscribed?
+
   validates :name,
             length: {
               minimum: 2,
@@ -43,6 +45,10 @@ class User < ActiveRecord::Base
             },
             if: :password
 
+  def is_subscribed?
+    self.subscribed
+  end
+
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
@@ -54,6 +60,18 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
+  end
+
+  def subscribe
+    mailchimp = Gibbon::API.new
+    result = mailchimp.lists.subscribe({
+      :id => ENV['MAILCHIMP_LIST_ID'],
+      :email => {:email => self.email},
+      :double_optin => false,
+      :update_existing => true,
+      :send_welcome => true
+    })
+    Rails.logger.info("Subscribed #{self.email} to MailChimp") if result
   end
 
   private
