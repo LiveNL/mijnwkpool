@@ -9,7 +9,7 @@
       <div class="login-form">
         <%= form_tag password_resets_path, :method => :post do %>
           <div class="form-field">
-            <%= label_tag :email %>
+            <%= label_tag :email, 'E-mail' %>
             <%= text_field_tag :email, params[:email] %>
           </div>
 

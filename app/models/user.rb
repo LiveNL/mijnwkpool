@@ -24,11 +24,11 @@ class User < ActiveRecord::Base
 
   validates :email,
             uniqueness: {
-              message: '* Dit e-mail adres is al in gebruik.'
+              message: '* Dit e-mailadres is al in gebruik.'
             },
             format: {
               with: /[a-zA-Z0-9._%-]+@(?:[a-zA-Z0-9-]+\.)+(com|net|org|info|biz|me|edu|gov|nl)/,
-              message: 'Voer een geldig e-mail adres in!'
+              message: 'Voer een geldig e-mailadres in!'
             }
 
   validates :password,

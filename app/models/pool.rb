@@ -14,10 +14,10 @@ class Pool < ActiveRecord::Base
             length: {
               minimum: 3,
               maximum: 35,
-              message: '* De pool naam moet tussen 3-35 karakters hebben.'
+              message: '* De poolnaam moet tussen 3-35 karakters hebben.'
             },
             uniqueness: {
-              message: '* Deze pool naam is al bezet.'
+              message: '* Deze poolnaam is al bezet.'
             },
             format: {
               with: /\A(([a-zA-Z0-9]+[-_'\s]{0,1})+)\z/,
@@ -32,7 +32,7 @@ class Pool < ActiveRecord::Base
             allow_blank: false,
             length: {
               minimum: 5,
-              message: '* Het wachtwoord moet minimaal 5 karakters!'
+              message: '* Het wachtwoord moet minimaal 5 karakters zijn!'
             },
             confirmation: {
               message: '* De wachtwoorden komen niet overeen!'
