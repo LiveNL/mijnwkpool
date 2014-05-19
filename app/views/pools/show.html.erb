@@ -6,33 +6,35 @@
         <h1>Speler overzicht - <%= @pool.name %></h1>
       </div>
 
-      <% if @my_pool %>
-        <% if @poolmember.role == 0 %>
-        <div class="content-header">
-          <a href="#pool<%= @pool.id %>" class="btn red" rel='modal:open'><i class="fa fa-times"></i> Meld je af bij deze pool</a>
-        </div>
-        <% end %>
-      <% else %>
-        <div class="content-header">
-          <a href="#pool<%= @pool.id %>" class="btn green" rel='modal:open'><i class="fa fa-users"></i> Meld je aan bij deze pool</a>
-        </div>
-      <% end %>
-
-      <div class='pool-list'>
-        <ul>
-          <% @pool.users.each do |user| %>
-            <li>
-              <div class='view-table'>
-                <a class='grey pool-list-inner view-row'>
-                  <div class='pool-list-txt'>
-                    <%= link_to user.nickname, user_path(user), :class => 'grey pool-list-inner view-row' %>
-                  </div>
-                </a>
-              </div>
-            </li>
+      <div class="content-header">
+        <span class="default-hide small-show">
+          <a href="<%= url_for pools_path %>" class="btn grey left"><i class="fa fa-chevron-left"></i> Terug naar het overzicht</a>
+        </span>
+        <% if @my_pool %>
+          <% if @poolmember.role == 0 %>
+            <a href="#pool<%= @pool.id %>" class="btn red pool-sign-in" rel='modal:open'><i class="fa fa-times"></i>Meld je af bij deze pool</a>
           <% end %>
-        </ul>
+        <% else %>
+          <a href="#pool<%= @pool.id %>" class="btn green pool-sign-in" rel='modal:open'><i class="fa fa-users"></i>Meld je aan bij deze pool</a>
+        <% end %>
       </div>
+
+      <div class="pooldashboard-content">
+        <h2>Stand</h2>
+
+        <table class="table rank">
+          <tbody>
+            <% @pool.users.each_with_index do |user, index| %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= user.name %></td>
+              <td>0</td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
     </div>
   </div>
   <div class='default-0 medium-1-4'>
