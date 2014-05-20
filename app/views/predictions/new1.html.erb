@@ -12,6 +12,7 @@
       <div class='pool-list'>
         <ul>
           <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
+            
             <% @games.each_with_index do |game, index| %>            
               <li>
                 <div class='view-table'>

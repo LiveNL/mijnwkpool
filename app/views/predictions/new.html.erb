@@ -33,181 +33,46 @@
             <th class="default-hide small-show">Uitslag</th>
             <th>Punten</th>
             <tbody>
-              <tr>
-                <td class="infoshower">
-                  <i class="fa fa-question-circle"></i>
-                  <div class="infobox hiddeninfo">Brazilie - Kroatie <br /> <span>17 juni, 22:00</span></div>
-                </td>
-                
-                <td class="default-hide small-show">Brazilie</td>
-                <td class="flag brasil"></td>
-                <td class="predict-score">
-                  <div class="view-table">
-                    <div class="view-row">
-                      <div>
-                        <input class="predict" type="number" min="0" step="1" />
+
+            <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
+              <% @games.each_with_index do |game, index| %>
+                <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>
+                  <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+                  <%= p.hidden_field :game_id, :value => game.id %>
+                  <tr>
+                    <td class="infoshower">
+                      <i class="fa fa-question-circle"></i>
+                      <div class="infobox hiddeninfo"><%= Team.find(game.team1_id).name %> - <%= Team.find(game.team2_id).name %> <br /> <span><%= game.date.strftime('%C %B') %>, <%= game.time.strftime('%H:%M') %></span></div>
+                    </td>
+                    
+                    <td class="default-hide small-show"><%= Team.find(game.team1_id).name %></td>
+                    <td class="flag"><%= image_tag Team.find(game.team1_id).avatar.url(:mini) %></td>
+                    <td class="predict-score">
+                      <div class="view-table">
+                        <div class="view-row">
+                          <div>
+                            <%= p.number_field :prediction1 %>
+                          </div>
+                          <div>
+                            &ndash;
+                          </div>
+                          <div>
+                            <%= p.number_field :prediction2 %>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        &ndash;
-                      </div>
-                      <div>
-                        <input class="predict" type="number" min="0" step="1" />
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="flag kroatie"></td>
-                <td class="default-hide small-show">Kroatie</td>
-                <td  class="default-hide small-show">3 - 1</td>
-                <td class="bold green">10</td>
-              </tr>
-              <tr>
-                <td class="infoshower">
-                  <i class="fa fa-question-circle"></i>
-                  <div class="infobox hiddeninfo">Brazilie2 - Kroatie2 <br /> <span>17 juni, 22:00</span></div>
-                </td>
-                <td class="default-hide small-show">Kroatie</td>
-                <td class="flag kroatie"></td>
-                <td class="predict-score">
-                  <div class="view-table">
-                    <div class="view-row">
-                      <div>
-                        <input class="predict" type="number" min="0" step="1" />
-                      </div>
-                      <div>
-                        &ndash;
-                      </div>
-                      <div>
-                        <input class="predict" type="number" min="0" step="1" />
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="flag brasil"></td>
-                <td class="default-hide small-show">Brazilie</td>
-                <td class="default-hide small-show">3 - 1</td>
-                <td class="bold red">0</td>
-              </tr>
-              <tr>
-                <td class="infoshower">
-                  <i class="fa fa-question-circle"></i>
-                  <div class="infobox hiddeninfo">Brazilie3 - Kroatie3 <br /> <span>17 juni, 22:00</span></div>
-                </td>
-                <td class="default-hide small-show">Kroatie</td>
-                <td class="flag kroatie"></td>
-                <td class="predict-score">
-                  <div class="view-table">
-                    <div class="view-row">
-                      <div>
-                        <input class="predict" type="number" min="0" step="1" />
-                      </div>
-                      <div>
-                        &ndash;
-                      </div>
-                      <div>
-                        <input class="predict" type="number" min="0" step="1" />
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="flag brasil"></td>
-                <td class="default-hide small-show">Brazilie</td>
-                <td class="default-hide small-show">3 - 1</td>
-                <td class="bold">5</td>
-              </tr>
-            </tbody>
-          </thead>
-        </table>
-         <table class="table poule">
-          <thead>
-            <th class="groupname" colspan="4">Groep A</th>
-            <th class="default-hide small-show">&nbsp;</th>
-            <th class="default-hide small-show">&nbsp;</th>
-            <th class="default-hide small-show">Uitslag</th>
-            <th>Punten</th>
-            <tbody>
-              <tr>
-                <td class="infoshower">
-                  <i class="fa fa-question-circle"></i>
-                  <div class="infobox hiddeninfo">Brazilie - Kroatie <br /> <span>17 juni, 22:00</span></div>
-                </td>
-                
-                <td class="default-hide small-show">Brazilie</td>
-                <td class="flag brasil"></td>
-                <td class="predict-score">
-                  <div class="view-table">
-                    <div class="view-row">
-                      <div>
-                        <input class="predict" type="number" min="0" step="1" />
-                      </div>
-                      <div>
-                        &ndash;
-                      </div>
-                      <div>
-                        <input class="predict" type="number" min="0" step="1" />
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="flag kroatie"></td>
-                <td class="default-hide small-show">Kroatie</td>
-                <td  class="default-hide small-show">3 - 1</td>
-                <td class="bold green">10</td>
-              </tr>
-              <tr>
-                <td class="infoshower">
-                  <i class="fa fa-question-circle"></i>
-                  <div class="infobox hiddeninfo">Brazilie2 - Kroatie2 <br /> <span>17 juni, 22:00</span></div>
-                </td>
-                <td class="default-hide small-show">Kroatie</td>
-                <td class="flag kroatie"></td>
-                <td class="predict-score">
-                  <div class="view-table">
-                    <div class="view-row">
-                      <div>
-                        <input class="predict" type="number" min="0" step="1" />
-                      </div>
-                      <div>
-                        &ndash;
-                      </div>
-                      <div>
-                        <input class="predict" type="number" min="0" step="1" />
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="flag brasil"></td>
-                <td class="default-hide small-show">Brazilie</td>
-                <td class="default-hide small-show">3 - 1</td>
-                <td class="bold red">0</td>
-              </tr>
-              <tr>
-                <td class="infoshower">
-                  <i class="fa fa-question-circle"></i>
-                  <div class="infobox hiddeninfo">Brazilie3 - Kroatie3 <br /> <span>17 juni, 22:00</span></div>
-                </td>
-                <td class="default-hide small-show">Kroatie</td>
-                <td class="flag kroatie"></td>
-                <td class="predict-score">
-                  <div class="view-table">
-                    <div class="view-row">
-                      <div>
-                        <input class="predict" type="number" min="0" step="1" />
-                      </div>
-                      <div>
-                        &ndash;
-                      </div>
-                      <div>
-                        <input class="predict" type="number" min="0" step="1" />
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td class="flag brasil"></td>
-                <td class="default-hide small-show">Brazilie</td>
-                <td class="default-hide small-show">3 - 1</td>
-                <td class="bold">5</td>
-              </tr>
+                    </td>
+                    <td class="flag"><%= image_tag Team.find(game.team2_id).avatar.url(:mini) %></td>
+                    <td class="default-hide small-show"><%= Team.find(game.team2_id).name %></td>
+                    <td  class="default-hide small-show"><% if game.score1 == nil && game.score2 == nil %>
+                        x - x
+                      <% else %>
+                        <%= game.score1 %> - <%= game.score2 %>
+                      <% end %></td>
+                    <td class="bold green">10</td>
+                  </tr>
+                <% end %>
+              <% end %>
             </tbody>
           </thead>
         </table>
@@ -216,10 +81,9 @@
           <div class="center">
             <button class="green" type="submit">Opslaan</button>
           </div>
-          <div class="right">
-            <button class="green left" type="submit"><span class="default-hide small-show">Volgende &nbsp; </span><i class="fa fa-chevron-right"></i></button>
-          </div>
+<% end %>
         </div>
+        
       </div>
     </div>
   </div>
