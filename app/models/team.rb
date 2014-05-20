@@ -5,7 +5,8 @@ class Team < ActiveRecord::Base
                   styles: {
                     medium: '500x500>',
                     small: '265x265>',
-                    thumb: '100x100#'
+                    thumb: '100x100#',
+                    mini: '70x50#'
                   },
                   default_url: 'pool/:style/missing.png'
 

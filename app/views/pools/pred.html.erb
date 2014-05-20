@@ -1,0 +1,69 @@
+<div class='grid-r'>
+  <div class='medium-3-4'>
+    <div class='box'>
+      <div class='content-header'>
+        <h1>Voorspellingen - <%= @pool.id %></h1>
+      </div>
+      <div class='pool-list'>
+        <ul>
+          <li>
+              Original score: <br/>
+              <% @games.each do |game| %>
+                  <tr> 
+                    <td><%= Team.find(game.team1_id).name %></td>
+                    <td>                  
+                      <% if game.score1 == nil && game.score2 == nil %>
+                        x - x
+                      <% else %>
+                        <%= game.score1 %> - <%= game.score2 %>
+                      <% end %> 
+                    </td>
+                    <td><%= Team.find(game.team2_id).name %></td>
+                    <td><%= form_for @prediction do |f| %>
+                          <%= f.label :prediction1, 'prediction 1' %>
+                          <%= f.text_field :prediction1 %>
+                          <%= f.label :prediction2, 'prediction 2' %>
+                          <%= f.text_field :prediction2 %>
+                          <%= hidden_field_tag :game_id, game.id %>
+                          <%= hidden_field_tag :poolmembership_id, @poolmembership.id %>
+  <!-- 
+                          Poolmembership id: <%= debug @poolmembership %>
+                          <br/>
+                          <br/>
+                          Poolmembership <%= Poolmembership.find(current_user.id).id %><br/>
+                          User_id <%= Poolmembership.find(current_user.id).user_id %><br/>
+                          Pool_id <%= Poolmembership.find(current_user.id).pool_id %><br/>
+                          <br/>
+                          <br/>
+
+                          Current user id: <%= current_user.id %> <br/>
+                          Current pool id: <%= @pool.id %><br/>
+
+                          Current game id: <%= game.id %><br/> -->
+
+                          
+                          
+                          
+                          <br/>
+                          <%= f.submit %>
+                          <br/>
+                    </td>                  
+                  </tr></br>
+                    <% end %>                             
+                <% end %>
+                <br/>                
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/aside" %>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  filterHandle();
+  rangeSlider();
+<% end %>
+

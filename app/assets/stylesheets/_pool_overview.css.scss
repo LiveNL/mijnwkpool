@@ -1,11 +1,3 @@
-.pool-help {
-  border-bottom: 1px solid $color-grey-light;
-  padding: 15px 20px;
-  @include respond-to(small) {
-    padding: 20px 30px;
-  }
-}
-
 .pool-filter {
   border-bottom: 1px solid $color-grey-light;
 

@@ -1,3 +1,10 @@
+.pool-step {
+  padding-top: 20px;
+  @include respond-to(small) {
+    padding-top: 30px;
+  }
+}
+
 .avatar {
   position: relative;
   margin: 0 auto;

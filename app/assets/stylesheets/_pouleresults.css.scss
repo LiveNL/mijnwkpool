@@ -1,0 +1,37 @@
+ .table{
+
+  &.results {
+        margin-top: 30px;
+      
+    tbody > tr > td {
+
+      &:nth-child(2) {
+            color: $color-grey-medium; 
+          }
+
+      &:last-child{
+        text-align: right;
+        width:80px;
+        border-left: 0px;
+        
+        a {
+          color: $color-grey-medium;
+          text-decoration: none;
+
+              &:hover {
+                color: $color-grey-dark;
+              }
+          }
+      }
+      &:nth-last-child(2){
+        border-right:0px;
+      }
+    }
+  }
+}
+
+ .ccenter{
+    float:left;
+    margin-left:30%;
+    display: block;
+  }

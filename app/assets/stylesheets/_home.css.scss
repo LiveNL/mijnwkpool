@@ -117,7 +117,7 @@ header{
   background-image: image_url('slide2.png');
   background-repeat: no-repeat;
   background-position:110% bottom;
-  background-size: 67%;
+  background-size: 70%;
   position:relative;
   height:750px;
   display:none;
@@ -240,16 +240,7 @@ header{
     display: block;
     position: absolute;
     right: 20px;
-    bottom: 39px;
-  }
-
-  ul {
-    list-style: none;
-
-    li {
-      float: right;
-      margin-left: 20px;
-    }
+    bottom: 10px;
   }
 
   a {
@@ -257,11 +248,12 @@ header{
   }
 }
 
-.email_home {
-  a {text-decoration: none;}
+.home-email {
+  display: none;
   @include respond-to(small) {
+    display: block;
     position: absolute;
-    left: 20px;
-    top: 39px;
+    top: 5px;
+    right: 20px;
   }
 }

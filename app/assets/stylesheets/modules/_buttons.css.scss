@@ -63,6 +63,18 @@ button,
     }
   }
 
+  &.red {
+    box-shadow: 0 3px 0 0 $color-red-dark;
+    background-color: $color-red-light;
+    color: #FFF;
+    &:hover,
+      &:active {
+      background-color: $color-red-dark;
+      color: #FFF;
+    }
+  }
+  
+
   &.fullwidth {
     width: 100%;
   }
@@ -84,5 +96,4 @@ button,
       width: 100%;
     }
   }
-
 }

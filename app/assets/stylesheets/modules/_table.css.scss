@@ -7,4 +7,126 @@
 }
 .view-row > div {
     display: table-cell;
+    vertical-align: middle;
+}
+
+table {
+  border-collapse: collapse;
+  max-width: 100%;
+}
+.table {
+  color: $color-grey-dark;
+  width: 100%;
+
+  th,
+  td {
+    padding: 14px 0;
+    vertical-align: middle;
+  }
+
+  .green {
+    color: $color-green-light !important;
+  }
+  .red {
+    color: $color-red-light !important;
+  }
+  .bold {
+    font-weight: $font-weight-bold !important;
+  }
+
+  thead > tr > th {
+    font-weight: normal;
+    text-align: left;
+    padding-left: 10px;
+
+    @include respond-to(small) {
+      padding-left: 0px;
+    }
+  }
+
+  tbody > tr > td {
+    border: 1px solid $color-grey-light;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .view-table {
+      display:table;
+      width:100px;
+      margin:0 auto;
+    }
+  }
+
+  &.rank {
+    tbody > tr {
+      & > td:first-child {
+        color: $color-grey-medium;
+        text-align: center;
+        width: 60px;
+      }
+      & > td:last-child {
+        text-align: center;
+        width: 70px;
+      }
+
+      &:first-child {
+        background-color: $color-green-light;
+
+        & > td {
+          color: #FFF;
+        }
+      }
+    }
+  }
+
+  &.poule {
+
+    & + .poule {
+      margin-top: 30px;
+    }
+
+    tbody > tr > td {
+      color: $color-grey-medium;
+
+      &:nth-child(1) {
+        color: $color-grey-light;
+        text-align: center;
+        width: 51px;
+
+        &:hover {
+          color: $color-grey-dark;
+        }
+      }
+      &:nth-child(2) {
+        text-align: right;
+      }
+      &.predict-score {
+        padding: 0;
+
+        @include respond-to(small) {
+          width: 130px;
+        }
+      }
+      &:last-child,
+      &:nth-last-child(2) {
+        text-align: center;
+        width: 80px;
+      }
+      &:last-child {
+        color: $color-grey-dark;
+      }
+    }
+  }
+
+  .flag {
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 70px;
+
+    &.brasil {
+      background-image: image_url('brasil.png');
+    }
+    &.kroatie {
+      background-image: image_url('kroatie.png');
+    }
+  }
 }

@@ -1,0 +1,93 @@
+.predictions-content {
+  padding: 20px;
+
+  @include respond-to(small) {
+    padding: 30px;
+  }
+}
+
+.prediction-steps {
+  border-bottom: 1px solid $color-grey-light;
+  overflow: hidden;
+  padding: 20px 0;
+  max-width: 100%;
+
+  @include respond-to(small) {
+    padding: 30px 0;
+  }
+}
+
+.table .small-show {
+  @include respond-to(small) {
+    display: table-cell;
+  }
+}
+
+.table .poule tbody > tr > td {
+  padding-left: 0px; 
+  padding-right: 0px;
+
+  @include respond-to(small) {
+    padding-left: 20px; 
+    padding-right: 20px;
+  }
+}
+
+.infobox
+{
+  display: none;
+  position:absolute;
+  background-color: #FFF;
+  border-bottom:3px solid $color-grey-light;
+  box-shadow:         0px 0px 15px 2px rgba(50, 50, 50, 0.15);
+  padding:20px;
+  margin-left:40px;
+  margin-top:-53px;
+  color:$color-grey-dark;
+
+  @include respond-to(small) {
+    margin-left:24px;
+  }
+
+  &:before {
+      border-style: solid;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent #FFFFFF transparent transparent;
+      content: "";
+      display: block;
+      height: 0;
+      right: 100%;
+      margin-top:31px;
+      position: absolute;
+      top: 0;
+      width: 0;
+    }
+
+  span{
+    color:$color-grey-light;
+  }
+}
+
+.content-btn{
+  width:100%;
+  display: inline-block;
+  margin-top:30px;
+  border-top: 1px solid $color-grey-light;
+  padding-top:30px;
+  padding-bottom:10px;
+
+  .right{
+    float:right;
+    margin-right: 10px;
+
+    @include respond-to(small) {
+      margin-right: 0px;
+    }
+  }
+
+  .center{
+    float:left;
+    margin-left:42%;
+    display: block;
+  }
+}

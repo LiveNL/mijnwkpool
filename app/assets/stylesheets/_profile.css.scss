@@ -1,0 +1,70 @@
+.profile {
+
+  .small-2-3{
+    margin-top:30px;
+    padding:0 30px;
+
+    @include respond-to(small) {
+      padding:0;
+      padding-left:10px;
+    }
+  }
+
+  h2{
+    padding:0;
+  }
+
+
+  .avatar{
+    margin-bottom: 0;
+  }
+
+  .btn-editprofile{
+    position: relative;
+    margin: 0 auto;
+    max-width: 270px;
+
+    @include respond-to(small) {
+      max-width: 270px;
+      margin: 10px 0px 30px 20px;
+    }
+  }
+
+  .big-name{
+    font-size: 1.3em;
+    color:$color-grey-dark;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  .poollist-title{
+    border-bottom: 1px solid $color-grey-light;
+    width:100%;
+    display:block;
+    padding-bottom: 10px;
+    color:$color-grey-medium;
+  }
+
+  .pool-list li{
+    padding:10px 0;
+  }
+
+  .left{
+    margin-right:10px;
+    margin-top:10px;
+    width:100%;
+
+    @include respond-to(small) {
+      margin-right:10px;
+      margin-top: 0;
+      width:auto;
+    }
+  }
+
+  .content-btn{
+    border-top: 0;
+    padding-top:0;
+  }
+}
