@@ -4,30 +4,29 @@
       <div class='content-header'>
       </div>
 
+
+
+
+
+
       <div class='pool-list'>
         <ul>
           <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
             <% @games.each_with_index do |game, index| %>            
               <li>
                 <div class='view-table'>
-                  <div class='pool-list-txt'>
-                    <h3><%= Team.find(game.team1_id).name %>
-                    <% if game.score1 == nil && game.score2 == nil %>
-                      x - x
-                    <% else %>
-                      <%= game.score1 %> - <%= game.score2 %>
-                    <% end %>
-                    <%= Team.find(game.team2_id).name %></h3>
-
                   <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>  
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+                    <%= image_tag Team.find(game.team1_id).avatar.url(:mini) %></td>
+          
                     <h3><%= Team.find(game.team1_id).name %>
                     <div style="width: 53px; display: inline-block;"><%= p.text_field :prediction1 %></div>
                     <div style="width: 53px; display: inline-block;"><%= p.text_field :prediction2 %></div>
                     <%= Team.find(game.team2_id).name %></h3>
+                    <%= image_tag Team.find(game.team2_id).avatar.url(:mini) %></td>
+          
                     <%= p.hidden_field :game_id, :value => game.id %>
                   <% end %>
-                  </div>
                 </div>   
               </li>
             <% end %>
