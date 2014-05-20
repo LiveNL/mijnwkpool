@@ -2,7 +2,7 @@ class PredictionsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @pool = Pool.all
+    @pool = Pool.find(params[:pool_id])
     @games = Game.all
     @predictions = Prediction.all
   end 

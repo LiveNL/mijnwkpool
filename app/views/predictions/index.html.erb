@@ -17,14 +17,25 @@
                     <% end %>
                     <%= Team.find(game.team2_id).name %></h3>
                 <% end %>
-
+<br/>
       							<% current_user.predictions.each do |p| %>
-                        <div style="width: 53px; display: inline-block;">
-                         <%= best_in_place Prediction.find(p.id), :prediction1 %>
+                        
+                        Poolmembership: <%= best_in_place Prediction.find(p.id), :poolmembership_id %> || 
+                        Pool - <%= Poolmembership.find(p.poolmembership_id).pool_id %> ||
+
+                         <%= best_in_place Prediction.find(p.id), :prediction1 %> -
                          <%= best_in_place Prediction.find(p.id), :prediction2 %>
-                         <%= best_in_place Prediction.find(p.id), :poolmembership_id %> ||
-                        </div>
+                         <br/>
+             
+                      
                     <% end %>
+                    <br/>
+                    <br/>
+
+                    Current User ID - <%= current_user.id %><br/>
+                    <% a = Pool.find(params[:pool_id]) %>
+                    Pool ID - <%= a.id %>
+
 
               </div>
             </div>   
