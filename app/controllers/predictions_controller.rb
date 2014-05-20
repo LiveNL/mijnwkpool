@@ -1,17 +1,20 @@
 class PredictionsController < ApplicationController
+  respond_to :html, :json
+
   def index
+    @pool = Pool.all
     @games = Game.all
     @predictions = Prediction.all
-  end
+  end 
 
   def new
-    @prediction = Prediction.new
-    @pool = Pool.all
-    @game = Game.all
+    pool_id = params[:pool_id].to_i
+    @pool = Pool.find_by_id(pool_id)
+    @games = Game.all
   end
 
   def create
-  	@prediction = Prediction.new(prediction_params)
+  	@predictions = Prediction.new(prediction_params)
   	 	if @prediction.save
         redirect_to predictions_path
       else
@@ -19,10 +22,43 @@ class PredictionsController < ApplicationController
       end
 	end
 
-  def update
+  def create_multiple_predictions
+    params[:predictions].each do |k,v|
+      prediction = Prediction.new
+      prediction.prediction1 = v['prediction1']
+      prediction.prediction2 = v['prediction2']
+      prediction.poolmembership_id = v['poolmembership_id']
+      prediction.game_id = v['game_id']
+      prediction.save
+    end
+    redirect_to predictions_path
   end
+ 
+  def edit
+  end
+
+  def show
+    @pool = Pool.all
+    @games = Game.all
+    @predictions = Prediction.all
+  end
+
+  def update
+    @prediction = Prediction.find(params[:id])
+    @prediction.update_attributes(params.require(:prediction).permit(:prediction, :id, :score1, :game, :prediction1, :prediction2, :game_id, :poolmembership_id, :pool_id))
+    respond_with @prediction
+  end
+
+
   private
+  def find_poolmembership
+    @poolmembership ||= Poolmembership.find(params[:poolmembership_id])
+  end      
+
   def prediction_params
-    params.require(:prediction).permit(:score1, :game, :prediction1, :prediction2, :game_id)
+    params.require(:prediction).permit(:prediction, :id, :score1, :game, :prediction1, :prediction2, :game_id, :poolmembership_id, :pool_id)
   end
 end
+
+
+   

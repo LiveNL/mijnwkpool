@@ -2,8 +2,13 @@ class Poolmembership < ActiveRecord::Base
   belongs_to :pool
   belongs_to :user
   validates_uniqueness_of :user_id, scope: [:pool_id]
+  has_many :predictions
 
   MAXIMUM_COURSES = 3
+
+  def self.get_user_id
+    self.new.user_id
+  end
 
   validate on: :create do
     if user.poolmemberships.size >= MAXIMUM_COURSES

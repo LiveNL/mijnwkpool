@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   has_many :poolmemberships
   has_many :pools, through: :poolmemberships
+  has_many :predictions, through: :poolmemberships
+
   before_validation :downcase_email
 
   validates :name,

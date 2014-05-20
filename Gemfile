@@ -12,6 +12,7 @@ gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'font-awesome-rails'
 gem 'paperclip', '~> 4.1'
 gem 'will_paginate'
+gem "best_in_place", github: 'bernat/best_in_place', branch: 'rails-4'
 
 group :development do
   gem 'capistrano'
@@ -25,6 +26,7 @@ group :development do
   gem 'rubocop'
   gem 'quiet_assets'
   gem 'debugger'
+  gem 'rails-erd'
 end
 
 group :doc do

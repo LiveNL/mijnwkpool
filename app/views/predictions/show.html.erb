@@ -3,11 +3,11 @@
     <div class='box'>
       <div class='content-header'>
       </div>
-      <div class='pool-list'> 
+      <div class='pool-list'>
         <ul>
           <li>
             <div class='view-table'>
-              <div class='pool-list-txt'>INDEX
+              <div class='pool-list-txt'>
                 <% @games.each do |game| %>            
                   <h3><%= Team.find(game.team1_id).name %>
                     <% if game.score1 == nil && game.score2 == nil %>
@@ -16,15 +16,17 @@
                       <%= game.score1 %> - <%= game.score2 %>
                     <% end %>
                     <%= Team.find(game.team2_id).name %></h3>
-                <% end %>
 
       							<% current_user.predictions.each do |p| %>
+                      <h3><%= Team.find(game.team1_id).name %>
                         <div style="width: 53px; display: inline-block;">
-                         <%= best_in_place Prediction.find(p.id), :prediction1 %>
-                         <%= best_in_place Prediction.find(p.id), :prediction2 %>
-                         <%= best_in_place Prediction.find(p.id), :poolmembership_id %> ||
+                          <%= best_in_place Prediction.find(p.id), :prediction1 %>
+                          <%= best_in_place Prediction.find(p.id), :prediction2 %>
+                          <%= Prediction.find(p.id).poolmembership.id %>
                         </div>
+                      <%= Team.find(game.team2_id).name %></h3>
                     <% end %>
+                <% end %>
 
               </div>
             </div>   
@@ -35,9 +37,7 @@
   </div>
 
   <div class='default-0 medium-1-4'>
-    <%= render "shared/predictions" %>  
     <%= render "shared/aside" %>
   </div>
 </div>
 
-       
