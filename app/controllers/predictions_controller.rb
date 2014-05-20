@@ -16,7 +16,7 @@ class PredictionsController < ApplicationController
   def create
   	@predictions = Prediction.new(prediction_params)
   	 	if @prediction.save
-        redirect_to predictions_path
+        redirect_to app_root_path
       else
         render 'new'
       end
@@ -31,7 +31,7 @@ class PredictionsController < ApplicationController
       prediction.game_id = v['game_id']
       prediction.save
     end
-    redirect_to predictions_path
+    redirect_to app_root_path
   end
  
   def edit
