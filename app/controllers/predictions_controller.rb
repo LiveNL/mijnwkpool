@@ -8,9 +8,9 @@ class PredictionsController < ApplicationController
   end 
 
   def new
-    pool_id = params[:pool_id].to_i
-    @pool = Pool.find_by_id(pool_id)
+    @pool = Pool.find(params[:pool_id])
     @games = Game.all
+    @predictions = Prediction.all
   end
 
   def create
