@@ -3,7 +3,8 @@ Wkpool::Application.routes.draw do
     get 'users/welcome' => 'users#welcome', :as => 'welcome'
     get 'pools/:id/invite' => 'pools#invite', :as => 'invite_pool'
     resources :pools, :users, :poolmemberships, :games, :predictions, :teams
-    post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'    
+    post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'   
+    get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'    
   end
     
   resources :sessions, only: [:new, :create, :destroy]

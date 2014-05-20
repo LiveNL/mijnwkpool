@@ -49,6 +49,11 @@ class PredictionsController < ApplicationController
     respond_with @prediction
   end
 
+  def givepoints
+    @games = Game.all
+    @predictions = Prediction.all
+  end
+
 
   private
   def find_poolmembership
