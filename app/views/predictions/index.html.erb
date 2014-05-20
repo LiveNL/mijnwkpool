@@ -7,8 +7,8 @@
         <ul>
           <li>
             <div class='view-table'>
-              <div class='pool-list-txt'>INDEX
-                <% @games.each do |game| %>            
+              <div class='pool-list-txt'>
+                             <% @games.each do |game| %>            
                   <h3><%= Team.find(game.team1_id).name %>
                     <% if game.score1 == nil && game.score2 == nil %>
                       x - x

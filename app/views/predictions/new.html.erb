@@ -1,0 +1,68 @@
+
+
+
+
+<div class='grid-r'>
+  <div class='medium-3-4'>
+    <div class='box'>
+
+        <ul>
+<%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
+
+  <% @games.each_with_index do |game, index| %> 
+
+    <% current_user.predictions.each do |p| %>
+
+      <% a = Pool.find(params[:pool_id]) %>
+      <% b = Poolmembership.find(p.poolmembership_id) %>
+      <% c = Prediction.find(p.id).game_id %>
+      <% d = (c == game.id) %>
+
+
+      <% if a.id == b.pool_id && c == game.id %>
+      Poolmembership ID: <%= best_in_place Prediction.find(p.id), :poolmembership_id %> ||
+      Game ID: <%= best_in_place Prediction.find(p.id), :game_id %> ||
+      <%= best_in_place Prediction.find(p.id), :prediction1 %> -
+      <%= best_in_place Prediction.find(p.id), :prediction2 %>
+      <br/>
+
+      
+      <% elsif d == true %>
+        <div class='view-table'>
+          <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>  
+          <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+          <%= p.hidden_field :game_id, :value => game.id %>
+          <%= image_tag Team.find(game.team1_id).avatar.url(:mini) %>
+
+          <%= Team.find(game.team1_id).name %>
+          <div style="width: 53px; display: inline-block;"><%= p.text_field :prediction1 %></div>
+          <div style="width: 53px; display: inline-block;"><%= p.text_field :prediction2 %></div>
+          <%= Team.find(game.team2_id).name %>
+          <%= image_tag Team.find(game.team2_id).avatar.url(:mini) %>
+
+          <%= game.id %>
+          <% end %> 
+        </div> 
+      <% else %>
+        
+
+      <% end %> 
+
+    <% end %>
+  <% end %>
+  <button class="green" style="margin-left: 30px;" type="submit">
+  Sla voorspellingen op &nbsp; <%= fa_icon 'chevron-right' %>
+  </button>
+
+<% end %>
+
+    </div>
+  </div>
+
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/predictions" %>
+
+    <%= render "shared/aside" %>
+  </div>
+</div>
+
