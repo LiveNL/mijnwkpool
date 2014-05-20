@@ -1,0 +1,65 @@
+.question-box{
+	border-top: 1px solid $color-grey-light;
+	margin-top:20px;
+	padding-top:30px;
+	margin-left:10px;
+	margin-right: 10px;
+
+	@include respond-to(small) {
+		margin-left:0px;
+		margin-right:0px;
+	}
+
+	.answer{
+		margin-top:10px;
+	}
+
+}
+
+input[type=number].bonusnr{
+	width:50px;
+	height:55px;
+	margin:0;
+}
+
+select.dropdown{
+ @include font-size($font-size);
+  border-color: $color-grey-light;
+  border-style: solid;
+  border-width: 1px 1px 3px 1px;
+  border-radius: 0;
+  color: $color-grey-dark;
+  display: block;
+  font-family: $font-family;
+  font-weight: $font-weight-normal;
+  height: 53px;
+  padding: 0 20px;
+  outline: none;
+  width: 300px;
+  -webkit-appearance: none;
+  background-image: image-url('arrowdown.png');
+  background-repeat: no-repeat;
+  background-position: 95% center;
+
+  option{
+  	@include font-size($font-size);
+  border-color: $color-grey-light;
+  border-style: solid;
+  border-width: 1px 1px 3px 1px;
+  border-radius: 0;
+  color: $color-grey-dark;
+  display: block;
+  font-family: $font-family;
+  font-weight: $font-weight-normal;
+  padding: 0 20px;
+  outline: none;
+  width: 300px;
+  -webkit-appearance: none;
+  }
+}
+
+.rcenter{
+    float:right;
+    margin-right:42%;
+    display: block;
+  }
