@@ -118,15 +118,7 @@ table {
   }
 
   .flag {
-    background-position: center center;
-    background-repeat: no-repeat;
+    padding: 0;
     width: 70px;
-
-    &.brasil {
-      background-image: image_url('brasil.png');
-    }
-    &.kroatie {
-      background-image: image_url('kroatie.png');
-    }
   }
 }
