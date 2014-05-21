@@ -23,7 +23,8 @@
                       <% b = Poolmembership.find(p.poolmembership_id) %>
 
                       <% if a.id == b.pool_id %>
-                            <%= best_in_place Prediction.find(p.id), :poolmembership_id %> ||
+                            Poolmembership ID: <%= best_in_place Prediction.find(p.id), :poolmembership_id %> ||
+                            Game ID: <%= best_in_place Prediction.find(p.id), :game_id %> ||
                             <%= best_in_place Prediction.find(p.id), :prediction1 %> -
                             <%= best_in_place Prediction.find(p.id), :prediction2 %>
                             <br/>

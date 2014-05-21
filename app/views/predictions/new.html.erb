@@ -1,65 +1,68 @@
-
-
-
-
 <div class='grid-r'>
   <div class='medium-3-4'>
     <div class='box'>
+  
+<% current_user.predictions.each do |prediction| %>
+  <% @game = Game.find(prediction.game_id) %>
+  <% @bier = Poolmembership.find(prediction.poolmembership_id) %>
 
+  <% if %>
+    <% if @bier.pool_id == @pool.id %>
+      Current pool ID: <%= @pool.id %> || Poolmembership Pool ID: <%= @bier.pool_id %> || Poolmembership ID: <%= @bier.id %> || Game ID: <%= @game.id %> || Prediction ID: <%= prediction.id %>
+      Voorspelling: <%= best_in_place Prediction.find(prediction.id), :prediction1 %> -
+      <%= best_in_place Prediction.find(prediction.id), :prediction2 %>
+
+      <% else %>
+      form
+    <% end %>
+  <% end %>
+<% end %>
+
+
+
+      <div class='content-header'>
+      </div>
+
+      <div class='pool-list'>
         <ul>
 
 
+           <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
+            <% @games.each_with_index do |game, index| %> 
+                <div class='view-table'>
+                  <div class='pool-list-txt'>
+                    <h3><%= Team.find(game.team1_id).name %>
+                    <% if game.score1 == nil && game.score2 == nil %>
+                      x - x
+                    <% else %>
+                      <%= game.score1 %> - <%= game.score2 %>
+                    <% end %>
+                    <%= Team.find(game.team2_id).name %></h3>
 
+                  <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>  
+                    <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+                    <h3><%= Team.find(game.team1_id).name %>
+                    <div style="width: 53px; display: inline-block;"><%= p.text_field :prediction1 %></div>
+                    <div style="width: 53px; display: inline-block;"><%= p.text_field :prediction2 %></div>
+                    <%= Team.find(game.team2_id).name %></h3>
+                    <%= p.hidden_field :game_id, :value => game.id %>
+                    Game ID - <%= game.id %>
+                  <% end %>
+                  </div>
+                </div> 
+                <br/>
 
+            <% end %> 
+              </li>
+            
+            <button class="green" style="margin-left: 30px;" type="submit">
+              Sla voorspellingen op &nbsp; <%= fa_icon 'chevron-right' %>
+            </button>
+        
+          <% end %>
 
-
-
-
-
-<%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
-  
-  <% @games.each_with_index do |game, index| %> 
-    Game ID: <%= game.id %><br/>
-    Team1 ID: <%= game.team1_id %><br/>
-    Team2 ID: <%= game.team2_id %><br/><br/>
-
-  <% end %>
-
-<br/>
-<br/>
-
-  <% current_user.predictions.each do |prediction| %>
-
-    <% b = Poolmembership.find(prediction.poolmembership_id) %>
-  
-    Pool ID: <%= @pool.id %><br/>
-    Poolmembership ID: <%= b.id %><br/>
-    Game ID: <%= prediction.game_id %><br/>
-    <br/>
-  <% end %>
-
-
-
-
-
-
-
-<br/>
-<br/>
-
-
-
-
-
-
-
-
-
-
-
-
-<% end %>
-
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -69,4 +72,3 @@
     <%= render "shared/aside" %>
   </div>
 </div>
-
