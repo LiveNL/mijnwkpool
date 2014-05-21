@@ -3,19 +3,41 @@
     <div class='box'>
   
 <% current_user.predictions.each do |prediction| %>
-  <% @game = Game.find(prediction.game_id) %>
-  <% @bier = Poolmembership.find(prediction.poolmembership_id) %>
+<% @game = Game.find(prediction.game_id) %>
+<% @poolmembership = Poolmembership.find(prediction.poolmembership_id) %>
 
-  <% if %>
-    <% if @bier.pool_id == @pool.id %>
-      Current pool ID: <%= @pool.id %> || Poolmembership Pool ID: <%= @bier.pool_id %> || Poolmembership ID: <%= @bier.id %> || Game ID: <%= @game.id %> || Prediction ID: <%= prediction.id %>
+  <% if @poolmembership.pool_id == @pool.id %>
+    <% if (@game.id == prediction.game_id).present? %>
+      Current pool ID: <%= @pool.id %> || Poolmembership Pool ID: <%= @poolmembership.pool_id %> || Poolmembership ID: <%= @poolmembership.id %> || Game ID: <%= @game.id %> || Prediction ID: <%= prediction.id %>
       Voorspelling: <%= best_in_place Prediction.find(prediction.id), :prediction1 %> -
       <%= best_in_place Prediction.find(prediction.id), :prediction2 %>
-
-      <% else %>
-      form
+    <% else %>
+     nein
     <% end %>
+  <% else %>
+    form
   <% end %>
+<% end %>
+
+<br/><br/>
+Find prediction waar poolmembership gelijk is aan current user poolmembership en waar game_id gelijk is aan game.id. Als die bestaat, laat het dan zien. Als die niet bestaat. Laat formulier zien.
+<br/><br/>
+
+<% @games.each do |game| %>
+  <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
+  <% henk = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
+
+<% if henk.present? %>
+Current pool ID: <%= @pool.id %> || Poolmembership Pool ID: <%= @poolmembership.pool_id %> || Poolmembership ID: <%= @poolmembership.id %> || Game ID: <%= game.id %> || Prediction ID: <%= henk.id %>
+
+  Voorspelling: <%= best_in_place Prediction.find(henk.id), :prediction1 %> -
+      <%= best_in_place Prediction.find(henk.id), :prediction2 %>
+
+<br/>
+<% else %>
+form 
+<% end %>
+
 <% end %>
 
 
