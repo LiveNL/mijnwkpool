@@ -5,47 +5,44 @@
       </div>
       <div class='pool-list'>
         <ul>
+          <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
+          <% current_user.predictions.each do |prediction| %>
+          <% @game = Game.find(prediction.game_id) %>
+          <% @poolmembership = Poolmembership.find(prediction.poolmembership_id) %>
 
-<% current_user.predictions.each do |prediction| %>
-  <% @game = Game.find(prediction.game_id) %>
-  <% @poolmembership = Poolmembership.find(prediction.poolmembership_id) %>
+          <% end %>
 
-  <% end %>
+          <% @games.each_with_index do |game, index| %>
+          <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
+          <% henk = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
 
-  Find prediction waar poolmembership gelijk is aan current user poolmembership en waar game_id gelijk is aan game.id. Als die bestaat, laat het dan zien. Als die niet bestaat. Laat formulier zien.
-  <br/><br/>
+          <% if henk.present? %>
+          Current pool ID: <%= @pool.id %> || Poolmembership Pool ID: <%= @poolmembership.pool_id %> || Poolmembership ID: <%= @poolmembership.id %> || Game ID: <%= game.id %> || Prediction ID: <%= henk.id %>
 
-  <% @games.each_with_index do |game, index| %>
-  <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
-  <% henk = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
+          Voorspelling: <%= best_in_place Prediction.find(henk.id), :prediction1 %> -
+          <%= best_in_place Prediction.find(henk.id), :prediction2 %>
 
-  <% if henk.present? %>
-  Current pool ID: <%= @pool.id %> || Poolmembership Pool ID: <%= @poolmembership.pool_id %> || Poolmembership ID: <%= @poolmembership.id %> || Game ID: <%= game.id %> || Prediction ID: <%= henk.id %>
+          <br/>
+          <% else %>
 
-  Voorspelling: <%= best_in_place Prediction.find(henk.id), :prediction1 %> -
-  <%= best_in_place Prediction.find(henk.id), :prediction2 %>
 
-  <br/>
-  <% else %>
+          <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>  
+          <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+          <%= p.hidden_field :game_id, :value => game.id %> 
+          <%= p.text_field :prediction1 %>
+          <%= p.text_field :prediction2 %>
+          <% end %>
 
-  <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
 
-  <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>  
-  <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
-  <%= p.hidden_field :game_id, :value => game.id %> 
-  <%= p.text_field :prediction1 %>
-  <%= p.text_field :prediction2 %>
-  <% end %>
 
-  <% end %>
 
-  <button class="green" style="margin-left: 30px;" type="submit">
-  Sla voorspellingen op &nbsp; <%= fa_icon 'chevron-right' %>
-  </button>
 
-  <% end %>
-<% end %>
-
+          <% end %>
+          <% end %>
+          <button class="green" style="margin-left: 30px;" type="submit">
+          Sla voorspellingen op &nbsp; <%= fa_icon 'chevron-right' %>
+          </button>
+          <% end %>
 
 
         </ul>
