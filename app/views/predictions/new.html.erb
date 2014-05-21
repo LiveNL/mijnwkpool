@@ -6,42 +6,54 @@
       <div class='pool-list'>
         <ul>
           <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
-          <% current_user.predictions.each do |prediction| %>
-          <% @game = Game.find(prediction.game_id) %>
-          <% @poolmembership = Poolmembership.find(prediction.poolmembership_id) %>
+            <% current_user.predictions.each do |prediction| %>
+              <% @game = Game.find(prediction.game_id) %>
+              <% @poolmembership = Poolmembership.find(prediction.poolmembership_id) %>
+            <% end %>
 
-          <% end %>
+            <% @games.each_with_index do |game, index| %>
+            <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
+            <% henk = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
 
-          <% @games.each_with_index do |game, index| %>
-          <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
-          <% henk = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
+            <% if henk.present? %>
+            <%= image_tag Team.find(game.team1_id).avatar.url(:mini) %>
+              <%= Team.find(game.team1_id).name %>
 
-          <% if henk.present? %>
-          Current pool ID: <%= @pool.id %> || Poolmembership Pool ID: <%= @poolmembership.pool_id %> || Poolmembership ID: <%= @poolmembership.id %> || Game ID: <%= game.id %> || Prediction ID: <%= henk.id %>
+               <%= best_in_place Prediction.find(henk.id), :prediction1 %> -
+              <%= best_in_place Prediction.find(henk.id), :prediction2 %>
 
-          Voorspelling: <%= best_in_place Prediction.find(henk.id), :prediction1 %> -
-          <%= best_in_place Prediction.find(henk.id), :prediction2 %>
+              <%= Team.find(game.team2_id).name %>
+              <%= image_tag Team.find(game.team2_id).avatar.url(:mini) %>
 
-          <br/>
-          <% else %>
+              <br/>
+              <% else %>
+
+<br/>
+              <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>  
+              <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+              <%= p.hidden_field :game_id, :value => game.id %> 
+              <%= image_tag Team.find(game.team1_id).avatar.url(:mini) %>
+              <%= Team.find(game.team1_id).name %>
+              <div style="width: 40px; display: inline-block;"><%= p.number_field :prediction1 %></div>
+              <div style="width: 40px; display: inline-block;"><%= p.number_field :prediction2 %></div>
+              <%= Team.find(game.team2_id).name %>
+              <%= image_tag Team.find(game.team2_id).avatar.url(:mini) %>
+              <% end %>
 
 
-          <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>  
-          <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
-          <%= p.hidden_field :game_id, :value => game.id %> 
-          <%= p.text_field :prediction1 %>
-          <%= p.text_field :prediction2 %>
-          <% end %>
 
 
 
+              <% end %>
+              <% end %>
+              <br/>
+<br/>
 
+            <button class="green" style="margin-left: 30px;" type="submit">
+            Sla voorspellingen op &nbsp; <%= fa_icon 'chevron-right' %>
+            </button>
+            <br/>
 
-          <% end %>
-          <% end %>
-          <button class="green" style="margin-left: 30px;" type="submit">
-          Sla voorspellingen op &nbsp; <%= fa_icon 'chevron-right' %>
-          </button>
           <% end %>
 
 

@@ -12,7 +12,7 @@
               <div class='view-table'>
                 <a class='grey pool-list-inner view-row'>
                   <div class='pool-list-txt'>
-                    <%= link_to User.find(user.user_id).nickname, user_path(user.user_id), :class => 'grey pool-list-inner view-row' %> - <%= Poolmembership.find(user.id).score %>
+                    <%= link_to User.find(user.user_id).nickname, user_path(user.user_id), :class => 'grey pool-list-inner view-row' %> <%= Poolmembership.find(user.id).score %>
                   </div>
                 </a>
               </div>
