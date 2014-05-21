@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520144948) do
+ActiveRecord::Schema.define(version: 20140521131401) do
 
   create_table "games", force: true do |t|
     t.datetime "created_at"
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20140520144948) do
     t.datetime "updated_at"
     t.integer  "team1_id"
     t.integer  "team2_id"
-    t.integer  "prediction1"
-    t.integer  "prediction2"
+    t.integer  "prediction1",       default: 0
+    t.integer  "prediction2",       default: 0
     t.integer  "game_id"
     t.integer  "poolmembership_id"
     t.integer  "pointsgiven",       default: 0

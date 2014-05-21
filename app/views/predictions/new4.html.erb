@@ -1,0 +1,94 @@
+<div class='grid-r'>
+  <div class='medium-3-4'>
+    <div class='box'>
+  
+<% current_user.predictions.each do |prediction| %>
+<% @game = Game.find(prediction.game_id) %>
+<% @poolmembership = Poolmembership.find(prediction.poolmembership_id) %>
+
+<% end %>
+
+Find prediction waar poolmembership gelijk is aan current user poolmembership en waar game_id gelijk is aan game.id. Als die bestaat, laat het dan zien. Als die niet bestaat. Laat formulier zien.
+<br/><br/>
+
+<% @games.each_with_index do |game, index| %>
+  <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
+  <% henk = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
+
+<% if henk.present? %>
+Current pool ID: <%= @pool.id %> || Poolmembership Pool ID: <%= @poolmembership.pool_id %> || Poolmembership ID: <%= @poolmembership.id %> || Game ID: <%= game.id %> || Prediction ID: <%= henk.id %>
+
+  Voorspelling: <%= best_in_place Prediction.find(henk.id), :prediction1 %> -
+      <%= best_in_place Prediction.find(henk.id), :prediction2 %>
+
+<br/>
+<% else %>
+
+<%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
+  
+      <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>  
+        <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+        <%= p.hidden_field :game_id, :value => game.id %> 
+        <%= p.text_field :prediction1 %>
+        <%= p.text_field :prediction2 %>
+      <% end %>
+    <% end %>
+
+<% end %>
+
+<% end %>
+
+
+
+      <div class='content-header'>
+      </div>
+
+      <div class='pool-list'>
+        <ul>
+
+
+           <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
+            <% @games.each_with_index do |game, index| %> 
+                <div class='view-table'>
+                  <div class='pool-list-txt'>
+                    <h3><%= Team.find(game.team1_id).name %>
+                    <% if game.score1 == nil && game.score2 == nil %>
+                      x - x
+                    <% else %>
+                      <%= game.score1 %> - <%= game.score2 %>
+                    <% end %>
+                    <%= Team.find(game.team2_id).name %></h3>
+
+                  <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>  
+                    <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+                    <h3><%= Team.find(game.team1_id).name %>
+                    <div style="width: 53px; display: inline-block;"><%= p.text_field :prediction1 %></div>
+                    <div style="width: 53px; display: inline-block;"><%= p.text_field :prediction2 %></div>
+                    <%= Team.find(game.team2_id).name %></h3>
+                    <%= p.hidden_field :game_id, :value => game.id %>
+                    Game ID - <%= game.id %>
+                  <% end %>
+                  </div>
+                </div> 
+                <br/>
+
+            <% end %> 
+              </li>
+            
+            <button class="green" style="margin-left: 30px;" type="submit">
+              Sla voorspellingen op &nbsp; <%= fa_icon 'chevron-right' %>
+            </button>
+        
+          <% end %>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/predictions" %>
+
+    <%= render "shared/aside" %>
+  </div>
+</div>
