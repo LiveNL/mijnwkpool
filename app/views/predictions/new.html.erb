@@ -59,13 +59,13 @@
                     <div class="view-table">
                       <div class="view-row">
                         <div class='predict'>
-                          <%= best_in_place Prediction.find(henk.id), :prediction1, :type => 'input', :classes => 'predict' %>
+                          <%= best_in_place Prediction.find(henk.id), :prediction1 %>
                         </div>
                         <div>
                           &ndash;
                         </div>
                         <div class='predict'>
-                          <%= best_in_place Prediction.find(henk.id), :prediction2, :classes => 'predict' %>
+                          <%= best_in_place Prediction.find(henk.id), :prediction2 %>
                         </div>
                       </div>
                     </div>
@@ -83,7 +83,7 @@
                   
                   </tr>
                 <% else %>
-                <br/>
+                
                   <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>  
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
                     <%= p.hidden_field :game_id, :value => game.id %> 
@@ -92,29 +92,52 @@
                       <i class="fa fa-question-circle"></i>
                       <div class="infobox hiddeninfo"><%= Team.find(game.team1_id).name %> - <%= Team.find(game.team2_id).name %> <br /> <span><%= game.date.strftime('%C %B') %>, <%= game.time.strftime('%H:%M') %></span></div>
                     </td>
-                    <td><%= Team.find(game.team1_id).name %></td>
+
+                    <td class="default-hide small-show"><%= Team.find(game.team1_id).name %></td>
                     <td class="flag"><%= image_tag Team.find(game.team1_id).avatar.url(:mini) %></td>
-                    <td><div style="width: 40px; display: inline-block;"><%= p.number_field :prediction1 %></div>
-                    <div style="width: 40px; display: inline-block;"><%= p.number_field :prediction2 %></div></td>
-                    
+
+                  <td class="predict-score">
+                    <div class="view-table">
+                      <div class="view-row">
+                        <div class='predict'>
+                          <%= p.number_field :prediction1 %>
+                        </div>
+                        <div>
+                          &ndash;
+                        </div>
+                        <div class='predict'>
+                          <%= p.number_field :prediction2 %>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+
                     <td class="flag"><%= image_tag Team.find(game.team2_id).avatar.url(:mini) %></td>
                     <td><%= Team.find(game.team2_id).name %></td>
                     <td>x - x</td>
                     <td>x</td>
+                    
                     </tr>
-                    <button class="green" type="submit">Opslaan</button>
+
                   <% end %>
+
                 <% end %>
+
               <% end %>
 
 
 
-        </tbody>
+
+
+            
+                    </tbody>
           </thead>
         </table>
-
-       
+<button class="green" style="margin-left: 30px;" type="submit">
+              Sla voorspellingen op &nbsp; <%= fa_icon 'chevron-right' %>
+            </button>
           <% end %>
+
       </div>
     </div>
   </div>
