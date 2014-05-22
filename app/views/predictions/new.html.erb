@@ -24,18 +24,21 @@
 
       <div class="pooldashboard-content">
         <h2>Poule wedstrijden</h2>
-
+<%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
 <table class="table poule">
           <thead>
+            <tr>
             <th class="groupname" colspan="4">Groep A</th>
             <th class="default-hide small-show">&nbsp;</th>
             <th class="default-hide small-show">&nbsp;</th>
             <th class="default-hide small-show">Uitslag</th>
             <th>Punten</th>
-            <tbody>
+            </tr>
+          </thead>
+          <tbody>
 
 
-          <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
+          
             <% current_user.predictions.each do |prediction| %>
               <% @game = Game.find(prediction.game_id) %>
                 <% @poolmembership = Poolmembership.find(prediction.poolmembership_id) %>
@@ -131,7 +134,6 @@
 
             
                     </tbody>
-          </thead>
         </table>
 <button class="green" style="margin-left: 30px;" type="submit">
               Sla voorspellingen op &nbsp; <%= fa_icon 'chevron-right' %>
