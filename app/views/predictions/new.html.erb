@@ -16,15 +16,18 @@
               <% henk = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
 
                 <% if henk.present? %>
-                  <%= image_tag Team.find(game.team1_id).avatar.url(:mini) %>
                   <%= Team.find(game.team1_id).name %>
+                  <%= image_tag Team.find(game.team1_id).avatar.url(:mini) %>
+                  
 
                   <%= best_in_place Prediction.find(henk.id), :prediction1 %> -
                   <%= best_in_place Prediction.find(henk.id), :prediction2 %>
 
-                  <%= Team.find(game.team2_id).name %>
+                  
                   <%= image_tag Team.find(game.team2_id).avatar.url(:mini) %>
-
+                  <%= Team.find(game.team2_id).name %>
+                  <%= game.score1 %> - <%= game.score2 %>
+                  <%= henk.pointsearned %>
                   <br/>
                 <% else %>
                 <br/>
