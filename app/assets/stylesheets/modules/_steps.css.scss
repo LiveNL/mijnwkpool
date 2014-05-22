@@ -3,6 +3,11 @@ $step-height: 50;
 .steps {
   display: table;
   margin: 0 auto;
+  padding-top: 20px;
+  
+  @include respond-to(small) {
+  padding-top: 30px;
+  }  
 
   .step {
     background-color: $color-grey-lighter;

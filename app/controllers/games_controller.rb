@@ -2,6 +2,7 @@ class GamesController < ApplicationController
     before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   def index
+    @game = Game.new    
     @games = Game.all
     @teams = Team.all
   end

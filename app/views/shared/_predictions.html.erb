@@ -7,15 +7,10 @@
     <% if current_user.poolmemberships.count > 0 %>
     <ul>
     <% current_user.poolmemberships.each do |pool| %>
-      <li>
-        <%= link_to predictions_path(pool_id: pool.pool_id),:class => 'grey' do %>
+    <li>
+        <%= link_to new_prediction_path(pool_id: pool.pool_id),:class => 'grey' do %>
           <%= Pool.find(pool.pool_id).name %>
         <% end %> 
-
-        <%= link_to new_prediction_path(pool_id: pool.pool_id),:class => 'grey' do %>
-          nieuwe voorspelling
-        <% end %>
-
       </li>
     <% end %>
     </ul>

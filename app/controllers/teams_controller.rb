@@ -4,6 +4,7 @@ class TeamsController < ApplicationController
   end
 
   def new
+    @teams = Team.all
     @team = Team.new
   end
 
@@ -11,8 +12,9 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
     if @team.save
       flash[:success] = 'Team toegevoegd.'
-      redirect_to teams_path
+      redirect_to new_team_path
     else
+      @teams = Team.all      
       render 'new'
     end
   end
@@ -21,7 +23,6 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @team.destroy
   end
-
 
   private
 
