@@ -25,14 +25,16 @@
       <div class="pooldashboard-content">
         <h2>Poule wedstrijden</h2>
 <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
-<table class="table poule">
+<table id="myTable" class="table poule">
           <thead>
             <tr>
-            <th class="groupname" colspan="4">Groep A</th>
-            <th class="default-hide small-show">&nbsp;</th>
-            <th class="default-hide small-show">&nbsp;</th>
-            <th class="default-hide small-show">Uitslag</th>
-            <th>Punten</th>
+              <th>Datum</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th>Punten</th>
             </tr>
           </thead>
           <tbody>
@@ -50,6 +52,7 @@
 
                 <% if henk.present? %>
                 <tr>
+
                <td class="infoshower">
                       <i class="fa fa-question-circle"></i>
                       <div class="infobox hiddeninfo"><%= Team.find(game.team1_id).name %> - <%= Team.find(game.team2_id).name %> <br /> <span><%= game.date.strftime('%C %B') %>, <%= game.time.strftime('%H:%M') %></span></div>
