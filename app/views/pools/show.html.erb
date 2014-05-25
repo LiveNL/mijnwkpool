@@ -30,7 +30,7 @@
 <% if pooladministrator.blank? %>
 
 <% elsif pooladministrator.role == 1 %>
-<%= link_to 'Edit Pool', pools_path, :class => 'green btn'%>
+<%= link_to 'Edit Pool', edit_pool_path, :class => 'green btn'%>
 <% else %>
 opbokken 
 <% end %>
