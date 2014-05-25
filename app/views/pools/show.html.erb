@@ -12,8 +12,12 @@
             <li>
               <div class='view-table'>
                 <a class='grey pool-list-inner view-row'>
-                  <%= link_to User.find(poolmembership.user_id).nickname, user_path(poolmembership.user_id), :class => 'grey pool-list-inner view-row' %> Score: <%= Poolmembership.find(poolmembership.id).score %><br/>
-                  Role: <%= Poolmembership.find(poolmembership.id).role %>
+                  <%= link_to User.find(poolmembership.user_id).nickname, user_path(poolmembership.user_id), :class => 'grey pool-list-inner view-row' %> Score: <%= Poolmembership.find(poolmembership.id).score %><br/> 
+
+                  <% if Poolmembership.find(poolmembership.id).role == 1 %>
+                  Beheerder
+                  <% else %><% end %>
+
                 </a>
               </div>
             </li>
@@ -25,15 +29,14 @@
   <div class='default-0 medium-1-4'>
     <%= render "shared/aside" %>
   </div>
+  
 </div>
-
 <% if pooladministrator.blank? %>
-
 <% elsif pooladministrator.role == 1 %>
 <%= link_to 'Edit Pool', edit_pool_path, :class => 'green btn'%>
 <% else %>
-opbokken 
 <% end %>
+
 
 <%= javascript_tag do %>
   filterHandle();

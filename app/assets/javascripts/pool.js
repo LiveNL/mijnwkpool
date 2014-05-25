@@ -88,7 +88,7 @@ function rangeSlider2() {
   var Link = $.noUiSlider.Link;
 
   $('.rangeslider').noUiSlider({
-    start: [ 5 ],
+    start: [ 45 ],
     step: 5,
     behaviour: 'snap',
     range: {
