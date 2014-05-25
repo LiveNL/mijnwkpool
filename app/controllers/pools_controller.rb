@@ -39,6 +39,10 @@ class PoolsController < ApplicationController
     @pool = Pool.new
   end
 
+  def edit
+    @pool = Pool.find(params[:id])
+  end
+
   def create
     @pool = Pool.new(pool_params)
     if current_user.poolmemberships.count == 3
@@ -56,11 +60,17 @@ class PoolsController < ApplicationController
 
   def show
     @pool = Pool.find(params[:id])
-
   end
 
   def update
+  @pool = Pool.find(params[:id])
+  if @pool.update_attributes(pool_params)
+    redirect_to pools_path
+    flash[:success] = "Succes! '#{@pool.name}' is aangepast!"
+  else
+    render 'edit'
   end
+  end 
 
   def invite
     @pool = Pool.find(params[:id])

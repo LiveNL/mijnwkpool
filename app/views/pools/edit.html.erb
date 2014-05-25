@@ -5,7 +5,7 @@
         <h1>Wedstrijden</h1>
       </div>
       <div class="pooldashboard-content">
-        <%= form_for (@pool) do |f| %>
+        <%= form_for @pool, :url => { :action => "update" } do |f| %>
         <%= f.label :name, 'Name' %>
         <%= f.text_field :name %>
 
