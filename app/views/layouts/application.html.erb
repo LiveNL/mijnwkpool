@@ -39,6 +39,8 @@
       </a>
       <ul>
         <li><%= link_to 'Dashboard', app_root_path %></li>
+        <li><%= link_to 'Mijn Account', user_path(current_user) %></li>
+        <li><%= link_to 'Dashboard', app_root_path %></li>
         <li><%= link_to 'Alle pools', pools_path %></li>
         <li><%= link_to 'Pool aanmaken', new_pool_path %></li>
       </ul>
@@ -57,6 +59,18 @@
         <% else %>
         <ul>
           <li><a>Bij 0 pools aangesloten</a></li>
+        </ul>
+      <% end %>
+      <% if current_user.poolmemberships.count > 0 %>
+        <h3>Mijn voorspellingen</h3>
+        <ul>
+          <% current_user.poolmemberships.each do |pool| %>
+            <li>
+              <%= link_to new_prediction_path(pool_id: pool.pool_id),:class => 'grey' do %>
+                <%= Pool.find(pool.pool_id).name %>
+              <% end %>
+            </li>
+          <% end %>
         </ul>
       <% end %>
     </div>
