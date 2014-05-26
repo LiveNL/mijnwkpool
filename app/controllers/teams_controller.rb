@@ -22,6 +22,8 @@ class TeamsController < ApplicationController
   def destroy
     @team = Team.find(params[:id])
     @team.destroy
+    flash[:success] = 'Team verwijderd.'
+    redirect_to new_team_path
   end
 
   private
