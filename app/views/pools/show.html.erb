@@ -14,7 +14,7 @@
           <% if @poolmember.role == 0 %>
             <a href="#pool<%= @pool.id %>" class="btn red pool-sign-in" rel='modal:open'><i class="fa fa-times"></i> Meld je af bij deze pool</a>
           <% else %>
-            <%= link_to 'Edit Pool', edit_pool_path, :class => 'btn green pool-sign-in'%> <%= fa_icon 'cog' %>
+            <a href="<%= @pool.id %>/edit" class="btn green pool-sign-in"><i class="fa fa-cog"></i> Pool aanpassen</a>
           <% end %>
         <% else %>
           <% if @pool.poolmemberships_count == @pool.maximum_membership %>
