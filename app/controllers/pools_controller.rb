@@ -74,6 +74,15 @@ class PoolsController < ApplicationController
   end
   end
 
+  def destroy
+    @pool = Pool.find(params[:id])
+    @poolmembership = @pool.poolmemberships.where(pool_id: @pool.id)
+    @poolmembership.destroy_all
+    @pool.destroy
+    flash[:success] = 'Pool verwijderd.'
+    redirect_to pools_path    
+  end
+
   def invite
     @pool = Pool.find(params[:id])
   end
