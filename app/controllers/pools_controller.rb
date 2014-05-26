@@ -3,46 +3,29 @@ class PoolsController < ApplicationController
   skip_before_filter :ensure_user, :only => [:show]
 
   def index
+    @openpool = params[:openpool] || '0'
+    @poolspace = params[:poolspace] || '1'
+    @poolsearch = params[:search]
+    @playerssearch1 = params[:playerssearch1] || '5'
+    @playerssearch2 = params[:playerssearch2] || '65'
 
-      openpool = params[:openpool] # "value1"
-      case openpool
-        when '0'
-          @pools = Pool.all
-          if params[:playerssearch1]
-            @pools = Pool.where("maximum_membership >= ? AND maximum_membership <= ?", params[:playerssearch1], params[:playerssearch2])
-          end
-        when '1'
-          @pools = Pool.find_by_sql ["select * from pools where 
-          (maximum_membership >= ? AND maximum_membership <= ?) AND (is_public == ?)", params[:playerssearch1], params[:playerssearch2], true]
-        when '2'
-          @pools = Pool.find_by_sql ["select * from pools where 
-          (maximum_membership >= ? AND maximum_membership <= ?) AND (is_public == ?)", params[:playerssearch1], params[:playerssearch2], false]
-        else
-          @pools = Pool.all
-      
-      @openpool = params[:openpool] || '0'
-      @poolspace = params[:poolspace] || '1'
-      @poolsearch = params[:search]
-      @playerssearch1 = params[:playerssearch1] || '5'
-      @playerssearch2 = params[:playerssearch2] || '65'
+    @pools = Pool.where(
+      maximum_membership: (@playerssearch1..@playerssearch2)
+    )
 
-      @pools = Pool.where(
-        maximum_membership: (@playerssearch1..@playerssearch2)
-      )
+    if @openpool != '0'
+      @pools = @pools.where(is_public: @openpool == '1' ? true : false)
+    end
 
-      if @openpool != '0'
-        @pools = @pools.where(is_public: @openpool == '1' ? true : false)
-      end
+    if @poolspace == '2'
+      @pools = @pools.where("maximum_membership > poolmemberships_count")
+    end
 
-      if @poolspace == '2'
-        @pools = @pools.where("maximum_membership > poolmemberships_count")
-      end
+    if !@poolsearch.nil?
+      @pools = Pool.search(params[:search])
+    end
 
-      if !@poolsearch.nil?
-        @pools = Pool.search(params[:search])
-      end
-
-      @pools = @pools.paginate(:page => params[:page], :per_page => 10)
+    @pools = @pools.paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
@@ -87,7 +70,7 @@ class PoolsController < ApplicationController
   else
     render 'edit'
   end
-  end 
+  end
 
   def invite
     @pool = Pool.find(params[:id])
@@ -99,6 +82,5 @@ class PoolsController < ApplicationController
     params.require(:pool).permit(:name, :image, :is_public, :password,
                                  :password_confirmation,
                                  :maximum_membership, :avatar, :score1, :prediction1)
-
   end
 end
