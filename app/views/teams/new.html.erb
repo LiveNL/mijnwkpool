@@ -10,25 +10,37 @@
             <table class="table admin-add-country">
               <tr>
                 <td>
-                  <%= f.text_field :name, :value => 'naam', :onclick => 'this.select();' %>
+                  <%= f.text_field :name, :placeholder => 'naam', :onclick => 'this.select();' %>
                 </td>
                 <td>
-                  <%= f.text_field :poule, :value => 'poule', :onclick => 'this.select();' %>            
-                <td>
-                  <%= image_tag @team.avatar.url(:mini), id: 'uploadPreview' %>
+                  <%= f.text_field :poule, :placeholder => 'poule', :onclick => 'this.select();' %>            
 
-                  <%= f.file_field :avatar, class: "upload", id: "uploadImage", onchange: "PreviewImage();" %>
-                  <script type="text/javascript">
-                    function PreviewImage() {
-                        var oFReader = new FileReader();
-                        oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
 
-                        oFReader.onload = function (oFREvent) {
-                            document.getElementById("uploadPreview").src = oFREvent.target.result;
-                        };
-                    }
-                  </script>
-                </td>
+<td>
+
+            <div class="avatar">
+              <%= image_tag @team.avatar.url(:thumb), id: 'uploadPreview' %>
+                <%= f.file_field :avatar, class: "upload", id: "uploadImage", onchange: "PreviewImage();" %>
+                
+              <script type="text/javascript">
+                function PreviewImage() {
+                    var oFReader = new FileReader();
+                    oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+                    oFReader.onload = function (oFREvent) {
+                        document.getElementById("uploadPreview").src = oFREvent.target.result;
+                    };
+                }
+              </script>
+            </div>
+          </div>
+</td>
+
+
+
+
+
+
                 <td>
                   <%= f.button 'Voeg team toe', :class => 'green' %>   
                 </td>
@@ -49,6 +61,7 @@
                   <td><%= image_tag team.avatar.url(:mini) %></td>
                   <td><%= team.name %></td>
                   <td><%= team.poule %></td>
+                  <td><%= button_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 </tr>
               <% end %>             </table>
           </div>  

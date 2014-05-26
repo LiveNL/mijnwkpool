@@ -1,3 +1,6 @@
+<% pooladministrator = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
+<% if pooladministrator.blank? %>
+<% elsif pooladministrator.role == 1 %>
 <% title @pool.name %>
 <div class="grid-r">
   <div class="medium-3-4">
@@ -119,3 +122,6 @@
   poolPassword();
   rangeSlider2();
 <% end %>
+<% else %>
+<% end %>
+
