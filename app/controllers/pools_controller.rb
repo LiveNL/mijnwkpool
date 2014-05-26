@@ -3,7 +3,6 @@ class PoolsController < ApplicationController
   skip_before_filter :ensure_user, :only => [:show]
 
   def index
-<<<<<<< HEAD
 
       openpool = params[:openpool] # "value1"
       case openpool
@@ -20,7 +19,7 @@ class PoolsController < ApplicationController
           (maximum_membership >= ? AND maximum_membership <= ?) AND (is_public == ?)", params[:playerssearch1], params[:playerssearch2], false]
         else
           @pools = Pool.all
-=======
+      
       @openpool = params[:openpool] || '0'
       @poolspace = params[:poolspace] || '1'
       @poolsearch = params[:search]
@@ -33,7 +32,6 @@ class PoolsController < ApplicationController
 
       if @openpool != '0'
         @pools = @pools.where(is_public: @openpool == '1' ? true : false)
->>>>>>> origin/bugfixes
       end
 
       if @poolspace == '2'
