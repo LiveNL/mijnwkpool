@@ -67,7 +67,7 @@ class PoolsController < ApplicationController
   def update
   @pool = Pool.find(params[:id])
   if @pool.update_attributes(pool_params)
-    redirect_to pools_path
+    redirect_to "/app/pools/#{@pool.id}"
     flash[:success] = "Succes! '#{@pool.name}' is aangepast!"
   else
     render 'edit'
