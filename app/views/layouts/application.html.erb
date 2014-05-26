@@ -103,7 +103,7 @@
                   <li <%= is_active?(app_root_path) %>><%= link_to 'Dashboard', app_root_path, :class => 'grey' %></li>
                 </li>
                 <% if current_user.poolmemberships.count > 0 %>
-                <li>
+                <li <%= is_active?(pools_path) %>>
                   <a class="grey" href="<%= pools_path %>">Mijn pools&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
                   <ul class="sub-menu">
                     <% current_user.poolmemberships.each do |pool| %>

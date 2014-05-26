@@ -65,7 +65,9 @@
       position: relative;
 
       &:hover{
-        ul.sub-menu {
+        background-color: $color-grey-lighter;
+
+        ul.sub-menu {          
           display:block;
         }
       }
@@ -78,7 +80,6 @@
 
         &:hover {
           background-color: $color-grey-lighter;
-          color: $color-grey-dark;
 
           ul.sub-menu {
             display:block;
@@ -104,6 +105,7 @@
         li{
           width:100%;
           white-space:nowrap;
+          background-color: #FFFFFF;
 
           &:last-child a{
             border-bottom: none;
@@ -115,6 +117,7 @@
             line-height: 10px;
             color:$color-grey-light;
             border-bottom: 1px solid $color-grey-light;
+          background-color: #FFFFFF;
 
             &:hover{
               background-color: #FFF;
