@@ -1,8 +1,9 @@
 class PoolsController < ApplicationController
-  require 'will_paginate/array' 
+  require 'will_paginate/array'
   skip_before_filter :ensure_user, :only => [:show]
 
   def index
+<<<<<<< HEAD
 
       openpool = params[:openpool] # "value1"
       case openpool
@@ -19,24 +20,40 @@ class PoolsController < ApplicationController
           (maximum_membership >= ? AND maximum_membership <= ?) AND (is_public == ?)", params[:playerssearch1], params[:playerssearch2], false]
         else
           @pools = Pool.all
+=======
+      @openpool = params[:openpool] || '0'
+      @poolspace = params[:poolspace] || '1'
+      @poolsearch = params[:search]
+      @playerssearch1 = params[:playerssearch1] || '5'
+      @playerssearch2 = params[:playerssearch2] || '65'
+
+      @pools = Pool.where(
+        maximum_membership: (@playerssearch1..@playerssearch2)
+      )
+
+      if @openpool != '0'
+        @pools = @pools.where(is_public: @openpool == '1' ? true : false)
+>>>>>>> origin/bugfixes
       end
-      poolspace = params[:poolspace] # "value1"
-      case poolspace 
-        when '1'
-        when '2'
-          @pools = Pool.find_by_sql ["select * from pools p where 
-            (maximum_membership >= ? AND maximum_membership <= ?) AND 
-            p.maximum_membership > (select count(*) from poolmemberships pm where pm.pool_id = p.id )", 
-            params[:playerssearch1], params[:playerssearch2]]  
-        else
+
+      if @poolspace == '2'
+        @pools = @pools.where("maximum_membership > poolmemberships_count")
       end
-      if !params[:search].nil?
+
+      if !@poolsearch.nil?
         @pools = Pool.search(params[:search])
       end
+
+      @pools = @pools.paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
-    @pool = Pool.new
+    if current_user.poolmemberships.count == 5
+      flash[:error] = 'Je zit al in 5 pools.'
+      redirect_to :back
+    else
+      @pool = Pool.new
+    end
   end
 
   def edit
@@ -45,9 +62,9 @@ class PoolsController < ApplicationController
 
   def create
     @pool = Pool.new(pool_params)
-    if current_user.poolmemberships.count == 3
-      flash[:error] = 'Je zit al in 3 pools.'
-      redirect_to pools_path
+    if current_user.poolmemberships.count == 5
+      flash[:error] = 'Je zit al in 5 pools.'
+      redirect_to :back
     else
       if @pool.save
         @pool.poolmemberships.create(user: current_user, role: 1)
@@ -60,6 +77,11 @@ class PoolsController < ApplicationController
 
   def show
     @pool = Pool.find(params[:id])
+<<<<<<< HEAD
+=======
+    @my_pool = @pool.users.where(id: current_user.id).count > 0 ? true : false
+    @poolmember = @pool.poolmemberships.where(user_id: current_user.id).first
+>>>>>>> origin/bugfixes
   end
 
   def update

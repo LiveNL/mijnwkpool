@@ -27,7 +27,7 @@
           <% else %>
             <div class="form-field error">
           <% end %>
-            <%= f.label :email %>
+            <%= f.label :email, 'E-mail' %>
             <%= f.text_field :email %>
             <span>
             	<% if @user.errors.any? %>
@@ -78,7 +78,19 @@
             </span>
           </div>
 
-<!--           <div class="form-field">
+          <div class="form-field">
+            <label for="#">Aanmelden voor de nieuwsbrief?</label>
+            <div class="checkbox">
+              <%= f.radio_button :subscribed, true, checked: true %>
+              <%= f.label :subscribed, 'Ja', value: true %>
+            </div>
+            <div class="checkbox">
+              <%= f.radio_button :subscribed, false, checked: false  %>
+              <%= f.label :subscribed, 'Nee', value: false %>
+            </div>
+          </div>
+
+          <!-- <div class="form-field">
             <p>Door op aanmelden te klikken ga je akkoord met de <a href="#">gebuikersvoorwaarden</a> en het <a href="">privacybeleid</a> van mijnwkpool.</p>
           </div> -->
 

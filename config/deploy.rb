@@ -1,10 +1,14 @@
 # config valid only for Capistrano 3.1
-lock '3.1.0'
+lock '3.2.1'
 
 set :application, 'Mijn_Wk_Pool'
 set :repo_url, 'git@github.com:LiveNL/mijnwkpool.git'
 
+<<<<<<< HEAD
 set :branch, 'beta2'
+=======
+set :branch, 'bugfixes'
+>>>>>>> origin/bugfixes
 set :deploy_to, '/var/www/mijnwkpool.com/test'
 set :scm, :git
 set :use_sudo, false
@@ -25,7 +29,7 @@ set :rbenv_roles, :all
 
 set :rails_env, 'production'
 
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/application.yml}
 set :linked_dirs, %w{bin log tmp vendor/bundle public/system}
 
 # Add this to the settings section at the top:

@@ -14,10 +14,10 @@ class Pool < ActiveRecord::Base
             length: {
               minimum: 3,
               maximum: 35,
-              message: '* De pool naam moet tussen 3-35 karakters hebben.'
+              message: '* De poolnaam moet tussen 3-35 karakters hebben.'
             },
             uniqueness: {
-              message: '* Deze pool naam is al bezet.'
+              message: '* Deze poolnaam is al bezet.'
             },
             format: {
               with: /\A(([a-zA-Z0-9]+[-_'\s]{0,1})+)\z/,
@@ -32,10 +32,10 @@ class Pool < ActiveRecord::Base
             allow_blank: false,
             length: {
               minimum: 5,
-              message: '* Het wachtwoord moet minimaal 5 karakters!'
+              message: '* Het wachtwoord moet minimaal 5 karakters zijn.'
             },
             confirmation: {
-              message: '* De wachtwoorden komen niet overeen!'
+              message: '* De wachtwoorden komen niet overeen.'
             }
 
   # Avatar
@@ -47,8 +47,6 @@ class Pool < ActiveRecord::Base
                       mini: '70x50#'
                     },
                     default_url: 'pool/:style/missing.png'
-
-  p "Henk"
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   before_post_process :check_file_size
@@ -77,20 +75,10 @@ class Pool < ActiveRecord::Base
     end
   end
 
-  def self.verbergen
-    Pool.find_by_sql "select *
-    from Pools p
-    where p.maximum_membership >
-    (
-    select count(*)
-    from poolmemberships pm
-    where pm.pool_id = p.id
-    )
-    "
-  end
-
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
-    where("name like ?", "%#{query}%") 
+    # where("name like ?", "%#{query}%")
+    t = self.arel_table
+    where(t[:name].matches("%#{query}%"))
   end
 end

@@ -2,7 +2,7 @@
 <div class="grid-r">
   <div class="medium-3-4">
     <div class="box">
-      <%= form_for Pool.new, html: { multipart: true } do |f| %>
+      <%= form_for Pool.new, html: { multipart: true, autocomplete: "off" } do |f| %>
         <div class="steps">
           <div class="step active">
             1. <span class="default-hide small-show">Pool informatie</span>
@@ -47,7 +47,8 @@
                 <div class="form-field error">
               <% end %>
                 <%= f.label :name, 'Pool naam' %>
-                <%= f.text_field :name %>
+                <input type="text" style='display:none' />
+                <%= f.text_field :name, autocomplete: "off" %>
                 <span>
                   <% if @pool.errors.any? %>
                     <%= @pool.errors[:name].to_sentence(words_connector: '<br />', two_words_connector: '<br />', last_word_connector: '<br />').html_safe %>
@@ -87,8 +88,10 @@
                 <% else %>
                   <div class="form-field error">
                 <% end %>
+
                   <%= f.label :password, 'Wachtwoord' %>
-                  <%= f.password_field :password %>
+                  <input type="password" style='display:none' />
+                  <%= f.password_field :password, autocomplete: "off" %>
                   <span>
                     <% if @pool.errors.any? %>
                       <%= @pool.errors[:password].to_sentence(two_words_connector: '<br />').html_safe %>
@@ -102,7 +105,7 @@
                   <div class="form-field error">
                 <% end %>
                   <%= f.label :password_confirmation, 'Wachtwoord herhalen' %>
-                  <%= f.password_field :password_confirmation %>
+                  <%= f.password_field :password_confirmation, autocomplete: "off" %>
                   <span>
                     <% if @pool.errors.any? %>
                       <%= @pool.errors[:password_confirmation].to_sentence(two_words_connector: '<br />').html_safe %>

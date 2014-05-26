@@ -6,8 +6,9 @@ Wkpool::Application.routes.draw do
     post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'   
     get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'    
   end
-    
   resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets
+
   get 'logout' => 'sessions#destroy', :as => 'log_out'
   get 'login' => 'sessions#new', :as => 'log_in'
   get 'register' => 'users#new', :as => 'register'
@@ -15,7 +16,6 @@ Wkpool::Application.routes.draw do
   get 'app' => 'users#dashboard', :as => 'app_root'
 
   root  'pages#home'
-
 
   get 'ping' => proc { |env| [200, {}, ['pong']] }
 

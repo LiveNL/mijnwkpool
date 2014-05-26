@@ -29,7 +29,6 @@
           </div>
         </div>
       </div>
-      <script>flashMessage();</script>
     </div>
   <% end %>
 
@@ -115,8 +114,8 @@
         <% else %>
           <div class="sessionsbtn">
             <ul>
-              <li><a class="grey" href="<%= url_for log_in_path %>"><i class="fa fa-sign-in"></i>  Login</a></li>
-              <li><a class="grey" href="<%= url_for register_path %>"><i class="fa fa-pencil-square-o"></i>  Registreren</a></li>
+              <li <%= is_active?(log_in_path) %>><a class="grey" href="<%= url_for log_in_path %>"><i class="fa fa-sign-in"></i>  Login</a></li>
+              <li <%= is_active?(register_path) %>><a class="grey" href="<%= url_for register_path %>"><i class="fa fa-pencil-square-o"></i>  Registreren</a></li>
               <li class="default-hide medium-show"><a class="grey" href="mailto:info@mijnwkpool.com"><i class="fa fa-envelope-o"></i>  info@mijnwkpool.com</a></li>
             </ul>
           </div>
@@ -130,6 +129,7 @@
     </div>
   </div>
   <script>menuButton();</script>
+  <script>flashMessage();</script>
   <%= render 'shared/footer' %>
 </body>
 </html>

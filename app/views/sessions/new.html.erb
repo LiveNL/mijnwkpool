@@ -9,7 +9,7 @@
       <div class="login-form">
         <%= form_for(:session, url: sessions_path) do |f| %>
           <div class="form-field login">
-            <%= f.text_field :email, :placeholder => 'Email' %>
+            <%= f.text_field :email, :placeholder => 'E-mail' %>
             <%= f.password_field :password, :placeholder => 'Wachtwoord'%>
           </div>
 
@@ -18,8 +18,11 @@
               <%= f.submit "Login", :class => 'btn green fullwidth' %>
             </div>
             <div class='default-1 small-1-2'>
-              <%= link_to 'Ik heb nog geen account', '/register', :class => 'btn grey fullwidth' %>
+              <%= link_to 'Registreren', register_path, :class => 'btn grey fullwidth' %>
             </div>
+          </div>
+          <div class="form-field">
+            <%= link_to 'Wachtwoord vergeten?', new_password_reset_path %>
           </div>
         <% end %>
       </div>
