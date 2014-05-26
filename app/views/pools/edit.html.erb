@@ -1,4 +1,5 @@
 <% title @pool.name %>
+<% if @poolmember.role == 1 %>
 <div class="grid-r">
   <div class="medium-3-4">
     <div class="box">
@@ -44,7 +45,7 @@
               </div>
 
               <div class="form-field">
-                <label>Maximaal aantal spelers</label>
+                <label>Maximaal aantal spelers vergroten</label>
                 <div class='slider'>
                   <div class='minmax'>
                     <div class='mintext'></div>
@@ -114,8 +115,13 @@
     <%= render "shared/aside" %>
   </div>
 </div>
-
 <%= javascript_tag do %>
   poolPassword();
-  rangeSlider2();
+  rangeSlider2(<%= @pool.maximum_membership %>, <%= @pool.poolmemberships_count %>);
+<% end %>
+<% else %>
+Sp&#228;ter!
+  <script type="text/javascript">
+    window.location.href="/app/"
+  </script>
 <% end %>

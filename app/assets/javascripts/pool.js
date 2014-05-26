@@ -84,15 +84,15 @@ function rangeSlider(minus,maxus) {
     }
   });
 }
-function rangeSlider2() {
+function rangeSlider2(minus, startus) {
   var Link = $.noUiSlider.Link;
 
   $('.rangeslider').noUiSlider({
-    start: [ 45 ],
+    start: [ startus ],
     step: 5,
     behaviour: 'snap',
     range: {
-      'min': 5,
+      'min': minus,
       'max': 65
     },
     connect: 'lower',
