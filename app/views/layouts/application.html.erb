@@ -104,7 +104,7 @@
                 </li>
                 <% if current_user.poolmemberships.count > 0 %>
                 <li>
-                  <a class="grey" href="#">Mijn pools&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+                  <a class="grey" href="<%= pools_path %>">Mijn pools&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
                   <ul class="sub-menu">
                     <% current_user.poolmemberships.each do |pool| %>
                       <li>
