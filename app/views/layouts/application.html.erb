@@ -2,8 +2,18 @@
 <html>
 <head>
   <title>mijnwkpool - <%= yield(:title) %></title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+    <script type="text/javascript">
+      $(document).ready(function() 
+      { 
+          $("#myTable").tablesorter( {sortList: [[1,0], [0,0]]} ); 
+      } 
+  ); 
+    </script>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= favicon_link_tag 'favicon.ico' %>
@@ -76,6 +86,10 @@
               <ul>
                 <li <%= is_active?(app_root_path) %>><%= link_to 'Dashboard', app_root_path, :class => 'grey' %></li>
                 <li <%= is_active?(pools_path) %>><%= link_to 'Alle pools', pools_path, :class => 'grey' %></li>
+                <% if current_user.admin == true %>
+                  <li <%= is_active?(games_path) %>><%= link_to 'Games', games_path, :class => 'grey' %></li>
+                  <li <%= is_active?(teams_path) %>><%= link_to 'Teams', new_team_path, :class => 'grey' %></li>
+                <% end%>
               </ul>
             </div>
             <div class="medium-hide">

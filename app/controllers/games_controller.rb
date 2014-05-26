@@ -1,21 +1,59 @@
 class GamesController < ApplicationController
+    before_action :set_game, only: [:show, :edit, :update, :destroy]
+
   def index
-    @games = Game.find(1)
-    @predictions = Prediction.all
+    @game = Game.new    
+    @games = Game.all
+    @teams = Team.all
+  end
+
+  def new
+    @game = Game.new
+  end
+  # GET /games/1/edit
+  def edit
+  end
 
 
-end
-
-
-def mmyes
-    if @games.score1 == @predictions.score1 && @games.score2 == @predictions.score2
-      puts '+10 punten'
-    elsif @games.score2 == @predictions.score2
-      puts '+8 punten'
-    elsif @games.score1 == @predictions.score1
-      puts '+5 punten'
+  def create
+    @game = Game.new(game_params)
+    @game.gametype = (params[:gametype])
+    @game.team1_id = (params[:team1_id]) 
+    @game.team2_id = (params[:team2_id])
+    if @game.save
+      flash[:success] = 'Game toegevoegd.'
+      redirect_to games_path
     else
-      puts '+0 punten'
+      render 'new'
     end
+  end
+
+  # PATCH/PUT /scores/1
+  # PATCH/PUT /scores/1.json
+  def update
+    respond_to do |format|
+      if @game.update(game_params)
+        format.html { redirect_to games_path, notice: 'Score was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @game.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # def destroy
+  #   @game = Game.find(params[:id])
+  #   @game.destroy
+  # end
+
+private
+    # Use callbacks to share common setup or constraints between actions.
+  def set_game
+    @game = Game.find(params[:id])
+  end
+
+  def game_params
+    params.require(:game).permit(:score1, :score2, :team1_id, :team2_id, :gametype, :date, :time)
   end
 end

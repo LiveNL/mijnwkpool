@@ -1,0 +1,58 @@
+  <div class="grid-r">
+    <div class="medium-4-4">
+      <div class="box">
+        <form accept-charset="UTF-8" action="/app/teams" class="new_team" enctype="multipart/form-data" id="new_team" method="post">
+          <div class="content-header">
+            <h1>Teams</h1>
+          </div>         
+          <div class="pooldashboard-content">
+            <%= form_for @team do |f| %>
+            <table class="table admin-add-country">
+              <tr>
+                <td>
+                  <%= f.text_field :name, :value => 'naam', :onclick => 'this.select();' %>
+                </td>
+                <td>
+                  <%= f.text_field :poule, :value => 'poule', :onclick => 'this.select();' %>            
+                <td>
+                  <%= image_tag @team.avatar.url(:mini), id: 'uploadPreview' %>
+
+                  <%= f.file_field :avatar, class: "upload", id: "uploadImage", onchange: "PreviewImage();" %>
+                  <script type="text/javascript">
+                    function PreviewImage() {
+                        var oFReader = new FileReader();
+                        oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+                        oFReader.onload = function (oFREvent) {
+                            document.getElementById("uploadPreview").src = oFREvent.target.result;
+                        };
+                    }
+                  </script>
+                </td>
+                <td>
+                  <%= f.button 'Voeg team toe', :class => 'green' %>   
+                </td>
+              <tr>
+            </table> 
+            <% end %>
+            </form>
+            </br>
+            <table>
+              <tr>
+                <th>Afbeelding</th>
+                <th>Naam</th>
+                <th>Poule</th>
+                <th>Verwijder</th>
+              </tr>
+              <% @teams.each do |team| %>
+                <tr class="eventlist1"> 
+                  <td><%= image_tag team.avatar.url(:mini) %></td>
+                  <td><%= team.name %></td>
+                  <td><%= team.poule %></td>
+                </tr>
+              <% end %>             </table>
+          </div>  
+      </div>
+    </div>
+  </div>
+</div>

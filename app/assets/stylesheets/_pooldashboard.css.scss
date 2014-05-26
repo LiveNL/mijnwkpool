@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .pooldashboard-content {
   padding: 0px;
   
@@ -18,3 +19,25 @@
 		width: auto;
 	}
 }
+=======
+.pooldashboard-content {
+  padding: 0px;
+  
+  	h2{
+  		padding: 10px;
+	}
+  
+  @include respond-to(small) 
+  {
+    padding: 30px;
+  }
+}
+
+.pool-sign-in {
+	width: 100%;
+	@include respond-to(small) {
+		float: right;
+		width: auto;
+	}
+}
+>>>>>>> origin/bugfixes

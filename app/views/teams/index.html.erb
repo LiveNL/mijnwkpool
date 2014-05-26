@@ -1,0 +1,24 @@
+<%= link_to 'New template', new_team_path %><br/>
+
+
+<table>
+    <tr>
+      <th>Afbeelding</th>
+      <th>Naam</th>
+      <th>Poule</th>
+      <th>opbokken</th>
+    </tr>
+
+    <% @teams.each do |team| %>
+      <tr class="eventlist1"> 
+        <td>
+          <%= image_tag team.avatar.url(:thumb) %>    
+        </td>
+        <td><%= team.name %></td>
+        <td><%= team.poule %></td>
+
+        <td><%= button_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+</table>
+

@@ -1,0 +1,83 @@
+    @current_pool = Poolmembership.find(:conditions => {:user_id => current_user.id, :pool_id => @pool.id})
+		<%= f.hidden_field :poolmembership_id, :value => @poolmembership.current_user.find(session[:user_id]) %>
+    <%= Poolmembership.all(:conditions => {:user_id => current_user.id, :pool_id => @pool.id}) %>
+
+
+    <% @pool.each do |pool| %>
+     <%= @poolmemberships = Poolmembership.where(:user_id => current_user.id, :pool_id => pool.id) %>
+      <%= @poolmembership = @poolmemberships.find(poolmembership_id) %>
+
+      <%= f.hidden_field :poolmembership_id, :value =>  @poolmembership %>
+    <% end %>    
+
+    @features = Feature.where('featured_at < ?', Time.now).order('featured_at ASC')
+@feature = @features.find(feature_id)
+
+
+     <% @pool.each do |pool| %>
+      <%= @poolmemberships = Poolmembership.where(:user_id => current_user.id, :pool_id => pool.id) %>
+      <%= @poolmembership = @poolmemberships.find(params[:id]) %>
+
+      <%= f.hidden_field :poolmembership_id, :value =>  @poolmembership %>
+    <% end %>                   
+
+
+                  <% @game.each do |game| %>
+                  <tr>
+                    <td><%= Team.find(game.team1_id).name %></td>
+                    <td>                  
+                      <% if game.score1 == nil && game.score2 == nil %>
+                        x - x
+                      <% else %>
+                        <%= game.score1 %> - <%= game.score2 %>
+                      <% end %>
+                    </td>
+                    <br>
+                    <td><%= Team.find(game.team2_id).name %></td>
+                    <td><%= form_for Prediction.new, html: { multipart: true } do |f| %>
+                        <% @pool.each do |pool| %>
+                          <%= f.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, pool.id).id %>
+                        <% end %>
+
+                          <%= f.hidden_field :game_id, :value => game.id %>
+                          <%= f.label :prediction1, 'prediction 1' %>
+                          <%= f.number_field :prediction1 %>
+                          <%= f.label :prediction2, 'prediction 2' %>
+                    </td>                  
+                  </tr>
+                <% end %>                             
+              <% end %>
+
+
+                            <%= hidden_field_tag :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, pool.id).id %>
+
+                                          <%= hidden_field_tag :game_id, :value => game.id %>
+
+
+
+                                                prediction.prediction1 =  p(params[:prediction1])
+      prediction.prediction2 = {:prediction2 => "prediction"}
+
+          prediction.prediction1 = p.prediction1
+
+
+
+                <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
+                  <% @predictions.each_with_index do |prediction, index| %>
+                    <%= fields_for "predictions[#{index}]", prediction do |p| %>
+                      <% @pool.each do |pool| %>
+                        <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, pool.id).id %>
+                      <% end %> 
+
+                      <% @game.each do |game| %>
+                        <%= hidden_field_tag :game_id, :value => game.id %>
+                      <% end %>
+
+                      <%= p.label :prediction1, 'prediction 1' %>
+                      <%= p.number_field :prediction1 %>
+                      <%= p.label :prediction2, 'prediction 2' %>
+                      <%= p.number_field :prediction2 %>
+                    <% end %>
+                  <% end %>
+                  <%= submit_tag 'Sign In' %>
+                <% end %>           

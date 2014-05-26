@@ -7,6 +7,7 @@
 }
 .view-row > div {
     display: table-cell;
+    vertical-align: middle;
 }
 
 table {
@@ -57,9 +58,6 @@ table {
 
   &.rank {
     tbody > tr {
-      & > td a {
-        color: $color-grey-dark;
-      }
       & > td:first-child {
         color: $color-grey-medium;
         text-align: center;
@@ -75,10 +73,6 @@ table {
 
         & > td {
           color: #FFF;
-
-          & a {
-            color: #FFF;
-          }
         }
       }
     }
@@ -124,15 +118,7 @@ table {
   }
 
   .flag {
-    background-position: center center;
-    background-repeat: no-repeat;
+    padding: 0;
     width: 70px;
-
-    &.brasil {
-      background-image: image_url('brasil.png');
-    }
-    &.kroatie {
-      background-image: image_url('kroatie.png');
-    }
   }
 }

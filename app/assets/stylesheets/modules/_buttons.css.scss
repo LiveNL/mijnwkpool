@@ -64,6 +64,18 @@ button,
   }
 
   &.red {
+<<<<<<< HEAD
+    box-shadow: 0 3px 0 0 $color-red-dark;
+    background-color: $color-red-light;
+    color: #FFF;
+    &:hover,
+      &:active {
+      background-color: $color-red-dark;
+      color: #FFF;
+    }
+  }
+  
+=======
     @include btnboxshadow($color-red-dark);
     background-color: $color-red-light;
     color: #FFF;
@@ -84,6 +96,7 @@ button,
       background-color: $color-grey-darker;
     }
   }
+>>>>>>> origin/bugfixes
 
   &.fullwidth {
     width: 100%;
@@ -106,5 +119,4 @@ button,
       width: 100%;
     }
   }
-
 }

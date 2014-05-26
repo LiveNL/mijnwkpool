@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519115248) do
 
   create_table "games", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "score1"
     t.integer  "score2"
+    t.string   "gametype"
+    t.date     "date"
+    t.time     "time"
+    t.integer  "team1_id"
+    t.integer  "team2_id"
   end
 
   create_table "poolmemberships", force: true do |t|
@@ -26,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140519115248) do
     t.integer  "role"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "score",      default: 0
   end
 
   create_table "pools", force: true do |t|
@@ -45,8 +50,25 @@ ActiveRecord::Schema.define(version: 20140519115248) do
   create_table "predictions", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "score1"
-    t.integer  "score2"
+    t.integer  "team1_id"
+    t.integer  "team2_id"
+    t.integer  "prediction1",       default: 0
+    t.integer  "prediction2",       default: 0
+    t.integer  "game_id"
+    t.integer  "poolmembership_id"
+    t.integer  "pointsgiven",       default: 0
+    t.integer  "pointsearned",      default: 0
+  end
+
+  create_table "teams", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "poule"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "users", force: true do |t|
