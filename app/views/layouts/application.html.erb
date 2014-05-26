@@ -43,6 +43,7 @@
         <li><%= link_to 'Dashboard', app_root_path %></li>
         <li><%= link_to 'Alle pools', pools_path %></li>
         <li><%= link_to 'Pool aanmaken', new_pool_path %></li>
+        <li><%= link_to 'Uitloggen', log_out_path %></li>
       </ul>
 
       <% if current_user.poolmemberships.count > 0 %>
