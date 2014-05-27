@@ -3,15 +3,17 @@
   <div class="medium-3-4">
     <div class="box">
       <%= form_for Pool.new, html: { multipart: true, autocomplete: "off" } do |f| %>
-        <div class="steps">
-          <div class="step active">
-            1. <span class="default-hide small-show">Pool informatie</span>
-          </div>
-          <div class="step">
-            2. <span class="default-hide small-show">Bevestigen</span>
-          </div>
-          <div class="step">
-            3. <span class="default-hide small-show">Vrienden uitnodigen</span>
+        <div class="pool-step">
+          <div class="steps">
+            <div class="step active">
+              1. <span class="default-hide small-show">Pool informatie</span>
+            </div>
+            <div class="step">
+              2. <span class="default-hide small-show">Bevestigen</span>
+            </div>
+            <div class="step">
+              3. <span class="default-hide small-show">Vrienden uitnodigen</span>
+            </div>
           </div>
         </div>
 

@@ -2,7 +2,7 @@ class GamesController < ApplicationController
     before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   def index
-    @game = Game.new    
+    @game = Game.new
     @games = Game.all
     @teams = Team.all
   end
@@ -18,7 +18,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.gametype = (params[:gametype])
-    @game.team1_id = (params[:team1_id]) 
+    @game.team1_id = (params[:team1_id])
     @game.team2_id = (params[:team2_id])
     if @game.save
       flash[:success] = 'Game toegevoegd.'
@@ -55,6 +55,6 @@ private
   end
 
   def game_params
-    params.require(:game).permit(:score1, :score2, :team1_id, :team2_id, :gametype, :date, :time)
+    params.require(:game).permit(:score1, :score2, :team1_id, :team2_id, :gametype, :date, :time, :poule)
   end
 end

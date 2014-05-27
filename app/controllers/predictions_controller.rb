@@ -5,35 +5,32 @@ class PredictionsController < ApplicationController
     @pool = Pool.find(params[:pool_id])
     @games = Game.all
     @predictions = Prediction.all
-  end 
+  end
 
   def new
     @pool = Pool.find(params[:pool_id])
-    @games = Game.all
-    @predictions = Prediction.all
+    @games = Game.order(:poule)
+    # @predictions = Prediction.all
+    @gamelist = @games.group_by { |t| t.poule }
   end
 
   def create
-  	@predictions = Prediction.new(prediction_params)
-  	 	if @prediction.save
-        redirect_to app_root_path
-      else
-        render 'new'
-      end
-	end
+    @predictions = Prediction.new(prediction_params)
+    if @prediction.save
+      redirect_to app_root_path
+    else
+      render 'new'
+    end
+  end
 
   def create_multiple_predictions
-    params[:predictions].each do |k,v|
-      prediction = Prediction.new
-      prediction.prediction1 = v['prediction1']
-      prediction.prediction2 = v['prediction2']
-      prediction.poolmembership_id = v['poolmembership_id']
-      prediction.game_id = v['game_id']
+    params[:predictions].each do |k, v|
+      prediction = Prediction.new(v)
       prediction.save
     end
     redirect_to app_root_path
   end
- 
+
   def edit
   end
 
@@ -45,7 +42,7 @@ class PredictionsController < ApplicationController
 
   def update
     @prediction = Prediction.find(params[:id])
-    @prediction.update_attributes(params.require(:prediction).permit(:prediction, :id, :score1, :game, :prediction1, :prediction2, :game_id, :poolmembership_id, :pool_id))
+    @prediction.update_attributes(prediction_params)
     respond_with @prediction
   end
 
@@ -54,16 +51,13 @@ class PredictionsController < ApplicationController
     @predictions = Prediction.all
   end
 
-
   private
+
   def find_poolmembership
     @poolmembership ||= Poolmembership.find(params[:poolmembership_id])
-  end      
+  end
 
   def prediction_params
-    params.require(:prediction).permit(:prediction, :id, :score1, :game, :prediction1, :prediction2, :game_id, :poolmembership_id, :pool_id)
+    params.require(:prediction).permit(:prediction, :id, :score1, :game, :prediction1, :prediction2, :game_id, :poolmembership_id, :pool_id, :team1_id, :team2_id)
   end
 end
-
-
-   
