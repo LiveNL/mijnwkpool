@@ -44,11 +44,11 @@
                   <% team2 = Team.find(game.team2_id) %>
 
                   <%= fields_for "predictions[#{index}#{index2}]", Prediction.new do |p| %>
+                    <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+                    <%= p.hidden_field :game_id, :value => game.id %>
+                    <%= p.hidden_field :team1_id, :value => game.team1_id %>
+                    <%= p.hidden_field :team2_id, :value => game.team2_id %>
                     <tr>
-                      <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
-                      <%= p.hidden_field :game_id, :value => game.id %>
-                      <%= p.hidden_field :team1_id, :value => game.team1_id %>
-                      <%= p.hidden_field :team2_id, :value => game.team2_id %>
                       <td class="infoshower">
                         <i class="fa fa-question-circle"></i>
                         <div class="infobox hiddeninfo">
