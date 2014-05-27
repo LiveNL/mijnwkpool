@@ -23,18 +23,25 @@ class PredictionsController < ApplicationController
 	end
 
   def create_multiple_predictions
-    params[:predictions].each do |k,v|
+    if params[:predictions].present? 
+      params[:predictions].each do |k,v|
       prediction = Prediction.new
       prediction.prediction1 = v['prediction1']
       prediction.prediction2 = v['prediction2']
       prediction.poolmembership_id = v['poolmembership_id']
       prediction.game_id = v['game_id']
       prediction.save
+      redirect_to pouleeindstanden_path
     end
-    redirect_to app_root_path
+    else
+      redirect_to pouleeindstanden_path
+    end
   end
  
   def edit
+  end
+
+  def pouleeindstanden
   end
 
   def show

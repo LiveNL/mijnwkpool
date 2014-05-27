@@ -4,7 +4,8 @@ Wkpool::Application.routes.draw do
     get 'pools/:id/invite' => 'pools#invite', :as => 'invite_pool'
     resources :pools, :users, :poolmemberships, :games, :predictions, :teams
     post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'   
-    get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'    
+    get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'
+    get 'pouleeindstanden' => 'predictions#pouleeindstanden', :as => 'pouleeindstanden'    
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
