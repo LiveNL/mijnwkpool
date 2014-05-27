@@ -103,17 +103,13 @@
                   <li <%= is_active?(app_root_path) %>><%= link_to 'Dashboard', app_root_path, :class => 'grey' %></li>
                 </li>
                 <% if current_user.poolmemberships.count > 0 %>
-
-<% if current_page?(controller: 'pools', action: 'index') %>
-<li class="active">
-<% elsif current_page?(controller: 'pools', action: 'show', id: params[:id] || 0) %>
-<li class="active">
-<% else %>
-<li>
-<% end %>
-     
-
-
+                <% if current_page?(controller: 'pools', action: 'index') %>
+                  <li class="active">
+                <% elsif current_page?(controller: 'pools', action: 'show', id: params[:id] || 0) %>
+                  <li class="active">
+                <% else %>
+                  <li>
+                <% end %>
                   <a class="grey" href="<%= pools_path %>">Mijn pools&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
                   <ul class="sub-menu">
                     <% current_user.poolmemberships.each do |pool| %>
@@ -156,14 +152,22 @@
 
         <% if current_user %>
           <div class="nav-user-options">
-            <a href="<%= url_for users_path%>/<%=(current_user.id) %>" class="grey nav-user-btn">
-              <div class="user-name">
-                <%= current_user.nickname %>
-              </div>
+            <a href="<%= url_for user_path(current_user) %>" class="grey nav-user-btn nav-user-name">
               <div class="user-icon">
                 <i class="fa fa-user"></i>
               </div>
-            </a> <%= link_to 'Log uit', log_out_path, :class => 'grey nav-user-btn' %>
+              <div class="user-name">
+                <%= current_user.nickname %>
+              </div>
+            </a>
+            <a href="<%= url_for log_out_path %>" class="grey nav-user-btn">
+              <div class="user-icon">
+                <i class="fa fa-sign-out"></i>
+              </div>
+              <div class="user-name">
+                Uitloggen
+              </div>
+            </a>
           </div>
         <% else %>
           <div class="sessionsbtn">
