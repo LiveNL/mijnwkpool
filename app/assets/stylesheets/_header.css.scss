@@ -2,7 +2,7 @@
   background: #FFF;
   box-shadow: 0 3px 0 $color-grey-light;
   left: 0;
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   z-index: 10;
@@ -67,7 +67,7 @@
       &:hover{
         background-color: $color-grey-lighter;
 
-        ul.sub-menu {          
+        ul.sub-menu {
           display:block;
         }
       }
@@ -102,7 +102,7 @@
         border-bottom: 3px solid $color-grey-light;
 
 
-        li{
+        li {
           width:100%;
           white-space:nowrap;
           background-color: #FFFFFF;
@@ -129,49 +129,26 @@
             }
           }
         }
-      }
 
-      &:nth-child(2){
-        ul.sub-menu {
-          &:before {
-            width: 0;
-            height: 0;
-            border-left: 7px solid transparent;
-            border-right: 7px solid transparent;
-            border-bottom: 7px solid #FFF;
-            content: "";
-            display: block;
-            margin-top: -7px;
-            margin-left:60px;
-            position: absolute;
-            top: 0;
-            width: 0;
-          }
+        &:before {
+          width: 0;
+          height: 0;
+          border-left: 7px solid transparent;
+          border-right: 7px solid transparent;
+          border-bottom: 7px solid #FFF;
+          content: "";
+          display: block;
+          margin-top: -7px;
+          margin-left:90px;
+          position: absolute;
+          top: 0;
+          width: 0;
         }
       }
-
-      &:nth-child(3){
-        ul.sub-menu {
-          &:before {
-            width: 0;
-            height: 0;
-            border-left: 7px solid transparent;
-            border-right: 7px solid transparent;
-            border-bottom: 7px solid #FFF;
-            content: "";
-            display: block;
-            margin-top: -7px;
-            margin-left:90px;
-            position: absolute;
-            top: 0;
-            width: 0;
-          }
-        }
-      }
-
     }
   }
 }
+
 .nav-btn {
   border: 1px solid $color-grey-light;
   color: $color-grey-dark;
@@ -187,11 +164,9 @@
   top: 15px;
 
   @include respond-to(small) {
-    border: none;
     right: 20px;
     top: 30px;
   }
-
 
   .nav-user-btn {
     display: table-cell;
@@ -202,10 +177,9 @@
     width: 40px;
     border:1px solid $color-grey-light;
 
-    @include respond-to(small) {
+    @include respond-to(large) {
       width: auto;
-      padding-left: 10px;
-      border:0;
+      padding: 0 10px;
     }
 
     & + .nav-user-btn {
@@ -213,17 +187,31 @@
     }
   }
 
+  .nav-user-name {
+    @include respond-to(small) {
+      padding: 0 10px;
+      width: auto;
+
+      .user-name {
+        display: inline-block;
+      }
+
+      .user-icon {
+        display: inline-block;
+      }
+    }
+  }
+
   .user-icon {
     margin-left: 0;
-    @include respond-to(small) {
+    @include respond-to(large) {
       display: inline-block;
-      margin-left: 5px;
     }
   }
 
   .user-name {
     display: none;
-    @include respond-to(small) {
+    @include respond-to(large) {
       display: inline-block;
     }
   }
