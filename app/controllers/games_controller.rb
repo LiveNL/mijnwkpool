@@ -42,10 +42,11 @@ class GamesController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @game = Game.find(params[:id])
-  #   @game.destroy
-  # end
+  def destroy
+    @game = Game.find(params[:id])
+    @game.destroy
+    redirect_to games_path
+  end
 
 private
     # Use callbacks to share common setup or constraints between actions.

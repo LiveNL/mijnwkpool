@@ -25,7 +25,8 @@
         <div class="actions">
           <%= f.submit %>
         </div>
-        <% end %>               
+        <% end %>  
+        <%= button_to 'Game verwijderen', @game, method: :delete, data: { confirm: 'Weet je zeker dat je deze game wilt verwijderen?' }, :class => 'btn red pool-sign-in'  %>
       </div>
     </div>
   </div>
