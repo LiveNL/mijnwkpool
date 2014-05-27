@@ -17,9 +17,9 @@
 
         <%= f.label :team2_id, 'Team 2' %> -
         <%= f.select "team2_id", options_from_collection_for_select(Team.all, "id", "name", :selected => f.object.team2_id)%><br/>
-        <%= f.date_select :date %><br/>
-        <%= f.time_select :time %><br/>
-        <%= f.select :gametype, options_for_select([["Gametype", ""], "Poule", "Achtste finale", "Kwart finale", "Halve finale", "Finale"], :selected => f.object.gametype), :class => 'genForm_dropBox' %>
+        Tijd: <%= f.time_select :time %><br/>
+        Datum: <%= f.date_select :date %><br/>
+        Gametype: <%= f.select :gametype, options_for_select([["Gametype", ""], "Poule", "Achtste finale", "Kwart finale", "Halve finale", "Finale"], :selected => f.object.gametype)%>
         <br/>
         <br/>
         <div class="actions">

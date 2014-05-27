@@ -24,132 +24,124 @@
 
       <div class="pooldashboard-content">
         <h2>Poule wedstrijden</h2>
-<%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
-<table id="myTable" class="table poule">
-          <thead>
-            <tr>
-              <th>Datum</th>
-              <th>Poule</th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th>Punten</th>
-            </tr>
-          </thead>
-          <tbody>
-
-
+        <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
+          <table id="myTable" class="table poule">
+            <thead>
+              <tr>
+                <th>Datum</th>
+                <th>Poule</th>
+                <th>Team 1</th>
+                <th></th>              
+                <th>Voorspelling</th>
+                <th></th>              
+                <th>Team 2</th>
+                <th>Uitslag</th>
+                <th>Punten</th>
+              </tr>
+            </thead>
           
-            <% current_user.predictions.each do |prediction| %>
-              <% @game = Game.find(prediction.game_id) %>
+            <tbody>
+              <% current_user.predictions.each do |prediction| %>
+                <% @game = Game.find(prediction.game_id) %>
                 <% @poolmembership = Poolmembership.find(prediction.poolmembership_id) %>
               <% end %>
 
               <% @games.each_with_index do |game, index| %>
-              <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
-              <% henk = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
+                <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
+                <% henk = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
 
-                <% if henk.present? %>
-                <tr>
-
-               <td class="infoshower">
-                      <i class="fa fa-question-circle"></i>
-                      <div class="infobox hiddeninfo"><%= Team.find(game.team1_id).name %> - <%= Team.find(game.team2_id).name %> <br /> <span><%= game.date.strftime('%C %B') %>, <%= game.time.strftime('%H:%M') %></span></div>
-                    </td>
-                    <td><%= Team.find(game.team1_id).poule %></td>
-                  <td class="default-hide small-show"><%= Team.find(game.team1_id).name %></td>
-                  <td class="flag"><%= image_tag Team.find(game.team1_id).avatar.url(:mini) %></td>
-                  
-
-                  <td class="predict-score">
-                    <div class="view-table">
-                      <div class="view-row">
-                        <div class='predict'>
-                          <%= best_in_place Prediction.find(henk.id), :prediction1 %>
-                        </div>
-                        <div>
-                          &ndash;
-                        </div>
-                        <div class='predict'>
-                          <%= best_in_place Prediction.find(henk.id), :prediction2 %>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-
-                  
-                  <td class="flag"><%= image_tag Team.find(game.team2_id).avatar.url(:mini) %></td>
-                  <td><%= Team.find(game.team2_id).name %></td>
-                  <td><% if game.score1 == nil && game.score2 == nil %>
-                        x - x
-                      <% else %>
-                        <%= game.score1 %> - <%= game.score2 %>
-                      <% end %></td>
-                  <td><%= henk.pointsearned %></td>
-                  
-                  </tr>
-                <% else %>
-                
-                  <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>  
-                    <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
-                    <%= p.hidden_field :game_id, :value => game.id %> 
+                  <% if henk.present? %>
                     <tr>
-                    <td class="infoshower">
-                      <i class="fa fa-question-circle"></i>
-                      <div class="infobox hiddeninfo"><%= Team.find(game.team1_id).name %> - <%= Team.find(game.team2_id).name %> <br /> <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span></div>
-                    </td>
-                    <td><%= Team.find(game.team1_id).poule %></td>
-
-                    <td class="default-hide small-show"><%= Team.find(game.team1_id).name %></td>
-                    <td class="flag"><%= image_tag Team.find(game.team1_id).avatar.url(:mini) %></td>
-
-                  <td class="predict-score">
-                    <div class="view-table">
-                      <div class="view-row">
-                        <div class='predict'>
-                          <%= p.number_field :prediction1 %>
+                      <td class="infoshower">
+                        <i class="fa fa-question-circle"></i>
+                        <div class="infobox hiddeninfo">
+                          <%= Team.find(game.team1_id).name %> - <%= Team.find(game.team2_id).name %><br/> 
+                          <span><%= game.date.strftime('%C %B') %>, <%= game.time.strftime('%H:%M') %></span>
                         </div>
-                        <div>
-                          &ndash;
-                        </div>
-                        <div class='predict'>
-                          <%= p.number_field :prediction2 %>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
+                      </td>
+                      
+                      <td><%= Team.find(game.team1_id).poule %></td>
+                      <td class="default-hide small-show"><%= Team.find(game.team1_id).name %></td>
+                      <td class="flag"><%= image_tag Team.find(game.team1_id).avatar.url(:mini) %></td>
 
-                    <td class="flag"><%= image_tag Team.find(game.team2_id).avatar.url(:mini) %></td>
-                    <td><%= Team.find(game.team2_id).name %></td>
-                    <td>x - x</td>
-                    <td>x</td>
-                    
+                      <td class="predict-score">
+                        <div class="view-table">
+                          <div class="view-row">
+                            <div class='predict'>
+                              <%= best_in_place Prediction.find(henk.id), :prediction1 %>
+                            </div>
+                            <div>
+                              &ndash;
+                            </div>
+                            <div class='predict'>
+                              <%= best_in_place Prediction.find(henk.id), :prediction2 %>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="flag"><%= image_tag Team.find(game.team2_id).avatar.url(:mini) %></td>
+                      <td><%= Team.find(game.team2_id).name %></td>
+                      <td>
+                        <% if game.score1 == nil && game.score2 == nil %>
+                          x - x
+                        <% else %>
+                          <%= game.score1 %> - <%= game.score2 %>
+                        <% end %>
+                      </td>
+                      <td><%= henk.pointsearned %></td>
                     </tr>
+                  <% else %>                  
+                    <%= fields_for "predictions[#{index}]", Prediction.new do |p| %>  
+                      <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+                      <%= p.hidden_field :game_id, :value => game.id %> 
+                      
+                      <tr>
+                        <td class="infoshower">
+                          <i class="fa fa-question-circle"></i>
+                          <div class="infobox hiddeninfo">
+                            <%= Team.find(game.team1_id).name %> - <%= Team.find(game.team2_id).name %> <br /> 
+                            <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span>
+                          </div>
+                        </td>
+                        <td><%= Team.find(game.team1_id).poule %></td>
+                        <td class="default-hide small-show"><%= Team.find(game.team1_id).name %></td>
+                        <td class="flag"><%= image_tag Team.find(game.team1_id).avatar.url(:mini) %></td>
 
+                        <td class="predict-score">
+                          <div class="view-table">
+                            <div class="view-row">
+                              <div class='predict'>
+                                <%= p.number_field :prediction1 %>
+                              </div>
+                              <div>
+                                &ndash;
+                              </div>
+                              <div class='predict'>
+                                <%= p.number_field :prediction2 %>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+
+                        <td class="flag"><%= image_tag Team.find(game.team2_id).avatar.url(:mini) %></td>
+                        <td><%= Team.find(game.team2_id).name %></td>
+                        <td>x - x</td>
+                        <td>x</td>
+                      </tr>
+                    <% end %>
                   <% end %>
-
-                <% end %>
-
               <% end %>
-
-
-
-
-
-            
-                    </tbody>
-        </table>
-<button class="green" style="margin-left: 30px;" type="submit">
-              Sla voorspellingen op &nbsp; <%= fa_icon 'chevron-right' %>
-            </button>
-          <% end %>
-
+            </tbody>
+          </table>
+          
+          <button class="green" style="margin-left: 30px;" type="submit">
+            Sla voorspellingen op &nbsp; <%= fa_icon 'chevron-right' %>
+          </button>
+        <% end %>
       </div>
     </div>
   </div>
-
   <div class='default-0 medium-1-4'>
     <%= render "shared/aside" %>
   </div>
