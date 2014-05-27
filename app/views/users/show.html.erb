@@ -91,7 +91,7 @@
                   <% end %>
                 </td>
                 <td>
-                <% if prediction.present? %>
+                <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
                   <%= prediction.pointsearned %>
                 <% else %>
                   x
