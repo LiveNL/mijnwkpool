@@ -13,18 +13,13 @@
         <%= f.text_field :score2 %>
 
         <%= f.label :team1_id, 'Team 1' %> -
-        <%= select_tag "team1_id", options_from_collection_for_select(Team.all, "id", "name")%><br/>
+        <%= f.select "team1_id", options_from_collection_for_select(Team.all, "id", "name", :selected => f.object.team1_id)%><br/>
 
         <%= f.label :team2_id, 'Team 2' %> -
-        <%= select_tag "team2_id", options_from_collection_for_select(Team.all, "id", "name")%><br/>
+        <%= f.select "team2_id", options_from_collection_for_select(Team.all, "id", "name", :selected => f.object.team2_id)%><br/>
         <%= f.date_select :date %><br/>
         <%= f.time_select :time %><br/>
-        <select id="gametype"name="gametype">
-          <option value="Poule">Poule</option>
-          <option value="Knockout">Knockout</option>
-          <option value="Kwartfinale">Kwartfinale</option>
-          <option value="Halve finale">Halve finale</option>
-        </select>
+        <%= f.select :gametype, options_for_select([["Gametype", ""], "Poule", "Achtste finale", "Kwart finale", "Halve finale", "Finale"], :selected => f.object.gametype), :class => 'genForm_dropBox' %>
         <br/>
         <br/>
         <div class="actions">

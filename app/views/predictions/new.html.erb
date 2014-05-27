@@ -98,7 +98,7 @@
                     <tr>
                     <td class="infoshower">
                       <i class="fa fa-question-circle"></i>
-                      <div class="infobox hiddeninfo"><%= Team.find(game.team1_id).name %> - <%= Team.find(game.team2_id).name %> <br /> <span><%= game.date.strftime('%C %B') %>, <%= game.time.strftime('%H:%M') %></span></div>
+                      <div class="infobox hiddeninfo"><%= Team.find(game.team1_id).name %> - <%= Team.find(game.team2_id).name %> <br /> <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span></div>
                     </td>
                     <td><%= Team.find(game.team1_id).poule %></td>
 
