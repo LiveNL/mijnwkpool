@@ -88,10 +88,10 @@
                           <%= game.score1 %> - <%= game.score2 %>
                         <% end %>
                       </td>
-                      <td class="bold 
+                      <td class="bold
                         <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
                           <% if prediction.pointsearned == 12 %>
-                            green 
+                            green
                           <% elsif prediction.pointsearned == 0 %>
                             red
                           <% else %>
@@ -106,10 +106,6 @@
                           x
                         <% end %>
                       </td>
-
-
-
-
                     </tr>
                   <% end %>
                 <% end %>
@@ -118,10 +114,14 @@
           <% end %>
           <div class="content-btn">
             <div class="center">
-              <%= link_to 'Voorspelling aanpassen', edit_prediction_path(@pool.id), :class => 'btn green' %>
+              <%= link_to 'Voorspelling aanpassen', edit_prediction_path(@pool.id), :class => 'btn grey' %>
             </div>
+          </div>
+          <div class="content-btn">
             <div class="right">
-              <%= link_to 'Volgende >', pouleeindstanden_path(@pool.id), :class => 'btn green left' %>
+              <%= link_to pouleeindstanden_path(@pool.id), :class => 'btn green left' do %>
+               Volgende <i class="fa fa-chevron-right"></i>
+              <% end %>
             </div>
           </div>
         <% end %>
@@ -130,7 +130,7 @@
   </div>
   <div class='default-0 medium-1-4'>
     <%= render "shared/aside" %>
-    <%= render "shared/aside_ad" %>   
+    <%= render "shared/aside_ad" %>
   </div>
 </div>
 
