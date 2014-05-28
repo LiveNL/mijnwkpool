@@ -58,6 +58,15 @@ table {
 
   &.rank {
     tbody > tr {
+      & td a {
+        color: $color-grey-dark;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
       & > td:first-child {
         color: $color-grey-medium;
         text-align: center;
@@ -73,6 +82,14 @@ table {
 
         & > td {
           color: #FFF;
+          & a {
+            color: #FFF;
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
         }
       }
     }
