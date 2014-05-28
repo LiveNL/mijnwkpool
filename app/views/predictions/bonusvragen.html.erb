@@ -10,13 +10,13 @@
           <div class="step">
             <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
           </div>
-          <div class="step active">
+          <div class="step">
             <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
           </div>
           <div class="step">
             <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
           </div>
-          <div class="step">
+          <div class="step active">
             <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
           </div>
         </div>
@@ -29,10 +29,10 @@
 
           <div class="content-btn">
             <div class="left">
-              <%= link_to '< Vorige', new_prediction_path(pool_id: @pool.id), :class => 'btn green left' %>
+              <%= link_to '< Vorige', knockoutfase_path(pool_id: @pool.id), :class => 'btn green left' %>
             </div>
             <div class="right">
-              <%= link_to 'Volgende >', knockoutfase_path(pool_id: @pool.id), :class => 'btn green left' %>
+              <%= link_to 'Opslaan', new_prediction_path(pool_id: @pool.id), :class => 'btn green left' %>
 
             </div>
 
@@ -56,4 +56,3 @@ $(".infoshower").hover(function () {
   $(this).find(".hiddeninfo").fadeOut('fast');
 });
 </script>
-
