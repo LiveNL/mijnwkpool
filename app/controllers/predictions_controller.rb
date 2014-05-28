@@ -43,15 +43,36 @@ class PredictionsController < ApplicationController
     @pool = Pool.find(params[:id])
     @games = Game.order(:poule)
     @gamelist = @games.group_by { |t| t.poule }
+
+    @gamelist.sort.each_with_index do |(poule, games), index|
+      if @present
+        return
+      else
+        games.each_with_index do |game, index2|
+          current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id)
+          prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id)
+
+          if prediction.present?
+            @present = true
+          end
+        end
+      end
+    end
+
+    if @present
+      render 'edit'
+    else
+      render 'new'
+    end
   end
 
   def pouleeindstanden
   end
 
   def show
-    @pool = Pool.all
-    @games = Game.all
-    @predictions = Prediction.all
+    @pool = Pool.find(params[:id])
+    @games = Game.order(:poule)
+    @gamelist = @games.group_by { |t| t.poule }
   end
 
   def update
