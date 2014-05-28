@@ -1,6 +1,6 @@
 class Pool < ActiveRecord::Base
   has_secure_password validations: false
-  has_many :poolmemberships
+  has_many :poolmemberships, dependent: :destroy
   has_many :users, through: :poolmemberships
 
   before_save :clear_passwords, if: :public_pool?

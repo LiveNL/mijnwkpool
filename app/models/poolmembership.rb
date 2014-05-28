@@ -2,7 +2,7 @@ class Poolmembership < ActiveRecord::Base
   belongs_to :pool, counter_cache: true
   belongs_to :user
   validates_uniqueness_of :user_id, scope: [:pool_id]
-  has_many :predictions
+  has_many :predictions, dependent: :destroy
 
   MAXIMUM_COURSES = 5
 

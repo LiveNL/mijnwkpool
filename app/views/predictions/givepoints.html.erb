@@ -25,11 +25,11 @@
                   <tr>
                     <td width="1" style="padding:0;">
                       <% if game.completed %>
-                        <%= link_to toggle_task_path(task), class:'btn checked', method: :patch do %>
+                        <a class="btn checked" href="#">
                           <i class="fa fa-check-circle"></i>
-                        <% end %>
+                        </a>  
                       <% else %>
-                        <%= link_to toggle_task_path(task), class:'btn check', method: :patch do %>
+                        <%= link_to toggle_game_path(game), class:'btn check', method: :patch do %>
                           <i class="fa fa-check-circle-o"></i>
                         <% end %>
                       <% end %>
