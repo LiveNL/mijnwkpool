@@ -27,6 +27,7 @@
                   <td><%= f.score1 %>-<%= f.score2 %></td>
                   <td><%= image_tag Team.find(f.team2_id).avatar.url(:mini) %><%= Team.find(f.team2_id).name %></td>
                   <td><%= f.gametype %></td>
+                  <td><%= f.poule %></td>                  
                   <td><%= link_to 'Edit', edit_game_path(f) %></td>
                 </tr>
               <% end %>
