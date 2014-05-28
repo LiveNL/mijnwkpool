@@ -93,7 +93,7 @@
                           <%= game.score1 %> - <%= game.score2 %>
                         <% end %>
                       </td>
-                      <td>
+                      <td class="bold">
                         <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
                           <%= prediction.pointsearned %>
                         <% else %>
