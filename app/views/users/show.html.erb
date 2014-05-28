@@ -1,6 +1,4 @@
 <% title @user.nickname %>
-
-
 <div class="medium-3-4">
   <div class="box">
     <div class="content-header">
@@ -16,103 +14,121 @@
           <p>Nickname:</p>
           <h3><%= @user.nickname %></h3>
         </li>
+        <li><span class="poollist-title">Pools</span><span class="poollist-title" style="float:right;">Punten</span></li>
       </ul>
     </div>
 
+    <% @poolmemberships.each do |poolmembership| %>    
+    <div class='pool-list'>
+      <ul>
+        <li>
+          <div class='view-table'>
+            <a class='grey pool-list-inner view-row' href='#pool6' rel='modal:open'>
+            <div class='pool-list-img'>
+              <%= image_tag Pool.find(poolmembership.pool_id).avatar.url(:thumb) %> 
+            </div>
+            <div class='pool-list-txt'>
+              <div class="toggle_predictions">
+                <h2><%= Pool.find(poolmembership.pool_id).name %> <div style="float:right;"> <%= poolmembership.score %> </div></h2>
+                <p><%= Pool.find(poolmembership.pool_id).poolmemberships_count %> / <%= Pool.find(poolmembership.pool_id).maximum_membership %></p>
+              </div>                   
 
-          <div class="pooldashboard-content">
-          <% @poolmemberships.each do |poolmembership| %>
-        <h2><%= Pool.find(poolmembership.pool_id).name %> - <%= poolmembership.score %></h2>
-          <% @gamelist.sort.each_with_index do |(poule, games), index| %>
-            <table class="table poule">
-              <thead>
-                <tr>
-                  <th class="groupname" colspan="4">Groep <%= poule %></th>
-                  <th class="default-hide small-show">&nbsp;</th>
-                  <th class="default-hide small-show">&nbsp;</th>
-                  <th class="default-hide small-show">Uitslag</th>
-                  <th>Punten</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% games.each_with_index do |game, index2| %>
-                  <% prediction = Prediction.find_by_poolmembership_id_and_game_id(poolmembership.id, game.id) %>
-                  <% team1 = Team.find(game.team1_id) %>
-                  <% team2 = Team.find(game.team2_id) %>
-                    <tr>
-                      <td class="infoshower">
-                        <i class="fa fa-question-circle"></i>
-                        <div class="infobox hiddeninfo">
-                          <%= team1.name %> - <%= team2.name %> <br />
-                          <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span>
-                        </div>
-                      </td>
-                      <td class="default-hide small-show"><%= team1.name %></td>
-                      <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td>
+              <div class="predictions">
+              <% @gamelist.sort.each_with_index do |(poule, games), index| %>
+              <table class="table poule">
+                <thead>
+                  <tr>
+                    <th class="groupname" colspan="4">Groep <%= poule %></th>
+                    <th class="default-hide small-show">&nbsp;</th>
+                    <th class="default-hide small-show">&nbsp;</th>
+                    <th class="default-hide small-show">Uitslag</th>
+                    <th>Punten</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% games.each_with_index do |game, index2| %>
+                    <% prediction = Prediction.find_by_poolmembership_id_and_game_id(poolmembership.id, game.id) %>
+                    <% team1 = Team.find(game.team1_id) %>
+                    <% team2 = Team.find(game.team2_id) %>
+                      <tr>
+                        <td class="infoshower">
+                          <i class="fa fa-question-circle"></i>
+                          <div class="infobox hiddeninfo">
+                            <%= team1.name %> - <%= team2.name %> <br />
+                            <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span>
+                          </div>
+                        </td>
+                        <td class="default-hide small-show"><%= team1.name %></td>
+                        <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td>
 
-                      <td class="predict-score">
-                        <div class="view-table">
-                          <div class="view-row">
-                            <div>
-                              <% if prediction.present? %>
-                                <span class="predict"><%= prediction.prediction1 %></span>
-                              <% else %>
-                                x
-                              <% end %>
-                            </div>
-                            <div>
-                              &ndash;
-                            </div>
-                            <div>
-                              <% if prediction.present? %>
-                                <span class="predict"><%= prediction.prediction2 %></span>
-                              <% else %>
-                                x
-                              <% end %>
+                        <td class="predict-score">
+                          <div class="view-table">
+                            <div class="view-row">
+                              <div>
+                                <% if prediction.present? %>
+                                  <span class="predict"><%= prediction.prediction1 %></span>
+                                <% else %>
+                                  x
+                                <% end %>
+                              </div>
+                              <div>
+                                &ndash;
+                              </div>
+                              <div>
+                                <% if prediction.present? %>
+                                  <span class="predict"><%= prediction.prediction2 %></span>
+                                <% else %>
+                                  x
+                                <% end %>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </td>
+                        </td>
 
-                      <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td>
-                      <td class="default-hide small-show"><%= team2.name %></td>
-                      <td class="default-hide small-show">
-                        <% if game.score1 == nil && game.score2 == nil %>
-                      
-                        <% else %>
-                          <%= game.score1 %> - <%= game.score2 %>
-                        <% end %>
-                      </td>
-                      <td>
-                        <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
-                          <%= prediction.pointsearned %>
-                        <% else %>
-                          x
-                        <% end %>
-                      </td>
-                    </tr>
-                <% end %>
-              </tbody>
-            </table>
-          <% end %>
-                      <br/>
-            <br/>
-            <br/>
-        <% end %>
-      </div>
+                        <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td>
+                        <td class="default-hide small-show"><%= team2.name %></td>
+                        <td class="default-hide small-show">
+                          <% if game.score1 == nil && game.score2 == nil %>
+                          <% else %>
+                            <%= game.score1 %> - <%= game.score2 %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
+                            <%= prediction.pointsearned %>
+                          <% else %>
+                            x
+                          <% end %>
+                        </td>
+                      </tr>
+                  <% end %>
+                </tbody>
+              </table>
+              <% end %>
+            </div>
+          </div>
+          </a>
+          </div>
+        </li>
+      </ul>
+    </div>   
+    <% end %>
   </div>
 </div>
+
 <div class='default-0 medium-1-4'>
 <%= render "shared/aside" %>
 </div>
 
 <script type="text/javascript">
-var display = false;
-
+$(function() {
+  $(".toggle_predictions").on('click', function() {
+    $(this).next().toggle();
+  })
+});
 $(".infoshower").hover(function () {
 $(this).find(".hiddeninfo").fadeIn('fast')
 }, function () {
 $(this).find(".hiddeninfo").fadeOut('fast')
 });
-var display = false;
 </script>
