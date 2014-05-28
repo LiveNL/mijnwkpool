@@ -17,25 +17,20 @@
         <li><h2>Pools<div style="float:right;">Punten</div></h2></li>
       </ul>
     </div>
-
-    <% @poolmemberships.each do |poolmembership| %>    
     <div class='pool-list'>
       <ul>
+        <% @poolmemberships.each do |poolmembership| %>
         <li>
           <div class='view-table'>
-            <a class='grey pool-list-inner view-row' href='#pool6' rel='modal:open'>
+
             <div class='pool-list-img'>
-              <%= image_tag Pool.find(poolmembership.pool_id).avatar.url(:thumb) %> 
+              <%= image_tag Pool.find(poolmembership.pool_id).avatar.url(:thumb) %>
             </div>
             <div class='pool-list-txt'>
               <div class="toggle_predictions">
-                <h2>
-                <%= Pool.find(poolmembership.pool_id).name %> <div style="float:right;"> <%= poolmembership.score %>
-              </div> </h2> 
-                <p>
-                  <%= Pool.find(poolmembership.pool_id).poolmemberships_count %> / <%= Pool.find(poolmembership.pool_id).maximum_membership %>
-                </p>
-              </div>                   
+                <h2><%= Pool.find(poolmembership.pool_id).name %> <div style="float:right;"> <%= poolmembership.score %> </div></h2>
+                <p><%= Pool.find(poolmembership.pool_id).poolmemberships_count %> / <%= Pool.find(poolmembership.pool_id).maximum_membership %></p>
+              </div>
 
               <div class="predictions">
               <% @gamelist.sort.each_with_index do |(poule, games), index| %>
@@ -97,10 +92,10 @@
                             <%= game.score1 %> - <%= game.score2 %>
                           <% end %>
                         </td>
-                        <td class="bold 
+                        <td class="bold
                         <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
                           <% if prediction.pointsearned == 12 %>
-                            green 
+                            green
                           <% elsif prediction.pointsearned == 0 %>
                             red
                           <% else %>
@@ -122,18 +117,17 @@
               <% end %>
             </div>
           </div>
-          </a>
-          </div>
-        </li>
-      </ul>
-    </div>   
-    <% end %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+    </div>
   </div>
 </div>
 
 <div class='default-0 medium-1-4'>
     <%= render "shared/aside" %>
-    <%= render "shared/aside_ad" %>   
+    <%= render "shared/aside_ad" %>
 </div>
 
 <script type="text/javascript">
