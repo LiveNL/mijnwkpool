@@ -85,8 +85,20 @@
 
                       <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td>
                       <td class="default-hide small-show"><%= team2.name %></td>
-                      <td class="default-hide small-show">x &ndash; x</td>
-                      <td>x</td>
+                      <td class="default-hide small-show">
+                        <% if game.score1 == nil && game.score2 == nil %>
+                      
+                        <% else %>
+                          <%= game.score1 %> - <%= game.score2 %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
+                          <%= prediction.pointsearned %>
+                        <% else %>
+                          x
+                        <% end %>
+                      </td>
                     </tr>
                   <% end %>
                 <% end %>
