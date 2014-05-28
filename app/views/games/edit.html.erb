@@ -1,11 +1,11 @@
 <div class="grid-r">
   <div class="medium-4-4">
     <div class="box">
-      <form accept-charset="UTF-8" action="/app/games" class="new_game" enctype="multipart/form-data" id="new_game" method="post">
+      <%= form_for @game, :url => { :action => "update" } do |f| %>
         <div class="content-header">
           <h1>Edit wedstrijd</h1>
         </div>
-        <div class="pooldashboard-content">       
+        <div class="pooldashboard-content">
         	<p><%= link_to 'Terug naar alle wedstrijden', games_path %></p>
           <table id="myTable" class="table admin">
             <thead>
@@ -17,13 +17,13 @@
                 <th>Score 2</th>
                 <th>Team 2</th>
                 <th>Gametype</th>
-                <th>Poule</th>   
-                <th>Save</th>                                             
+                <th>Poule</th>
+                <th>Save</th>
               </tr>
             </thead>
 
             <tbody>
-        			<%= form_for (@game) do |f| %>
+        			<%= form_for @game, :url => { :action => "update" } do |f| %>
                 <tr>
                   <td style="padding:1px;"><%= f.date_select :date %></td>
                   <td style="padding:1px;"><%= f.time_select :time %></td>
@@ -41,8 +41,8 @@
                         <%= f.number_field :score2 %></td>
                 			</div>
                   	</div>
-                  </td>                  
-                  <td>	
+                  </td>
+                  <td>
                     <%= f.select "team2_id", options_from_collection_for_select(Team.all, "id", "name", :selected => f.object.team2_id), { :class => 'dropdown' }%>
                   </td>
                   <td style="padding:1px;"> <%= f.select :gametype, options_for_select([["Gametype", ""], "Poule", "Achtste finale", "Kwart finale", "Halve finale", "Finale"], :selected => f.object.gametype)%></td>
@@ -52,14 +52,20 @@
                         <%= f.text_field :poule %></td>
                 			</div>
                   	</div>
-                  </td>                    
-                  <td style="padding:1px;"><%= button_to 'Wedstrijd opslaan', @game, method: :update, :class => 'btn green'  %></td>
+                  </td>
+                  <td style="padding:1px;">
+                    <div class="form-field">
+                      <button class="green" type="submit">
+                        Wijzigingen opslaan
+                      </button>
+                    </div>
+                </td>
                 </tr>
               <% end %>
             </tbody>
           </table>
 				</div>
-    	</form>
+      <% end %>
 		</div>
 	</div>
 </div>
