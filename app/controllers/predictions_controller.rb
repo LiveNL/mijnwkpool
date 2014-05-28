@@ -1,4 +1,6 @@
 class PredictionsController < ApplicationController
+  before_filter :ensure_admin, :only => [:pointsscript, :givepoints]
+
   respond_to :html, :json
 
   def index

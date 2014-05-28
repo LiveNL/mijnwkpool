@@ -24,4 +24,13 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
     end
   end
+
+  def ensure_admin
+    if current_user.try(:admin?)
+    else
+      "ensure_admin"
+      flash[:error] = 'Je hebt niet genoeg rechten om deze pagina te bekijken.'
+      redirect_to app_root_path
+    end
+  end
 end
