@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-    before_action :set_game, only: [:show, :edit, :update, :destroy]
+    before_action :set_game, only: [:show, :edit, :update, :destroy, :toggle]
 
   def index
     @game = Game.new
@@ -48,6 +48,10 @@ class GamesController < ApplicationController
     redirect_to games_path
   end
 
+  def toggle
+    @game.toggle!(:completed)
+    redirect_to pointsscript_path
+  end
 private
     # Use callbacks to share common setup or constraints between actions.
   def set_game
