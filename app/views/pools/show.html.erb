@@ -43,7 +43,7 @@
                   <% if User.find(user.user_id) == current_user %>
                   <%= fa_icon 'male' %>
                   <% else %><% end %> </td>
-              <td><%= Poolmembership.find(user.id).score %></td>
+              <td class="bold"><%= Poolmembership.find(user.id).score %></td>
             </tr>
             <% end %>
           </tbody>
