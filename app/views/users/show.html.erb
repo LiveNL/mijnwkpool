@@ -20,90 +20,86 @@
     </div>
 
 
-    <div class="pooldashboard-content">
-      <% @poolmemberships.each do |poolmembership| %>
-        <h2><%= Pool.find(poolmembership.pool_id).name %></h2>
-        <table id="myTable" class="table poule">
-          <thead>
-            <tr>
-            <th>Datum</th>
-            <th>Poule</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>Punten</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <% @games.each_with_index do |game, index| %>
-                <% prediction = Prediction.find_by_poolmembership_id_and_game_id(poolmembership.id, game.id) %>
-                <td class="infoshower">
-                  <i class="fa fa-question-circle"></i>
-                  <div class="infobox hiddeninfo"><%= Team.find(game.team1_id).name %> - <%= Team.find(game.team2_id).name %> <br /> <span><%= game.date.strftime('%C %B') %>, <%= game.time.strftime('%H:%M') %></span></div>
-                </td>
-                <td>
-                  <%= Team.find(game.team1_id).poule %>
-                </td>
-                <td class="default-hide small-show">
-                  <%= Team.find(game.team1_id).name %>
-                </td>
-                <td class="flag">
-                  <%= image_tag Team.find(game.team1_id).avatar.url(:mini) %>
-                </td>
-                <td class="predict-score">
-                  <div class="view-table">
-                    <div class="view-row">
-                      <div class='predict'>
-                        <% if prediction.present? %>
-                          <%= Prediction.find(prediction.id).prediction1 %>
-                        <% else %>
-                          x
-                        <% end %>
-                      </div>
-                      <div>
-                        &ndash;
-                      </div>
-                      <div class='predict'>
-                        <% if prediction.present? %>
-                          <%= Prediction.find(prediction.id).prediction2 %>
-                        <% else %>
-                          x
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                </td>
+          <div class="pooldashboard-content">
+          <% @poolmemberships.each do |poolmembership| %>
+        <h2><%= Pool.find(poolmembership.pool_id).name %> - <%= poolmembership.score %></h2>
+          <% @gamelist.sort.each_with_index do |(poule, games), index| %>
+            <table class="table poule">
+              <thead>
+                <tr>
+                  <th class="groupname" colspan="4">Groep <%= poule %></th>
+                  <th class="default-hide small-show">&nbsp;</th>
+                  <th class="default-hide small-show">&nbsp;</th>
+                  <th class="default-hide small-show">Uitslag</th>
+                  <th>Punten</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% games.each_with_index do |game, index2| %>
+                  <% prediction = Prediction.find_by_poolmembership_id_and_game_id(poolmembership.id, game.id) %>
+                  <% team1 = Team.find(game.team1_id) %>
+                  <% team2 = Team.find(game.team2_id) %>
+                    <tr>
+                      <td class="infoshower">
+                        <i class="fa fa-question-circle"></i>
+                        <div class="infobox hiddeninfo">
+                          <%= team1.name %> - <%= team2.name %> <br />
+                          <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span>
+                        </div>
+                      </td>
+                      <td class="default-hide small-show"><%= team1.name %></td>
+                      <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td>
 
-                <td class="flag">
-                  <%= image_tag Team.find(game.team2_id).avatar.url(:mini) %>
-                </td>
-                <td>
-                  <%= Team.find(game.team2_id).name %>
-                </td>
-                <td>
-                  <% if game.score1 == nil && game.score2 == nil %>
-                    
-                  <% else %>
-                    <%= game.score1 %> - <%= game.score2 %>
-                  <% end %>
-                </td>
-                <td>
-                <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
-                  <%= prediction.pointsearned %>
-                <% else %>
-                  x
+                      <td class="predict-score">
+                        <div class="view-table">
+                          <div class="view-row">
+                            <div>
+                              <% if prediction.present? %>
+                                <span class="predict"><%= prediction.prediction1 %></span>
+                              <% else %>
+                                x
+                              <% end %>
+                            </div>
+                            <div>
+                              &ndash;
+                            </div>
+                            <div>
+                              <% if prediction.present? %>
+                                <span class="predict"><%= prediction.prediction2 %></span>
+                              <% else %>
+                                x
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td>
+                      <td class="default-hide small-show"><%= team2.name %></td>
+                      <td class="default-hide small-show">
+                        <% if game.score1 == nil && game.score2 == nil %>
+                      
+                        <% else %>
+                          <%= game.score1 %> - <%= game.score2 %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
+                          <%= prediction.pointsearned %>
+                        <% else %>
+                          x
+                        <% end %>
+                      </td>
+                    </tr>
                 <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <br/>
-      <% end %>
-    </div>
+              </tbody>
+            </table>
+          <% end %>
+                      <br/>
+            <br/>
+            <br/>
+        <% end %>
+      </div>
   </div>
 </div>
 <div class='default-0 medium-1-4'>
