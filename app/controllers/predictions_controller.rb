@@ -40,7 +40,8 @@ class PredictionsController < ApplicationController
       prediction = Prediction.new(v)
       prediction.save
     end
-    redirect_to app_root_path
+    poolid = params[:pool_id]
+    redirect_to prediction_path(poolid)
   end
 
   def update_multiple_predictions
@@ -48,7 +49,8 @@ class PredictionsController < ApplicationController
       @prediction = Prediction.find(v[:id])
       @prediction.update(v)
     end
-    redirect_to app_root_path
+    poolid = params[:pool_id]
+    redirect_to prediction_path(poolid)
   end
 
   def edit

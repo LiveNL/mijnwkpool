@@ -25,6 +25,7 @@
       <div class="pooldashboard-content">
         <h2>Poule wedstrijden</h2>
         <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
+          <%= hidden_field_tag 'pool_id', @pool.id %>
           <% @gamelist.sort.each_with_index do |(poule, games), index| %>
             <table class="table poule">
               <thead>
