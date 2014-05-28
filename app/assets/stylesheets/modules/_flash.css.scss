@@ -66,6 +66,14 @@
   vertical-align: middle;
 }
 
+.contentflash-text-center {
+  @include font-size($font-size);
+  display: table-cel;
+  padding: 20px 10px 20px 20px;
+  text-align: center;
+  vertical-align: middle;
+}
+
 .contentflash {
   width: 100%;
   &.error {
