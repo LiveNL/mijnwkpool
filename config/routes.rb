@@ -6,7 +6,8 @@ Wkpool::Application.routes.draw do
     post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'   
     get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'
     get 'pouleeindstanden' => 'predictions#pouleeindstanden', :as => 'pouleeindstanden'    
-  get 'pointsscript' => 'predictions#pointsscript', :as => 'pointsscript' 
+    get 'pointsscript' => 'predictions#pointsscript', :as => 'pointsscript' 
+    get 'speluitleg' => 'pages#speluitleg', :as => 'speluitleg' 
     resources :games do
       member do
         patch :toggle

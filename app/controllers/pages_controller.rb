@@ -6,4 +6,6 @@ class PagesController < ApplicationController
       render layout: 'home'
     end
   end
+  def speluitleg
+  end
 end

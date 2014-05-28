@@ -1,0 +1,56 @@
+<% title "Dashboard" %>
+<div class="grid-r">
+  <div class="medium-3-4">
+   <div class="box">
+      <div class="content-header">
+        <h1>Speluitleg</h1>
+      </div>
+
+      <% if current_user.poolmemberships.count < 1 %>
+      <div id="contentflash" class="contentflash error">
+        <div class="view-table">
+          <div class="view-row">
+            <div class="flashcontent-icon"><i class="fa fa-users"></i></div>
+            <div class="contentflash-text">Let op! Je hebt je nog niet bij een pool aangesloten!</div>
+          </div>
+        </div>
+          <script>contentflashMessage();</script>
+      </div>
+      <% end %>
+
+      <div class="notifications">
+        <div class='notification-list'>
+          <ul>
+            <li>
+              <div class='view-table'>
+                <div class='grey notification-list-inner view-row' href='#modal' rel='modal:open'>
+                  <div class='notification-list-txt'>
+                    <h3>
+                    Sed posuere consectetur est at lobortis. Maecenas sed diam eget risus varius blandit sit amet non magna. Etiam porta sem malesuada magna mollis euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.<br/><br/>
+
+                    Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Etiam porta sem malesuada magna mollis euismod. Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla. Curabitur blandit tempus porttitor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.<br/><br/>
+
+                    Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Curabitur blandit tempus porttitor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.<br/><br/>
+
+                    Sed posuere consectetur est at lobortis. Maecenas sed diam eget risus varius blandit sit amet non magna. Etiam porta sem malesuada magna mollis euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.<br/><br/>
+
+                    Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Etiam porta sem malesuada magna mollis euismod. Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla. Curabitur blandit tempus porttitor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.<br/><br/>
+
+                    Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Curabitur blandit tempus porttitor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.<br/><br/>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/aside" %>
+
+  </div>
+</div>
+<script>filterHandle();</script>
