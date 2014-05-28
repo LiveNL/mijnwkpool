@@ -126,7 +126,7 @@
                   <li>
                 <% end %>
 
-                  <a class="grey" href="#">Mijn voorspellingen&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+                  <a class="grey" href="<%= speluitleg_path %>">Mijn voorspellingen&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
                   <ul class="sub-menu">
                   <% current_user.poolmemberships.each do |pool| %>
                     <li>
