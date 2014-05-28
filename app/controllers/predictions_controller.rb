@@ -14,6 +14,18 @@ class PredictionsController < ApplicationController
     @gamelist = @games.group_by { |t| t.poule }
   end
 
+  def pouleeindstanden
+    @pool = Pool.find(params[:pool_id])
+  end
+
+  def knockoutfase
+    @pool = Pool.find(params[:pool_id])
+  end
+
+  def bonusvragen
+    @pool = Pool.find(params[:pool_id])
+  end
+
   def create
     @predictions = Prediction.new(prediction_params)
     if @prediction.save
@@ -34,8 +46,6 @@ class PredictionsController < ApplicationController
   def edit
   end
 
-  def pouleeindstanden
-  end
 
   def show
     @pool = Pool.all
