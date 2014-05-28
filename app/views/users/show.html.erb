@@ -29,8 +29,12 @@
             </div>
             <div class='pool-list-txt'>
               <div class="toggle_predictions">
-                <h2><%= Pool.find(poolmembership.pool_id).name %> <div style="float:right;"> <%= poolmembership.score %> </div></h2>
-                <p><%= Pool.find(poolmembership.pool_id).poolmemberships_count %> / <%= Pool.find(poolmembership.pool_id).maximum_membership %></p>
+                <h2>
+                <%= Pool.find(poolmembership.pool_id).name %> <div style="float:right;"> <%= poolmembership.score %>
+              </div> </h2> 
+                <p>
+                  <%= Pool.find(poolmembership.pool_id).poolmemberships_count %> / <%= Pool.find(poolmembership.pool_id).maximum_membership %>
+                </p>
               </div>                   
 
               <div class="predictions">
