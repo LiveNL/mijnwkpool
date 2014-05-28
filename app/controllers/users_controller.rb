@@ -11,9 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @poolmemberships = Poolmembership.where(user_id: @user.id).load
-    @pool = Pool.find(params[:id])
     @games = Game.order(:poule)
-    # @predictions = Prediction.all
     @gamelist = @games.group_by { |t| t.poule }
   end
 
