@@ -1,0 +1,113 @@
+<div class='grid-r'>
+  <div class='medium-3-4'>
+    <div class='box'>
+      <div class="content-header">
+        <h1>Mijn voorspellingen</h1>
+      </div>
+
+      <div class="prediction-steps">
+        <div class="steps">
+          <div class="step active">
+            <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
+          </div>
+          <div class="step">
+            <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
+          </div>
+          <div class="step">
+            <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
+          </div>
+          <div class="step">
+            <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pooldashboard-content">
+        <h2>Poule wedstrijden</h2>
+        <%= form_tag controller: :predictions, action: :update_multiple_predictions do %>
+          <input name="_method" type="hidden" value="patch" />
+          <% @gamelist.sort.each_with_index do |(poule, games), index| %>
+            <table class="table poule">
+              <thead>
+                <tr>
+                  <th class="groupname" colspan="4">Groep <%= poule %></th>
+                  <th class="default-hide small-show">&nbsp;</th>
+                  <th class="default-hide small-show">&nbsp;</th>
+                  <th class="default-hide small-show">Uitslag</th>
+                  <th>Punten</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% games.each_with_index do |game, index2| %>
+                  <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
+                  <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
+                  <% team1 = Team.find(game.team1_id) %>
+                  <% team2 = Team.find(game.team2_id) %>
+
+                  <%= fields_for "predictions[#{index}#{index2}]", prediction do |p| %>
+                    <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+                    <%= p.hidden_field :game_id, :value => game.id %>
+                    <%= p.hidden_field :team1_id, :value => team1.id %>
+                    <%= p.hidden_field :team2_id, :value => team2.id %>
+                    <%= p.hidden_field :id, :value => prediction.id %>
+                    <tr>
+                      <td class="infoshower">
+                        <i class="fa fa-question-circle"></i>
+                        <div class="infobox hiddeninfo">
+                          <%= team1.name %> - <%= team2.name %> <br />
+                          <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span>
+                        </div>
+                      </td>
+                      <td class="default-hide small-show"><%= team1.name %></td>
+                      <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td>
+
+                      <td class="predict-score">
+                        <div class="view-table">
+                          <div class="view-row">
+                            <div>
+                              <%= p.number_field :prediction1, :class => 'predict' %>
+                            </div>
+                            <div>
+                              &ndash;
+                            </div>
+                            <div>
+                              <%= p.number_field :prediction2, :class => 'predict' %>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td>
+                      <td class="default-hide small-show"><%= team2.name %></td>
+                      <td class="default-hide small-show">x &ndash; x</td>
+                      <td>x</td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+          <div class="content-btn">
+            <div class="center">
+              <button class="btn green" type="submit">Bewerken</button>
+            </div>
+            <div class="right">
+              <a href="#" class="btn green left"><span class="default-hide small-show">Volgende &nbsp; </span><i class="fa fa-chevron-right"></i></a>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/aside" %>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(".infoshower").hover(function () {
+  $(this).find(".hiddeninfo").fadeIn('fast');
+}, function () {
+  $(this).find(".hiddeninfo").fadeOut('fast');
+});
+</script>
