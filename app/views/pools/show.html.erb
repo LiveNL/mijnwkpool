@@ -39,7 +39,7 @@
                   &#9819;
                   <% else %><% end %>
                   <% if User.find(user.user_id) == current_user %>
-                  <%= fa_icon 'male' %>
+                  <%= fa_icon 'hand-o-left' %>
                   <% else %><% end %> </td>
               <td class="bold"><%= Poolmembership.find(user.id).score %></td>
             </tr>

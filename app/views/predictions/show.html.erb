@@ -32,6 +32,11 @@
 
       <div class="pooldashboard-content">
         <h2>Poule wedstrijden</h2>
+        <div class="content-btn">
+            <div class="center">
+              <%= link_to 'Voorspelling aanpassen', edit_prediction_path(@pool.id), :class => 'btn grey right' %>
+            </div>
+          </div>
         <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
           <% @gamelist.sort.each_with_index do |(poule, games), index| %>
             <table class="table poule">

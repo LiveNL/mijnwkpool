@@ -82,10 +82,9 @@ class PredictionsController < ApplicationController
     end
   end
 
-
   def show
     @pool = Pool.find(params[:id])
-    @games = Game.order(:poule)
+    @games = Game.order(:poule, :date)
     @gamelist = @games.group_by { |t| t.poule }
   end
 

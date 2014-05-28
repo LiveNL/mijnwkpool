@@ -1,7 +1,8 @@
 .pagination {
   a,
   span,
-  .gap {
+  .gap,
+  .disabled {
     @extend .btn;
     @extend .btn.grey;
   }
@@ -17,11 +18,6 @@
   em {
     @extend .btn;
     @extend .btn.green;
-  }
-
-  .disabled {
-    @extend .btn;
-    @extend .btn.grey-dark;
   }
 }
 
