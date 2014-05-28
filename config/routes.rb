@@ -6,12 +6,12 @@ Wkpool::Application.routes.draw do
     patch 'update_multiple_predictions', to: 'predictions#update_multiple_predictions'
     get 'pouleeindstanden/:id' => 'predictions#pouleeindstanden', :as => 'pouleeindstanden'
     get 'knockoutfase/:id' => 'predictions#knockoutfase', :as => 'knockoutfase'
-    get 'bonusvragen/:id' => 'predictions#bonusvragen', :as => 'bonusvragen' 
+    get 'bonusvragen/:id' => 'predictions#bonusvragen', :as => 'bonusvragen'
     resources :pools, :users, :poolmemberships, :predictions, :teams
-    post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'   
-    get 'givepoints' => 'predictions#givepoints', :as => 'givepoints' 
-    get 'pointsscript' => 'predictions#pointsscript', :as => 'pointsscript' 
-    get 'speluitleg' => 'pages#speluitleg', :as => 'speluitleg' 
+    post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'
+    get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'
+    get 'pointsscript' => 'predictions#pointsscript', :as => 'pointsscript'
+    get 'speluitleg' => 'pages#speluitleg', :as => 'speluitleg'
     resources :games do
       member do
         patch :toggle
