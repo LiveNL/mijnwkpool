@@ -1,9 +1,10 @@
 Wkpool::Application.routes.draw do
   scope '/app' do
+    resources :pools, :users, :poolmemberships, :predictions, :teams
     get 'users/welcome' => 'users#welcome', :as => 'welcome'
     get 'pools/:id/invite' => 'pools#invite', :as => 'invite_pool'
-    resources :pools, :users, :poolmemberships, :predictions, :teams
-    post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'   
+    post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'
+    patch 'update_multiple_predictions', to: 'predictions#update_multiple_predictions'
     get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'
     get 'pouleeindstanden' => 'predictions#pouleeindstanden', :as => 'pouleeindstanden'    
     get 'pointsscript' => 'predictions#pointsscript', :as => 'pointsscript' 
@@ -12,7 +13,7 @@ Wkpool::Application.routes.draw do
       member do
         patch :toggle
       end
-    end    
+    end
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets

@@ -31,7 +31,18 @@ class PredictionsController < ApplicationController
     redirect_to app_root_path
   end
 
+  def update_multiple_predictions
+    params[:predictions].each do |k, v|
+      @prediction = Prediction.find(v[:id])
+      @prediction.update(v)
+    end
+    redirect_to app_root_path
+  end
+
   def edit
+    @pool = Pool.find(params[:id])
+    @games = Game.order(:poule)
+    @gamelist = @games.group_by { |t| t.poule }
   end
 
   def pouleeindstanden
@@ -51,153 +62,153 @@ class PredictionsController < ApplicationController
 
   def pointsscript
     @games = Game.all
-    @predictions = Prediction.all  
-    @games.each do |game| 
-      @predictions.each do |prediction| 
-        if game.id == prediction.game_id 
-          if game.score1 == nil && game.score2 == nil 
-          else 
-            if game.score1 < game.score2 && prediction.prediction1 < prediction.prediction2 
-              if game.score1 == prediction.prediction1 && game.score2 == prediction.prediction2    
-                if prediction.pointsgiven == 1 
-                else 
-                  scoreupdate = Poolmembership.find(prediction.poolmembership_id) 
+    @predictions = Prediction.all
+    @games.each do |game|
+      @predictions.each do |prediction|
+        if game.id == prediction.game_id
+          if game.score1 == nil && game.score2 == nil
+          else
+            if game.score1 < game.score2 && prediction.prediction1 < prediction.prediction2
+              if game.score1 == prediction.prediction1 && game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
                   myes = scoreupdate.score + 12
-                  score5 = scoreupdate 
-                  score5.score = myes 
-                  score5.save 
-                  prediction.pointsgiven = 1 
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
                   prediction.pointsearned = 12
-                  prediction.save 
-                end 
-              elsif game.score2 == prediction.prediction2 
-                if prediction.pointsgiven == 1 
-                else 
-                  scoreupdate = Poolmembership.find(prediction.poolmembership_id) 
+                  prediction.save
+                end
+              elsif game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
                   myes = scoreupdate.score + 7
-                  score5 = scoreupdate 
-                  score5.score = myes 
-                  score5.save 
-                  prediction.pointsgiven = 1 
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
                   prediction.pointsearned = 7
-                  prediction.save 
-                end 
-              else 
-                if prediction.pointsgiven == 1 
-                else 
-                  scoreupdate = Poolmembership.find(prediction.poolmembership_id) 
-                  myes = scoreupdate.score + 5
-                  score5 = scoreupdate 
-                  score5.score = myes 
-                  score5.save 
-                  prediction.pointsgiven = 1 
-                  prediction.pointsearned = 5
-                  prediction.save 
-                end 
-              end 
-
-            elsif game.score1 > game.score2 && prediction.prediction1 > prediction.prediction2 
-              if game.score1 == prediction.prediction1 && game.score2 == prediction.prediction2 
-                if prediction.pointsgiven == 1 
-                else 
-                  scoreupdate = Poolmembership.find(prediction.poolmembership_id) 
-                  myes = scoreupdate.score + 12
-                  score5 = scoreupdate 
-                  score5.score = myes 
-                  score5.save 
-                  prediction.pointsgiven = 1 
-                  prediction.pointsearned = 12
-                  prediction.save 
-                end 
-              elsif game.score2 == prediction.prediction2 
-                if prediction.pointsgiven == 1 
-                else 
-                  scoreupdate = Poolmembership.find(prediction.poolmembership_id) 
-                  myes = scoreupdate.score + 7
-                  score5 = scoreupdate 
-                  score5.score = myes 
-                  score5.save 
-                  prediction.pointsgiven = 1 
-                  prediction.pointsearned = 7
-                  prediction.save 
-                end 
-              else 
-                if prediction.pointsgiven == 1 
-                else 
-                  scoreupdate = Poolmembership.find(prediction.poolmembership_id) 
-                  myes = scoreupdate.score + 5
-                  score5 = scoreupdate 
-                  score5.score = myes 
-                  score5.save 
-                  prediction.pointsgiven = 1 
-                  prediction.pointsearned = 5
-                  prediction.save 
-                end 
-              end 
-
-            elsif game.score1 == game.score2 && prediction.prediction1 == prediction.prediction2 
-              if game.score1 == prediction.prediction1 && game.score2 == prediction.prediction2 
-                if prediction.pointsgiven == 1   
-                else 
-                  scoreupdate = Poolmembership.find(prediction.poolmembership_id) 
-                  myes = scoreupdate.score + 12
-                  score5 = scoreupdate 
-                  score5.score = myes 
-                  score5.save 
-                  prediction.pointsgiven = 1 
-                  prediction.pointsearned = 12
-                  prediction.save 
-                end 
-              
+                  prediction.save
+                end
               else
-                if prediction.pointsgiven == 1 
-                else 
-                  scoreupdate = Poolmembership.find(prediction.poolmembership_id) 
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
                   myes = scoreupdate.score + 5
-                  score5 = scoreupdate 
-                  score5.score = myes 
-                  score5.save 
-                  prediction.pointsgiven = 1 
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
                   prediction.pointsearned = 5
-                  prediction.save 
-                end 
-              end 
-              
-            else   
-              if game.score1 == prediction.prediction1 
-                if prediction.pointsgiven == 1 
-                else 
-                  scoreupdate = Poolmembership.find(prediction.poolmembership_id) 
-                  myes = scoreupdate.score + 2
-                  score5 = scoreupdate 
-                  score5.score = myes 
-                  score5.save 
-                  prediction.pointsgiven = 1 
-                  prediction.pointsearned = 2
-                  prediction.save 
-                end 
+                  prediction.save
+                end
+              end
 
-              elsif game.score2 == prediction.prediction2 
-                if prediction.pointsgiven == 1 
-                else 
-                  scoreupdate = Poolmembership.find(prediction.poolmembership_id) 
+            elsif game.score1 > game.score2 && prediction.prediction1 > prediction.prediction2
+              if game.score1 == prediction.prediction1 && game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 12
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 12
+                  prediction.save
+                end
+              elsif game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 7
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 7
+                  prediction.save
+                end
+              else
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 5
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 5
+                  prediction.save
+                end
+              end
+
+            elsif game.score1 == game.score2 && prediction.prediction1 == prediction.prediction2
+              if game.score1 == prediction.prediction1 && game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 12
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 12
+                  prediction.save
+                end
+
+              else
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 5
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 5
+                  prediction.save
+                end
+              end
+
+            else
+              if game.score1 == prediction.prediction1
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
                   myes = scoreupdate.score + 2
-                  score5 = scoreupdate 
-                  score5.score = myes 
-                  score5.save 
-                  prediction.pointsgiven = 1 
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
                   prediction.pointsearned = 2
-                  prediction.save 
-                end 
-              else 
-              end 
-            end 
-          end 
-        else  
-        end 
-      end 
+                  prediction.save
+                end
+
+              elsif game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 2
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 2
+                  prediction.save
+                end
+              else
+              end
+            end
+          end
+        else
+        end
+      end
     end
-    redirect_to givepoints_path    
+    redirect_to givepoints_path
   end
 
   def givepoints
