@@ -5,52 +5,118 @@
       <div class="content-header">
         <h1>Speluitleg</h1>
       </div>
+      <div class="grid-r">
+        <h2 style="padding-left:30px; padding-bottom:20px; margin-top:30px;">Algemene regels</h2>
+        <div class="medium-1-2" style="padding-left:20px; padding-bottom:20px;">
+          <p>
+            Meteen na een wedstrijd wordt de uitslag hiervan ingevoerd door de beheerder. Het systeem berekend automatisch hoeveel punten elke deelnemer krijgt toegekend.
+            <br/><br/>
 
-      <% if current_user.poolmemberships.count < 1 %>
-      <div id="contentflash" class="contentflash error">
-        <div class="view-table">
-          <div class="view-row">
-            <div class="flashcontent-icon"><i class="fa fa-users"></i></div>
-            <div class="contentflash-text">Let op! Je hebt je nog niet bij een pool aangesloten!</div>
-          </div>
+            In de uitslag wordt eventuele extra tijd ook meegenomen, strafschoppenseries tellen niet mee.<br/><br/>
+            Na de poulefase is het mogelijke om extra punten te verdienen voor elk correct voorspeld land.
+          </p>
         </div>
-          <script>contentflashMessage();</script>
-      </div>
-      <% end %>
 
-      <div class="notifications">
-        <div class='notification-list'>
-          <ul>
-            <li>
-              <div class='view-table'>
-                <div class='grey notification-list-inner view-row' href='#modal' rel='modal:open'>
-                  <div class='notification-list-txt'>
-                    <h3>
-                    Sed posuere consectetur est at lobortis. Maecenas sed diam eget risus varius blandit sit amet non magna. Etiam porta sem malesuada magna mollis euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.<br/><br/>
+        <div class="medium-1-2" style="padding-right:20px; padding-bottom:20px;">
+          Uiterste voorspel datum
+          <p>
+            Alle voorspellingen dienen voor 12 juni ingevuld te worden. Wordt dit niet gedaan is het niet meer mogelijk om de bonusvragen en de poule standen in te vullen.<br/><br/>
 
-                    Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Etiam porta sem malesuada magna mollis euismod. Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla. Curabitur blandit tempus porttitor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.<br/><br/>
-
-                    Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Curabitur blandit tempus porttitor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.<br/><br/>
-
-                    Sed posuere consectetur est at lobortis. Maecenas sed diam eget risus varius blandit sit amet non magna. Etiam porta sem malesuada magna mollis euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.<br/><br/>
-
-                    Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Etiam porta sem malesuada magna mollis euismod. Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla non metus auctor fringilla. Curabitur blandit tempus porttitor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.<br/><br/>
-
-                    Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Curabitur blandit tempus porttitor. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Etiam porta sem malesuada magna mollis euismod.<br/><br/>
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
+            Het is bij mijnwkpool nog mogelijk om mee te doen aan het spel nadat het wk begonnen is, elke wedstrijd die al gespeeld is kan dan niet meer voorspeld worden. Ook is het dan niet meer mogelijk om de poule eindstanden en de bonusvragen in te vullen.
+          </p>
         </div>
       </div>
+      <hr style="margin: 30px; color: #ccc;">
+      <div class="grid-r">
+        <h2 style="padding-left:30px; padding-bottom:20px;">Punten verdeling</h2>
+        <div class="medium-1-2" style="padding-left:20px; padding-bottom:20px;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Voorspelling</th>
+                <th>Punten</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Correcte toto</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>Correct aantal doelpunten voor 1 team</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>Correct aantal doelpunten voor beide teams</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Volledig correcte score bonus</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Maximale score</td>
+                <td>12</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
+        <div class="medium-1-2" style="padding-right:20px; padding-bottom:20px;">
+          <table class="table poule">
+            <thead>
+              <tr>
+                <th colspan="4">Wedstrijd</th>
+                <th>Uitslag</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Brazilië</td>
+                <td class="flag" style="background-image: url(<%= asset_path 'brasil.png' %>);"></td>
+                <td class="flag" style="background-image: url(<%= asset_path 'kroatie.png' %>);"></td>
+                <td>Kroatië</td>
+                <td>2 - 0</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Voorspelling</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2-0</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>2-1</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>3-1</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>2-2</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>1-1</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>        
+      </div>
     </div>
   </div>
+
   <div class='default-0 medium-1-4'>
     <%= render "shared/aside" %>
-
   </div>
 </div>
-<script>filterHandle();</script>
