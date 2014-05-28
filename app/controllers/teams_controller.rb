@@ -1,4 +1,6 @@
 class TeamsController < ApplicationController
+  before_filter :ensure_admin
+
   def index
     @teams = Team.all
   end
@@ -14,7 +16,7 @@ class TeamsController < ApplicationController
       flash[:success] = 'Team toegevoegd.'
       redirect_to teams_path
     else
-      @teams = Team.all      
+      @teams = Team.all
       render 'new'
     end
   end
