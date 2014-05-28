@@ -87,7 +87,7 @@ table {
     tbody > tr > td {
       color: $color-grey-medium;
 
-      &:nth-child(1) {
+      &.infoshower {
         color: $color-grey-light;
         text-align: center;
         width: 51px;
@@ -101,6 +101,7 @@ table {
       }
       &.predict-score {
         padding: 0;
+        text-align: center;
 
         @include respond-to(small) {
           width: 130px;
@@ -118,6 +119,8 @@ table {
   }
 
   .flag {
+    background-repeat: no-repeat;
+    background-position: center center;
     padding: 0;
     width: 70px;
   }
