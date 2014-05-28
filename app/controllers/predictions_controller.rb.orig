@@ -6,7 +6,7 @@ class PredictionsController < ApplicationController
     @games = Game.all
     @predictions = Prediction.all
   end
-  
+
   def new
     @pool = Pool.find(params[:pool_id])
     @games = Game.order(:poule)
@@ -24,11 +24,24 @@ class PredictionsController < ApplicationController
   end
 
   def create_multiple_predictions
+<<<<<<< HEAD
+    if params[:predictions].present? 
+      params[:predictions].each do |k,v|
+      prediction = Prediction.new
+      prediction.prediction1 = v['prediction1']
+      prediction.prediction2 = v['prediction2']
+      prediction.poolmembership_id = v['poolmembership_id']
+      prediction.game_id = v['game_id']
+=======
     params[:predictions].each do |k, v|
       prediction = Prediction.new(v)
+>>>>>>> bug_sander
       prediction.save
+      redirect_to pouleeindstanden_path
     end
-    redirect_to app_root_path
+    else
+      redirect_to pouleeindstanden_path
+    end
   end
 
   def edit
