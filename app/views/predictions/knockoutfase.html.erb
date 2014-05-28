@@ -23,31 +23,24 @@
       </div>
 
       <div class="pooldashboard-content">
-
-
-
-
-          <div class="content-btn">
-            <div class="left">
-              <%= link_to '< Vorige', pouleeindstanden_path(@pool.id), :class => 'btn green left' %>
-            </div>
-            <div class="right">
-              <%= link_to 'Volgende >', bonusvragen_path(@pool.id), :class => 'btn green left' %>
-
-            </div>
-
+        <p>
+          Momenteel is deze functie nog niet beschikbaar. Wanneer deze functie beschikbaar is zul je een email hierover ontvangen. Ook zal deze informatie op onze Facebook pagina te vinden zijn.   
+        </p>
+        <div class="content-btn">
+          <div class="left">
+            <%= link_to '< Vorige', pouleeindstanden_path(@pool.id), :class => 'btn green left' %>
           </div>
-
+          <div class="right">
+            <%= link_to 'Volgende >', bonusvragen_path(@pool.id), :class => 'btn green left' %>
+          </div>
+        </div>
       </div>
-
-      </div>
-    </div>
-    <div class='default-0 medium-1-4'>
-      <%= render "shared/aside" %>
-      <%= render "shared/aside_ad" %>   
     </div>
   </div>
-
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/aside" %>
+    <%= render "shared/aside_ad" %>   
+  </div>
 </div>
 
 <script type="text/javascript">
