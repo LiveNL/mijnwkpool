@@ -25,14 +25,18 @@
 
       <div class="pooldashboard-content">
         <p>
-          Momenteel is deze functie nog niet beschikbaar. Wanneer deze functie beschikbaar is zul je een email hierover ontvangen. Ook zal deze informatie op onze Facebook pagina te vinden zijn.   
+          Momenteel is deze functie nog niet beschikbaar. Wanneer deze functie beschikbaar is zul je een email hierover ontvangen. Ook zal deze informatie op onze Facebook pagina te vinden zijn.
         </p>
         <div class="content-btn">
           <div class="left">
-            <%= link_to '< Vorige', prediction_path(@pool.id), :class => 'btn green left' %>
+            <%= link_to prediction_path(@pool.id), :class => 'btn green left' do %>
+              <i class="fa fa-chevron-left"></i> Vorige
+            <% end %>
           </div>
           <div class="right">
-            <%= link_to 'Volgende >',knockoutfase_path(@pool.id), :class => 'btn green left' %>
+            <%= link_to knockoutfase_path(@pool.id), :class => 'btn green left' do %>
+              Volgende <i class="fa fa-chevron-right"></i>
+            <% end %>
           </div>
         </div>
       </div>
@@ -40,7 +44,7 @@
   </div>
   <div class='default-0 medium-1-4'>
     <%= render "shared/aside" %>
-    <%= render "shared/aside_ad" %>   
+    <%= render "shared/aside_ad" %>
   </div>
 </div>
 
