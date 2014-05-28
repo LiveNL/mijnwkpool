@@ -15,15 +15,15 @@ class PredictionsController < ApplicationController
   end
 
   def pouleeindstanden
-    @pool = Pool.find(params[:pool_id])
+    @pool = Pool.find(params[:id])
   end
 
   def knockoutfase
-    @pool = Pool.find(params[:pool_id])
+    @pool = Pool.find(params[:id])
   end
 
   def bonusvragen
-    @pool = Pool.find(params[:pool_id])
+    @pool = Pool.find(params[:id])
   end
 
   def create

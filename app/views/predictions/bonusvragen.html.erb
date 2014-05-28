@@ -29,10 +29,10 @@
 
           <div class="content-btn">
             <div class="left">
-              <%= link_to '< Vorige', knockoutfase_path(pool_id: @pool.id), :class => 'btn green left' %>
+              <%= link_to '< Vorige', knockoutfase_path(@pool.id), :class => 'btn green left' %>
             </div>
             <div class="right">
-              <%= link_to 'Opslaan', new_prediction_path(pool_id: @pool.id), :class => 'btn green left' %>
+              <%= link_to 'Opslaan', prediction_path(@pool.id), :class => 'btn green left' %>
 
             </div>
 

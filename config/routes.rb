@@ -4,9 +4,9 @@ Wkpool::Application.routes.draw do
     get 'pools/:id/invite' => 'pools#invite', :as => 'invite_pool'
     post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'
     patch 'update_multiple_predictions', to: 'predictions#update_multiple_predictions'
-    get 'predictions/pouleeindstanden' => 'predictions#pouleeindstanden', :as => 'pouleeindstanden'
-    get 'predictions/knockoutfase' => 'predictions#knockoutfase', :as => 'knockoutfase'
-    get 'predictions/bonusvragen' => 'predictions#bonusvragen', :as => 'bonusvragen' 
+    get 'pouleeindstanden/:id' => 'predictions#pouleeindstanden', :as => 'pouleeindstanden'
+    get 'knockoutfase/:id' => 'predictions#knockoutfase', :as => 'knockoutfase'
+    get 'bonusvragen/:id' => 'predictions#bonusvragen', :as => 'bonusvragen' 
     resources :pools, :users, :poolmemberships, :predictions, :teams
     post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'   
     get 'givepoints' => 'predictions#givepoints', :as => 'givepoints' 

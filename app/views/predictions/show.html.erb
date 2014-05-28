@@ -103,10 +103,10 @@
           <% end %>
           <div class="content-btn">
             <div class="center">
-              <%= link_to 'Voorspelling aanpassen', edit_prediction_path(@pool.id), :class => 'btn grey' %>
+              <%= link_to 'Voorspelling aanpassen', edit_prediction_path(@pool.id), :class => 'btn green' %>
             </div>
             <div class="right">
-              <a href="#" class="btn green left"><span class="default-hide small-show">Volgende &nbsp; </span><i class="fa fa-chevron-right"></i></a>
+              <%= link_to 'Volgende >', pouleeindstanden_path(@pool.id), :class => 'btn green left' %>
             </div>
           </div>
         <% end %>
@@ -125,3 +125,4 @@ $(".infoshower").hover(function () {
   $(this).find(".hiddeninfo").fadeOut('fast');
 });
 </script>
+
