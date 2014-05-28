@@ -21,20 +21,30 @@
             <tbody>
               <% @games.each do |f| %>
                 <tr>
-                  <td><%= f.date %></td>
-                  <td><%= f.time.strftime("%I:%M") %></td>
-                  <td><%= image_tag Team.find(f.team1_id).avatar.url(:mini) %><%= Team.find(f.team1_id).name %></td>
-                  <td><%= f.score1 %>-<%= f.score2 %></td>
-                  <td><%= image_tag Team.find(f.team2_id).avatar.url(:mini) %><%= Team.find(f.team2_id).name %></td>
-                  <td><%= f.gametype %></td>
-                  <td><%= f.poule %></td>                  
-                  <td><%= link_to 'Edit', edit_game_path(f) %></td>
+                  <td style="padding: 1px 2px 1px 2px;"><%= f.date %></td>
+                  <td style="padding: 1px 2px 1px 2px;"><%= f.time.strftime("%I:%M") %></td>
+                  <td style="padding: 1px 2px 1px 2px;"><%= image_tag Team.find(f.team1_id).avatar.url(:mini) %><%= Team.find(f.team1_id).name %></td>
+                  <td style="padding: 1px 2px 1px 2px;"><%= f.score1 %>-<%= f.score2 %></td>
+                  <td style="padding: 1px 2px 1px 2px;"><%= image_tag Team.find(f.team2_id).avatar.url(:mini) %><%= Team.find(f.team2_id).name %></td>
+                  <td style="padding: 1px 2px 1px 2px;"><%= f.gametype %></td>
+                  <td style="padding: 1px 2px 1px 2px;"><%= f.poule %></td>                  
+                  <td style="padding: 1px 2px 1px 2px;"><%= link_to 'Edit', edit_game_path(f) %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
-          <br><br>
-         <table class="table admin">
+          <table class="table admin">
+            <thead>
+              <tr>
+                <th>Datum</th>
+                <th>Tijd</th>
+                <th>Team 1</th>
+                <th>Score</th>
+                <th>Team 2</th>
+                <th>Gametype</th>
+                <th>Poule</th>
+              </tr>
+            </thead>
             <tbody>
               <%= form_for (@game) do |f| %>
                 <tr>
@@ -44,10 +54,10 @@
                   <td style="padding: 0px;">
                     <%= f.time_select :time %>
                   </td>
-                  <td>
+                  <td style="padding: 0px;">
                     <%= select_tag "team1_id", options_from_collection_for_select(Team.all, "id", "name"), { :class => 'dropdown' }%>
                   </td>
-                  <td class="predict-score">
+                  <td class="predict-score" style="padding: 0px;">
                     <div class="view-table">
                       <div class="view-row">
                           <%= f.text_field :score1 %>
@@ -58,11 +68,11 @@
                       </div>
                     </div>
                   </td>
-                  <td>
+                  <td style="padding: 0px;">
                     <%= select_tag "team2_id", options_from_collection_for_select(Team.all, "id", "name"), { :class => 'dropdown' }%>
                   </td>
 
-                  <td>
+                  <td style="padding: 0px;">
                     <select id="gametype"name="gametype">
                       <option value="Poule">Poule</option>
                       <option value="Knockout">Knockout</option>
@@ -71,13 +81,19 @@
                     </select>
                   </td>
 
-                  <td>
-                    Poule: <%= f.text_field :poule %>
+                  <td style="padding: 0px;">
+                    <%= f.text_field :poule, :placeholder => 'poule', :onclick => 'this.select();' %>            
+                  </td>
+                  <td style="padding: 0px;">
+                    <%= f.button 'Add', :class => 'green fullwidth' %>
                   </td>
                 </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
-          </tbody>
-        </table>
-        <br>
-      <%= f.button 'Voeg wedstrijd toe', :class => 'green fullwidth' %>
-    <% end %>

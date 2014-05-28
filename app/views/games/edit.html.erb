@@ -1,30 +1,65 @@
 <div class="grid-r">
   <div class="medium-4-4">
     <div class="box">
-      <div class="content-header">
-        <h1>Wedstrijden</h1>
-      </div>
-      <div class="pooldashboard-content">
-        <%= form_for (@game) do |f| %>
-        <%= f.label :score1, 'Score 1' %>
-        <%= f.text_field :score1 %>
+      <form accept-charset="UTF-8" action="/app/games" class="new_game" enctype="multipart/form-data" id="new_game" method="post">
+        <div class="content-header">
+          <h1>Edit wedstrijd</h1>
+        </div>
+        <div class="pooldashboard-content">       
+        	<p><%= link_to 'Terug naar alle wedstrijden', games_path %></p>
+          <table id="myTable" class="table admin">
+            <thead>
+              <tr>
+                <th>Datum</th>
+                <th>Tijd</th>
+                <th>Team 1</th>
+                <th>Score 1</th>
+                <th>Score 2</th>
+                <th>Team 2</th>
+                <th>Gametype</th>
+                <th>Poule</th>   
+                <th>Save</th>                                             
+              </tr>
+            </thead>
 
-        <%= f.label :score2, 'Score 2' %>
-        <%= f.text_field :score2 %>
-        Poule: 
-                <%= f.text_field :poule %>
-        <%= f.label :team1_id, 'Team 1' %> -
-        <%= f.select "team1_id", options_from_collection_for_select(Team.all, "id", "name", :selected => f.object.team1_id)%><br/>
-
-        <%= f.label :team2_id, 'Team 2' %> -
-        <%= f.select "team2_id", options_from_collection_for_select(Team.all, "id", "name", :selected => f.object.team2_id)%><br/>
-        Tijd: <%= f.time_select :time %><br/>
-        Datum: <%= f.date_select :date %><br/>
-        Gametype: <%= f.select :gametype, options_for_select([["Gametype", ""], "Poule", "Achtste finale", "Kwart finale", "Halve finale", "Finale"], :selected => f.object.gametype)%>   
-        <%= link_to 'Game verwijderen', @game, method: :delete, data: { confirm: 'Weet je zeker dat je deze game wilt verwijderen?' }, :class => 'btn red pool-sign-in'  %>
-        <%= button_to 'Wedstrijd opslaan', @game, method: :update, :class => 'btn green '  %>
-        <% end %>  
-      </div>
-    </div>
-  </div>
+            <tbody>
+        			<%= form_for (@game) do |f| %>
+                <tr>
+                  <td style="padding:1px;"><%= f.date_select :date %></td>
+                  <td style="padding:1px;"><%= f.time_select :time %></td>
+                  <td><%= f.select "team1_id", options_from_collection_for_select(Team.all, "id", "name", :selected => f.object.team1_id), { :class => 'dropdown' }%></td>
+                  <td class="predict-score" style="padding:1px;">
+                  	<div class="view-table">
+                      <div class="view-row">
+                        <%= f.number_field :score1 %></td>
+                			</div>
+                  	</div>
+                  </td>
+                  <td class="predict-score" style="padding:1px;">
+                  	<div class="view-table">
+                      <div class="view-row">
+                        <%= f.number_field :score2 %></td>
+                			</div>
+                  	</div>
+                  </td>                  
+                  <td>	
+                    <%= f.select "team2_id", options_from_collection_for_select(Team.all, "id", "name", :selected => f.object.team2_id), { :class => 'dropdown' }%>
+                  </td>
+                  <td style="padding:1px;"> <%= f.select :gametype, options_for_select([["Gametype", ""], "Poule", "Achtste finale", "Kwart finale", "Halve finale", "Finale"], :selected => f.object.gametype)%></td>
+                  <td class="predict-score" style="padding:1px;">
+                  	<div class="view-table">
+                      <div class="view-row">
+                        <%= f.text_field :poule %></td>
+                			</div>
+                  	</div>
+                  </td>                    
+                  <td style="padding:1px;"><%= button_to 'Wedstrijd opslaan', @game, method: :update, :class => 'btn green'  %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+				</div>
+    	</form>
+		</div>
+	</div>
 </div>
