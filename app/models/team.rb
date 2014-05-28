@@ -10,7 +10,5 @@ class Team < ActiveRecord::Base
                   },
                   default_url: 'pool/:style/missing.png'
 
-p "Henk"
-
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 end
