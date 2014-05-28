@@ -85,6 +85,9 @@ function rangeSlider(minus,maxus) {
   });
 }
 function rangeSlider2(minus, startus) {
+  minus = round5(minus);
+  startus = round5(startus);
+
   var Link = $.noUiSlider.Link;
 
   $('.rangeslider').noUiSlider({
@@ -111,4 +114,9 @@ function rangeSlider2(minus, startus) {
       }
     }
   });
+}
+
+function round5(x)
+{
+    return Math.ceil(x/5)*5;
 }

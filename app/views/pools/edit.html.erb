@@ -11,7 +11,7 @@
         <div class="content-header">
           <span class="default-hide small-show">
             <a href="../<%= @pool.id %>" class="btn grey left"><i class="fa fa-chevron-left"></i> Terug naar <%= @pool.name%></a>
-          </span>                  
+          </span>
           <%= link_to 'Pool verwijderen', @pool, method: :delete, data: { confirm: 'Weet je zeker dat je deze pool wilt verwijderen?' }, :class => 'btn red pool-sign-in'  %>
         </div>
 
@@ -52,7 +52,7 @@
               </div>
 
               <div class="form-field">
-                <label>Maximaal aantal spelers vergroten</label>
+                <label>Maximaal aantal spelers</label>
                 <div class='slider'>
                   <div class='minmax'>
                     <div class='mintext'></div>
@@ -124,7 +124,7 @@
 </div>
 <%= javascript_tag do %>
   poolPassword();
-  rangeSlider2(<%= @pool.maximum_membership %>, <%= @pool.poolmemberships_count %>);
+  rangeSlider2(<%= @pool.poolmemberships_count %>, <%= @pool.maximum_membership %>);
 <% end %>
 <% else %>
 Sp&#228;ter!
