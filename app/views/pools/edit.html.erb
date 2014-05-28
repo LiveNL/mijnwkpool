@@ -12,7 +12,7 @@
           <span class="default-hide small-show">
             <a href="../<%= @pool.id %>" class="btn grey left"><i class="fa fa-chevron-left"></i> Terug naar <%= @pool.name%></a>
           </span>                  
-          <%= button_to 'Pool verwijderen', @pool, method: :delete, data: { confirm: 'Weet je zeker dat je deze pool wilt verwijderen?' }, :class => 'btn red pool-sign-in'  %>
+          <%= link_to 'Pool verwijderen', @pool, method: :delete, data: { confirm: 'Weet je zeker dat je deze pool wilt verwijderen?' }, :class => 'btn red pool-sign-in'  %>
         </div>
 
         <div class="grid-r">
