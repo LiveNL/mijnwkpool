@@ -44,10 +44,10 @@
                   <td style="padding: 0px;">
                     <%= f.time_select :time %>
                   </td>
-                  <td>
+                  <td style="padding: 0px;">
                     <%= select_tag "team1_id", options_from_collection_for_select(Team.all, "id", "name"), { :class => 'dropdown' }%>
                   </td>
-                  <td class="predict-score">
+                  <td class="predict-score" style="padding: 0px;">
                     <div class="view-table">
                       <div class="view-row">
                           <%= f.text_field :score1 %>
@@ -58,11 +58,11 @@
                       </div>
                     </div>
                   </td>
-                  <td>
+                  <td style="padding: 0px;">
                     <%= select_tag "team2_id", options_from_collection_for_select(Team.all, "id", "name"), { :class => 'dropdown' }%>
                   </td>
 
-                  <td>
+                  <td style="padding: 0px;">
                     <select id="gametype"name="gametype">
                       <option value="Poule">Poule</option>
                       <option value="Knockout">Knockout</option>
@@ -71,8 +71,8 @@
                     </select>
                   </td>
 
-                  <td>
-                    Poule: <%= f.text_field :poule %>
+                  <td style="padding: 0px;">
+                    <%= f.text_field :poule, :placeholder => 'poule', :onclick => 'this.select();' %>            
                   </td>
                 </tr>
 
