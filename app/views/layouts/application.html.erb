@@ -118,11 +118,13 @@
                 <li <%= is_active?(pools_path) %>><%= link_to 'Alle pools', pools_path, :class => 'grey' %></li>
                 <% end %>
                 <% if current_user.poolmemberships.count > 0 %>
-                  <% if current_page?(controller: 'predictions', action: 'new') %>
-                    <li class="active">
-                  <% else %>
-                    <li>
-                  <% end %>
+                <% if current_page?(controller: 'pages', action: 'speluitleg') %>
+                  <li class="active">
+                <% elsif current_page?(controller: 'predictions', action: 'show', id: params[:id] || 0) %>
+                  <li class="active">
+                <% else %>
+                  <li>
+                <% end %>
 
                   <a class="grey" href="#">Mijn voorspellingen&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
                   <ul class="sub-menu">
