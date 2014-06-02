@@ -7,7 +7,7 @@ Wkpool::Application.routes.draw do
     get 'pouleeindstanden/:id' => 'predictions#pouleeindstanden', :as => 'pouleeindstanden'
     get 'knockoutfase/:id' => 'predictions#knockoutfase', :as => 'knockoutfase'
     get 'bonusvragen/:id' => 'predictions#bonusvragen', :as => 'bonusvragen'
-    resources :pools, :users, :poolmemberships, :predictions, :teams
+    resources :pools, :users, :poolmemberships, :predictions, :teams, :teampredictions
     post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'
     get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'
     get 'pointsscript' => 'predictions#pointsscript', :as => 'pointsscript'

@@ -1,2 +1,2 @@
-module TeampredictionHelper
+module TeampredictionsHelper
 end
