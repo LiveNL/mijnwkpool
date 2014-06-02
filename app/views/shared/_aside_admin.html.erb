@@ -1,0 +1,23 @@
+<% if current_user.admin == true %>
+<div class='box aside'>
+  <div class='side-header'>
+    <h2>Administrator</h2>
+  </div>
+  <div class='pool-list-admin'>
+    <ul>
+      <li>
+        <%= link_to 'Teams', teams_path, :class => 'grey'%>
+      </li>
+      <li>
+        <%= link_to 'Games', games_path, :class => 'grey'%>
+      </li>
+      <li>
+        <%= link_to 'Punten (poule)', givepoints_path, :class => 'grey'%>
+      </li>
+      <li>
+        <%= link_to 'Punten (eindstanden)', givepoints2_path, :class => 'grey'%>
+      </li>
+    </ul>
+  </div>
+</div>
+<% end %>

@@ -157,3 +157,20 @@
     }
   }
 }
+
+.pool-list-admin {
+  ul {
+    list-style: none;
+  }
+  li {
+    display: block;
+
+    a {
+      border-bottom: 1px solid $color-grey-light;
+      display: block;
+      padding: 10px 0;
+      text-decoration: none;
+
+    }
+  }
+}
