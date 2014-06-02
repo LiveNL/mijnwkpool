@@ -48,12 +48,12 @@
               <tbody>
                 <% teams.each_with_index do |team, index2| %>
                   <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
-                  <% teamprediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, team.id) %>
-                  <% team = Team.find(team_id) %>
+                  <% teamprediction = Teamprediction.find_by_poolmembership_id_and_team_id(current_poolmembership, team.id) %>
+                  <% team = Team.find(team.id) %>
 
                   <%= fields_for "teampredictions[#{index}#{index2}]", teamprediction do |p| %>
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
-                    <tr>
+                    <tr><%= p.hidden_field :id, :value => teamprediction.id %>
                      <td class="predict-score">
                         <div class="view-table">
                           <div class="view-row">
@@ -64,6 +64,7 @@
                         </div>
                       </td>                              
                       <td class="default-hide small-show">
+                        <%= team.name %>
                       </td>
                     </tr>
                   <% end %>
