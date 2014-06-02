@@ -10,11 +10,10 @@
             <thead>
               <tr>
                 <th>Points</th>              
-                <th>Datum</th>
-                <th>Tijd</th>
-                <th>Team 1</th>
-                <th>Score</th>
-                <th>Team 2</th>
+                <th>Afbeeldinge</th>
+                <th>Naam</th>
+                <th>A</th>
+                <th>Positie</th>
               </tr>
             </thead>
             
@@ -34,29 +33,28 @@
                         <% end %>
                       <% end %>
                     </td>                  
-                    <td style="width: 90px; padding: 3px;"></td>
-                    <td style="width: 30px; padding: 3px;"></td>
-                    <td>></td>
-                    <td> x - x </td>
-                    <td></td>        
+                    <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')"></td>
+                    <td style="width: 30px; padding: 3px;"> <%= team.name %></td>
+                    <td><%= team.poule %></td>
+                    <td><%= team.originalposition %></td>      
                   </tr>
                 <% else %>
                   <tr>
                     <td width="1" style="padding:0;">
-                      <% if game.completed %>
+                      <% if team.completed %>
                         <a class="btn checked" href="#">
                           <i class="fa fa-check-circle"></i>
                         </a>  
                         <% else %>
-                        <%= link_to toggle_game_path(game), class:'btn check', method: :patch do %>
+                        <%= link_to toggle_team_path(team), class:'btn check', method: :patch do %>
                           <i class="fa fa-check-circle-o"></i>
                         <% end %>
                       <% end %>
-                    </td>                     <td style="width: 90px; padding: 3px;"><%= game.date %></td>
-                    <td style="width: 30px; padding: 3px;"><%= game.time.strftime("%I:%M") %></td>
-                    <td><%= Team.find(game.team1_id).name %></td>
-                    <td><%= game.score1 %> - <%= game.score2 %></td>
-                    <td><%= Team.find(game.team2_id).name %></td>        
+                    </td>                     
+                    <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')"></td>
+                    <td style="width: 30px; padding: 3px;"> <%= team.name %></td>
+                    <td><%= team.poule %></td>
+                    <td><%= team.originalposition %></td>    
                   </tr>                                                                   
                 <% end %>
               <% end %>
