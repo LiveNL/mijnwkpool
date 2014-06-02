@@ -12,6 +12,7 @@
               <th>Afbeelding</th>
               <th>Naam</th>
               <th>Poule</th>
+              <th>Stand</th>
               <th>Verwijder</th>
             </tr>
             <% @teams.each do |team| %>
@@ -19,6 +20,7 @@
                 <td><%= image_tag team.avatar.url(:mini) %></td>
                 <td><%= team.name %></td>
                 <td><%= team.poule %></td>
+                <td><%= team.originalposition %></td>
                 <td><%= button_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
             <% end %>             

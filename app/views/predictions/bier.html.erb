@@ -10,7 +10,7 @@
   <% end %>
 
   <% @teampredictions.each do |teamprediction| %>
-    <% if team.id == teamprediction.id %>
+    <% if team.id == teamprediction.team_id %>
       <% if team.originalposition == nil %>
       <% else %>
         <% if team.originalposition == teamprediction.pouleposition %>
@@ -29,7 +29,7 @@
         <% end %>
       <% end %>
     <% else %>
-    adsf
+    hoi
     <% end %>
   <% end %>
 <% end %>
