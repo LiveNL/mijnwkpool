@@ -28,6 +28,12 @@ class TeamsController < ApplicationController
     redirect_to new_team_path
   end
 
+  def toggle
+    @team.toggle!(:completed)
+    redirect_to pointsscript2_path
+  end
+
+
   private
 
   def team_params

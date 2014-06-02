@@ -248,9 +248,9 @@ class PredictionsController < ApplicationController
 
   def pointsscript2
     @teams = Team.all
-    @predictions = Prediction.all
-    @games.each do |game|
-      @predictions.each do |prediction|
+    @teampredictions = Teamprediction.all
+    @teams.each do |team|
+      @teampredictions.each do |teamprediction|
         if game.id == prediction.game_id
           if game.score1 == nil && game.score2 == nil
           else

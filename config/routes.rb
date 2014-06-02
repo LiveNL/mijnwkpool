@@ -12,6 +12,7 @@ Wkpool::Application.routes.draw do
     get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'
     get 'givepoints1' => 'predictions#givepoints1', :as => 'givepoints1'
     get 'pointsscript' => 'predictions#pointsscript', :as => 'pointsscript'
+    get 'pointsscript2' => 'predictions#pointsscript2', :as => 'pointsscript2'
     get 'speluitleg' => 'pages#speluitleg', :as => 'speluitleg'
     resources :games do
       member do

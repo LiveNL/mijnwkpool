@@ -9,8 +9,9 @@
           <table id="myTable" class="table admin"> 
             <thead>
               <tr>
-                <th>Points</th>              
-                <th>Afbeeldinge</th>
+                <th>Points</th>
+                <th>ID</th>              
+                <th>Afbeelding</th>
                 <th>Naam</th>
                 <th>A</th>
                 <th>Positie</th>
@@ -32,7 +33,8 @@
                           <i class="fa fa-check-circle-o"></i>
                         <% end %>
                       <% end %>
-                    </td>                  
+                    </td> 
+                    <td><%= team.id %></td>            
                     <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')"></td>
                     <td style="width: 30px; padding: 3px;"> <%= team.name %></td>
                     <td><%= team.poule %></td>
@@ -50,7 +52,8 @@
                           <i class="fa fa-check-circle-o"></i>
                         <% end %>
                       <% end %>
-                    </td>                     
+                    </td>
+                    <td><%= team.id %></td>                     
                     <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')"></td>
                     <td style="width: 30px; padding: 3px;"> <%= team.name %></td>
                     <td><%= team.poule %></td>
@@ -60,13 +63,21 @@
               <% end %>
             </tbody>
           </table>
-        <strong>Score:</strong><br/>
-        <% Poolmembership.all.each do |myes| %>
-          <br/>
-          <%= myes.id %> - 
-          <%= User.find(myes.user_id).nickname%> in 
-          <%= Pool.find(myes.pool_id).name %> - 
-          <%= myes.score %>
+
+                  <table id="myTable" class="table admin"> 
+            <thead>
+              <tr>            
+                <th>Poolmembership</th>
+                <th>Team</th>
+                <th>Pouleprediction</th>
+              </tr>
+            </thead>
+        <% Teamprediction.all.each do |myes| %>
+          <tr>
+            <td><%= myes.poolmembership_id %></td>
+            <td><%= myes.team_id %></td>
+            <td><%= myes.pouleposition %></td>
+          </tr>
         <% end %>
         </div>
       </form>
