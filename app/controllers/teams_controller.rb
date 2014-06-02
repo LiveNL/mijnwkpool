@@ -3,6 +3,7 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy, :toggle]
   
   def index
+    @team = Team.new
     @teams = Team.all
   end
 
