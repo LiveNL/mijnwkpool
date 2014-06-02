@@ -1,5 +1,5 @@
 class PredictionsController < ApplicationController
-  before_filter :ensure_admin, :only => [:pointsscript, :givepoints]
+  before_filter :ensure_admin, :only => [:pointsscript, :pointsscript2, :givepoints, :givepoints2]
 
   respond_to :html, :json
 
@@ -249,14 +249,73 @@ def bier
     @teams = Team.all
     @teampredictions = Teamprediction.all
 end
+
   def pointsscript2
     @teams = Team.all
     @teampredictions = Teamprediction.all
     @teams.each do |team|
       @teampredictions.each do |teamprediction|
         if team.id == teamprediction.team_id
+          if team.originalposition == nil
+          else
+            if team.originalposition == teamprediction.pouleposition
+              if team.originalposition == 1 && teamprediction.pouleposition == 1
+                if teamprediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(teamprediction.poolmembership_id)
+                  myes = scoreupdate.score + 100
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  teamprediction.pointsgiven = 0
+                  teamprediction.pointsearned = 100
+                  teamprediction.save
+                end
 
-         
+              elsif team.originalposition == 2 && teamprediction.pouleposition == 2
+                if teamprediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(teamprediction.poolmembership_id)
+                  myes = scoreupdate.score + 50
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  teamprediction.pointsgiven = 0
+                  teamprediction.pointsearned = 50
+                  teamprediction.save
+                end
+
+              elsif team.originalposition == 3 && teamprediction.pouleposition == 3
+                if teamprediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(teamprediction.poolmembership_id)
+                  myes = scoreupdate.score + 25
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  teamprediction.pointsgiven = 0
+                  teamprediction.pointsearned = 25
+                  teamprediction.save
+                end
+
+              elsif team.originalposition == 4 && teamprediction.pouleposition == 4
+                if teamprediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(teamprediction.poolmembership_id)
+                  myes = scoreupdate.score + 10
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  teamprediction.pointsgiven = 0
+                  teamprediction.pointsearned = 10
+                  teamprediction.save
+                end
+              end
+
+            end
+          end
+
+        else
         end
       end
     end
@@ -270,9 +329,9 @@ end
     @predictions = Prediction.all
   end
 
-  def givepoints1
+  def givepoints2
     @teams = Team.all
-    @predictions = Prediction.all
+    @teampredictions = Teamprediction.all
   end
 
   private
