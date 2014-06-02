@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527150011) do
+ActiveRecord::Schema.define(version: 20140602100439) do
 
   create_table "games", force: true do |t|
     t.datetime "created_at"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140527150011) do
     t.time     "time"
     t.integer  "team1_id"
     t.integer  "team2_id"
-    t.string   "poule"
     t.boolean  "completed",  default: false
+    t.string   "poule"
   end
 
   create_table "poolmemberships", force: true do |t|
@@ -63,6 +63,14 @@ ActiveRecord::Schema.define(version: 20140527150011) do
     t.integer  "pointsearned",      default: 0
   end
 
+  create_table "teampredictions", force: true do |t|
+    t.integer  "pouleposition"
+    t.integer  "team_id"
+    t.integer  "poolmembership_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "teams", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -72,6 +80,7 @@ ActiveRecord::Schema.define(version: 20140527150011) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "Originalposition"
   end
 
   create_table "users", force: true do |t|
