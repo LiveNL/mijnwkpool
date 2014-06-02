@@ -245,13 +245,167 @@ class PredictionsController < ApplicationController
     redirect_to givepoints_path
   end
 
+
+  def pointsscript2
+    @teams = Team.all
+    @predictions = Prediction.all
+    @games.each do |game|
+      @predictions.each do |prediction|
+        if game.id == prediction.game_id
+          if game.score1 == nil && game.score2 == nil
+          else
+            if game.score1 < game.score2 && prediction.prediction1 < prediction.prediction2
+              if game.score1 == prediction.prediction1 && game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 12
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 12
+                  prediction.save
+                end
+              elsif game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 7
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 7
+                  prediction.save
+                end
+              else
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 5
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 5
+                  prediction.save
+                end
+              end
+
+            elsif game.score1 > game.score2 && prediction.prediction1 > prediction.prediction2
+              if game.score1 == prediction.prediction1 && game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 12
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 12
+                  prediction.save
+                end
+              elsif game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 7
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 7
+                  prediction.save
+                end
+              else
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 5
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 5
+                  prediction.save
+                end
+              end
+
+            elsif game.score1 == game.score2 && prediction.prediction1 == prediction.prediction2
+              if game.score1 == prediction.prediction1 && game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 12
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 12
+                  prediction.save
+                end
+
+              else
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 5
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 5
+                  prediction.save
+                end
+              end
+
+            else
+              if game.score1 == prediction.prediction1
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 2
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 2
+                  prediction.save
+                end
+
+              elsif game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 2
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 2
+                  prediction.save
+                end
+              else
+              end
+            end
+          end
+        else
+        end
+      end
+    end
+    redirect_to givepoints_path
+  end
+
+
+
   def givepoints
     @games = Game.all
     @predictions = Prediction.all
   end
 
   def givepoints1
-    @games = Game.all
+    @teams = Team.all
     @predictions = Prediction.all
   end
 
