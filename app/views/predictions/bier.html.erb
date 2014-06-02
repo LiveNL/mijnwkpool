@@ -1,13 +1,99 @@
 <strong>Original score:  </strong>          
 <% @teams.each do |team| %>
-  <% @teamprediction.each do |teamprediction| %>
+
   <% if team.originalposition == nil %>
-    hoi
+        <br/>
+    <%= team.id %> - <%= team.name %> - x
+  <% else %>
+  <br/>
+   <%= team.id %> - <%= team.name %> - <%= team.originalposition %>
+  <% end %>
+
+  <% @teampredictions.each do |teamprediction| %>
+    <% if team.id == teamprediction.id %>
+      <% if team.originalposition == nil %>
+      <% else %>
+        <% if team.originalposition == teamprediction.pouleposition %>
+          <% if teamprediction.pointsgiven == 1 %>
+          || Punten gegeven
+          <% else %>
+          <% scoreupdate = Poolmembership.find(teamprediction.poolmembership_id) %>
+          <% myes = scoreupdate.score + 50%>
+          <% score5 = scoreupdate %>
+          <% score5.score = myes %>
+          <% score5.save %>
+          <% teamprediction.pointsgiven = 1 %>
+          <% teamprediction.pointsearned = 50 %>
+          <% teamprediction.save %>
+          <% end %>
+        <% end %>
+      <% end %>
     <% else %>
-    nein 
+    adsf
     <% end %>
-    <% end %>
+  <% end %>
 <% end %>
+
+
+          <table id="myTable" class="table admin"> 
+            <thead>
+              <tr>
+                <th>Points</th>
+                <th>ID</th>              
+                <th>Afbeelding</th>
+                <th>Naam</th>
+                <th>A</th>
+                <th>Positie</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <!-- GAME INFORMATION --> 
+              <% @teams.each do |team| %>
+                <% if team.originalposition == nil  %>
+                  <tr>
+                    <td width="1" style="padding:0;">
+                      <% if team.completed %>
+                        <a class="btn checked" href="#">
+                          <i class="fa fa-check-circle"></i>
+                        </a>  
+                      <% else %>
+                        <%= link_to toggle_team_path(team), class:'btn check', method: :patch do %>
+                          <i class="fa fa-check-circle-o"></i>
+                        <% end %>
+                      <% end %>
+                    </td> 
+                    <td><%= team.id %></td>            
+                    <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')"></td>
+                    <td style="width: 30px; padding: 3px;"> <%= team.name %></td>
+                    <td><%= team.poule %></td>
+                    <td><%= team.originalposition %></td>      
+                  </tr>
+                <% else %>
+                  <tr>
+                    <td width="1" style="padding:0;">
+                      <% if team.completed %>
+                        <a class="btn checked" href="#">
+                          <i class="fa fa-check-circle"></i>
+                        </a>  
+                        <% else %>
+                        <%= link_to toggle_team_path(team), class:'btn check', method: :patch do %>
+                          <i class="fa fa-check-circle-o"></i>
+                        <% end %>
+                      <% end %>
+                    </td>
+                    <td><%= team.id %></td>                     
+                    <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')"></td>
+                    <td style="width: 30px; padding: 3px;"> <%= team.name %></td>
+                    <td><%= team.poule %></td>
+                    <td><%= team.originalposition %></td>    
+                  </tr>                                                                   
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+
+
 
 <table id="myTable" class="table admin"> 
   <thead>
@@ -25,3 +111,9 @@
     </tr>
   <% end %>
 </table>
+<br/>
+<strong>Score: </strong>
+<br/>
+<% Poolmembership.all.each do |myes| %>
+  <br/><%= myes.id %> - <%= User.find(myes.user_id).nickname%> in <%= Pool.find(myes.pool_id).name %> - <%= myes.score %>
+<% end %>
