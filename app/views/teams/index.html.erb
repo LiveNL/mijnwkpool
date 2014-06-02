@@ -22,6 +22,7 @@
                 <td><%= team.poule %></td>
                 <td><%= team.originalposition %></td>
                 <td><%= button_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= link_to 'Edit', edit_team_path(team) %></td>
               </tr>
             <% end %>             
           </table>

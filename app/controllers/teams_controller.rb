@@ -6,6 +6,9 @@ class TeamsController < ApplicationController
     @teams = Team.all
   end
 
+  def edit
+  end
+
   def new
     @teams = Team.all
     @team = Team.new
@@ -19,6 +22,18 @@ class TeamsController < ApplicationController
     else
       @teams = Team.all
       render 'new'
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @team.update(team_params)
+        format.html { redirect_to teams_path, notice: 'Team was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @team.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -42,6 +57,6 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :poule, :avatar)
+    params.require(:team).permit(:name, :poule, :avatar, :originalposition)
   end
 end
