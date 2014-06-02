@@ -1,0 +1,2 @@
+class TeampredictionsController < ApplicationController
+end
