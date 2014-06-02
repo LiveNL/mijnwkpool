@@ -250,6 +250,11 @@ class PredictionsController < ApplicationController
     @predictions = Prediction.all
   end
 
+  def givepoints1
+    @games = Game.all
+    @predictions = Prediction.all
+  end
+
   private
 
   def find_poolmembership

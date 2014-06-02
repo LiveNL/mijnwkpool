@@ -10,6 +10,7 @@ Wkpool::Application.routes.draw do
     resources :pools, :users, :poolmemberships, :predictions, :teams, :teampredictions
     post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'
     get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'
+    get 'givepoints1' => 'predictions#givepoints1', :as => 'givepoints1'
     get 'pointsscript' => 'predictions#pointsscript', :as => 'pointsscript'
     get 'speluitleg' => 'pages#speluitleg', :as => 'speluitleg'
     resources :games do
