@@ -255,6 +255,8 @@ class PredictionsController < ApplicationController
                   game.save
                 end
               else
+                game.completed = true
+                game.save
               end
             end
           end
