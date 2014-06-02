@@ -247,7 +247,7 @@ class PredictionsController < ApplicationController
 
 def bier
     @teams = Team.all
-    @predictions = Prediction.all
+    @teampredictions = Teamprediction.all
 end
   def pointsscript2
     @teams = Team.all

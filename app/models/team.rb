@@ -1,5 +1,6 @@
 class Team < ActiveRecord::Base
   has_many :games
+  has_many :teampredictions, :dependent => :destroy
   
   has_attached_file :avatar,
                   styles: {
