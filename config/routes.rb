@@ -11,6 +11,7 @@ Wkpool::Application.routes.draw do
     post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'
     get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'
     get 'givepoints1' => 'predictions#givepoints1', :as => 'givepoints1'
+    get 'bier' => 'predictions#bier', :as => 'bier'
     get 'pointsscript' => 'predictions#pointsscript', :as => 'pointsscript'
     get 'pointsscript2' => 'predictions#pointsscript2', :as => 'pointsscript2'
     get 'speluitleg' => 'pages#speluitleg', :as => 'speluitleg'
