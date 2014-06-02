@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_filter :ensure_admin
-
+  before_action :set_team, only: [:show, :edit, :update, :destroy, :toggle]
+  
   def index
     @teams = Team.all
   end
@@ -35,6 +36,10 @@ class TeamsController < ApplicationController
 
 
   private
+
+  def set_team
+    @team = Team.find(params[:id])
+  end
 
   def team_params
     params.require(:team).permit(:name, :poule, :avatar)
