@@ -12,6 +12,58 @@ class TeampredictionsController < ApplicationController
     @gamelist = @games.group_by { |t| t.poule }
  	end
  	
+  def show
+    @pool = Pool.find(params[:id])
+    @games = Game.order(:poule, :date)
+    @gamelist = @games.group_by { |t| t.poule }
+  end
+
+  def edit
+    @pool = Pool.find(params[:id])
+    @teams = Team.order(:poule)
+    @teamlist = @teams.group_by { |t| t.poule }
+    @team = Team.all
+
+    # @gamelist.sort.each_with_index do |(poule, games), index|
+    #   if @present
+    #     return
+    #   else
+    #     games.each_with_index do |game, index2|
+    #       current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id)
+    #       teamprediction = Teamprediction.find_by_poolmembership_id_and_team_id(current_poolmembership, team.id)
+
+    #       if teamprediction.present?
+    #         @present = true
+    #       end
+    #     end
+    #   end
+    # end
+
+    # if @present
+    #   render 'edit'
+    # else
+    #   render 'new'
+    # end
+  end
+
+  def create_multiple_teampredictions
+    params[:teampredictions].each do |k, v|
+      teamprediction = Teamprediction.new(v)
+      teamprediction.save
+    end
+    poolid = params[:pool_id]
+    redirect_to teamprediction_path(poolid)
+  end
+
+  def update_multiple_teampredictions
+    params[:predictions].each do |k, v|
+      @teamprediction = Teamprediction.find(v[:id])
+      @teamprediction.update(v)
+    end
+    poolid = params[:pool_id]
+    redirect_to teamprediction_path(poolid)
+  end
+
   private
 
   def find_teamprediction
