@@ -319,7 +319,7 @@ end
         end
       end
     end
-    redirect_to givepoints1_path
+    redirect_to givepoints2_path
   end
 
 
