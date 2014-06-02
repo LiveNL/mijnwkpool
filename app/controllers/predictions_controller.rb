@@ -267,7 +267,7 @@ end
                   score5 = scoreupdate
                   score5.score = myes
                   score5.save
-                  teamprediction.pointsgiven = 0
+                  teamprediction.pointsgiven = 1
                   teamprediction.pointsearned = 100
                   teamprediction.save
                 end
@@ -280,7 +280,7 @@ end
                   score5 = scoreupdate
                   score5.score = myes
                   score5.save
-                  teamprediction.pointsgiven = 0
+                  teamprediction.pointsgiven = 1
                   teamprediction.pointsearned = 50
                   teamprediction.save
                 end
@@ -293,7 +293,7 @@ end
                   score5 = scoreupdate
                   score5.score = myes
                   score5.save
-                  teamprediction.pointsgiven = 0
+                  teamprediction.pointsgiven = 1
                   teamprediction.pointsearned = 25
                   teamprediction.save
                 end
@@ -306,15 +306,14 @@ end
                   score5 = scoreupdate
                   score5.score = myes
                   score5.save
-                  teamprediction.pointsgiven = 0
+                  teamprediction.pointsgiven = 1
                   teamprediction.pointsearned = 10
                   teamprediction.save
                 end
+              else
               end
-
             end
           end
-
         else
         end
       end

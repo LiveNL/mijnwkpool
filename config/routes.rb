@@ -12,7 +12,7 @@ Wkpool::Application.routes.draw do
     get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'
     post 'create_multiple_teampredictions', to: 'teampredictions#create_multiple_teampredictions'
     patch 'update_multiple_teampredictions', to: 'teampredictions#update_multiple_teampredictions'
-    get 'givepoints1' => 'predictions#givepoints1', :as => 'givepoints1'
+    get 'givepoints2' => 'predictions#givepoints2', :as => 'givepoints2'
     get 'bier' => 'predictions#bier', :as => 'bier'
     get 'pointsscript' => 'predictions#pointsscript', :as => 'pointsscript'
     get 'pointsscript2' => 'predictions#pointsscript2', :as => 'pointsscript2'
