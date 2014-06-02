@@ -114,6 +114,8 @@ class PredictionsController < ApplicationController
                   prediction.pointsgiven = 1
                   prediction.pointsearned = 12
                   prediction.save
+                  game.completed = true
+                  game.save
                 end
               elsif game.score2 == prediction.prediction2
                 if prediction.pointsgiven == 1
@@ -126,6 +128,8 @@ class PredictionsController < ApplicationController
                   prediction.pointsgiven = 1
                   prediction.pointsearned = 7
                   prediction.save
+                  game.completed = true
+                  game.save
                 end
               else
                 if prediction.pointsgiven == 1
@@ -138,6 +142,8 @@ class PredictionsController < ApplicationController
                   prediction.pointsgiven = 1
                   prediction.pointsearned = 5
                   prediction.save
+                  game.completed = true
+                  game.save
                 end
               end
 
@@ -153,6 +159,8 @@ class PredictionsController < ApplicationController
                   prediction.pointsgiven = 1
                   prediction.pointsearned = 12
                   prediction.save
+                  game.completed = true
+                  game.save
                 end
               elsif game.score2 == prediction.prediction2
                 if prediction.pointsgiven == 1
@@ -165,6 +173,8 @@ class PredictionsController < ApplicationController
                   prediction.pointsgiven = 1
                   prediction.pointsearned = 7
                   prediction.save
+                  game.completed = true
+                  game.save
                 end
               else
                 if prediction.pointsgiven == 1
@@ -177,6 +187,8 @@ class PredictionsController < ApplicationController
                   prediction.pointsgiven = 1
                   prediction.pointsearned = 5
                   prediction.save
+                  game.completed = true
+                  game.save
                 end
               end
 
@@ -192,6 +204,8 @@ class PredictionsController < ApplicationController
                   prediction.pointsgiven = 1
                   prediction.pointsearned = 12
                   prediction.save
+                  game.completed = true
+                  game.save
                 end
 
               else
@@ -205,6 +219,8 @@ class PredictionsController < ApplicationController
                   prediction.pointsgiven = 1
                   prediction.pointsearned = 5
                   prediction.save
+                  game.completed = true
+                  game.save
                 end
               end
 
@@ -220,6 +236,8 @@ class PredictionsController < ApplicationController
                   prediction.pointsgiven = 1
                   prediction.pointsearned = 2
                   prediction.save
+                  game.completed = true
+                  game.save
                 end
 
               elsif game.score2 == prediction.prediction2
@@ -233,6 +251,8 @@ class PredictionsController < ApplicationController
                   prediction.pointsgiven = 1
                   prediction.pointsearned = 2
                   prediction.save
+                  game.completed = true
+                  game.save
                 end
               else
               end
@@ -270,6 +290,8 @@ end
                   teamprediction.pointsgiven = 1
                   teamprediction.pointsearned = 100
                   teamprediction.save
+                  team.completed = true
+                  team.save!
                 end
 
               elsif team.originalposition == 2 && teamprediction.pouleposition == 2
@@ -283,6 +305,8 @@ end
                   teamprediction.pointsgiven = 1
                   teamprediction.pointsearned = 50
                   teamprediction.save
+                    team.completed = true
+                  team.save!
                 end
 
               elsif team.originalposition == 3 && teamprediction.pouleposition == 3
@@ -296,6 +320,8 @@ end
                   teamprediction.pointsgiven = 1
                   teamprediction.pointsearned = 25
                   teamprediction.save
+                    team.completed = true
+                  team.save!
                 end
 
               elsif team.originalposition == 4 && teamprediction.pouleposition == 4
@@ -309,6 +335,8 @@ end
                   teamprediction.pointsgiven = 1
                   teamprediction.pointsearned = 10
                   teamprediction.save
+                  team.completed = true
+                  team.save!
                 end
               else
               end
