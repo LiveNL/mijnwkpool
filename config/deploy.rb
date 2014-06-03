@@ -29,7 +29,7 @@ set :linked_files, %w{config/database.yml config/application.yml}
 set :linked_dirs, %w{bin log tmp vendor/bundle public/system}
 
 # Add this to the settings section at the top:
-set :ping_url, 'http://dev.mijnwkpool.com/ping'
+set :ping_url, 'http://mijnwkpool.com/ping'
 
 namespace :deploy do
 
