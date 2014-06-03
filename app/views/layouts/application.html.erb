@@ -57,12 +57,12 @@
         <ul>
           <% current_user.poolmemberships.each do |pool| %>
             <li>
-              <%= link_to prediction_path(pool.pool_id),:class => 'grey' do %>
+              <%= link_to prediction_path(pool.pool_id) do %>
                 <%= Pool.find(pool.pool_id).name %>
               <% end %>
             </li>
           <% end %>
-          <li><%= link_to 'Speluitleg', speluitleg_path, :class => 'grey' %></li>
+          <li><%= link_to 'Speluitleg', speluitleg_path %></li>
         </ul>
       <% end %>
     </div>
