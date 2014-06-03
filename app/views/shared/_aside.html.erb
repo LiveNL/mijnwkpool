@@ -24,4 +24,20 @@
     <%= link_to 'Een pool aanmaken', new_pool_path, :class => 'green btn'%>
   </div>
 </div>
+<% else %>
+
+  <div class='box aside'>
+    <div class='side-header'>
+      <h2>Registreer</h2>
+    </div>
+    <div class='pool-list-small'>
+    <br/>
+      <p>Om mee te genieten van mijnwkpool en je aan te sluiten bij deze pool, is het vereist om te registreren.</p>
+      <br/>
+      <%= link_to 'Registreren', pools_path, :class => 'green btn'%>
+      <br>
+      <%= link_to 'Ik heb al een account', new_pool_path, :class => 'grey btn'%>
+    </div>
+  </div>
+
 <% end %>
