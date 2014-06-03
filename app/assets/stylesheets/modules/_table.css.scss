@@ -125,9 +125,10 @@ table {
         @include respond-to(small) {
           width: 100px;
         }
+
         .view-table {
           display:table;
-          max-width:100px;
+          max-width: 110px;
           margin:0 auto;
         }
       }

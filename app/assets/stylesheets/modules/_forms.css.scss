@@ -1,5 +1,6 @@
 input[type=text],
-input[type=password] {
+input[type=password],
+input[type=email] {
   @include font-size($font-size);
   border-color: $color-grey-light;
   border-style: solid;
