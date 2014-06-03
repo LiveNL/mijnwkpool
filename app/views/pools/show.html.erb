@@ -6,25 +6,26 @@
         <h1><%= @pool.name %></h1>
       </div>
 
-      <div class="content-header">
-        <span class="default-hide small-show">
-          <a href="<%= url_for pools_path %>" class="btn grey left"><i class="fa fa-chevron-left"></i> Terug naar het overzicht</a>
-        </span>
-        <% if @my_pool %>
-          <% if @poolmember.role == 0 %>
-            <a href="#pool<%= @pool.id %>" class="btn red pool-sign-in" rel='modal:open'><i class="fa fa-times"></i> Meld je af bij deze pool</a>
+      <% if current_user %>
+        <div class="content-header">
+          <span class="default-hide small-show">
+            <a href="<%= url_for pools_path %>" class="btn grey left"><i class="fa fa-chevron-left"></i> Terug naar het overzicht</a>
+          </span>
+          <% if @my_pool %>
+            <% if @poolmember.role == 0 %>
+              <a href="#pool<%= @pool.id %>" class="btn red pool-sign-in" rel='modal:open'><i class="fa fa-times"></i> Meld je af bij deze pool</a>
+            <% else %>
+              <a href="<%= @pool.id %>/edit" class="btn green pool-sign-in"><i class="fa fa-cog"></i> Pool aanpassen</a>
+            <% end %>
           <% else %>
-            <a href="<%= @pool.id %>/edit" class="btn green pool-sign-in"><i class="fa fa-cog"></i> Pool aanpassen</a>
+            <% if @pool.poolmemberships_count == @pool.maximum_membership %>
+              <button type="button" class="grey-dark pool-sign-in">Deze pool is vol</button>
+            <% else %>
+              <a href="#pool<%= @pool.id %>" class="btn green pool-sign-in" rel='modal:open'><i class="fa fa-users"></i> Meld je aan bij deze pool</a>
+            <% end %>
           <% end %>
-        <% else %>
-          <% if @pool.poolmemberships_count == @pool.maximum_membership %>
-            <button type="button" class="grey-dark pool-sign-in">Deze pool is vol</button>
-          <% else %>
-            <a href="#pool<%= @pool.id %>" class="btn green pool-sign-in" rel='modal:open'><i class="fa fa-users"></i> Meld je aan bij deze pool</a>
-          <% end %>
-        <% end %>
-      </div>
-
+        </div>
+      <% end %>
 
       <div class="pooldashboard-content">
         <h2>Stand</h2>
