@@ -281,67 +281,20 @@ end
           if team.originalposition == nil
           else
             if team.originalposition == teamprediction.pouleposition
-              if team.originalposition == 1 && teamprediction.pouleposition == 1
                 if teamprediction.pointsgiven == 1
                 else
                   scoreupdate = Poolmembership.find(teamprediction.poolmembership_id)
-                  myes = scoreupdate.score + 100
+                  myes = scoreupdate.score + 3
                   score5 = scoreupdate
                   score5.score = myes
                   score5.save
                   teamprediction.pointsgiven = 1
-                  teamprediction.pointsearned = 100
-                  teamprediction.save
-                  team.completed = true
-                  team.save!
-                end
-
-              elsif team.originalposition == 2 && teamprediction.pouleposition == 2
-                if teamprediction.pointsgiven == 1
-                else
-                  scoreupdate = Poolmembership.find(teamprediction.poolmembership_id)
-                  myes = scoreupdate.score + 50
-                  score5 = scoreupdate
-                  score5.score = myes
-                  score5.save
-                  teamprediction.pointsgiven = 1
-                  teamprediction.pointsearned = 50
-                  teamprediction.save
-                    team.completed = true
-                  team.save!
-                end
-
-              elsif team.originalposition == 3 && teamprediction.pouleposition == 3
-                if teamprediction.pointsgiven == 1
-                else
-                  scoreupdate = Poolmembership.find(teamprediction.poolmembership_id)
-                  myes = scoreupdate.score + 25
-                  score5 = scoreupdate
-                  score5.score = myes
-                  score5.save
-                  teamprediction.pointsgiven = 1
-                  teamprediction.pointsearned = 25
-                  teamprediction.save
-                    team.completed = true
-                  team.save!
-                end
-
-              elsif team.originalposition == 4 && teamprediction.pouleposition == 4
-                if teamprediction.pointsgiven == 1
-                else
-                  scoreupdate = Poolmembership.find(teamprediction.poolmembership_id)
-                  myes = scoreupdate.score + 10
-                  score5 = scoreupdate
-                  score5.score = myes
-                  score5.save
-                  teamprediction.pointsgiven = 1
-                  teamprediction.pointsearned = 10
+                  teamprediction.pointsearned = 3
                   teamprediction.save
                   team.completed = true
                   team.save!
                 end
               else
-              end
             end
           end
         else

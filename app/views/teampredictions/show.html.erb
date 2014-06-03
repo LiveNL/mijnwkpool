@@ -81,7 +81,7 @@
                       </td>
                       <td class="bold
                         <% if teamprediction.present? && !(team.originalposition == nil) %>
-                          <% if teamprediction.pointsearned == 100 %>
+                          <% if teamprediction.pointsearned == 3 %>
                             green
                           <% elsif teamprediction.pointsearned == 0 %>
                             red
@@ -129,6 +129,7 @@
 
   <div class='default-0 medium-1-4'>
     <%= render "shared/aside" %>
+    <%= render "shared/aside_admin" %>
     <%= render "shared/aside_ad" %>
   </div>
 </div>

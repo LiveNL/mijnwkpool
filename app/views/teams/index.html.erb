@@ -13,7 +13,6 @@
                 <th>Naam</th>
                 <th>Poule</th>
                 <th>Stand</th>
-                <th>Verwijder</th>
                 <th>Edit</th>
               </tr>
             </thead>
@@ -24,7 +23,6 @@
                 <td><%= team.name %></td>
                 <td><%= team.poule %></td>
                 <td><%= team.originalposition %></td>
-                <td><%= button_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 <td><%= link_to 'Edit', edit_team_path(team) %></td>
               </tr>
             <% end %>
