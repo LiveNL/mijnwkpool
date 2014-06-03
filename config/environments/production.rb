@@ -78,6 +78,15 @@ Wkpool::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  # ActionMailer Config
+  # Setup for production - deliveries, no errors raised
+  config.action_mailer.default_url_options = { :host => ENV["DOMAIN_NAME"] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+
+  # Mandrill settings for SMTP
   config.action_mailer.smtp_settings = {
     :address   => "smtp.mandrillapp.com",
     :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
@@ -85,7 +94,7 @@ Wkpool::Application.configure do
     :user_name => ENV["MANDRILL_USERNAME"],
     :password  => ENV["MANDRILL_PASSWORD"], # SMTP password is any valid API key
     :authentication => 'login', # Mandrill supports 'plain' or 'login'
-    :domain => 'mijnwkpool.com', # your domain to identify your server when connecting
+    :domain => ENV["DOMAIN_NAME"], # your domain to identify your server when connecting
   }
 
 end
