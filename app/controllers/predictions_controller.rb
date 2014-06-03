@@ -11,7 +11,7 @@ class PredictionsController < ApplicationController
 
   def new
     @pool = Pool.find(params[:pool_id])
-    @games = Game.order(:poule)
+    @games = Game.order(:poule, :date)
     # @predictions = Prediction.all
     @gamelist = @games.group_by { |t| t.poule }
   end
@@ -57,7 +57,7 @@ class PredictionsController < ApplicationController
 
   def edit
     @pool = Pool.find(params[:id])
-    @games = Game.order(:poule)
+    @games = Game.order(:poule, :date)
     @gamelist = @games.group_by { |t| t.poule }
 
     @gamelist.sort.each_with_index do |(poule, games), index|
