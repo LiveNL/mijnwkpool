@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602123354) do
+ActiveRecord::Schema.define(version: 20140603140729) do
 
   create_table "games", force: true do |t|
     t.datetime "created_at"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20140602123354) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "completed",           default: false
+    t.integer  "originalposition"
   end
 
   create_table "users", force: true do |t|
