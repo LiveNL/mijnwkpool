@@ -37,10 +37,12 @@ table {
   thead > tr > th {
     font-weight: normal;
     text-align: left;
-    padding-left: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
 
     @include respond-to(small) {
-      padding-left: 0px;
+      padding-left: 0;
+      padding-left: 0;
     }
   }
 
@@ -48,12 +50,6 @@ table {
     border: 1px solid $color-grey-light;
     padding-left: 20px;
     padding-right: 20px;
-
-    .view-table {
-      display:table;
-      width:100px;
-      margin:0 auto;
-    }
   }
 
   &.rank {
@@ -103,11 +99,17 @@ table {
 
     tbody > tr > td {
       color: $color-grey-medium;
+      white-space: nowrap;
 
       &.infoshower {
         color: $color-grey-light;
+        padding-left: 10px;
+        padding-right: 10px;
         text-align: center;
-        width: 51px;
+        width: 1px;
+        @include respond-to(large) {
+          width: 50px;
+        }
 
         &:hover {
           color: $color-grey-dark;
@@ -121,13 +123,21 @@ table {
         text-align: center;
 
         @include respond-to(small) {
-          width: 130px;
+          width: 100px;
+        }
+        .view-table {
+          display:table;
+          max-width:100px;
+          margin:0 auto;
         }
       }
       &:last-child,
       &:nth-last-child(2) {
         text-align: center;
-        width: 80px;
+        width: 50px;
+        @include respond-to(large) {
+          width: 80px;
+        }
       }
       &:last-child {
         color: $color-grey-dark;
