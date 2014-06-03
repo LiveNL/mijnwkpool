@@ -101,7 +101,7 @@
                 <% else %>
                   <li>
                 <% end %>
-                  <a class="grey" href="<%= pools_path %>">Mijn pools&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+                  <a class="grey" href="javascript:void();">Mijn pools&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
                   <ul class="sub-menu">
                     <% current_user.poolmemberships.each do |pool| %>
                       <li>
@@ -125,7 +125,7 @@
                   <li>
                 <% end %>
 
-                  <a class="grey" href="<%= speluitleg_path %>">Mijn voorspellingen&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
+                  <a class="grey" href="javascript:void();">Mijn voorspellingen&nbsp;&nbsp;<i class="fa fa-caret-down"></i></a>
                   <ul class="sub-menu">
                   <% current_user.poolmemberships.each do |pool| %>
                     <li>
