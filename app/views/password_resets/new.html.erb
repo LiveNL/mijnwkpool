@@ -9,6 +9,12 @@
       <div class="login-form">
         <%= form_tag password_resets_path, :method => :post do %>
           <div class="form-field">
+            <p>
+              Voer het e-mailadres in waarmee je je hebt aangemeld.
+              Wij sturen je dan een e-mail met een link om je wachtwoord opnieuw in te stellen.
+            </p>
+          </div>
+          <div class="form-field">
             <%= label_tag :email, 'E-mail' %>
             <%= text_field_tag :email, params[:email] %>
           </div>
