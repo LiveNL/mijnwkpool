@@ -1,0 +1,158 @@
+<% title "Voorspellingen aanpassen - #{@pool.name}" %>
+<div class='grid-r'>
+  <div class='medium-3-4'>
+    <div class='box'>
+      <div class="content-header">
+        <h1>Mijn voorspellingen</h1>
+      </div>
+      <div id="contentflash" class="contentflash success">
+        <div class="view-table">
+          <div class="view-row">
+            <div class="contentflash-text-center">Je voorspelt nu voor: <strong><%= @pool.name %></strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prediction-steps">
+        <div class="steps">
+          <div class="step active">
+            <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
+          </div>
+          <div class="step active">
+            <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
+          </div>
+          <div class="step active">
+            <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
+          </div>
+          <div class="step">
+            <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pooldashboard-content">
+        <h2>Knockout wedstrijden</h2>
+        <%= form_tag controller: :predictions, action: :update_multiple_predictions do %>
+          <input name="_method" type="hidden" value="patch" />
+          <%= hidden_field_tag 'pool_id', @pool.id %>
+          <% @gamelist.sort.each_with_index do |(poule, games), index| %>
+            <table class="table poule">
+              <thead>
+                <tr>
+                  <th class="groupname" colspan="4">Groep <%= poule %></th>
+                  <th class="default-hide small-show">&nbsp;</th>
+                  <th class="default-hide small-show">&nbsp;</th>
+                  <th class="default-hide small-show">Uitslag</th>
+                  <th>Punten</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% array = [
+                  {
+                    team1: {
+                      pos: 1,
+                      poule: 'A'
+                    },
+                    team2: {
+                      pos: 2,
+                      poule: 'B'
+                    }
+                  },
+                  {
+                    team1: {
+                      pos: 2,
+                      poule: 'A'
+                    },
+                    team2: {
+                      pos: 1,
+                      poule: 'B'
+                    }
+                  } 
+                ] %>
+                <% games.each_with_index do |game, index2| %>
+                  <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
+                  <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
+                  <% team1 = array[index2][:team1] %>
+                  <% team2 = array[index2][:team2] %>
+
+                  <% team1 = Team.pouleleader(team1[:pos], team1[:poule]) %>
+                  <% team2 = Team.pouleleader(team2[:pos], team2[:poule]) %>
+
+                  <%= fields_for "predictions[#{index}#{index2}]", prediction do |p| %>
+                    <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+                    <%= p.hidden_field :game_id, :value => game.id %>
+                    <%= p.hidden_field :team1_id, :value => game.team1_id %>
+                    <%= p.hidden_field :team2_id, :value => game.team2_id %>
+                    <%= p.hidden_field :id, :value => prediction.id %>
+                   <tr>
+                      <td class="infoshower">
+                        <i class="fa fa-question-circle"></i>
+                        <div class="infobox hiddeninfo">
+                          <%= team1[0]['name'] %>  -  <%= team2[0]['name'] %>  <br />
+                          <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span>
+                        </div>
+                      </td>
+                      <td class="default-hide small-show"> <%= team1[0]['name'] %> </td>
+                      <td class="flag" style="background-image: url('')"></td>
+
+                      <td class="predict-score">
+                        <div class="view-table">
+                          <div class="view-row">
+                            <div>
+                              <%= p.number_field :prediction1, :class => 'predict', :min => 0, :max => 20 %>
+                            </div>
+                            <div>
+                              &ndash;
+                            </div>
+                            <div>
+                              <%= p.number_field :prediction2, :class => 'predict', :min => 0, :max => 20 %>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="flag" style="background-image: url('')"></td>
+                      <td class="default-hide small-show"> <%= team2[0]['name'] %> </td>
+                      <td class="default-hide small-show">
+                        <% if game.score1 == nil && game.score2 == nil %>
+                         ? - ?
+                        <% else %>
+                          <%= game.score1 %> - <%= game.score2 %>
+                        <% end %>
+                      </td>
+                      <td class="bold">
+                        <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
+                          <%= prediction.pointsearned %>
+                        <% else %>
+                          x
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+          <div class="content-btn">
+            <div class="center">
+              <button class="btn green" type="submit">Bewerken</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/aside" %>
+    <%= render "shared/aside_admin" %>
+    <%= render "shared/aside_ad" %>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(".infoshower").hover(function () {
+  $(this).find(".hiddeninfo").fadeIn('fast');
+}, function () {
+  $(this).find(".hiddeninfo").fadeOut('fast');
+});
+</script>
