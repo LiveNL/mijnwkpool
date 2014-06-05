@@ -5,7 +5,7 @@ set :application, 'Mijn_Wk_Pool'
 set :repo_url, 'git@github.com:LiveNL/mijnwkpool.git'
 
 set :branch, 'beta4'
-set :deploy_to, '/var/www/mijnwkpool.com/test'
+set :deploy_to, '/var/www/mijnwkpool.com/main'
 set :scm, :git
 set :use_sudo, false
 set :format, :pretty
