@@ -47,12 +47,27 @@ class PredictionsController < ApplicationController
   end
 
   def update_multiple_predictions
+
     params[:predictions].each do |k, v|
+      @predictions = params[:predictions][k]
       @prediction = Prediction.find(v[:id])
+
+      # if @predictions['prediction1'] > @predictions['prediction2']    
+      #   @prediction.update_attributes(:winner => @prediction['team1_id'])
+      # elsif @predictions['prediction1'] < @predictions['prediction2'] 
+      #   @prediction.update_attributes(:winner => @prediction['team2_id'])
+      # elsif @predictions['prediction1'] = @predictions['prediction2'] 
+        
+      # end
+
       @prediction.update(v)
     end
     poolid = params[:pool_id]
-    redirect_to prediction_path(poolid)
+    if @prediction.final == 4
+      redirect_to knockoutprediction_path(poolid)
+    else
+      redirect_to prediction_path(poolid)
+    end
   end
 
   def edit
@@ -84,7 +99,7 @@ class PredictionsController < ApplicationController
 
   def show
     @pool = Pool.find(params[:id])
-    @games = Game.order(:poule, :date)
+    @games = Game.where(gametype: 'Poule').order(date: :asc)
     @gamelist = @games.group_by { |t| t.poule }
   end
 
@@ -267,10 +282,10 @@ class PredictionsController < ApplicationController
     redirect_to givepoints_path
   end
 
-def bier
-    @teams = Team.all
-    @teampredictions = Teamprediction.all
-end
+  def bier
+      @teams = Team.all
+      @teampredictions = Teamprediction.all
+  end
 
   def pointsscript2
     @teams = Team.all
@@ -304,8 +319,6 @@ end
     redirect_to givepoints2_path
   end
 
-
-
   def givepoints
     @games = Game.all
     @predictions = Prediction.all
@@ -323,6 +336,6 @@ end
   end
 
   def prediction_params
-    params.require(:prediction).permit(:prediction, :id, :score1, :game, :prediction1, :prediction2, :game_id, :poolmembership_id, :pool_id, :team1_id, :team2_id)
+    params.require(:prediction).permit(:winner, :prediction, :id, :score1, :game, :prediction1, :prediction2, :game_id, :poolmembership_id, :pool_id, :team1_id, :team2_id)
   end
 end

@@ -12,4 +12,17 @@ class Team < ActiveRecord::Base
                   default_url: 'pool/:style/missing.png'
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+  def self.pouleleader(position, poule, poolmembership_id)
+    Team.connection.execute """
+      SELECT tp.pouleposition, t.poule, t.name, t.id, tp.poolmembership_id
+      FROM teampredictions tp
+        LEFT JOIN teams t
+          ON tp.team_id = t.id
+      WHERE tp.pouleposition = #{position}
+      AND t.poule = '#{poule}'
+      AND tp.poolmembership_id = '#{poolmembership_id}'      
+    """
+  end
 end
+

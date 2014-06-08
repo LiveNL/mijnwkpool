@@ -1,4 +1,9 @@
 Wkpool::Application.routes.draw do
+  get "quarterpredictions/index"
+  get "quarterpredictions/edit"
+  get "quarterpredictions/new"
+  get "quarterpredictions/show"
+  get "quarterpredictions/update"
   scope '/app' do
     get 'users/welcome' => 'users#welcome', :as => 'welcome'
     get 'pools/:id/invite' => 'pools#invite', :as => 'invite_pool'
@@ -7,7 +12,7 @@ Wkpool::Application.routes.draw do
     get 'pouleeindstanden/:id' => 'predictions#pouleeindstanden', :as => 'pouleeindstanden'
     get 'knockoutfase/:id' => 'predictions#knockoutfase', :as => 'knockoutfase'
     get 'bonusvragen/:id' => 'predictions#bonusvragen', :as => 'bonusvragen'
-    resources :pools, :users, :poolmemberships, :predictions, :teampredictions
+    resources :pools, :users, :poolmemberships, :predictions, :teampredictions, :knockoutpredictions, :quarterpredictions
     post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'
     get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'
     post 'create_multiple_teampredictions', to: 'teampredictions#create_multiple_teampredictions'

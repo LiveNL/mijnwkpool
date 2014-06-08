@@ -50,7 +50,6 @@ class TeamsController < ApplicationController
     redirect_to pointsscript2_path
   end
 
-
   private
 
   def set_team

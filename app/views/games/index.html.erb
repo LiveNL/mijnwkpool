@@ -27,8 +27,9 @@
                   <td style="padding: 1px 2px 1px 2px;"><%= image_tag Team.find(f.team1_id).avatar.url(:mini) %><%= Team.find(f.team1_id).name %></td>
                   <td style="padding: 1px 2px 1px 2px;"><%= f.score1 %>-<%= f.score2 %></td>
                   <td style="padding: 1px 2px 1px 2px;"><%= image_tag Team.find(f.team2_id).avatar.url(:mini) %><%= Team.find(f.team2_id).name %></td>
-                  <td style="padding: 1px 2px 1px 2px;"><%= f.gametype %></td>
-                  <td style="padding: 1px 2px 1px 2px;"><%= f.poule %></td>                  
+                  <td style="padding: 1px 1px 1px 1px;"><%= f.gametype %></td>
+                  <td style="padding: 1px 1px 1px 1px;"><%= f.poule %></td>
+                  <td style="padding: 1px 1px 1px 1px;"><%= f.id %></td>                                                      
                   <td style="padding: 1px 2px 1px 2px;"><%= link_to 'Edit', edit_game_path(f) %></td>
                 </tr>
               <% end %>
@@ -73,14 +74,7 @@
                     <%= select_tag "team2_id", options_from_collection_for_select(Team.all, "id", "name"), { :class => 'dropdown' }%>
                   </td>
 
-                  <td style="padding: 0px;">
-                    <select id="gametype"name="gametype">
-                      <option value="Poule">Poule</option>
-                      <option value="Knockout">Knockout</option>
-                      <option value="Kwartfinale">Kwartfinale</option>
-                      <option value="Halve finale">Halve finale</option>
-                    </select>
-                  </td>
+                 <td style="padding:0px;"> <%= select_tag :gametype, options_for_select([["Gametype", ""], "Poule", "Achtste finale", "Kwart finale", "Halve finale", "Finale"], :selected => f.object.gametype)%></td>
 
                   <td style="padding: 0px;">
                     <%= f.text_field :poule, :placeholder => 'poule', :onclick => 'this.select();' %>            
