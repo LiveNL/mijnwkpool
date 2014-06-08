@@ -1,5 +1,5 @@
 class AddOriginalpositionToTeams < ActiveRecord::Migration
   def change
-    add_column :teams, :originalposition, :integer
+    add_column :teams, :original_position, :integer
   end
 end
