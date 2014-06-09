@@ -14,18 +14,26 @@
       </div>
 
       <div class="prediction-steps">
-        <div class="steps">
+        <div class="steps">            
           <div class="step active">
-            <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
-          </div>
+            <%= link_to prediction_path(@pool.id) do %>    
+              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span> 
+            <% end %>
+          </div>      
           <div class="step active">
-            <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
-          </div>
+            <%= link_to teamprediction_path(@pool.id) do %>          
+              <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
+            <% end %>
+          </div>            
           <div class="step active">
-            <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
-          </div>
+            <%= link_to knockoutprediction_path(@pool.id) do %>
+              <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
+            <% end %>
+          </div>            
           <div class="step">
-            <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <%= link_to bonusvragen_path(@pool.id) do %>          
+              <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <% end %>            
           </div>
         </div>
       </div>
@@ -40,6 +48,7 @@
               <thead>
                 <tr>
                   <th class="default-hide small-show" colspan="4">&nbsp;</th>
+                  <th class="default-hide small-show">&nbsp;</th>
                   <th class="default-hide small-show">&nbsp;</th>
                   <th class="default-hide small-show">&nbsp;</th>
                   <th class="default-hide small-show">Uitslag</th>
@@ -67,9 +76,8 @@
                   <%= fields_for "predictions[#{index}#{index2}]", prediction do |p| %>
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
                     <%= p.hidden_field :game_id, :value => game.id %>
-             
-                    <%= p.hidden_field :id, :value => prediction.id %>
                     <%= p.hidden_field :final, :value => 4 %>
+                    <%= p.hidden_field :id, :value => prediction.id %>
                     
                     <% if team1.blank? %>                            
                       <%= p.hidden_field :team1_id, :value => teamfinal1[0]['id'] %>
@@ -130,11 +138,17 @@
                           <%= teamfinal2[0]['name'] %>
                         <% end %> <br />
                       </td>
-                      <td class="default-hide small-show"> 
-                      
-                      <% if team1.blank? %>                            
-                      <%= p.select "winner", options_for_select([[teamfinal1[0]['name'], teamfinal1[0]['id']] , [teamfinal2[0]['name'], teamfinal2[0]['id']]]), { :class => 'dropdown' }%>
-                      <% end %>
+                      <td class="default-hide small-show">
+                        <% if team1.present? && team2.present? %>
+                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [team2.name, team2.id]]), { :class => 'dropdown' }%>                     
+                        <% elsif team1.present? %>
+                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [teamfinal2[0]['name'], teamfinal2[0]['id']]]), { :class => 'dropdown' }%>                                                              
+                        <% elsif team2.present? %>
+                          <%= p.select "winner", options_for_select([[teamfinal1[0]['name'], teamfinal1[0]['id']], [team2.name, team2.id]]), { :class => 'dropdown' }%>                                                    
+                        <% else %>                            
+                          <%= p.select "winner", options_for_select([[teamfinal1[0]['name'], teamfinal1[0]['id']], [teamfinal2[0]['name'], teamfinal2[0]['id']]]), { :class => 'dropdown' }%>
+                        <% end %>            
+                      </td>   
                       <td class="default-hide small-show">
                         <% if game.score1 == nil && game.score2 == nil %>
                          ? - ?
@@ -162,6 +176,7 @@
           </div>
         <% end %>
       </div>
+
     </div>
   </div>
   <div class='default-0 medium-1-4'>

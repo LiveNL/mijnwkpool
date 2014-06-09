@@ -11,8 +11,7 @@ class PredictionsController < ApplicationController
 
   def new
     @pool = Pool.find(params[:pool_id])
-    @games = Game.order(:poule, :date)
-    # @predictions = Prediction.all
+    @games = Game.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule, :date)
     @gamelist = @games.group_by { |t| t.poule }
   end
 
@@ -40,26 +39,16 @@ class PredictionsController < ApplicationController
   def create_multiple_predictions
     params[:predictions].each do |k, v|
       prediction = Prediction.new(v)
-      prediction.save
+      prediction.save      
     end
     poolid = params[:pool_id]
-    redirect_to prediction_path(poolid)
+      redirect_to knockoutprediction_path(poolid)
   end
 
   def update_multiple_predictions
-
-    params[:predictions].each do |k, v|
+   params[:predictions].each do |k, v|
       @predictions = params[:predictions][k]
       @prediction = Prediction.find(v[:id])
-
-      # if @predictions['prediction1'] > @predictions['prediction2']    
-      #   @prediction.update_attributes(:winner => @prediction['team1_id'])
-      # elsif @predictions['prediction1'] < @predictions['prediction2'] 
-      #   @prediction.update_attributes(:winner => @prediction['team2_id'])
-      # elsif @predictions['prediction1'] = @predictions['prediction2'] 
-        
-      # end
-
       @prediction.update(v)
     end
     poolid = params[:pool_id]
@@ -72,9 +61,8 @@ class PredictionsController < ApplicationController
 
   def edit
     @pool = Pool.find(params[:id])
-    @games = Game.order(:poule, :date)
+    @games = Game.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule, :date)
     @gamelist = @games.group_by { |t| t.poule }
-
     @gamelist.sort.each_with_index do |(poule, games), index|
       if @present
         return
@@ -89,17 +77,17 @@ class PredictionsController < ApplicationController
         end
       end
     end
-
     if @present
       render 'edit'
     else
       render 'new'
     end
+
   end
 
   def show
     @pool = Pool.find(params[:id])
-    @games = Game.where(gametype: 'Poule').order(date: :asc)
+    @games = Game.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule, :date)
     @gamelist = @games.group_by { |t| t.poule }
   end
 
@@ -280,11 +268,6 @@ class PredictionsController < ApplicationController
       end
     end
     redirect_to givepoints_path
-  end
-
-  def bier
-      @teams = Team.all
-      @teampredictions = Teamprediction.all
   end
 
   def pointsscript2

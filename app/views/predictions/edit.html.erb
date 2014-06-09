@@ -14,24 +14,32 @@
       </div>
 
       <div class="prediction-steps">
-        <div class="steps">
+        <div class="steps">            
           <div class="step active">
-            <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
-          </div>
+            <%= link_to prediction_path(@pool.id) do %>    
+              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span> 
+            <% end %>
+          </div>      
+          <div class="step ">
+            <%= link_to teamprediction_path(@pool.id) do %>          
+              <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
+            <% end %>
+          </div>            
+          <div class="step ">
+            <%= link_to knockoutprediction_path(@pool.id) do %>
+              <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
+            <% end %>
+          </div>            
           <div class="step">
-            <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
-          </div>
-          <div class="step">
-            <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
-          </div>
-          <div class="step">
-            <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <%= link_to bonusvragen_path(@pool.id) do %>          
+              <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <% end %>            
           </div>
         </div>
       </div>
 
       <div class="pooldashboard-content">
-        <h2>Poule wedstrijden</h2>
+        <h2>Poule wedstrijden edit</h2>
         <%= form_tag controller: :predictions, action: :update_multiple_predictions do %>
           <input name="_method" type="hidden" value="patch" />
           <%= hidden_field_tag 'pool_id', @pool.id %>
@@ -64,12 +72,16 @@
                         <i class="fa fa-question-circle"></i>
                         <div class="infobox hiddeninfo">
                           <%= team1.name %> - <%= team2.name %> <br />
-                          <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span>
+                          <span>
+                            <%= game.date %>, <%= game.time.strftime('%H:%M') %>
+                          </span>
                         </div>
                       </td>
-                      <td class="default-hide small-show"><%= team1.name %></td>
-                      <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td>
-
+                      <td class="default-hide small-show">
+                        <%= team1.name %>
+                      </td>
+                      <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')">
+                      </td>
                       <td class="predict-score">
                         <div class="view-table">
                           <div class="view-row">
@@ -86,8 +98,11 @@
                         </div>
                       </td>
 
-                      <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td>
-                      <td class="default-hide small-show"><%= team2.name %></td>
+                      <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')">
+                      </td>
+                      <td class="default-hide small-show">
+                        <%= team2.name %>
+                      </td>
                       <td class="default-hide small-show">
                         <% if game.score1 == nil && game.score2 == nil %>
                          ? - ?

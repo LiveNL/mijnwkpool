@@ -14,13 +14,13 @@ class TeampredictionsController < ApplicationController
   
   def show
     @pool = Pool.find(params[:id])
-    @teams = Team.order(:poule)
+    @teams = Team.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule)
     @teamlist = @teams.group_by { |t| t.poule }
   end
 
   def edit
     @pool = Pool.find(params[:id])
-    @teams = Team.order(:poule)
+    @teams = Team.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule)
     @teamlist = @teams.group_by { |t| t.poule }
     @team = Team.all
 

@@ -14,36 +14,35 @@
       </div>
 
       <div class="prediction-steps">
-        <div class="steps">
-          <%= link_to prediction_path(@pool.id) do %>                  
-            <div class="step active">
-              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
-            </div>
-          <% end %>
-            
-          <%= link_to teamprediction_path(@pool.id) do %>          
-            <div class="step active">
+        <div class="steps">            
+          <div class="step active">
+            <%= link_to prediction_path(@pool.id) do %>    
+              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span> 
+            <% end %>
+          </div>      
+          <div class="step active">
+            <%= link_to teamprediction_path(@pool.id) do %>          
               <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
-            </div>            
-          <% end %>
-
-          <%= link_to knockoutprediction_path(@pool.id) do %>
-            <div class="step active">
-                <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
-            </div>            
-          <% end %>
-
+            <% end %>
+          </div>            
+          <div class="step active">
+            <%= link_to knockoutprediction_path(@pool.id) do %>
+              <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
+            <% end %>
+          </div>            
           <div class="step">
-            <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <%= link_to bonusvragen_path(@pool.id) do %>          
+              <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <% end %>            
           </div>
         </div>
       </div>
-
+      
       <div class="pooldashboard-content">
         <div class="content-btn">        
         <h2>Achtste Finale</h2>
           <div class="center">
-            <%= link_to 'Voorspelling aanpassen', edit_knockoutprediction_path(@pool.id), :class => 'btn grey right' %>
+            <%= link_to 'Achtste finale aanpassen', edit_knockoutprediction_path(@pool.id), :class => 'btn grey right' %>
           </div>
         </div>
         <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
@@ -168,10 +167,18 @@
               </tbody>
             </table>
           <% end %>
+        <div class="content-btn">        
+          <div class="center">
+            <%= link_to 'Achtste finale aanpassen', edit_knockoutprediction_path(@pool.id), :class => 'btn grey right' %>
+          </div>
+        </div>
 
         <!-- ########################################## KWART FINALE ##########################################  -->
         <div class="content-btn">
-          <h2>Kwart Finale </h2>   
+          <h2>Kwart Finale </h2>
+          <div class="center">
+            <%= link_to 'Kwart finale aanpassen', edit_quarterprediction_path(@pool.id), :class => 'btn grey right' %>
+          </div>             
         </div>          
           <% @gamesquarterlist.sort.each_with_index do |(gametype, gamesquarter), index| %>
             <table class="table poule">
@@ -189,14 +196,17 @@
                 <% gamesquarter.each_with_index do |game, index2| %>
                   <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
-                  <% prediction = Prediction.find_by_game_id_and_final(26, 4) %>
-                  <% prediction2 = Prediction.find_by_game_id_and_final(24, 4) %>
-                  
-                  <% if prediction.present? %>
-                    <% team1 = Team.find(prediction.winner) %>
-                    <% team2 = Team.find(prediction2.winner) %>
-                  <% else %>
-                    <% team1 = Team.find(game.team1_id) %>
+
+                  <% prediction1 = @predictionarray[index2][:team1] %>
+                  <% prediction2 = @predictionarray[index2][:team2] %>
+
+                  <% prediction1 = Team.eightleader(prediction1[:game_id], prediction1[:final], prediction1[:poolmembership_id]) %>
+                  <% if prediction1.empty? %>
+                    <% team1 = Team.find(game.team1_id) %>                  
+                  <% end %>
+
+                  <% prediction2 = Team.eightleader(prediction2[:game_id], prediction2[:final], prediction2[:poolmembership_id]) %>
+                  <% if prediction2.empty? %>
                     <% team2 = Team.find(game.team2_id) %>
                   <% end %>
 
@@ -207,11 +217,28 @@
                       <td class="infoshower">
                         <i class="fa fa-question-circle"></i>
                         <div class="infobox hiddeninfo">
-                          <%= team1.name %> - <%= team2.name %> <br />
+                          <% if team1.present? %>                            
+                            <%= team1.name %>
+                          <% else %>
+                            <%= prediction1[0]['name'] %>
+                          <% end %>
+                          -
+                          <% if team2.present? %>   
+                            <%= team2.name %>
+                          <% else %>
+                            <%= prediction2[0]['name'] %>
+                          <% end %> 
+                          <br/>
                           <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span>
                         </div>
                       </td>
-                      <td class="default-hide small-show"><%= team1.name %></td>
+                      <td class="default-hide small-show">
+                        <% if team1.present? %>                            
+                          <%= team1.name %>
+                        <% else %>
+                          <%= prediction1[0]['name'] %>
+                        <% end %>
+                      </td>
                       <td class="flag" style="background-image: url('')"></td>
 
                       <td class="predict-score">
@@ -235,7 +262,13 @@
                       </td>
 
                       <td class="flag" style="background-image: url('')"></td>
-                      <td class="default-hide small-show"><%= team2.name %></td>
+                      <td class="default-hide small-show">
+                       <% if team2.present? %>                            
+                          <%= team2.name %>
+                        <% else %>
+                          <%= prediction2[0]['name'] %>
+                        <% end %>                      
+                      </td>
                       <td class="default-hide small-show">
                         <% if game.score1 == nil && game.score2 == nil %>
 
@@ -269,7 +302,7 @@
           <% end %>
           <div class="content-btn">
             <div class="center">
-              <%= link_to 'Voorspelling aanpassen', edit_knockoutprediction_path(@pool.id), :class => 'btn grey' %>
+              <%= link_to 'Kwart finale aanpassen', edit_quarterprediction_path(@pool.id), :class => 'btn grey' %>
             </div>
           </div>
           <div class="content-btn">

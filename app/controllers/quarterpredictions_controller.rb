@@ -1,5 +1,5 @@
 class QuarterpredictionsController < ApplicationController
- before_action :eightleader, :only => [:show, :edit]
+  before_action :quarterteams, :only => [:show, :edit]  
   before_filter :ensure_admin, :only => [:pointsscript, :pointsscript2, :givepoints, :givepoints2]
   respond_to :html, :json
   def index
@@ -10,63 +10,100 @@ class QuarterpredictionsController < ApplicationController
 
   def show
     @pool = Pool.find(params[:id])
-    @games = Game.where(gametype: 'Kwart finale').order(date: :asc)
-    @gamelist = @games.group_by { |t| t.gametype }    
+    @gameseight = Game.where(gametype: 'Achtste finale').order(date: :asc)
+    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)    
+    @gameseightlist = @gameseight.group_by { |t| t.gametype }
+    @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }    
   end
 
-  def eightleader
-    @array = [
-      {
+  def quarterteams
+    @pool = Pool.find(params[:id])
+    poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
+    @predictionarray = [
+      { #1
         team1: {
-          final: 4,  
-          poule: 'A',                  
-          pos: 1
+          game_id: 101,
+          final: 4,
+          poolmembership_id: poolmem                   
         },
         team2: {
-          final: 4,           
-          poule: 'B',                   
-          pos: 2
-        },
+          game_id: 102,
+          final: 4,
+          poolmembership_id: poolmem                     
+        }
+      },
+      { #2
         team1: {
-          final: 4,  
-          poule: 'A',                  
-          pos: 2
+          game_id: 103,
+          final: 4,
+          poolmembership_id: poolmem                   
         },
         team2: {
-          final: 4,           
-          poule: 'B',                   
-          pos: 1
-        }        
-      }
+          game_id: 104,
+          final: 4,
+          poolmembership_id: poolmem                     
+        }
+      },
+      { #3
+        team1: {
+          game_id: 105,
+          final: 4,
+          poolmembership_id: poolmem                   
+        },
+        team2: {
+          game_id: 106,
+          final: 4,
+          poolmembership_id: poolmem                     
+        }
+      },
+      { #4
+        team1: {
+          game_id: 107,
+          final: 4,
+          poolmembership_id: poolmem                   
+        },
+        team2: {
+          game_id: 108,
+          final: 4,
+          poolmembership_id: poolmem                     
+        }
+      }               
     ] 
   end
 
-  def edit
-  @pool = Pool.find(params[:id])
-  @games = Game.where(gametype: 'Achtste finale').order(date: :asc)
-  @gamelist = @games.group_by { |t| t.poule }
-
-  @gamelist.sort.each_with_index do |(poule, games), index|
-    if @present
-      return
+  def create
+    @predictions = Prediction.new(prediction_params)
+    if @prediction.save
+      redirect_to app_root_path
     else
-      games.each_with_index do |game, index2|
-        current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id)
-        prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id)
-
-        if prediction.present?
-          @present = true
-        end
-      end
+      render 'new'
     end
   end
 
-  if @present
-    render 'edit'
-  else
-    render 'new'
+  def edit
+    @pool = Pool.find(params[:id])
+    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)
+    @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }
+    @gamesquarterlist.sort.each_with_index do |(gametype, games), index|    
+      if @present
+        return
+      else
+        @gamesquarter.each_with_index do |game, index2|
+          current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id)
+          prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id)
+
+          if prediction.present?
+            @present = true
+          end
+        end
+      end
+    end
+    if @present
+      render 'edit'
+    else
+      render 'new'
+    end     
   end
-end
 
   private
 
@@ -75,6 +112,14 @@ end
   end
 
   def quarterprediction_params
-    params.require(:quarterprediction).permit(:prediction, :id, :score1, :game, :prediction1, :prediction2, :game_id, :poolmembership_id, :pool_id, :team1_id, :team2_id)
+    params.require(:knockoutprediction).permit(:prediction, :id, :score1, :game, :prediction1, :prediction2, :game_id, :poolmembership_id, :pool_id, :team1_id, :team2_id)
   end
 end
+
+
+
+
+
+
+
+ 

@@ -24,5 +24,17 @@ class Team < ActiveRecord::Base
       AND tp.poolmembership_id = '#{poolmembership_id}'      
     """
   end
+
+  def self.eightleader(game_id, final, poolmembership_id)
+    Team.connection.execute """
+      SELECT p.id, p.final, p.game_id, t.id, p.poolmembership_id, t.name
+      FROM predictions p
+        LEFT JOIN teams t
+          ON p.team1_id = t.id
+      WHERE p.game_id = #{game_id}
+      AND p.final = '#{final}'
+      AND p.poolmembership_id = '#{poolmembership_id}'      
+    """
+  end  
 end
 

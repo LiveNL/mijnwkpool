@@ -38,11 +38,9 @@
       </div>
 
       <div class="pooldashboard-content">
-        <div class="content-btn">
-          <h2>Kwart Finale </h2>   
-        </div>
-        <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
-          <%= hidden_field_tag 'pool_id', @pool.id %>                  
+          <div class="content-btn">
+            <h2>Kwart Finale </h2>   
+          </div>          
             <% @gamesquarterlist.sort.each_with_index do |(gametype, games), index| %>
               <table class="table poule">
                 <thead>
@@ -132,11 +130,11 @@
                         <% if team1.present? && team2.present? %>
                           <%= p.select "winner", options_for_select([[team1.name, team1.id], [team2.name, team2.id]]), { :class => 'dropdown' }%>                     
                         <% elsif team1.present? %>
-                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [predictionteam2[0]['name'], predictionteam2[0]['id']]]), { :class => 'dropdown' }%>                                                              
+                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [teamfinal2[0]['name'], teamfinal2[0]['id']]]), { :class => 'dropdown' }%>                                                              
                         <% elsif team2.present? %>
-                          <%= p.select "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [team2.name, team2.id]]), { :class => 'dropdown' }%>                                                    
+                          <%= p.select "winner", options_for_select([[teamfinal1[0]['name'], teamfinal1[0]['id']], [team2.name, team2.id]]), { :class => 'dropdown' }%>                                                    
                         <% else %>                            
-                          <%= p.select "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [predictionteam2[0]['name'], predictionteam2[0]['id']]]), { :class => 'dropdown' }%>
+                          <%= p.select "winner", options_for_select([[teamfinal1[0]['name'], teamfinal1[0]['id']], [teamfinal2[0]['name'], teamfinal2[0]['id']]]), { :class => 'dropdown' }%>
                         <% end %>            
                       </td>                           
                       <td class="default-hide small-show">
@@ -177,6 +175,7 @@
           </div>
         <% end %>
       </div>
+
     </div>
   </div>
   <div class='default-0 medium-1-4'>

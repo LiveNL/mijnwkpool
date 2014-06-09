@@ -1,5 +1,6 @@
 class KnockoutpredictionsController < ApplicationController
-  before_action :fourthround, :only => [:show, :edit]
+  before_action :eightteams, :only => [:show, :edit]
+  before_action :quarterteams, :only => [:show, :edit]  
   before_filter :ensure_admin, :only => [:pointsscript, :pointsscript2, :givepoints, :givepoints2]
   respond_to :html, :json
   def index
@@ -16,7 +17,7 @@ class KnockoutpredictionsController < ApplicationController
     @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }    
   end
 
-  def fourthround
+  def eightteams
     @pool = Pool.find(params[:id])
     poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
     @array = [
@@ -119,13 +120,75 @@ class KnockoutpredictionsController < ApplicationController
     ] 
   end
 
+  def quarterteams
+    @pool = Pool.find(params[:id])
+    poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
+    @predictionarray = [
+      { #1
+        team1: {
+          game_id: 101,
+          final: 4,
+          poolmembership_id: poolmem                   
+        },
+        team2: {
+          game_id: 102,
+          final: 4,
+          poolmembership_id: poolmem                     
+        }
+      },
+      { #2
+        team1: {
+          game_id: 103,
+          final: 4,
+          poolmembership_id: poolmem                   
+        },
+        team2: {
+          game_id: 104,
+          final: 4,
+          poolmembership_id: poolmem                     
+        }
+      },
+      { #3
+        team1: {
+          game_id: 105,
+          final: 4,
+          poolmembership_id: poolmem                   
+        },
+        team2: {
+          game_id: 106,
+          final: 4,
+          poolmembership_id: poolmem                     
+        }
+      },
+      { #4
+        team1: {
+          game_id: 107,
+          final: 4,
+          poolmembership_id: poolmem                   
+        },
+        team2: {
+          game_id: 108,
+          final: 4,
+          poolmembership_id: poolmem                     
+        }
+      }               
+    ] 
+  end
+
+  def create
+    @predictions = Prediction.new(prediction_params)
+    if @prediction.save
+      redirect_to app_root_path
+    else
+      render 'new'
+    end
+  end
+
   def edit
     @pool = Pool.find(params[:id])
     @gameseight = Game.where(gametype: 'Achtste finale').order(date: :asc)
-    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)    
     @gameseightlist = @gameseight.group_by { |t| t.gametype }
-    @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }    
-
+    @gameseightlist.sort.each_with_index do |(gametype, games), index|    
       if @present
         return
       else
@@ -138,12 +201,12 @@ class KnockoutpredictionsController < ApplicationController
           end
         end
       end
-
+    end
     if @present
       render 'edit'
     else
       render 'new'
-    end
+    end     
   end
 
   private

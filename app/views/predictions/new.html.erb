@@ -13,24 +13,32 @@
       </div>
 
       <div class="prediction-steps">
-        <div class="steps">
+        <div class="steps">            
           <div class="step active">
-            <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
-          </div>
+            <%= link_to prediction_path(@pool.id) do %>    
+              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span> 
+            <% end %>
+          </div>      
+          <div class="step ">
+            <%= link_to teamprediction_path(@pool.id) do %>          
+              <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
+            <% end %>
+          </div>            
+          <div class="step ">
+            <%= link_to knockoutprediction_path(@pool.id) do %>
+              <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
+            <% end %>
+          </div>            
           <div class="step">
-            <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
-          </div>
-          <div class="step">
-            <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
-          </div>
-          <div class="step">
-            <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <%= link_to bonusvragen_path(@pool.id) do %>          
+              <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <% end %>            
           </div>
         </div>
       </div>
 
       <div class="pooldashboard-content">
-        <h2>Poule wedstrijden</h2>
+        <h2>Poule wedstrijden new</h2>
         <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
           <%= hidden_field_tag 'pool_id', @pool.id %>
           <% @gamelist.sort.each_with_index do |(poule, games), index| %>
@@ -120,7 +128,7 @@
           </div>
           <div class="content-btn">
             <div class="right">
-              <%= link_to 'Volgende >', pouleeindstanden_path(pool_id: @pool.id), :class => 'btn green left' %>
+              <%= link_to 'Volgende >', teamprediction_path(pool_id: @pool.id), :class => 'btn green left' %>
             </div>
 
           </div>

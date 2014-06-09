@@ -14,27 +14,26 @@
       </div>
 
       <div class="prediction-steps">
-        <div class="steps">
-          <%= link_to prediction_path(@pool.id) do %>                  
-            <div class="step active">
-              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
-            </div>
-          <% end %>
-            
-          <%= link_to teamprediction_path(@pool.id) do %>          
-            <div class="step ">
+        <div class="steps">            
+          <div class="step active">
+            <%= link_to prediction_path(@pool.id) do %>    
+              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span> 
+            <% end %>
+          </div>      
+          <div class="step ">
+            <%= link_to teamprediction_path(@pool.id) do %>          
               <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
-            </div>            
-          <% end %>
-
-          <%= link_to knockoutprediction_path(@pool.id) do %>
-            <div class="step ">
-                <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
-            </div>            
-          <% end %>
-
+            <% end %>
+          </div>            
+          <div class="step ">
+            <%= link_to knockoutprediction_path(@pool.id) do %>
+              <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
+            <% end %>
+          </div>            
           <div class="step">
-            <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <%= link_to bonusvragen_path(@pool.id) do %>          
+              <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <% end %>            
           </div>
         </div>
       </div>
@@ -70,6 +69,7 @@
                     <%= p.hidden_field :game_id, :value => game.id %>
                     <%= p.hidden_field :team1_id, :value => game.team1_id %>
                     <%= p.hidden_field :team2_id, :value => game.team2_id %>
+
                     <tr>
                       <td class="infoshower">
                         <i class="fa fa-question-circle"></i>
@@ -141,7 +141,7 @@
           </div>
           <div class="content-btn">
             <div class="right">
-              <%= link_to pouleeindstanden_path(@pool), :class => 'btn green left' do %>
+              <%= link_to teamprediction_path(@pool), :class => 'btn green left' do %>
                Volgende <i class="fa fa-chevron-right"></i>
               <% end %>
             </div>

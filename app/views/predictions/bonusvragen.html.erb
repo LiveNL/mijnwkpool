@@ -7,22 +7,29 @@
       </div>
 
       <div class="prediction-steps">
-        <div class="steps">
-          <div class="step">
-            <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
-          </div>
-          <div class="step">
-            <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
-          </div>
-          <div class="step">
-            <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
-          </div>
+        <div class="steps">            
           <div class="step active">
-            <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <%= link_to prediction_path(@pool.id) do %>    
+              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span> 
+            <% end %>
+          </div>      
+          <div class="step active">
+            <%= link_to teamprediction_path(@pool.id) do %>          
+              <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
+            <% end %>
+          </div>            
+          <div class="step active">
+            <%= link_to knockoutprediction_path(@pool.id) do %>
+              <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
+            <% end %>
+          </div>            
+          <div class="step active">
+            <%= link_to bonusvragen_path(@pool.id) do %>          
+              <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <% end %>            
           </div>
         </div>
       </div>
-
       <div class="pooldashboard-content">
         <p>
           Momenteel is deze functie nog niet beschikbaar. Wanneer deze functie beschikbaar is zul je een email hierover ontvangen. Ook zal deze informatie op onze Facebook pagina te vinden zijn.
