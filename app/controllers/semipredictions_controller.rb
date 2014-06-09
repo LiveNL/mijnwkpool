@@ -1,4 +1,4 @@
-class SemifinalsController < ApplicationController
+class SemipredictionsController < ApplicationController
   def new
   end
 
