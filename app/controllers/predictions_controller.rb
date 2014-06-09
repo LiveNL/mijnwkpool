@@ -42,7 +42,12 @@ class PredictionsController < ApplicationController
       prediction.save      
     end
     poolid = params[:pool_id]
+    p = Prediction.last
+    if p.final == 4
       redirect_to knockoutprediction_path(poolid)
+    else
+      redirect_to prediction_path(poolid)
+    end    
   end
 
   def update_multiple_predictions

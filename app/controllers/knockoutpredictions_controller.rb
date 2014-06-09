@@ -1,6 +1,6 @@
 class KnockoutpredictionsController < ApplicationController
   before_action :eightteams, :only => [:show, :edit]
-  before_action :quarterteams, :only => [:show, :edit]  
+  before_action :quarterteams, :only => [:show]  
   before_filter :ensure_admin, :only => [:pointsscript, :pointsscript2, :givepoints, :givepoints2]
   respond_to :html, :json
   def index

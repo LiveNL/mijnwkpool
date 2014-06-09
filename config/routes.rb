@@ -1,4 +1,7 @@
 Wkpool::Application.routes.draw do
+  get "semifinals/new"
+  get "semifinals/edit"
+  get "semifinals/update"
   get "quarterpredictions/index"
   get "quarterpredictions/edit"
   get "quarterpredictions/new"
