@@ -66,11 +66,14 @@
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
                   <% teamfinal1 = @array[index2][:team1] %>
                   <% teamfinal2 = @array[index2][:team2] %>
-                  <%= p teamfinal1 %>
                   <% teamfinal1 = Team.pouleleader(teamfinal1[:pos], teamfinal1[:poule], teamfinal1[:poolmembership_id]) %>
-  
+                  <% if teamfinal1.present? %>
+                    <% team1 = Team.find(game.team1_id) %>                  
+                  <% end %>
                   <% teamfinal2 = Team.pouleleader(teamfinal2[:pos], teamfinal2[:poule], teamfinal2[:poolmembership_id]) %>
-
+                  <% if teamfinal2.present? %>
+                    <% team2 = Team.find(game.team2_id) %>
+                  <% end %>
 
                   <%= fields_for "predictions[#{index}#{index2}]", Prediction.new do |p| %>
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
