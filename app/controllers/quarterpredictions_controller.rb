@@ -56,13 +56,13 @@ class QuarterpredictionsController < ApplicationController
           game_id: 101,
           final: 4,
           poolmembership_id: poolmem,
-          winner: "winner1"                                             
+          winner: winner1                                             
         },
         team2: {
           game_id: 102,
           final: 4,
           poolmembership_id: poolmem,
-          winner: "winner2"                                              
+          winner: winner2                                              
         }
       },
       { #2
@@ -70,13 +70,13 @@ class QuarterpredictionsController < ApplicationController
           game_id: 103,
           final: 4,
           poolmembership_id: poolmem,
-          winner: "winner3"                                              
+          winner: winner3                                              
         },
         team2: {
           game_id: 104,
           final: 4,
           poolmembership_id: poolmem,
-          winner: "winner4"                                              
+          winner: winner4                                              
         }
       },
       { #3
@@ -84,13 +84,13 @@ class QuarterpredictionsController < ApplicationController
           game_id: 105,
           final: 4,
           poolmembership_id: poolmem,
-          winner: "winner5"                                             
+          winner: winner5                                             
         },
         team2: {
           game_id: 106,
           final: 4,
           poolmembership_id: poolmem,
-          winner: "winner6"                                              
+          winner: winner6                                              
         }
       },
       { #4
@@ -98,13 +98,13 @@ class QuarterpredictionsController < ApplicationController
           game_id: 107,
           final: 4,
           poolmembership_id: poolmem,
-          winner: "winner7"                                            
+          winner: winner7                                              
         },
         team2: {
           game_id: 108,
           final: 4,
           poolmembership_id: poolmem,
-          winner: "winner8"                                              
+          winner: winner8                                              
         }
       }               
     ] 
