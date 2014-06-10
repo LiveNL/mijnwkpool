@@ -268,23 +268,8 @@ class PredictionsController < ApplicationController
               end
             end
           end
-        else  
+        else
         end
-        if team_id1 == prediction.game_id1
-          if prediction.pointsgiven == 1
-          else
-            scoreupdate = Poolmembership.find(prediction.poolmembership_id)
-            myes = scoreupdate.score + 222
-            score5 = scoreupdate
-            score5.score = myes
-            score5.save
-            prediction.pointsgiven = 1
-            prediction.pointsearned = 12
-            prediction.save
-            game.completed = true
-            game.save
-          end
-        end 
       end
     end
     redirect_to givepoints_path
@@ -321,38 +306,6 @@ class PredictionsController < ApplicationController
     end
     redirect_to givepoints2_path
   end
-
-  def pointsscript3
-    @teams = Team.all
-    @predictions = Prediction.all
-    @teams.each do |team|
-      @predictions.each do |prediction|
-        if team.id == prediction.team_id1
-          if team.original_position == nil
-          else
-            if team.original_position == teamprediction.pouleposition
-                if teamprediction.pointsgiven == 1
-                else
-                  scoreupdate = Poolmembership.find(teamprediction.poolmembership_id)
-                  myes = scoreupdate.score + 3
-                  score5 = scoreupdate
-                  score5.score = myes
-                  score5.save
-                  teamprediction.pointsgiven = 1
-                  teamprediction.pointsearned = 3
-                  teamprediction.save
-                  team.completed = true
-                  team.save!
-                end
-              else
-            end
-          end
-        else
-        end
-      end
-    end
-    redirect_to givepoints3_path
-  end  
 
   def givepoints
     @games = Game.all

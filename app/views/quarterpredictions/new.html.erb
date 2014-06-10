@@ -76,7 +76,7 @@
                   <%= fields_for "predictions[#{index}#{index2}]", prediction do |p| %>
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
                     <%= p.hidden_field :game_id, :value => game.id %>
-                    <%= p.hidden_field :final, :value => 4 %>
+                    <%= p.hidden_field :final, :value => 3 %>
                                
                    <tr>
                       <td class="infoshower">
@@ -104,8 +104,11 @@
                           <%= predictionteam1[0]['name'] %>
                         <% end %>
                       </td>
-                      <td class="flag" style="background-image: url('')"></td>
-                      <td class="predict-score">
+                      <% if team1.present? %>                            
+                        <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td> 
+                      <% else %>
+                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td>
+                        <% end %>                         <td class="predict-score">
                         <div class="view-table">
                           <div class="view-row">
                             <div>
@@ -121,8 +124,11 @@
                         </div>
                       </td>
 
-                      <td class="flag" style="background-image: url('')"></td>
-                      <td class="default-hide small-show">
+                        <% if team2.present? %>                            
+                        <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td> 
+                      <% else %>
+                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
+                        <% end %>                         <td class="default-hide small-show">
                        <% if team2.present? %>                            
                           <%= team2.name %>
                         <% else %>

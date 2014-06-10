@@ -113,7 +113,7 @@
                         <% end %><br />
                       </td>
                       <% if team1.present? %>                            
-                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                        <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td> 
                       <% else %>
                       <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= teamfinal1[0]['id'] %>/mini/<%= teamfinal1[0]['avatar_file_name']%>')"></td>
                       <% end %>     
@@ -135,7 +135,7 @@
                       </td>
           
                       <% if team2.present? %>                            
-                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                        <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td> 
                       <% else %>
                       <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= teamfinal2[0]['id'] %>/mini/<%= teamfinal2[0]['avatar_file_name']%>')"></td>
                       <% end %>     
