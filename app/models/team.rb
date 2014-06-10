@@ -35,7 +35,7 @@ class Team < ActiveRecord::Base
       WHERE p.game_id = #{game_id}
       AND p.final = '#{final}'
       AND p.poolmembership_id = '#{poolmembership_id}'
-      AND p.winner = '#{winner}'       
+      AND p.winner = #{winner}       
     """
   end  
 end
