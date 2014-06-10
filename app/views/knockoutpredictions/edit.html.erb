@@ -146,7 +146,7 @@
                           <%= teamfinal2[0]['name'] %>
                         <% end %> <br />
                       </td>
-                      <td class="default-hide small-show">
+                      <td class="predict-score">
                         <% if team1.present? && team2.present? %>
                           <%= p.select "winner", options_for_select([[team1.name, team1.id], [team2.name, team2.id]], :selected => prediction.winner), { :class => 'dropdown' }%>                     
                         <% elsif team1.present? %>
