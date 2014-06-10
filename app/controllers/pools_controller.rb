@@ -70,12 +70,13 @@ class PoolsController < ApplicationController
 
   def update
   @pool = Pool.find(params[:id])
-  if @pool.update_attributes(pool_params)
-    redirect_to pool_path(@pool.id)
-    flash[:success] = "Succes! '#{@pool.name}' is aangepast!"
-  else
-    render 'edit'
-  end
+    if @pool.update_attributes(pool_params)
+      redirect_to pool_path(@pool.id)
+      flash[:success] = "Succes! '#{@pool.name}' is aangepast!"
+    else
+      redirect_to pool_path(@pool.id)
+      flash[:error] = "Er is iets verkeerd gegaan bij het aanpassen van '#{@pool.name}'."
+    end
   end
 
   def destroy
