@@ -39,8 +39,8 @@
       </div>
 
       <div class="pooldashboard-content">
-        <h2>Poule eindstanden</h2>
-        <%= form_tag controller: :teampredictions, action: :update_multiple_teampredictions do %>
+     <h2>Poule eindstanden</h2>
+        <p> Punten worden gegeven op basis van juist ingevulde poule eindstand per land. Iedere poule/groep bevat vier landen. Het is de bedoeling dat bij het voorspellen de waardes 1 t/m 4 worden ingevuld. Nummers 1 en 2 gaan door naar de volgende ronde. Wanneer een positie dubbel ingevuld wordt zal de eerste van de lijst gepakt worden (voor zowel punten als vervolg wedstrijden).</p>             <%= form_tag controller: :teampredictions, action: :update_multiple_teampredictions do %>
           <input name="_method" type="hidden" value="patch" />
           <%= hidden_field_tag 'pool_id', @pool.id %>
           <% @teamlist.sort.each_with_index do |(poule, teams), index| %>
