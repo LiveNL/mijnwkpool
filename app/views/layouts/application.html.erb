@@ -124,6 +124,12 @@
                   <li class="active">
                 <% elsif current_page?(controller: 'predictions', action: 'show', id: params[:id] || 0) %>
                   <li class="active">
+                <% elsif current_page?(controller: 'teampredictions', action: 'show', id: params[:id] || 0) %>
+                  <li class="active">
+                <% elsif current_page?(controller: 'knockoutpredictions', action: 'show', id: params[:id] || 0) %>
+                  <li class="active">
+                <% elsif current_page?(controller: 'predictions', action: 'bonusvragen', id: params[:id] || 0) %>
+                  <li class="active">
                 <% else %>
                   <li>
                 <% end %>
