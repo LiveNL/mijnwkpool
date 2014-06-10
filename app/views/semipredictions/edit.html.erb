@@ -67,12 +67,12 @@
                   <% predictionteam2 = @semipredictionarray[index2][:team2] %>
 
                   <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>
-                  <% if predictionteam1.empty? %>
+                  <% if predictionteam1 == nil %>
                     <% team1 = Team.find(game.team1_id) %>                  
                   <% end %>
 
                   <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>
-                  <% if predictionteam2.empty? %>
+                  <% if predictionteam2 == nil %>
                     <% team2 = Team.find(game.team2_id) %>
                   <% end %>
 
