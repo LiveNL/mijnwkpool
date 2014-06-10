@@ -54,7 +54,6 @@
                   <th class="default-hide small-show">&nbsp;</th>
                   <th class="default-hide small-show">&nbsp;</th>
                   <th class="default-hide small-show">Uitslag</th>                  
-                  <th class="default-hide small-show">Winner</th>
                   <th>Punten</th>
                 </tr>
               </thead>
@@ -143,17 +142,6 @@
                           <%= game.score1 %> - <%= game.score2 %>
                         <% end %>
                       </td>                      
-                      <td class="predict-score">
-                        <div class="view-table">
-                          <div class="view-row">
-                            <div>
-                              <% if prediction.present? %>
-                                <span class="predict"><%= prediction.winner %></span>
-                              <% end %>
-                            </div>
-                          </div>
-                        </div>
-                      </td> 
                       <td class="bold
                         <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
                           <% if prediction.pointsearned == 12 %>
@@ -528,7 +516,6 @@
                       </td>
                       <td class="default-hide small-show">
                         <% if game.score1 == nil && game.score2 == nil %>
-
                         <% else %>
                           <%= game.score1 %> - <%= game.score2 %>
                         <% end %>
@@ -564,7 +551,7 @@
               <% end %>
             </div>    
             <div class="right">
-              <%= link_to quarterprediction_path(@pool), :class => 'btn green left' do %>
+              <%= link_to bonusvragen_path(@pool), :class => 'btn green left' do %>
                Volgende <i class="fa fa-chevron-right"></i>
               <% end %>
             </div>

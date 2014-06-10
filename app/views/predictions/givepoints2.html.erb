@@ -20,7 +20,7 @@
             <tbody>
               <!-- GAME INFORMATION --> 
               <% @teams.each do |team| %>
-                <% if team.originalposition == nil  %>
+                <% if team.original_position == nil  %>
                   <tr>
                     <td width="1" style="padding:0;">
                       <% if team.completed %>
@@ -37,7 +37,7 @@
                     <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')"></td>
                     <td style="width: 30px; padding: 3px;"> <%= team.name %></td>
                     <td><%= team.poule %></td>
-                    <td><%= team.originalposition %></td>      
+                    <td><%= team.original_position %></td>      
                   </tr>
                 <% else %>
                   <tr>
@@ -56,7 +56,7 @@
                     <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')"></td>
                     <td style="width: 30px; padding: 3px;"> <%= team.name %></td>
                     <td><%= team.poule %></td>
-                    <td><%= team.originalposition %></td>    
+                    <td><%= team.original_position %></td>    
                   </tr>                                                                   
                 <% end %>
               <% end %>

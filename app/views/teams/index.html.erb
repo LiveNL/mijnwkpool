@@ -23,7 +23,7 @@
                 <td><%= team.name %></td>
                 <td><%= team.poule %></td>
                 <td><%= team.id %></td>                
-                <td><%= team.originalposition %></td>
+                <td><%= team.original_position %></td>
                 <td><%= link_to 'Edit', edit_team_path(team) %></td>
               </tr>
             <% end %>
@@ -64,7 +64,7 @@
                       </script>
                   </td>
                   <td class="predict-score" style="padding: 0px;">
-                    <%= f.text_field :originalposition, :placeholder => 'Poule position', :onclick => 'this.select();' %>
+                    <%= f.text_field :original_position, :placeholder => 'Poule position', :onclick => 'this.select();' %>
                   </td>
 
                   <td style="padding: 0px;">
