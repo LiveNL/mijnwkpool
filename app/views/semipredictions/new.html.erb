@@ -39,7 +39,7 @@
 
       <div class="pooldashboard-content">
         <div class="content-btn">
-          <h2>Kwart Finale </h2>   
+          <h2>Halve Finale </h2>   
         </div>
         <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
           <%= hidden_field_tag 'pool_id', @pool.id %>                  
@@ -104,7 +104,13 @@
                           <%= predictionteam1[0]['name'] %>
                         <% end %>
                       </td>
-                      <td class="flag" style="background-image: url('')"></td>
+                      
+                      <% if team1.present? %>                            
+                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                      <% else %>
+                        <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td>
+                      <% end %>                      
+
                       <td class="predict-score">
                         <div class="view-table">
                           <div class="view-row">
@@ -121,7 +127,11 @@
                         </div>
                       </td>
 
-                      <td class="flag" style="background-image: url('')"></td>
+                      <% if team2.present? %>                            
+                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                      <% else %>
+                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
+                        <% end %>                      
                       <td class="default-hide small-show">
                        <% if team2.present? %>                            
                           <%= team2.name %>

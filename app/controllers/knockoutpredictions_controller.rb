@@ -129,15 +129,6 @@ class KnockoutpredictionsController < ApplicationController
   end
 
   def quarterteams
-    # game_id_array = [101, 102, 103, 104, 105, 106, 107, 108] 
-    # predictions = []
-    # game_id_array.each do |id|
-    #   predictions << Prediction.find_by_game_id([id])
-    # end             
-    # predictions.each_with_index do |p, idx|
-    #   "team_#{idx}" = "#{Team.find_by_id(p.winner)}"
-    # end 
-
     @pool = Pool.find(params[:id])
     poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
     p1 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 101)

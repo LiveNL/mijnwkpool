@@ -40,7 +40,7 @@
 
       <div class="pooldashboard-content">
         <div class="content-btn">
-          <h2>Kwart Finale </h2>          
+          <h2>Halve Finale </h2>          
         </div>                
         <%= form_tag controller: :predictions, action: :update_multiple_predictions do %>
           <input name="_method" type="hidden" value="patch" />
@@ -106,8 +106,11 @@
                           <%= predictionteam1[0]['name'] %>
                         <% end %>
                       </td>
-                      <td class="flag" style="background-image: url('')"></td>
-
+                      <% if team1.present? %>                            
+                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                      <% else %>
+                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td>
+                        <% end %>                                            
                       <td class="predict-score">
                         <div class="view-table">
                           <div class="view-row">
@@ -124,7 +127,11 @@
                         </div>
                       </td>
 
-                      <td class="flag" style="background-image: url('')"></td>
+                      <% if team2.present? %>                            
+                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                      <% else %>
+                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
+                        <% end %>                                                                  
                       <td class="default-hide small-show">
                        <% if team2.present? %>                            
                           <%= team2.name %>
@@ -134,13 +141,13 @@
                       </td>
                       <td class="default-hide small-show">
                         <% if team1.present? && team2.present? %>
-                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [team2.name, team2.id]]), { :class => 'dropdown' }%>                     
+                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [team2.name, team2.id]], :selected => prediction.winner), { :class => 'dropdown' }%>                     
                         <% elsif team1.present? %>
-                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [predictionteam2[0]['name'], predictionteam2[0]['id']]]), { :class => 'dropdown' }%>                                                              
+                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [predictionteam2[0]['name'], predictionteam2[0]['id']]], :selected => prediction.winner), { :class => 'dropdown' }%>                                                              
                         <% elsif team2.present? %>
-                          <%= p.select "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [team2.name, team2.id]]), { :class => 'dropdown' }%>                                                    
+                          <%= p.select "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [team2.name, team2.id]], :selected => prediction.winner), { :class => 'dropdown' }%>                                                    
                         <% else %>                            
-                          <%= p.select "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [predictionteam2[0]['name'], predictionteam2[0]['id']]]), { :class => 'dropdown' }%>
+                          <%= p.select "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [predictionteam2[0]['name'], predictionteam2[0]['id']]], :selected => prediction.winner), { :class => 'dropdown' }%>
                         <% end %>            
                       </td>                      
                       <td class="default-hide small-show">

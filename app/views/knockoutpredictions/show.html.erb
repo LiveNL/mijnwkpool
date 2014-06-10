@@ -106,7 +106,11 @@
                           <%= teamfinal1[0]['name'] %>
                         <% end %><br />
                       </td>
-                      <td class="flag" style="background-image: url('<%= teamfinal1[0]['avatar.url(:mini)']%>')"></td>                    
+                      <% if team1.present? %>                            
+                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                      <% else %>
+                        <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= teamfinal1[0]['id'] %>/mini/<%= teamfinal1[0]['avatar_file_name']%>')"></td>
+                      <% end %>                    
                        <td class="predict-score">
                         <div class="view-table">
                           <div class="view-row">
@@ -126,8 +130,11 @@
                           </div>
                         </div>
                       </td>
-
-                      <td class="flag" style="background-image: url('')"></td>
+                      <% if team2.present? %>                            
+                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                      <% else %>
+                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= teamfinal2[0]['id'] %>/mini/<%= teamfinal2[0]['avatar_file_name']%>')"></td>
+                      <% end %> 
                       <td class="default-hide small-show">
                         <% if team2.present? %>   
                           <%= team2.name %>
@@ -232,8 +239,11 @@
                           <%= predictionteam1[0]['name'] %>
                         <% end %>
                       </td>
-                      <td class="flag" style="background-image: url('')"></td>
-
+                      <% if team1.present? %>                            
+                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                      <% else %>                      
+                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td> 
+                      <% end %>
                       <td class="predict-score">
                         <div class="view-table">
                           <div class="view-row">
@@ -253,8 +263,11 @@
                           </div>
                         </div>
                       </td>
-
-                      <td class="flag" style="background-image: url('')"></td>
+                      <% if team2.present? %>                            
+                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                      <% else %>
+                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
+                      <% end %> 
                       <td class="default-hide small-show">
                        <% if team2.present? %>                            
                           <%= team2.name %>
@@ -358,7 +371,11 @@
                           <%= predictionteam1[0]['name'] %>
                         <% end %>
                       </td>
-                      <td class="flag" style="background-image: url('')"></td>
+                      <% if team1.present? %>                            
+                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                      <% else %>                      
+                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td>
+                      <% end %> 
 
                       <td class="predict-score">
                         <div class="view-table">
@@ -379,8 +396,11 @@
                           </div>
                         </div>
                       </td>
-
-                      <td class="flag" style="background-image: url('')"></td>
+                      <% if team2.present? %>                            
+                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                      <% else %>
+                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
+                      <% end %> 
                       <td class="default-hide small-show">
                        <% if team2.present? %>                            
                           <%= team2.name %>
@@ -484,7 +504,11 @@
                           <%= predictionteam1[0]['name'] %>
                         <% end %>
                       </td>
-                      <td class="flag" style="background-image: url('')"></td>
+                      <% if team1.present? %>                            
+                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                      <% else %>
+                        <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td> 
+                      <% end %>
 
                       <td class="predict-score">
                         <div class="view-table">
@@ -505,8 +529,12 @@
                           </div>
                         </div>
                       </td>
+                      <% if team2.present? %>                            
+                        <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
+                      <% else %>
+                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
+                      <% end %>
 
-                      <td class="flag" style="background-image: url('')"></td>
                       <td class="default-hide small-show">
                        <% if team2.present? %>                            
                           <%= team2.name %>

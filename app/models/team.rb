@@ -27,7 +27,7 @@ class Team < ActiveRecord::Base
 
   def self.eightleader(game_id, final, poolmembership_id, winner)
     Team.connection.execute """
-      SELECT p.id, p.final, p.game_id, t.id, p.poolmembership_id, t.name, p.winner
+      SELECT p.id, p.final, p.game_id, t.id, p.poolmembership_id, t.name, p.winner, t.avatar_file_name, t.avatar_content_type, t.avatar_file_size, t.avatar_updated_at
       FROM predictions p
         LEFT JOIN teams t
           ON p.winner = t.id
