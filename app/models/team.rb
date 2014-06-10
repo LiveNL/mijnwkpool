@@ -19,7 +19,7 @@ class Team < ActiveRecord::Base
       FROM teampredictions tp
         LEFT JOIN teams t
           ON tp.team_id = t.id
-      WHERE tp.pouleposition = #{position}
+      WHERE EXISTS tp.pouleposition = #{position}
       AND t.poule = '#{poule}'
       AND tp.poolmembership_id = '#{poolmembership_id}'      
     """
@@ -31,7 +31,7 @@ class Team < ActiveRecord::Base
       FROM predictions p
         LEFT JOIN teams t
           ON p.winner = t.id
-      WHERE p.game_id = #{game_id}
+      WHERE EXISTS p.game_id = #{game_id}
       AND p.final = '#{final}'
       AND p.poolmembership_id = '#{poolmembership_id}'
       AND p.winner = '#{winner}'        
