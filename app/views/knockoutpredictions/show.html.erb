@@ -67,11 +67,12 @@
                   <% teamfinal1 = @array[index2][:team1] %>
                   <% teamfinal2 = @array[index2][:team2] %>
                   <% teamfinal1 = Team.pouleleader(teamfinal1[:pos], teamfinal1[:poule], teamfinal1[:poolmembership_id]) %>
-                  <% if teamfinal1.present? %>
+                  <% if teamfinal1 == nil %>
                     <% team1 = Team.find(game.team1_id) %>                  
                   <% end %>
+
                   <% teamfinal2 = Team.pouleleader(teamfinal2[:pos], teamfinal2[:poule], teamfinal2[:poolmembership_id]) %>
-                  <% if teamfinal2.present? %>
+                  <% if teamfinal2 == nil %>
                     <% team2 = Team.find(game.team2_id) %>
                   <% end %>
 
@@ -201,12 +202,12 @@
                   <% predictionteam1 = @predictionarray[index2][:team1] %>
                   <% predictionteam2 = @predictionarray[index2][:team2] %>
                   <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>
-                  <% if predictionteam1.empty? %>
+                  <% if predictionteam1 == nil %>
                     <% team1 = Team.find(game.team1_id) %>                  
                   <% end %>
 
                   <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>
-                  <% if predictionteam2.empty? %>
+                  <% if predictionteam2 == nil %>
                     <% team2 = Team.find(game.team2_id) %>
                   <% end %>
 
@@ -333,12 +334,12 @@
                   <% predictionteam1 = @semipredictionarray[index2][:team1] %>
                   <% predictionteam2 = @semipredictionarray[index2][:team2] %>
                   <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>
-                  <% if predictionteam1.empty? %>
+                  <% if predictionteam1 == nil %>
                     <% team1 = Team.find(game.team1_id) %>                  
                   <% end %>
 
                   <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>
-                  <% if predictionteam2.empty? %>
+                  <% if predictionteam2 == nil %>
                     <% team2 = Team.find(game.team2_id) %>
                   <% end %>
 
@@ -466,12 +467,12 @@
                   <% predictionteam1 = @finalpredictionarray[index2][:team1] %>
                   <% predictionteam2 = @finalpredictionarray[index2][:team2] %>
                   <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>
-                  <% if predictionteam1.empty? %>
+                  <% if predictionteam1 == nil %>
                     <% team1 = Team.find(game.team1_id) %>                  
                   <% end %>
 
                   <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>
-                  <% if predictionteam2.empty? %>
+                  <% if predictionteam2 == nil %>
                     <% team2 = Team.find(game.team2_id) %>
                   <% end %>
 
