@@ -46,13 +46,15 @@
           <% @teamlist.sort.each_with_index do |(poule, teams), index| %>
             <table class="table poule">
               <thead>
-                <tr>
-                  <th>Positie</th>                
-                  <th class="groupname" colspan="4">Groep <%= poule %></th>
-                  <th class="default-hide small-show">&nbsp;</th>
-                  <th class="default-hide small-show">&nbsp;</th>
-                </tr>
-              </thead>
+                  <tr>
+                    <th class="groupname" colspan="1">Groep <%= poule %></th>
+                    <th class="default-hide small-show">Voorspelling</th>
+                    <th class="default-hide small-show">Naam</th>
+                    <th class="default-hide small-show">Uitslag</th>
+                    <th class="default-hide small-show">Punten</th>
+                    <th></th>
+                  </tr>
+                </thead>
               <tbody>
                 <% teams.each_with_index do |team, index2| %>
                   <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
@@ -62,7 +64,9 @@
                   <%= fields_for "teampredictions[#{index}#{index2}]", teamprediction do |p| %>
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
                     <tr><%= p.hidden_field :id, :value => teamprediction.id %>
-                     <td class="predict-score">
+                      <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')">
+                      </td>                    
+                      <td class="predict-score">
                         <div class="view-table">
                           <div class="view-row">
                             <div>
@@ -73,6 +77,30 @@
                       </td>                              
                       <td class="default-hide small-show">
                         <%= team.name %>
+                      </td>
+                      <td class="default-hide small-show">
+                        <% if team.originalposition == nil %>
+                        <% else %>
+                          <%= team.originalposition %>
+                        <% end %>
+                      </td>
+                      <td class="bold
+                        <% if teamprediction.present? && !(team.originalposition == nil) %>
+                          <% if teamprediction.pointsearned == 3 %>
+                            green
+                          <% elsif teamprediction.pointsearned == 0 %>
+                            red
+                          <% else %>
+                          <% end %>
+                        <% else %>
+                          x
+                        <% end %>
+                      ">
+                        <% if teamprediction.present? && !(team.originalposition == nil) %>
+                          <%= teamprediction.pointsearned %>
+                        <% else %>
+                          x
+                        <% end %>
                       </td>
                     </tr>
                   <% end %>

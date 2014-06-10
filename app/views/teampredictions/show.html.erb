@@ -57,7 +57,6 @@
                     <th class="default-hide small-show">Uitslag</th>
                     <th class="default-hide small-show">Punten</th>
                     <th></th>
-
                   </tr>
                 </thead>
 
@@ -80,31 +79,30 @@
                         <td class="default-hide small-show">
                             <%= team.name %>
                         </td>
-                          <td class="default-hide small-show">
-                        <% if team.originalposition == nil %>
-
-                        <% else %>
-                          <%= team.originalposition %>
-                        <% end %>
-                      </td>
-                      <td class="bold
-                        <% if teamprediction.present? && !(team.originalposition == nil) %>
-                          <% if teamprediction.pointsearned == 3 %>
-                            green
-                          <% elsif teamprediction.pointsearned == 0 %>
-                            red
+                        <td class="default-hide small-show">
+                          <% if team.originalposition == nil %>
                           <% else %>
+                            <%= team.originalposition %>
                           <% end %>
-                        <% else %>
-                          x
-                        <% end %>
-                      ">
-                        <% if teamprediction.present? && !(team.originalposition == nil) %>
-                          <%= teamprediction.pointsearned %>
-                        <% else %>
-                          x
-                        <% end %>
-                      </td>
+                        </td>
+                        <td class="bold
+                          <% if teamprediction.present? && !(team.originalposition == nil) %>
+                            <% if teamprediction.pointsearned == 3 %>
+                              green
+                            <% elsif teamprediction.pointsearned == 0 %>
+                              red
+                            <% else %>
+                            <% end %>
+                          <% else %>
+                            x
+                          <% end %>
+                        ">
+                          <% if teamprediction.present? && !(team.originalposition == nil) %>
+                            <%= teamprediction.pointsearned %>
+                          <% else %>
+                            x
+                          <% end %>
+                        </td>
                       </tr>
                     <% end %>
                   <% end %>
