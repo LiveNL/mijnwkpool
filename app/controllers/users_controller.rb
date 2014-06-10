@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     @poolmemberships = Poolmembership.where(user_id: @user.id).load
     @games = Game.order(:poule)
     @gamelist = @games.group_by { |t| t.poule }
+    @teams = Team.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule)
+    @teamlist = @teams.group_by { |t| t.poule }
   end
 
   def create

@@ -115,6 +115,80 @@
                 </tbody>
               </table>
               <% end %>
+
+
+
+
+
+
+
+              <% @teamlist.sort.each_with_index do |(poule, teams), index| %>
+              <table class="table poule">
+                <thead>
+                  <tr>
+                    <th class="groupname" colspan="1">Groep <%= poule %></th>
+                    <th class="default-hide small-show">Voorspelling</th>
+                    <th class="default-hide small-show"></th>
+                    <th class="default-hide small-show">Uitslag</th>
+                    <th class="default-hide small-show">Punten</th>
+                    <th></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% teams.each_with_index do |team, index2| %>
+                    <% teamprediction = Teamprediction.find_by_poolmembership_id_and_team_id(poolmembership.id, team.id) %>
+                    <% team = Team.find(team.id) %>
+
+
+                      <tr>
+                        <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')">
+                        </td>
+                        <td class="predict-score">
+                          <% if teamprediction.present? %>
+                            <%= teamprediction.pouleposition %>
+                          <% end %>
+                        </td>
+                        <td class="default-hide small-show">
+                            <%= team.name %>
+                        </td>
+                      <td class="default-hide small-show">
+                        <% if team.original_position == nil %>
+
+                        <% else %>
+                          <%= team.original_position %>
+                        <% end %>
+                      </td>
+                      <td class="bold
+                        <% if teamprediction.present? && !(team.original_position == nil) %>
+                          <% if teamprediction.pointsearned == 3 %>
+                            green
+                          <% elsif teamprediction.pointsearned == 0 %>
+                            red
+                          <% else %>
+                          <% end %>
+                        <% else %>
+                          x
+                        <% end %>
+                      ">
+                        <% if teamprediction.present? && !(team.original_position == nil) %>
+                          <%= teamprediction.pointsearned %>
+                        <% else %>
+                          x
+                        <% end %>
+                      </td>
+                      </tr>
+                  <% end %>
+                </tbody>
+              </table>
+          <% end %>
+
+
+
+
+
+
+
             </div>
           </div>
         </div>
