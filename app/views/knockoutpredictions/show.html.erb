@@ -66,7 +66,7 @@
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
                   <% teamfinal1 = @array[index2][:team1] %>
                   <% teamfinal2 = @array[index2][:team2] %>
-
+                  <%= p teamfinal1 %>
                   <% teamfinal1 = Team.pouleleader(teamfinal1[:pos], teamfinal1[:poule], teamfinal1[:poolmembership_id]) %>
                   <% if teamfinal1.empty? %>
                     <% team1 = Team.find(game.team1_id) %>                  
