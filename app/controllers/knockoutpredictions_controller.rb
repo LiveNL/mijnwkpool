@@ -141,21 +141,37 @@ class KnockoutpredictionsController < ApplicationController
     @pool = Pool.find(params[:id])
     poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
     p1 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 101)
-    winner1 = p1.winner
+    if p1.present?
+      winner1 = p1.winner
+    end
     p2 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 102)
-    winner2 = p2.winner
+    if p2.present?    
+      winner2 = p2.winner
+    end
     p3 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 103)
-    winner3 = p3.winner
+    if p3.present?        
+      winner3 = p3.winner
+    end
     p4 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 104)
-    winner4 = p4.winner
+    if p4.present?
+      winner4 = p4.winner
+    end
     p5 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 105)
-    winner5 = p5.winner
+    if p5.present?
+      winner5 = p5.winner
+    end
     p6 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 106)
-    winner6 = p6.winner
+    if p6.present?
+      winner6 = p6.winner
+    end
     p7 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 107)    
-    winner7 = p7.winner                       
+    if p7.present?
+      winner7 = p7.winner                       
+    end
     p8 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 108)
-    winner8 = p8.winner
+    if p8.present?
+      winner8 = p8.winner
+    end
 
     @predictionarray = [
       { #1
@@ -222,13 +238,21 @@ class KnockoutpredictionsController < ApplicationController
    @pool = Pool.find(params[:id])
     poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
     p1 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 109)
-    winner1 = p1.winner
+    if p1.present?
+      winner1 = p1.winner
+    end    
     p2 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 110)
-    winner2 = p2.winner
+    if p2.present?    
+      winner2 = p2.winner
+    end    
     p3 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 111)
-    winner3 = p3.winner
+    if p3.present?        
+      winner3 = p3.winner
+    end
     p4 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 112)
-    winner4 = p4.winner
+    if p4.present?
+      winner4 = p4.winner
+    end
     @semipredictionarray = [
       { #1
         team1: {
@@ -265,9 +289,13 @@ class KnockoutpredictionsController < ApplicationController
    @pool = Pool.find(params[:id])
     poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
     p1 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 113)
-    winner1 = p1.winner
+    if p1.present?
+      winner1 = p1.winner
+    end
     p2 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 114)
-    winner2 = p2.winner
+    if p2.present?
+      winner2 = p2.winner
+    end
     @finalpredictionarray = [
       { #1
         team1: {
