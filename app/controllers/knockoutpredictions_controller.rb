@@ -225,24 +225,24 @@ class KnockoutpredictionsController < ApplicationController
   end
 
   
-   def semiteams
+  def semiteams
    @pool = Pool.find(params[:id])
     poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
-    p1 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 109)
-    if p1.present?
-      winner1 = p1.winner
+    p9 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 109)
+    if p9.present?
+      winner9 = p9.winner
     end    
-    p2 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 110)
-    if p2.present?    
-      winner2 = p2.winner
+    p10 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 110)
+    if p10.present?    
+      winner10 = p10.winner
     end    
-    p3 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 111)
-    if p3.present?        
-      winner3 = p3.winner
+    p11 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 111)
+    if p11.present?        
+      winner11 = p11.winner
     end
-    p4 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 112)
-    if p4.present?
-      winner4 = p4.winner
+    p12 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 112)
+    if p12.present?
+      winner12 = p12.winner
     end
     @semipredictionarray = [
       { #1
@@ -250,13 +250,13 @@ class KnockoutpredictionsController < ApplicationController
           game_id: 109,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner1                                             
+          winner: winner9                                             
         },
         team2: {
           game_id: 110,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner2                                              
+          winner: winner10                                              
         }
       },
       { #2
@@ -264,13 +264,13 @@ class KnockoutpredictionsController < ApplicationController
           game_id: 111,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner3                                              
+          winner: winner11                                             
         },
         team2: {
           game_id: 112,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner4                                              
+          winner: winner12                                              
         }
       }               
     ] 
