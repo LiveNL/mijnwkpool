@@ -22,6 +22,7 @@
                 <td><%= image_tag team.avatar.url(:mini) %></td>
                 <td><%= team.name %></td>
                 <td><%= team.poule %></td>
+                <td><%= team.id %></td>                
                 <td><%= team.originalposition %></td>
                 <td><%= link_to 'Edit', edit_team_path(team) %></td>
               </tr>
@@ -47,7 +48,7 @@
                   </td>
                   <td style="padding: 0px;">
                     <%= f.text_field :poule, :placeholder => 'poule', :onclick => 'this.select();' %>
-                  </td>
+                  </td>               
                   <td style="padding: 0px;">
                       <%= image_tag @team.avatar.url(:thumb), id: 'uploadPreview' %>
                       <%= f.file_field :avatar, class: "upload", id: "uploadImage", onchange: "PreviewImage();" %>     

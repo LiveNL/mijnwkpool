@@ -25,15 +25,16 @@ class Team < ActiveRecord::Base
     """
   end
 
-  def self.eightleader(game_id, final, poolmembership_id)
+  def self.eightleader(game_id, final, poolmembership_id, winner)
     Team.connection.execute """
-      SELECT p.id, p.final, p.game_id, t.id, p.poolmembership_id, t.name
+      SELECT p.id, p.final, p.game_id, t.id, p.poolmembership_id, t.name, p.winner
       FROM predictions p
         LEFT JOIN teams t
-          ON p.team1_id = t.id
+          ON p.winner = t.id
       WHERE p.game_id = #{game_id}
       AND p.final = '#{final}'
-      AND p.poolmembership_id = '#{poolmembership_id}'      
+      AND p.poolmembership_id = '#{poolmembership_id}'
+      AND p.winner = '#{winner}'        
     """
   end  
 end

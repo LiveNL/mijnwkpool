@@ -144,7 +144,7 @@
                         <% elsif team1.present? %>
                           <%= p.select "winner", options_for_select([[team1.name, team1.id], [teamfinal2[0]['name'], teamfinal2[0]['id']]]), { :class => 'dropdown' }%>                                                              
                         <% elsif team2.present? %>
-                          <%= p.select "winner", options_for_select([[teamfinal1[0]['name'], teamfinal1[0]['id']], [team2.name, team2.id]]), { :class => 'dropdown' }%>                                                    
+                          <%= p.select "winner", options_for_select([[teamfinal1[0]['name'], teamfinal1[0]['id']], [team2.name, team2.id]], :selected => p.object.winner), { :class => 'dropdown' }%>                                  
                         <% else %>                            
                           <%= p.select "winner", options_for_select([[teamfinal1[0]['name'], teamfinal1[0]['id']], [teamfinal2[0]['name'], teamfinal2[0]['id']]]), { :class => 'dropdown' }%>
                         <% end %>            

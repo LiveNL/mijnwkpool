@@ -1,6 +1,9 @@
 class KnockoutpredictionsController < ApplicationController
   before_action :eightteams, :only => [:show, :edit]
-  before_action :quarterteams, :only => [:show]  
+  before_action :quarterteams, :only => [:show] 
+  before_action :semiteams, :only => [:show]  
+  before_action :finalteams, :only => [:show]  
+
   before_filter :ensure_admin, :only => [:pointsscript, :pointsscript2, :givepoints, :givepoints2]
   respond_to :html, :json
   def index
@@ -12,10 +15,15 @@ class KnockoutpredictionsController < ApplicationController
   def show
     @pool = Pool.find(params[:id])
     @gameseight = Game.where(gametype: 'Achtste finale').order(date: :asc)
-    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)    
     @gameseightlist = @gameseight.group_by { |t| t.gametype }
+    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)        
     @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }    
+    @gamessemi = Game.where(gametype: 'Halve finale').order(date: :asc)        
+    @gamessemilist = @gamessemi.group_by { |t| t.gametype }
+    @gamesfinal = Game.where(gametype: 'Finale').order(date: :asc)        
+    @gamesfinallist = @gamesfinal.group_by { |t| t.gametype }             
   end
+
 
   def eightteams
     @pool = Pool.find(params[:id])
@@ -121,55 +129,158 @@ class KnockoutpredictionsController < ApplicationController
   end
 
   def quarterteams
+    # game_id_array = [101, 102, 103, 104, 105, 106, 107, 108] 
+    # predictions = []
+    # game_id_array.each do |id|
+    #   predictions << Prediction.find_by_game_id([id])
+    # end             
+    # predictions.each_with_index do |p, idx|
+    #   "team_#{idx}" = "#{Team.find_by_id(p.winner)}"
+    # end 
+
     @pool = Pool.find(params[:id])
     poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
+    p1 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 101)
+    winner1 = p1.winner
+    p2 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 102)
+    winner2 = p2.winner
+    p3 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 103)
+    winner3 = p3.winner
+    p4 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 104)
+    winner4 = p4.winner
+    p5 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 105)
+    winner5 = p5.winner
+    p6 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 106)
+    winner6 = p6.winner
+    p7 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 107)    
+    winner7 = p7.winner                       
+    p8 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 108)
+    winner8 = p8.winner
+
     @predictionarray = [
       { #1
         team1: {
           game_id: 101,
           final: 4,
-          poolmembership_id: poolmem                   
+          poolmembership_id: poolmem,
+          winner: winner1                                             
         },
         team2: {
           game_id: 102,
           final: 4,
-          poolmembership_id: poolmem                     
+          poolmembership_id: poolmem,
+          winner: winner2                                              
         }
       },
       { #2
         team1: {
           game_id: 103,
           final: 4,
-          poolmembership_id: poolmem                   
+          poolmembership_id: poolmem,
+          winner: winner3                                              
         },
         team2: {
           game_id: 104,
           final: 4,
-          poolmembership_id: poolmem                     
+          poolmembership_id: poolmem,
+          winner: winner4                                              
         }
       },
       { #3
         team1: {
           game_id: 105,
           final: 4,
-          poolmembership_id: poolmem                   
+          poolmembership_id: poolmem,
+          winner: winner5                                             
         },
         team2: {
           game_id: 106,
           final: 4,
-          poolmembership_id: poolmem                     
+          poolmembership_id: poolmem,
+          winner: winner6                                              
         }
       },
       { #4
         team1: {
           game_id: 107,
           final: 4,
-          poolmembership_id: poolmem                   
+          poolmembership_id: poolmem,
+          winner: winner7                                              
         },
         team2: {
           game_id: 108,
           final: 4,
-          poolmembership_id: poolmem                     
+          poolmembership_id: poolmem,
+          winner: winner8                                              
+        }
+      }               
+    ] 
+  end
+
+  
+   def semiteams
+   @pool = Pool.find(params[:id])
+    poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
+    p1 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 109)
+    winner1 = p1.winner
+    p2 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 110)
+    winner2 = p2.winner
+    p3 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 111)
+    winner3 = p3.winner
+    p4 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 112)
+    winner4 = p4.winner
+    @semipredictionarray = [
+      { #1
+        team1: {
+          game_id: 109,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner1                                             
+        },
+        team2: {
+          game_id: 110,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner2                                              
+        }
+      },
+      { #2
+        team1: {
+          game_id: 111,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner3                                              
+        },
+        team2: {
+          game_id: 112,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner4                                              
+        }
+      }               
+    ] 
+  end
+
+  def finalteams
+   @pool = Pool.find(params[:id])
+    poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
+    p1 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 113)
+    winner1 = p1.winner
+    p2 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 114)
+    winner2 = p2.winner
+    @finalpredictionarray = [
+      { #1
+        team1: {
+          game_id: 113,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner1                                             
+        },
+        team2: {
+          game_id: 114,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner2                                              
         }
       }               
     ] 
