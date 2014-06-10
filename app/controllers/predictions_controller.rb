@@ -45,6 +45,12 @@ class PredictionsController < ApplicationController
     p = Prediction.last
     if p.final == 4
       redirect_to knockoutprediction_path(poolid)
+    elsif p.final == 3
+      redirect_to knockoutprediction_path(poolid)
+    elsif p.final == 2
+      redirect_to knockoutprediction_path(poolid)
+    elsif p.final == 1
+      redirect_to knockoutprediction_path(poolid)
     else
       redirect_to prediction_path(poolid)
     end    
