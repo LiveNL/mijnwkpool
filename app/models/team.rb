@@ -21,7 +21,7 @@ class Team < ActiveRecord::Base
           ON tp.team_id = t.id
       WHERE tp.pouleposition = #{position}
       AND t.poule = '#{poule}'
-      AND tp.poolmembership_id = '#{poolmembership_id}'      
+      AND tp.poolmembership_id = #{poolmembership_id};      
     """
   end
 
@@ -33,9 +33,9 @@ class Team < ActiveRecord::Base
         LEFT JOIN teams t
           ON p.winner = t.id
       WHERE p.game_id = #{game_id}
-      AND p.final = '#{final}'
-      AND p.poolmembership_id = '#{poolmembership_id}'
-      AND p.winner = '#{winner}'       
+      AND p.final = #{final}
+      AND p.poolmembership_id = #{poolmembership_id}
+      AND p.winner = #{winner};       
     """
   end  
 end
