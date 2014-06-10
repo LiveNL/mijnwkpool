@@ -59,6 +59,12 @@ class PredictionsController < ApplicationController
     poolid = params[:pool_id]
     if @prediction.final == 4
       redirect_to knockoutprediction_path(poolid)
+    elsif @prediction.final == 3
+      redirect_to knockoutprediction_path(poolid)
+    elsif @prediction.final == 2
+      redirect_to knockoutprediction_path(poolid)
+    elsif @prediction.final == 1
+      redirect_to knockoutprediction_path(poolid)            
     else
       redirect_to prediction_path(poolid)
     end
