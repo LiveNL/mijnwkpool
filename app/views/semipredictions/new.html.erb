@@ -141,13 +141,13 @@
                       </td>
                       <td class="predict-score">
                         <% if team1.present? && team2.present? %>
-                          <%= select_tag "winner", options_for_select([[team1.name, team1.id], [team2.name, team2.id]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border:0px;' }%>                     
+                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [team2.name, team2.id]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border:0px;' }%>                     
                         <% elsif team1.present? %>
-                          <%= select_tag "winner", options_for_select([[team1.name, team1.id], [predictionteam2[0]['name'], predictionteam2[0]['id']]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border:0px;' }%>                                                              
+                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [predictionteam2[0]['name'], predictionteam2[0]['id']]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border:0px;' }%>                                                              
                         <% elsif team2.present? %>
-                          <%= select_tag "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [team2.name, team2.id]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border:0px;' }%>                                                    
+                          <%= p.select "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [team2.name, team2.id]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border:0px;' }%>                                                    
                         <% else %>                            
-                          <%= select_tag "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [predictionteam2[0]['name'], predictionteam2[0]['id']]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border:0px;' }%>
+                          <%= p.select "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [predictionteam2[0]['name'], predictionteam2[0]['id']]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border:0px;' }%>
                         <% end %>            
                       </td>                                        
                       <td class="default-hide small-show">
