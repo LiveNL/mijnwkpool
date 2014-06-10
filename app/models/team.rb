@@ -15,7 +15,7 @@ class Team < ActiveRecord::Base
 
   def self.pouleleader(position, poule, poolmembership_id)
     Team.connection.execute """
-      SELECT tp.pouleposition, t.poule, t.name, t.id, tp.poolmembership_id
+      SELECT tp.pouleposition, t.poule, t.name, t.id, tp.poolmembership_id, t.avatar_file_name, t.avatar_content_type, t.avatar_file_size, t.avatar_updated_at
       FROM teampredictions tp
         LEFT JOIN teams t
           ON tp.team_id = t.id
@@ -38,4 +38,3 @@ class Team < ActiveRecord::Base
     """
   end  
 end
-

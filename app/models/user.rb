@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
               message: '* Dit e-mailadres is al in gebruik.'
             },
             format: {
-              with: /[a-zA-Z0-9._%-]+@(?:[a-zA-Z0-9-]+\.)+(com|net|org|info|biz|me|edu|gov|nl)/,
+              with: /[a-zA-Z0-9._%-]+@(?:[a-zA-Z0-9-]+\.)+(com|net|org|info|biz|me|edu|gov|nl|se)/,
               message: 'Voer een geldig e-mailadres in.'
             }
 
