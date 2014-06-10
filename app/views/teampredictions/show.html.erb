@@ -40,7 +40,6 @@
 
       <div class="pooldashboard-content">
         <h2>Poule eindstanden</h2>
-        <p> Punten worden gegeven op basis van juist ingevulde poule eindstand per land. Iedere poule/groep bevat vier landen. Het is de bedoeling dat bij het voorspellen de waardes 1 t/m 4 worden ingevuld. Nummers 1 en 2 gaan door naar de volgende ronde. Wanneer een positie dubbel ingevuld wordt zal de eerste van de lijst gepakt worden (voor zowel punten als vervolg wedstrijden).</p>        
         <div class="content-btn">
           <div class="center">
             <%= link_to 'Eindstanden aanpassen', edit_teamprediction_path(@pool.id), :class => 'btn grey right' %>
@@ -80,30 +79,31 @@
                         <td class="default-hide small-show">
                             <%= team.name %>
                         </td>
-                        <td class="default-hide small-show">
-                          <% if team.original_position == nil %>
+                      <td class="default-hide small-show">
+                        <% if team.original_position == nil %>
+
+                        <% else %>
+                          <%= team.original_position %>
+                        <% end %>
+                      </td>
+                      <td class="bold
+                        <% if teamprediction.present? && !(team.originalposition == nil) %>
+                          <% if teamprediction.pointsearned == 3 %>
+                            green
+                          <% elsif teamprediction.pointsearned == 0 %>
+                            red
                           <% else %>
-                            <%= team.original_position %>
                           <% end %>
-                        </td>
-                        <td class="bold
-                          <% if teamprediction.present? && !(team.original_position == nil) %>
-                            <% if teamprediction.pointsearned == 3 %>
-                              green
-                            <% elsif teamprediction.pointsearned == 0 %>
-                              red
-                            <% else %>
-                            <% end %>
-                          <% else %>
-                            x
-                          <% end %>
-                        ">
-                          <% if teamprediction.present? && !(team.original_position == nil) %>
-                            <%= teamprediction.pointsearned %>
-                          <% else %>
-                            x
-                          <% end %>
-                        </td>
+                        <% else %>
+                          x
+                        <% end %>
+                      ">
+                        <% if teamprediction.present? && !(team.originalposition == nil) %>
+                          <%= teamprediction.pointsearned %>
+                        <% else %>
+                          x
+                        <% end %>
+                      </td>
                       </tr>
                     <% end %>
                   <% end %>
@@ -148,4 +148,3 @@ $(".infoshower").hover(function () {
   $(this).find(".hiddeninfo").fadeOut('fast');
 });
 </script>
-

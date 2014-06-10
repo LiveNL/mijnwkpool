@@ -38,8 +38,7 @@
       </div>
 
       <div class="pooldashboard-content">
-        <h2>Poule eindstanden</h2>
-       <p> Punten worden gegeven op basis van juist ingevulde poule eindstand per land. Iedere poule/groep bevat vier landen. Het is de bedoeling dat bij het voorspellen de waardes 1 t/m 4 worden ingevuld. Nummers 1 en 2 gaan door naar de volgende ronde. Wanneer een positie dubbel ingevuld wordt zal de eerste van de lijst gepakt worden (voor zowel punten als vervolg wedstrijden).</p>     
+        <h2>Poule wedstrijden</h2>
         <%= form_tag controller: :teampredictions, action: :create_multiple_teampredictions do %>
           <%= hidden_field_tag 'pool_id', @pool.id %>
           <% @teamlist.sort.each_with_index do |(poule, teams), index| %>
@@ -55,33 +54,37 @@
                 <% teams.each_with_index do |team, index2| %>
                   <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
                   <% teamprediction = Teamprediction.find_by_poolmembership_id_and_team_id(current_poolmembership, team.id) %>
-                  <% team = Team.find(team.id) %>
-
-                  <%= fields_for "teampredictions[#{index}#{index2}]", teamprediction do |p| %>
+                  
+                  <%= fields_for "teampredictions[#{index}#{index2}]", Teamprediction.new do |p| %>
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
                     <tr>
-                      <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')">
-                      </td>                    
+                    <%= p.hidden_field :team_id, :value => team.id %>
+                                          <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')">
+
                       <td class="predict-score">
                         <div class="view-table">
                           <div class="view-row">
-                            <div>
-                              <%= p.number_field :pouleposition, :class => 'predict', in: 1..4 %></td>
-                            </div>
+                            <% if teamprediction.present? %>
+                              <span class="predict"><%= teamprediction.pouleposition %></span>
+                            <% else %>
+                              <%= p.number_field :pouleposition, :class => 'predict' %>
+                            <% end %>
                           </div>
                         </div>
-                      </td>                              
+                      </td>
+
                       <td class="default-hide small-show">
                         <%= team.name %>
                       </td>
-                      <td class="default-hide small-show">
+                                            <td class="default-hide small-show">
                         <% if team.original_position == nil %>
+
                         <% else %>
                           <%= team.original_position %>
                         <% end %>
                       </td>
                       <td class="bold
-                        <% if teamprediction.present? && !(team.original_position == nil) %>
+                        <% if teamprediction.present? && !(team.originalposition == nil) %>
                           <% if teamprediction.pointsearned == 3 %>
                             green
                           <% elsif teamprediction.pointsearned == 0 %>
@@ -92,17 +95,17 @@
                           x
                         <% end %>
                       ">
-                        <% if teamprediction.present? && !(team.original_position == nil) %>
+                        <% if teamprediction.present? && !(team.originalposition == nil) %>
                           <%= teamprediction.pointsearned %>
                         <% else %>
                           x
                         <% end %>
                       </td>
-                    </tr>
+                      </tr>
+                    <% end %>
                   <% end %>
-                <% end %>
-              </tbody>
-            </table>
+                </tbody>
+              </table>
           <% end %>
           <div class="content-btn">
             <div class="center">

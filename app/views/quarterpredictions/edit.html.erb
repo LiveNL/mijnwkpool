@@ -131,7 +131,8 @@
                         <td class="flag" style="background-image: url('/assets/pool/mini/missing.png')"></td> 
                       <% else %>
                       <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
-                        <% end %>                                                       <td class="default-hide small-show">
+                        <% end %>                                                       
+                      <td class="default-hide small-show">
                        <% if team2.present? %>                            
                           <%= team2.name %>
                         <% else %>
@@ -146,7 +147,7 @@
                         <% elsif team2.present? %>
                           <%= select_tag "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [team2.name, team2.id]], :selected => prediction.winner), { :class => 'dropdown' }%>                                                    
                         <% else %>                            
-                          <%= select_tag "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [predictionteam2[0]['name'], predictionteam2[0]['id']]], :selected => prediction.winner), { :class => 'dropdown' }%>
+                          <%= select_tag "winner", options_for_select([[predictionteam1[0]['name'], predictionteam1[0]['id']], [predictionteam2[0]['name'], predictionteam2[0]['id']]], :selected => prediction.winner), { :class => 'dropdown', :style => 'height: 30px; width: 110px;' }%>
                         <% end %>            
                       </td>                      
                       <td class="default-hide small-show">
