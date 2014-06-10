@@ -281,9 +281,9 @@ class PredictionsController < ApplicationController
     @teams.each do |team|
       @teampredictions.each do |teamprediction|
         if team.id == teamprediction.team_id
-          if team.originalposition == nil
+          if team.original_position == nil
           else
-            if team.originalposition == teamprediction.pouleposition
+            if team.original_position == teamprediction.pouleposition
                 if teamprediction.pointsgiven == 1
                 else
                   scoreupdate = Poolmembership.find(teamprediction.poolmembership_id)
