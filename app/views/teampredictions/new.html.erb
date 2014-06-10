@@ -84,7 +84,7 @@
                         <% end %>
                       </td>
                       <td class="bold
-                        <% if teamprediction.present? && !(team.originalposition == nil) %>
+                        <% if teamprediction.present? && !(team.original_position == nil) %>
                           <% if teamprediction.pointsearned == 3 %>
                             green
                           <% elsif teamprediction.pointsearned == 0 %>
@@ -95,7 +95,7 @@
                           x
                         <% end %>
                       ">
-                        <% if teamprediction.present? && !(team.originalposition == nil) %>
+                        <% if teamprediction.present? && !(team.original_position == nil) %>
                           <%= teamprediction.pointsearned %>
                         <% else %>
                           x
