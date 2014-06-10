@@ -60,12 +60,12 @@
                   <% teamfinal2 = @array[index2][:team2] %>
 
                   <% teamfinal1 = Team.pouleleader(teamfinal1[:pos], teamfinal1[:poule], teamfinal1[:poolmembership_id]) %>
-                  <% if teamfinal1.empty? %>
+                  <% if teamfinal1 == nil %>
                     <% team1 = Team.find(game.team1_id) %>                  
                   <% end %>
 
                   <% teamfinal2 = Team.pouleleader(teamfinal2[:pos], teamfinal2[:poule], teamfinal2[:poolmembership_id]) %>
-                  <% if teamfinal2.empty? %>
+                  <% if teamfinal2 == nil %>
                     <% team2 = Team.find(game.team2_id) %>
                   <% end %>
 
