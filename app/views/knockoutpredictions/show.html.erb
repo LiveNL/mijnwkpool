@@ -66,6 +66,7 @@
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
                   <% teamfinal1 = @array[index2][:team1] %>
                   <% teamfinal2 = @array[index2][:team2] %>
+
                   <% teamfinal1 = Team.pouleleader(teamfinal1[:pos], teamfinal1[:poule], teamfinal1[:poolmembership_id]) %>
                   <% if teamfinal1 == nil %>
                     <% team1 = Team.find(game.team1_id) %>                  
@@ -198,18 +199,19 @@
                 <% gamesquarter.each_with_index do |game, index2| %>
                   <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
+                  <% a = prediction.final %>
+                  <% if a == 4 %>
+                    <% predictionteam1 = @predictionarray[index2][:team1] %>
+                    <% predictionteam2 = @predictionarray[index2][:team2] %>
+                    <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>
+                  <% end %>                  
+                    <% team1 = Team.find(game.team1_id) %>
 
-                  <% predictionteam1 = @predictionarray[index2][:team1] %>
-                  <% predictionteam2 = @predictionarray[index2][:team2] %>
-                  <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>
-                  <% if predictionteam1 == nil %>
-                    <% team1 = Team.find(game.team1_id) %>                  
-                  <% end %>
-
-                  <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>
-                  <% if predictionteam2 == nil %>
+                  <% if a == 4 %>                                      
+                      <% p predictionteam1 %>
+                      <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>
+                  <% end %>                  
                     <% team2 = Team.find(game.team2_id) %>
-                  <% end %>
 
                   <%= fields_for "predictions[#{index}#{index2}]", prediction do |p| %>
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>   
@@ -306,7 +308,8 @@
                 <% end %>
               </tbody>
             </table>
-          <% end %>
+          <% end %>               
+
         <!-- ########################################## HALVE FINALE ##########################################  -->
         <div class="content-btn">
           <h2>Halve Finale </h2>
@@ -330,18 +333,20 @@
                 <% gamessemi.each_with_index do |game, index2| %>
                   <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
-
-                  <% predictionteam1 = @semipredictionarray[index2][:team1] %>
-                  <% predictionteam2 = @semipredictionarray[index2][:team2] %>
-                  <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>
-                  <% if predictionteam1 == nil %>
-                    <% team1 = Team.find(game.team1_id) %>                  
+                  <% a = prediction.final %>                  
+                  <% if a == 4 %>
+                    <% predictionteam1 = @semipredictionarray[index2][:team1] %>
+                    <% predictionteam2 = @semipredictionarray[index2][:team2] %>
+                    <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>
                   <% end %>
+
+                    <% team1 = Team.find(game.team1_id) %>                  
+                  <% if a == 4 %>
 
                   <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>
-                  <% if predictionteam2 == nil %>
-                    <% team2 = Team.find(game.team2_id) %>
                   <% end %>
+
+                    <% team2 = Team.find(game.team2_id) %>
 
                   <%= fields_for "predictions[#{index}#{index2}]", prediction do |p| %>
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>   
@@ -463,18 +468,19 @@
                 <% gamesfinal.each_with_index do |game, index2| %>
                   <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
-
+                  <% a = prediction.final %>                  
+                  <% if a == 4 %>
                   <% predictionteam1 = @finalpredictionarray[index2][:team1] %>
                   <% predictionteam2 = @finalpredictionarray[index2][:team2] %>
                   <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>
-                  <% if predictionteam1 == nil %>
-                    <% team1 = Team.find(game.team1_id) %>                  
+                  
                   <% end %>
+                    <% team1 = Team.find(game.team1_id) %>                  
+                  <% if a == 4 %>
 
                   <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>
-                  <% if predictionteam2 == nil %>
-                    <% team2 = Team.find(game.team2_id) %>
                   <% end %>
+                    <% team2 = Team.find(game.team2_id) %>
 
                   <%= fields_for "predictions[#{index}#{index2}]", prediction do |p| %>
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>   
