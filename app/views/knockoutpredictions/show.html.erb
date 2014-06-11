@@ -256,7 +256,7 @@
                       <% if team1.present? %>                            
                         <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td> 
                       <% else %>
-                        <% if predictionteam1[0]['id'] < 10 %>
+                        <% if predictionteam1[0]['id'].to_i < 10 %>
                           <td class="flag" style="background-image: url('/system/teams/avatars/000/000/00<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td>
                         <% else %>
                           <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td> 
@@ -284,7 +284,7 @@
                       <% if team2.present? %>                            
                         <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td> 
                       <% else %>
-                        <% if predictionteam2[0]['id'] < 10 %>
+                        <% if predictionteam2[0]['id'].to_i < 10 %>
                           <td class="flag" style="background-image: url('/system/teams/avatars/000/000/00<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
                         <% else %>
                           <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
@@ -402,9 +402,13 @@
                       </td>
                       <% if team1.present? %>                            
                         <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td> 
-                      <% else %>                      
-                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td>
-                      <% end %> 
+                      <% else %>
+                        <% if predictionteam1[0]['id'].to_i < 10 %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/00<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td>
+                        <% else %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td> 
+                        <% end %>                                                     
+                      <% end %>
 
                       <td class="predict-score">
                         <div class="view-table">
@@ -428,8 +432,12 @@
                       <% if team2.present? %>                            
                         <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td> 
                       <% else %>
-                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
-                      <% end %> 
+                        <% if predictionteam2[0]['id'].to_i < 10 %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/00<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
+                        <% else %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td> 
+                        <% end %>                                                     
+                      <% end %>
                       <td class="default-hide small-show">
                        <% if team2.present? %>                            
                           <%= team2.name %>
