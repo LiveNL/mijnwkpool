@@ -211,7 +211,7 @@
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
                   
                   <% if prediction.present? %>
-                  <% a = prediction.final %>
+                  <% a = prediction.final.to_i %>
                   <% if a == 4 %>
                     <% predictionteam1 = @predictionarray[index2][:team1] %>
                     <% predictionteam2 = @predictionarray[index2][:team2] %>
