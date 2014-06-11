@@ -115,7 +115,11 @@
                       <% if team1.present? %>                            
                         <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td> 
                       <% else %>
-                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= teamfinal1[0]['id'] %>/mini/<%= teamfinal1[0]['avatar_file_name']%>')"></td>
+                      <% if teamfinal1[0]['id'].to_i < 10 %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/00<%= teamfinal1[0]['id'] %>/mini/<%= teamfinal1[0]['avatar_file_name']%>')"></td>
+                        <% else %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= teamfinal1[0]['id'] %>/mini/<%= teamfinal1[0]['avatar_file_name']%>')"></td> 
+                        <% end %>  
                       <% end %>     
                       
                       <td class="predict-score">
@@ -137,7 +141,11 @@
                       <% if team2.present? %>                            
                         <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td> 
                       <% else %>
-                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= teamfinal2[0]['id'] %>/mini/<%= teamfinal2[0]['avatar_file_name']%>')"></td>
+                      <% if teamfinal2[0]['id'].to_i < 10 %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/00<%= teamfinal2[0]['id'] %>/mini/<%= teamfinal2[0]['avatar_file_name']%>')"></td>
+                        <% else %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= teamfinal2[0]['id'] %>/mini/<%= teamfinal2[0]['avatar_file_name']%>')"></td> 
+                        <% end %>  
                       <% end %>     
                       <td class="default-hide small-show"> 
                         <% if team2.present? %>   

@@ -352,24 +352,20 @@
                 <% gamessemi.each_with_index do |game, index2| %>
                   <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
-                                    <% if prediction.present? %>
-
-                  <% a = prediction.final %>                  
-                  <% if a == 4 %>
+                  
+                  <% if prediction.present? %>
                     <% predictionteam1 = @semipredictionarray[index2][:team1] %>
                     <% predictionteam2 = @semipredictionarray[index2][:team2] %>
                     <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>
-                  <% end %><% end %>
+                      <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>                    
+                  <% end %>
 
+                  <% if predictionteam1 == nil %>                
                     <% team1 = Team.find(game.team1_id) %> 
-                  <% if prediction.present? %>
-
-                  <% if a == 4 %>
-
-                  <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>
-                  <% end %><% end %>
-
+                  <% end %>
+                  <% if predictionteam2 == nil %>                
                     <% team2 = Team.find(game.team2_id) %>
+                  <% end %>
 
                   <%= fields_for "predictions[#{index}#{index2}]", prediction do |p| %>
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>   
@@ -500,21 +496,18 @@
                   <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
                   <% if prediction.present? %>
+                    <% predictionteam1 = @finalpredictionarray[index2][:team1] %>
+                    <% predictionteam2 = @finalpredictionarray[index2][:team2] %>
+                    <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>
+                      <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>                    
+                  <% end %>
                   
-                  <% a = prediction.final %>                  
-                  <% if a == 4 %>
-                  <% predictionteam1 = @finalpredictionarray[index2][:team1] %>
-                  <% predictionteam2 = @finalpredictionarray[index2][:team2] %>
-                  <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>
-
-                  <% end %><% end %>
-                    <% team1 = Team.find(game.team1_id) %>                  <% if prediction.present? %>
-                  
-                  <% if a == 4 %>
-
-                  <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>
-                  <% end %><% end %>
+                  <% if predictionteam1 == nil %>                
+                    <% team1 = Team.find(game.team1_id) %> 
+                  <% end %>
+                  <% if predictionteam2 == nil %>                
                     <% team2 = Team.find(game.team2_id) %>
+                  <% end %>
 
                   <%= fields_for "predictions[#{index}#{index2}]", prediction do |p| %>
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>   
@@ -548,7 +541,11 @@
                       <% if team1.present? %>                            
                         <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td> 
                       <% else %>
-                        <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td> 
+                        <% if predictionteam1[0]['id'].to_i < 10 %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/00<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td>
+                        <% else %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td> 
+                        <% end %>  
                       <% end %>
 
                       <td class="predict-score">
@@ -573,7 +570,11 @@
                       <% if team2.present? %>                            
                         <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td> 
                       <% else %>
-                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
+                        <% if predictionteam2[0]['id'].to_i < 10 %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/00<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
+                        <% else %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td> 
+                        <% end %>  
                       <% end %>
 
                       <td class="default-hide small-show">
