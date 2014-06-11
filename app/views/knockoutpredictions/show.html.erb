@@ -211,10 +211,6 @@
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
                   
                   <% if prediction.present? %>
-                    <% a = prediction.final.to_i %>
-                  <% end %>                  
-
-                  <% if a == 4 %>
                     <% predictionteam1 = @predictionarray[index2][:team1] %>
                     <% predictionteam2 = @predictionarray[index2][:team2] %>
                     <% predictionteam1 = Team.eightleader(predictionteam1[:game_id], predictionteam1[:final], predictionteam1[:poolmembership_id],predictionteam1[:winner]) %>                                     
