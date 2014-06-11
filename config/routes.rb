@@ -42,7 +42,8 @@ Wkpool::Application.routes.draw do
 
   get 'ping' => proc { |env| [200, {}, ['pong']] }
   get "/500", :to => "errors#error_500"
-  
+  get "/404", :to => "errors#error_404"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
