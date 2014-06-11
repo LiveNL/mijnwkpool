@@ -28,7 +28,6 @@ Wkpool::Application.routes.draw do
       end
     end
   end
-  get "/500", :to => "errors#error_500"
   
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
@@ -42,6 +41,8 @@ Wkpool::Application.routes.draw do
   root  'pages#home'
 
   get 'ping' => proc { |env| [200, {}, ['pong']] }
+  get "/500", :to => "errors#error_500"
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
