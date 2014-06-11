@@ -183,7 +183,7 @@
             <%= link_to 'Kwart finale aanpassen', edit_quarterprediction_path(@pool.id), :class => 'btn grey right' %>
           </div>             
         </div>          
-          <% @gamesquarterlist.sort.each_with_index do |(gametype, gamesquarter), index| %>
+          <% @gamesquarterlist.sort.each_with_index do |(gametype, games), index| %>
             <table class="table poule">
               <thead>
                 <tr>
@@ -196,12 +196,11 @@
               </thead>
               <tbody>
     
-                <% gamesquarter.each_with_index do |game, index2| %>
+                <% games.each_with_index do |game, index2| %>
                   <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
                   
                   <% if prediction.present? %>
-                  
                   <% a = prediction.final %>
                   <% if a == 4 %>
                     <% predictionteam1 = @predictionarray[index2][:team1] %>
@@ -214,7 +213,6 @@
                   <% if prediction.present? %>
 
                   <% if a == 4 %>                                      
-                      <% p predictionteam1 %>
                       <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>
                   <% end %>                                       <% end %>                  
                
@@ -251,8 +249,12 @@
                       </td>
                       <% if team1.present? %>                            
                         <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td> 
-                      <% else %>                      
-                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td> 
+                      <% else %>
+                        <% if predictionteam1[0]['id'] < 10 %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/00<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td>
+                        <% else %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam1[0]['id'] %>/mini/<%= predictionteam1[0]['avatar_file_name']%>')"></td> 
+                        <% end %>                                                     
                       <% end %>
                       <td class="predict-score">
                         <div class="view-table">
@@ -276,7 +278,11 @@
                       <% if team2.present? %>                            
                         <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td> 
                       <% else %>
-                      <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
+                        <% if predictionteam2[0]['id'] < 10 %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/00<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
+                        <% else %>
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= predictionteam2[0]['id'] %>/mini/<%= predictionteam2[0]['avatar_file_name']%>')"></td>
+                        <% end %> 
                       <% end %> 
                       <td class="default-hide small-show">
                        <% if team2.present? %>                            
