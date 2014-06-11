@@ -1,4 +1,4 @@
 class ErrorsController < ApplicationController
-  def 500
+  def error_500
   end
 end
