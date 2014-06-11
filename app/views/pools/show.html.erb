@@ -25,6 +25,11 @@
             <% end %>
           <% end %>
         </div>
+
+        <% else %>
+          <div class="content-header ">
+             <%= link_to 'Registreren', register_path, :class => 'btn green' %>
+          </div>
       <% end %>
 
       <div class="pooldashboard-content">
