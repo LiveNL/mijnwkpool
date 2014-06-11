@@ -27,13 +27,13 @@ class FinalpredictionsController < ApplicationController
       { #1
         team1: {
           game_id: 113,
-          final: 4,
+          final: 2,
           poolmembership_id: poolmem,
           winner: winner1                                             
         },
         team2: {
           game_id: 114,
-          final: 4,
+          final: 2,
           poolmembership_id: poolmem,
           winner: winner2                                              
         }

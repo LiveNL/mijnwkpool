@@ -70,6 +70,7 @@
                   <% if predictionteam1 == nil %>
                     <% team1 = Team.find(game.team1_id) %>                  
                   <% end %>
+                            <%= debug predictionteam1 %>
 
                   <% predictionteam2 = Team.eightleader(predictionteam2[:game_id], predictionteam2[:final], predictionteam2[:poolmembership_id],predictionteam2[:winner]) %>
                   <% if predictionteam2 == nil %>

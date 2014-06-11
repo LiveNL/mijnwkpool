@@ -248,13 +248,13 @@ class KnockoutpredictionsController < ApplicationController
       { #1
         team1: {
           game_id: 109,
-          final: 4,
+          final: 3,
           poolmembership_id: poolmem,
           winner: winner9                                             
         },
         team2: {
           game_id: 110,
-          final: 4,
+          final: 3,
           poolmembership_id: poolmem,
           winner: winner10                                              
         }
@@ -262,13 +262,13 @@ class KnockoutpredictionsController < ApplicationController
       { #2
         team1: {
           game_id: 111,
-          final: 4,
+          final: 3,
           poolmembership_id: poolmem,
           winner: winner11                                             
         },
         team2: {
           game_id: 112,
-          final: 4,
+          final: 3,
           poolmembership_id: poolmem,
           winner: winner12                                              
         }
@@ -291,13 +291,13 @@ class KnockoutpredictionsController < ApplicationController
       { #1
         team1: {
           game_id: 113,
-          final: 4,
+          final: 2,
           poolmembership_id: poolmem,
           winner: winner1                                             
         },
         team2: {
           game_id: 114,
-          final: 4,
+          final: 2,
           poolmembership_id: poolmem,
           winner: winner2                                              
         }

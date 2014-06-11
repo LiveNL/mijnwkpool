@@ -57,7 +57,7 @@
               </thead>
               <tbody>
                
-                <% @gameseight.each_with_index do |game, index2| %>
+                <% games.each_with_index do |game, index2| %>
                   <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
                   <% prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id) %>
                   <% teamfinal1 = @array[index2][:team1] %>
