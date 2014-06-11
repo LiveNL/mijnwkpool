@@ -74,7 +74,9 @@
       <p>Weet je zeker dat je alle rondes in de goede volgorde hebt ingevuld? Ronden voorspellen zonder landen te weten wordt lastig. Succes!</p>
     </div>
     <div class="btnwrapper">
-      <%= link_to 'Terug naar de vorige pagina.', teamprediction_path(@pool.id) %>         
+      <%= link_to teamprediction_path(@pool.id) do %>
+		'Terug naar de vorige pagina.',                
+	<% end %>	
     </div>
   </div>
 </body>
