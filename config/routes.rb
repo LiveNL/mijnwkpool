@@ -28,7 +28,7 @@ Wkpool::Application.routes.draw do
       end
     end
   end
-  
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
 

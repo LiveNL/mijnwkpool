@@ -39,7 +39,7 @@ class PredictionsController < ApplicationController
   def create_multiple_predictions
     params[:predictions].each do |k, v|
       prediction = Prediction.new(v)
-      prediction.save      
+      prediction.save
     end
     poolid = params[:pool_id]
     p = Prediction.last
@@ -53,7 +53,7 @@ class PredictionsController < ApplicationController
       redirect_to knockoutprediction_path(poolid)
     else
       redirect_to prediction_path(poolid)
-    end    
+    end
   end
 
   def update_multiple_predictions
@@ -70,36 +70,40 @@ class PredictionsController < ApplicationController
     elsif @prediction.final == 2
       redirect_to knockoutprediction_path(poolid)
     elsif @prediction.final == 1
-      redirect_to knockoutprediction_path(poolid)            
+      redirect_to knockoutprediction_path(poolid)
     else
       redirect_to prediction_path(poolid)
     end
   end
 
   def edit
-    @pool = Pool.find(params[:id])
-    @games = Game.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule, :date)
-    @gamelist = @games.group_by { |t| t.poule }
-    @gamelist.sort.each_with_index do |(poule, games), index|
-      if @present
-        return
-      else
-        games.each_with_index do |game, index2|
-          current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id)
-          prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id)
+    if Time.now > deadline
+      @pool = Pool.find(params[:id])
+      render 'deadline'
+    else
+      @pool = Pool.find(params[:id])
+      @games = Game.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule, :date)
+      @gamelist = @games.group_by { |t| t.poule }
+      @gamelist.sort.each_with_index do |(poule, games), index|
+        if @present
+          return
+        else
+          games.each_with_index do |game, index2|
+            current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id)
+            prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id)
 
-          if prediction.present?
-            @present = true
+            if prediction.present?
+              @present = true
+            end
           end
         end
       end
+      if @present
+        render 'edit'
+      else
+        render 'new'
+      end
     end
-    if @present
-      render 'edit'
-    else
-      render 'new'
-    end
-
   end
 
   def show

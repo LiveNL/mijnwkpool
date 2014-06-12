@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140612111453) do
     t.time     "time"
     t.integer  "team1_id"
     t.integer  "team2_id"
-    t.boolean  "completed",  default: false
     t.string   "poule"
+    t.boolean  "completed",  default: false
   end
 
   create_table "poolmemberships", force: true do |t|
