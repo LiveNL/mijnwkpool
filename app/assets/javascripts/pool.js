@@ -47,11 +47,11 @@ function togglePasswordFields(e) {
   }
 }
 
-function rangeSlider() {
+function rangeSlider(minus,maxus) {
   var Link = $.noUiSlider.Link;
 
   $('.rangeslider').noUiSlider({
-    start: [ 5, 65 ],
+    start: [ minus, maxus ],
     step: 5,
     behaviour: 'snap',
     range: {
@@ -84,15 +84,18 @@ function rangeSlider() {
     }
   });
 }
-function rangeSlider2() {
+function rangeSlider2(minus, startus) {
+  minus = round5(minus);
+  startus = round5(startus);
+
   var Link = $.noUiSlider.Link;
 
   $('.rangeslider').noUiSlider({
-    start: [ 5 ],
+    start: [ startus ],
     step: 5,
     behaviour: 'snap',
     range: {
-      'min': 5,
+      'min': minus,
       'max': 65
     },
     connect: 'lower',
@@ -111,4 +114,9 @@ function rangeSlider2() {
       }
     }
   });
+}
+
+function round5(x)
+{
+    return Math.ceil(x/5)*5;
 }

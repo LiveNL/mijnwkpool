@@ -10,6 +10,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @poolmemberships = Poolmembership.where(user_id: @user.id).load
+    @games = Game.order(:poule)
+    @gamelist = @games.group_by { |t| t.poule }
+    @teams = Team.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule)
+    @teamlist = @teams.group_by { |t| t.poule }
   end
 
   def create
@@ -30,6 +35,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :nickname, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :nickname, :email, :password, :password_confirmation, :subscribed, :password_reset_token, :password_reset_sent_at)
   end
 end

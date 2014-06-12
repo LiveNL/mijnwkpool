@@ -1,0 +1,136 @@
+<% title "#{@pool.name} aanpassen" %>
+<% if @poolmember.role == 1 %>
+<div class="grid-r">
+  <div class="medium-3-4">
+    <div class="box">
+      <%= form_for @pool, :url => { :action => "update" } do |f| %>
+        <div class="content-header">
+          <h1>Pool aanpassen</h1>
+        </div>
+
+        <div class="content-header">
+          <span class="default-hide small-show">
+            <a href="../<%= @pool.id %>" class="btn grey left"><i class="fa fa-chevron-left"></i> Terug naar <%= @pool.name%></a>
+          </span>
+          <%= link_to 'Pool verwijderen', @pool, method: :delete, data: { confirm: 'Weet je zeker dat je deze pool wilt verwijderen?' }, :class => 'btn red pool-sign-in'  %>
+        </div>
+
+        <div class="grid-r">
+          <div class="small-1-3">
+            <div class="avatar">
+              <%= image_tag @pool.avatar.url(:small), id: 'uploadPreview' %>
+              <div class="btn green fileupload">
+                <span>Bewerk afbeelding</span>
+                <%= f.file_field :avatar, class: "upload", id: "uploadImage", onchange: "PreviewImage();" %>
+              </div>
+              <script type="text/javascript">
+                function PreviewImage() {
+                    var oFReader = new FileReader();
+                    oFReader.readAsDataURL(document.getElementById("uploadImage").files[0]);
+
+                    oFReader.onload = function (oFREvent) {
+                        document.getElementById("uploadPreview").src = oFREvent.target.result;
+                    };
+                }
+              </script>
+            </div>
+          </div>
+          <div class="small-2-3">
+            <div class="pool_new_form">
+              <% if @pool.errors[:name].empty? %>
+                <div class="form-field">
+              <% else %>
+                <div class="form-field error">
+              <% end %>
+                <%= f.label :name, 'Pool naam' %>
+                <%= f.text_field :name %>
+                <span>
+                  <% if @pool.errors.any? %>
+                    <%= @pool.errors[:name].to_sentence(words_connector: '<br />', two_words_connector: '<br />', last_word_connector: '<br />').html_safe %>
+                  <% end %>
+                </span>
+              </div>
+
+              <div class="form-field">
+                <label>Maximaal aantal spelers</label>
+                <div class='slider'>
+                  <div class='minmax'>
+                    <div class='mintext'></div>
+                    <%= f.hidden_field :maximum_membership, :class => 'min' %>
+                  </div>
+                  <div class='rangeslider'></div>
+                </div>
+              </div>
+
+              <div class="form-field inline">
+                <label>Toegankelijkheid</label>
+                <% if @pool.is_public || @pool.is_public.nil? %>
+                  <%= f.radio_button :is_public, true, :checked => true %>
+                  <label for="pool_is_public_true">Openbaar</label>
+                  <%= f.radio_button :is_public, false, :checked => false %>
+                  <label for="pool_is_public_false">Priv&eacute;</label>
+                <% else %>
+                  <%= f.radio_button :is_public, true, :checked => false %>
+                  <label for="pool_is_public_true">Openbaar</label>
+                  <%= f.radio_button :is_public, false, :checked => true %>
+                  <label for="pool_is_public_false">Priv&eacute;</label>
+                <% end %>
+              </div>
+
+              <div class="form-field" id="private_pool_enabled">
+                <% if @pool.errors[:password].empty? %>
+                  <div class="form-field">
+                <% else %>
+                  <div class="form-field error">
+                <% end %>
+                  <%= f.label :password, 'Wachtwoord' %>
+                  <%= f.password_field :password %>
+                  <span>
+                    <% if @pool.errors.any? %>
+                      <%= @pool.errors[:password].to_sentence(two_words_connector: '<br />').html_safe %>
+                    <% end %>
+                  </span>
+                </div>
+
+                <% if @pool.errors[:password_confirmation].empty? %>
+                  <div class="form-field">
+                <% else %>
+                  <div class="form-field error">
+                <% end %>
+                  <%= f.label :password_confirmation, 'Wachtwoord herhalen' %>
+                  <%= f.password_field :password_confirmation %>
+                  <span>
+                    <% if @pool.errors.any? %>
+                      <%= @pool.errors[:password_confirmation].to_sentence(two_words_connector: '<br />').html_safe %>
+                    <% end %>
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <button class="green" type="submit">
+                  Wijzigingen opslaan
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/aside" %>
+    <%= render "shared/aside_admin" %>
+    <%= render "shared/aside_ad" %>>  
+  </div>
+</div>
+<%= javascript_tag do %>
+  poolPassword();
+  rangeSlider2(<%= @pool.poolmemberships_count %>, <%= @pool.maximum_membership %>);
+<% end %>
+<% else %>
+Sp&#228;ter!
+  <script type="text/javascript">
+    window.location.href="/app/"
+  </script>
+<% end %>

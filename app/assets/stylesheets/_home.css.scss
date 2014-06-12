@@ -249,6 +249,10 @@ header{
     li {
       float: right;
       margin-left: 20px;
+
+      &.active a {
+        color: $color-orange-light;
+      }
     }
   }
 

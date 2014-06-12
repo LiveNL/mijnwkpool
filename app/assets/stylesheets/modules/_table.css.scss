@@ -7,4 +7,149 @@
 }
 .view-row > div {
     display: table-cell;
+    vertical-align: middle;
+}
+
+table {
+  border-collapse: collapse;
+  max-width: 100%;
+}
+.table {
+  color: $color-grey-dark;
+  width: 100%;
+
+  th,
+  td {
+    padding: 14px 0;
+    vertical-align: middle;
+  }
+
+  .green {
+    color: $color-green-light !important;
+  }
+  .red {
+    color: $color-red-light !important;
+  }
+  .bold {
+    font-weight: $font-weight-bold !important;
+  }
+
+  thead > tr > th {
+    font-weight: normal;
+    text-align: left;
+    padding-left: 5px;
+    padding-right: 5px;
+
+    @include respond-to(small) {
+      padding-left: 0;
+      padding-left: 0;
+    }
+  }
+
+  tbody > tr > td {
+    border: 1px solid $color-grey-light;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  &.rank {
+    tbody > tr {
+      & td a {
+        color: $color-grey-dark;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      & > td:first-child {
+        color: $color-grey-medium;
+        text-align: center;
+        width: 60px;
+      }
+      & > td:last-child {
+        text-align: center;
+        width: 70px;
+      }
+
+      &:first-child {
+        background-color: $color-green-light;
+
+        & > td {
+          color: #FFF;
+          & a {
+            color: #FFF;
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.poule {
+
+    & + .poule {
+      margin-top: 10px;
+    }
+
+    tbody > tr > td {
+      color: $color-grey-medium;
+      white-space: nowrap;
+
+      &.infoshower {
+        color: $color-grey-light;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
+        width: 1px;
+        @include respond-to(large) {
+          width: 50px;
+        }
+
+        &:hover {
+          color: $color-grey-dark;
+        }
+      }
+      &:nth-child(2) {
+        text-align: right;
+      }
+      &.predict-score {
+        padding: 0;
+        text-align: center;
+
+        @include respond-to(small) {
+          width: 100px;
+        }
+
+        .view-table {
+          display:table;
+          max-width: 110px;
+          margin:0 auto;
+        }
+      }
+      &:last-child,
+      &:nth-last-child(2) {
+        text-align: center;
+        width: 50px;
+        @include respond-to(large) {
+          width: 80px;
+        }
+      }
+      &:last-child {
+        color: $color-grey-dark;
+      }
+    }
+  }
+
+  .flag {
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0;
+    width: 70px;
+  }
 }

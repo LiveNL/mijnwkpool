@@ -1,11 +1,11 @@
 # config valid only for Capistrano 3.1
-lock '3.1.0'
+lock '3.2.1'
 
 set :application, 'Mijn_Wk_Pool'
 set :repo_url, 'git@github.com:LiveNL/mijnwkpool.git'
 
-set :branch, 'beta1'
-set :deploy_to, '/var/www/mijnwkpool.com/dev'
+set :branch, 'beta4'
+set :deploy_to, '/var/www/mijnwkpool.com/main'
 set :scm, :git
 set :use_sudo, false
 set :format, :pretty
@@ -25,11 +25,11 @@ set :rbenv_roles, :all
 
 set :rails_env, 'production'
 
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/application.yml}
 set :linked_dirs, %w{bin log tmp vendor/bundle public/system}
 
 # Add this to the settings section at the top:
-set :ping_url, 'http://dev.mijnwkpool.com/ping'
+set :ping_url, 'http://mijnwkpool.com/ping'
 
 namespace :deploy do
 

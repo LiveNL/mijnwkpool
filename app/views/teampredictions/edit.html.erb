@@ -1,0 +1,134 @@
+<% title "Eindstanden aanpassen - #{@pool.name}" %>
+<div class='grid-r'>
+  <div class='medium-3-4'>
+    <div class='box'>
+      <div class="content-header">
+        <h1>Mijn voorspellingen</h1>
+      </div>
+      <div id="contentflash" class="contentflash success">
+        <div class="view-table">
+          <div class="view-row">
+            <div class="contentflash-text-center">Je voorspelt nu voor: <strong><%= @pool.name %></strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prediction-steps">
+        <div class="steps">            
+          <div class="step active">
+            <%= link_to prediction_path(@pool.id) do %>    
+              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span> 
+            <% end %>
+          </div>      
+          <div class="step active">
+            <%= link_to teamprediction_path(@pool.id) do %>          
+              <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
+            <% end %>
+          </div>            
+          <div class="step">
+            <%= link_to knockoutprediction_path(@pool.id) do %>
+              <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
+            <% end %>
+          </div>            
+          <div class="step">
+            <%= link_to bonusvragen_path(@pool.id) do %>          
+              <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <% end %>            
+          </div>
+        </div>
+      </div>
+
+      <div class="pooldashboard-content">
+     <h2>Poule eindstanden</h2>
+        <p> Punten worden gegeven op basis van juist ingevulde poule eindstand per land. Iedere poule/groep bevat vier landen. Het is de bedoeling dat bij het voorspellen de waardes 1 t/m 4 worden ingevuld. Nummers 1 en 2 gaan door naar de volgende ronde. Wanneer een positie dubbel ingevuld wordt zal de eerste van de lijst gepakt worden (voor zowel punten als vervolg wedstrijden).</p>             <%= form_tag controller: :teampredictions, action: :update_multiple_teampredictions do %>
+          <input name="_method" type="hidden" value="patch" />
+          <%= hidden_field_tag 'pool_id', @pool.id %>
+          <% @teamlist.sort.each_with_index do |(poule, teams), index| %>
+            <table class="table poule">
+              <thead>
+                <tr>
+                  <th class="groupname" colspan="1">Groep <%= poule %></th>
+                  <th class="default-hide small-show">Voorspelling</th>
+                  <th class="default-hide small-show">Naam</th>
+                  <th class="default-hide small-show">Uitslag</th>
+                  <th class="default-hide small-show">Punten</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% teams.each_with_index do |team, index2| %>
+                  <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
+                  <% teamprediction = Teamprediction.find_by_poolmembership_id_and_team_id(current_poolmembership, team.id) %>
+                  <% team = Team.find(team.id) %>
+
+                  <%= fields_for "teampredictions[#{index}#{index2}]", teamprediction do |p| %>
+                    <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
+                    <tr><%= p.hidden_field :id, :value => teamprediction.id %>
+                      <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')">
+                      </td>                    
+                        <td class="predict-score">
+                        <div class="view-table">
+                          <div class="view-row">
+                            <div>
+                              <%= p.number_field :pouleposition, :class => 'predict' %></td>
+                            </div>
+                          </div>
+                        </div>
+                      </td>                              
+                      <td class="default-hide small-show">
+                        <%= team.name %>
+                      </td>
+                        <td class="default-hide small-show">
+                        <% if team.original_position == nil %>
+
+                        <% else %>
+                          <%= team.original_position %>
+                        <% end %>
+                      </td>
+                      <td class="bold
+                        <% if teamprediction.present? && !(team.original_position == nil) %>
+                          <% if teamprediction.pointsearned == 3 %>
+                            green
+                          <% elsif teamprediction.pointsearned == 0 %>
+                            red
+                          <% else %>
+                          <% end %>
+                        <% else %>
+                          x
+                        <% end %>
+                      ">
+                        <% if teamprediction.present? && !(team.original_position == nil) %>
+                          <%= teamprediction.pointsearned %>
+                        <% else %>
+                          x
+                        <% end %>
+                      </td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                </tbody>
+              </table>
+          <% end %>
+          <div class="content-btn">
+            <div class="center">
+              <button class="btn green" type="submit">Bewerken</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/aside" %>
+    <%= render "shared/aside_admin" %>
+    <%= render "shared/aside_ad" %>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(".infoshower").hover(function () {
+  $(this).find(".hiddeninfo").fadeIn('fast');
+}, function () {
+  $(this).find(".hiddeninfo").fadeOut('fast');
+});
+</script>

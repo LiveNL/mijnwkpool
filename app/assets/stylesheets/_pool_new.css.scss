@@ -37,3 +37,11 @@
     padding: 0;
   }
 }
+
+.pool-step {
+  padding-top: 20px;
+
+  @include respond-to(small) {
+    padding-top: 30px;
+  }
+}

@@ -1,0 +1,61 @@
+.pagination {
+  a,
+  span,
+  .gap,
+  .disabled {
+    @extend .btn;
+    @extend .btn.grey;
+  }
+
+  .gap {
+    cursor: default;
+
+    &:hover {
+      background-color: $color-grey-lighter;
+    }
+  }
+
+  em {
+    @extend .btn;
+    @extend .btn.green;
+  }
+}
+
+.poolpagination {
+  @include clearfix;
+  padding: 15px 10px;
+  text-align: center;
+
+  @include respond-to(small) {
+    padding: 30px;
+  }
+
+  .pages {
+    margin: 0 auto;
+    width: auto;
+    @extend .view-table;
+  }
+
+  .page-large {
+    display: none;
+    @include respond-to(small) {
+      display: block;
+    }
+  }
+  .page-small {
+    @include respond-to(small) {
+      display: none;
+    }
+  }
+
+  .btn {
+    float: left;
+
+    .text {
+      display: none;
+      @include respond-to(small) {
+        display: inline;
+      }
+    }
+  }
+}

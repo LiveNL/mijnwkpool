@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422112746) do
+ActiveRecord::Schema.define(version: 20140605155022) do
+
+  create_table "games", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "score1"
+    t.integer  "score2"
+    t.string   "gametype"
+    t.date     "date"
+    t.time     "time"
+    t.integer  "team1_id"
+    t.integer  "team2_id"
+    t.boolean  "completed",  default: false
+    t.string   "poule"
+  end
 
   create_table "poolmemberships", force: true do |t|
     t.integer  "user_id"
@@ -19,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140422112746) do
     t.integer  "role"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "score",      default: 0
   end
 
   create_table "pools", force: true do |t|
@@ -31,7 +46,48 @@ ActiveRecord::Schema.define(version: 20140422112746) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "maximum_membership",  default: 0
+    t.integer  "maximum_membership",    default: 0
+    t.integer  "poolmemberships_count", default: 0
+  end
+
+  create_table "predictions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "team1_id"
+    t.integer  "team2_id"
+    t.integer  "prediction1",       default: 0
+    t.integer  "prediction2",       default: 0
+    t.integer  "game_id"
+    t.integer  "poolmembership_id"
+    t.integer  "pointsgiven",       default: 0
+    t.integer  "pointsearned",      default: 0
+    t.integer  "final"
+    t.integer  "winner"
+  end
+
+  create_table "teampredictions", force: true do |t|
+    t.integer  "pouleposition"
+    t.integer  "team_id"
+    t.integer  "poolmembership_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "pointsgiven",       default: 0
+    t.integer  "pointsearned",      default: 0
+  end
+
+  create_table "teams", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "poule"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.integer  "originalscore"
+    t.boolean  "completed",           default: false
+    t.integer  "originalposition"
+    t.integer  "original_position"
   end
 
   create_table "users", force: true do |t|
@@ -40,8 +96,11 @@ ActiveRecord::Schema.define(version: 20140422112746) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin",           default: false
+    t.boolean  "admin",                  default: false
     t.string   "password_digest"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.boolean  "subscribed",             default: false
   end
 
 end

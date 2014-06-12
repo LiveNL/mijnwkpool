@@ -1,0 +1,83 @@
+<% title "Punten poule" %>
+<div class="grid-r">
+  <div class="medium-3-4">
+    <div class="box">
+      <form accept-charset="UTF-8" action="/app/games" class="new_game" enctype="multipart/form-data" id="new_game" method="post">
+        <div class="content-header">
+          <h1>Punten verdelen - Poulefase</h1>
+        </div>
+        <div class="pooldashboard-content">
+          <table id="myTable" class="table admin"> 
+            <thead>
+              <tr>
+                <th>Points</th>              
+                <th>Datum</th>
+                <th>Tijd</th>
+                <th>Team 1</th>
+                <th>Score</th>
+                <th>Team 2</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <!-- GAME INFORMATION --> 
+              <% @games.each do |game| %>
+                <% if game.score1 == nil && game.score2 == nil %>
+                  <tr>
+                    <td width="1" style="padding:0;">
+                      <% if game.completed %>
+                        <a class="btn checked" href="#">
+                          <i class="fa fa-check-circle"></i>
+                        </a>  
+                      <% else %>
+                        <%= link_to toggle_game_path(game), class:'btn check', method: :patch do %>
+                          <i class="fa fa-check-circle-o"></i>
+                        <% end %>
+                      <% end %>
+                    </td>                  
+                    <td style="width: 90px; padding: 3px;"><%= game.date %></td>
+                    <td style="width: 30px; padding: 3px;"><%= game.time.strftime("%I:%M") %></td>
+                    <td><%= Team.find(game.team1_id).name %></td>
+                    <td> x - x </td>
+                    <td><%= Team.find(game.team2_id).name %></td>        
+                  </tr>
+                <% else %>
+                  <tr>
+                    <td width="1" style="padding:0;">
+                      <% if game.completed %>
+                        <a class="btn checked" href="#">
+                          <i class="fa fa-check-circle"></i>
+                        </a>  
+                        <% else %>
+                        <%= link_to toggle_game_path(game), class:'btn check', method: :patch do %>
+                          <i class="fa fa-check-circle-o"></i>
+                        <% end %>
+                      <% end %>
+                    </td>                     <td style="width: 90px; padding: 3px;"><%= game.date %></td>
+                    <td style="width: 30px; padding: 3px;"><%= game.time.strftime("%I:%M") %></td>
+                    <td><%= Team.find(game.team1_id).name %></td>
+                    <td><%= game.score1 %> - <%= game.score2 %></td>
+                    <td><%= Team.find(game.team2_id).name %></td>        
+                  </tr>                                                                   
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        <strong>Score:</strong><br/>
+        <% Poolmembership.all.each do |myes| %>
+          <br/>
+          <%= myes.id %> - 
+          <%= User.find(myes.user_id).nickname%> in 
+          <%= Pool.find(myes.pool_id).name %> - 
+          <%= myes.score %>
+        <% end %>
+        </div>
+      </form>
+    </div>
+  </div>
+      <div class='default-0 medium-1-4'>
+      <%= render "shared/aside" %>
+      <%= render "shared/aside_admin" %>
+      <%= render "shared/aside_ad" %>
+    </div>
+</div>                        

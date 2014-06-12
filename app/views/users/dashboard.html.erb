@@ -12,74 +12,59 @@
           <div class="view-row">
             <div class="flashcontent-icon"><i class="fa fa-users"></i></div>
             <div class="contentflash-text">Let op! Je hebt je nog niet bij een pool aangesloten!</div>
-            <div id="flashClose" class="flash-close">
-              <i class="fa fa-times flash-close-btn"></i>
-            </div>
           </div>
         </div>
           <script>contentflashMessage();</script>
       </div>
       <% end %>
 
-      <!-- <div class='pool-filter'>
-        <div class='filter-handle'>
-          <h2>Filters</h2>
-          <i class='fa fa-caret-right filter-arrow'></i>
-        </div>
-        <div class='filter-overview'>
-          <form action='#'>
-            <div class='grid-r'>
-
-              <div class='small-1-2 filter-box'>
-                <h3>Pools</h3>
-                <div class='form-field'>
-                  <div class='checkbox'>
-                    <input checked id='fp1' name='filter[pool]' type='radio'>
-                    <label for='fp1'>Alle pools</label>
-                  </div>
-                  <div class='checkbox'>
-                    <input id='fp2' name='filter[pool]' type='radio'>
-                    <label for='fp2'>The Next Web Leeuwarden</label>
-                  </div>
-                  <div class='checkbox'>
-                    <input id='fp3' name='filter[pool]' type='radio'>
-                    <label for='fp3'>Peter &amp; Friends</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class='small-1-2 filter-box'>
-                <h3>Berichten</h3>
-                <div class='form-field'>
-                  <div class='checkbox'>
-                    <input checked id='fvp1' name='filter[messages]' type='radio'>
-                    <label for='fvp1'>Pool notificaties</label>
-                  </div>
-                  <div class='checkbox'>
-                    <input id='fvp2' name='filter[messages]' type='radio'>
-                    <label for='fvp2'>Wedstrijden</label>
-                  </div>
-                  <div class='checkbox'>
-                    <input id='fvp3' name='filter[messages]' type='radio'>
-                    <label for='fvp3'>Nieuws</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class='small-0 filter-submit'>
-                <input class='btn green fullwidth' type='submit' value='Filters toepassen'>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
- -->
       <div class="notifications">
         <div class="notification-header">
           <h2>Meldingen</h2>
         </div>
         <div class='notification-list'>
           <ul>
+            <li>
+              <div class='view-table'>
+                <div class='grey notification-list-inner view-row' href='#modal' rel='modal:open'>
+                  <div class='notification-list-icon'>
+                   <p> <i class="fa fa-file-text"></i>
+                  </div>
+                  <div class='notification-list-txt'>
+                    <p>mijnwkpool - Administrator <small>- Patch notes - dinsdag 10 juni 2014</small></p>
+                    <h3>
+                      - Voorspellen van poule eindstanden toegevoegd.<br/>                    
+                      - Voorspellen van knockout wedstrijden toegevoegd.<br/>
+                      - Wachtwoord vergeten optie toegevoegd.<br/>
+                      - Responsive design updates.<br/>                      
+                      - Bug fixes en verbeteringen door gehele systeem.
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </li>          
+            <li>
+              <div class='view-table'>
+                <div class='grey notification-list-inner view-row' href='#modal' rel='modal:open'>
+                  <div class='notification-list-icon'>
+                   <p> <i class="fa fa-file-text"></i>
+                  </div>
+                  <div class='notification-list-txt'>
+                    <p>mijnwkpool - Administrator <small>- Patch notes - woensdag 28 mei 2014</small></p>
+                    <h3>
+                      - Voorspellen van poule wedstrijden toegevoegd.<br/>
+                      - Pools kunnen aangepast worden door de beheerder.<br/>
+                      - Uitslagen van andere gebruikers kunnen worden bekeken.<br/>
+                      - Dashboard update.<br/>
+                      - Aanmelden voor nieuwsbrief voor nieuwe gebruiker toegevoegd.<br/>
+                      - Tekst verbeteringen.<br/>
+                      - Bug fixes en verbeteringen door gehele systeem.
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </li>
+
             <li>
               <div class='view-table'>
                 <div class='grey notification-list-inner view-row' href='#modal' rel='modal:open'>
@@ -123,6 +108,7 @@
   </div>
   <div class='default-0 medium-1-4'>
     <%= render "shared/aside" %>
+    <%= render "shared/aside_admin" %>
+    <%= render "shared/aside_ad" %> 
   </div>
 </div>
-<script>filterHandle();</script>

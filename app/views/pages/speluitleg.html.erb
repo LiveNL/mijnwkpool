@@ -1,0 +1,160 @@
+<% title "Speluitleg" %>
+<div class="grid-r">
+  <div class="medium-3-4">
+   <div class="box">
+      <div class="content-header">
+        <h1>Speluitleg</h1>
+      </div>
+      <div class="grid-r">
+        <h2 style="padding-left:30px; padding-bottom:20px; margin-top:30px;">Algemene regels</h2>
+        <div class="medium-1-2" style="padding-left:20px; padding-bottom:20px; padding-right:20px;">
+          <p>
+            Na een wedstrijd wordt de uitslag ingevoerd door de beheerder. Het systeem berekent dan automatisch hoeveel punten elke deelnemer krijgt.
+            <br/><br/>
+
+            In de uitslag wordt eventuele extra tijd ook meegenomen, strafschoppenseries tellen niet mee.<br/><br/>
+            Na de poulefase is het mogelijk om extra punten te verdienen voor elk correct voorspeld land.
+          </p>
+        </div>
+
+        <div class="medium-1-2" style="padding-left:20px; padding-right:20px; padding-bottom:20px;">
+          <p>
+            Alle poule voorspellingen dienen voor 12 juni, 21.00 uur ingevuld te worden. Daarna is het niet meer mogelijk om hiervoor voorspellingen in te vullen. Tot en met 27 juni heb je de tijd om de knock-out fase in te vullen (dit is de dag na de laatste wedstrijd van de poule fase). <br/><br/>
+
+            Meedoen nadat het wk begonnen is kan alleen voor punten in de knockoutfase.<br/><br/>
+
+            Mijnwkpool is een gratis systeem zonder prijzen. Gebruikers in een pool hebben natuurlijk wel de mogelijkheid om onderling hiervoor te regelen!
+          </p>
+        </div>
+      </div>
+      <hr style="margin: 30px;
+color: #fff;
+height: 0;
+background: #fff;
+border-width: 0;
+border-bottom-width: 1px;
+border-color: #CCC;
+border-style: solid;">
+      <div class="grid-r">
+        <h2 style="padding-left:30px; padding-bottom:20px;">Punten verdeling</h2>
+        <div class="medium-1-2" style="padding-left:20px; padding-bottom:20px; padding-right:20px;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Voorspelling</th>
+                <th>Punten</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Correcte Toto</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>Correct aantal doelpunten voor 1 team</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>Correct aantal doelpunten voor beide teams</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Volledig correcte score bonus</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Maximale score</td>
+                <td class='bold green'>12</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table">
+          <br/>
+          Landen voorspellen (per land/positie).
+            <thead>
+              <tr>
+                <th>Ronde</th>
+                <th>Score</th>                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Poule eindstanden </td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>Kwart</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>Halve</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>Finale</td>
+                <td>20</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="medium-1-2" style="padding-left:20px; padding-right:20px; padding-bottom:20px;">
+          <table class="table poule">
+            <thead>
+              <tr>
+                <th colspan="4">Wedstrijd</th>
+                <th>Uitslag</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Brazilië</td>
+                <td class="flag" style="background-image: url(<%= asset_path 'brasil.png' %>);"></td>
+                <td class="flag" style="background-image: url(<%= asset_path 'kroatie.png' %>);"></td>
+                <td>Kroatië</td>
+                <td>2 - 0</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Voorspelling</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2-0</td>
+                <td class='bold green'>12</td>
+              </tr>
+              <tr>
+                <td>2-1</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>3-1</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>2-2</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>1-1</td>
+                <td class='bold red'>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/aside" %>
+    <%= render "shared/aside_admin" %>
+    <%= render "shared/aside_ad" %>
+  </div>
+</div>

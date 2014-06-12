@@ -2,10 +2,35 @@ Wkpool::Application.routes.draw do
   scope '/app' do
     get 'users/welcome' => 'users#welcome', :as => 'welcome'
     get 'pools/:id/invite' => 'pools#invite', :as => 'invite_pool'
-    resources :pools, :users, :poolmemberships
+    post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'
+    patch 'update_multiple_predictions', to: 'predictions#update_multiple_predictions'
+    get 'pouleeindstanden/:id' => 'predictions#pouleeindstanden', :as => 'pouleeindstanden'
+    get 'knockoutfase/:id' => 'predictions#knockoutfase', :as => 'knockoutfase'
+    get 'bonusvragen/:id' => 'predictions#bonusvragen', :as => 'bonusvragen'
+    resources :pools, :users, :poolmemberships, :predictions, :teampredictions, :knockoutpredictions, :quarterpredictions, :semipredictions, :finalpredictions
+    post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'
+    get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'
+    post 'create_multiple_teampredictions', to: 'teampredictions#create_multiple_teampredictions'
+    patch 'update_multiple_teampredictions', to: 'teampredictions#update_multiple_teampredictions'
+    get 'givepoints2' => 'predictions#givepoints2', :as => 'givepoints2'
+    get 'bier' => 'predictions#bier', :as => 'bier'
+    get 'pointsscript' => 'predictions#pointsscript', :as => 'pointsscript'
+    get 'pointsscript2' => 'predictions#pointsscript2', :as => 'pointsscript2'
+    get 'speluitleg' => 'pages#speluitleg', :as => 'speluitleg'
+    resources :games do
+      member do
+        patch :toggle
+      end
+    end
+    resources :teams do
+      member do
+        patch :toggle
+      end
+    end
   end
-
+  
   resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets
 
   get 'logout' => 'sessions#destroy', :as => 'log_out'
   get 'login' => 'sessions#new', :as => 'log_in'
@@ -16,6 +41,9 @@ Wkpool::Application.routes.draw do
   root  'pages#home'
 
   get 'ping' => proc { |env| [200, {}, ['pong']] }
+  get "/500", :to => "errors#error_500"
+  get "/404", :to => "errors#error_404"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

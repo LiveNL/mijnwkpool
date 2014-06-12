@@ -63,7 +63,31 @@ button,
     }
   }
 
+  &.red {
+    @include btnboxshadow($color-red-dark);
+    background-color: $color-red-light;
+    color: #FFF;
+    &:hover,
+      &:active {
+      background-color: $color-red-dark;
+      color: #FFF;
+    }
+  }
+
+  &.grey-dark {
+    @include btnboxshadow($color-grey-darker);
+    background-color: $color-grey-dark;
+    color: #FFF;
+
+    &:hover,
+    &:active {
+      background-color: $color-grey-darker;
+    }
+  }
+
   &.fullwidth {
+    padding-left: 0;
+    padding-right: 0;
     width: 100%;
   }
 
@@ -84,5 +108,4 @@ button,
       width: 100%;
     }
   }
-
 }

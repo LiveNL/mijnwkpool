@@ -1,0 +1,82 @@
+<% title "Games aanpassen" %>
+<div class="grid-r">
+  <div class="medium-4-4">
+    <div class="box">
+      <%= form_for @game, :url => { :action => "update" } do |f| %>
+        <div class="content-header">
+          <h1>Edit wedstrijd</h1>
+        </div>
+        <div class="pooldashboard-content">
+        	<p><%= link_to 'Terug naar alle wedstrijden', games_path %></p>
+          <table id="myTable" class="table admin">
+            <thead>
+              <tr>
+                <th>Datum</th>
+                <th>Tijd</th>
+                <th>Team 1</th>
+                <th>Score 1</th>
+                <th>Score 2</th>
+                <th>Team 2</th>
+                <th>Gametype</th>
+                <th>Poule</th>
+                <th>Save</th>
+              </tr>
+            </thead>
+
+            <tbody>
+        			<%= form_for @game, :url => { :action => "update" } do |f| %>
+                <tr>
+                  <td style="padding:0px;"><%= f.date_select :date %></td>
+                  <td style="padding:0px;"><%= f.time_select :time %></td>
+                  <td><%= f.select "team1_id", options_from_collection_for_select(Team.all, "id", "name", :selected => f.object.team1_id), { :class => 'dropdown' }%></td>
+                  <td class="predict-score" style="padding:0px;">
+                  	<div class="view-table">
+                      <div class="view-row">
+                        <%= f.number_field :score1 %></td>
+                			</div>
+                  	</div>
+                  </td>
+                  <td class="predict-score" style="padding:0px;">
+                  	<div class="view-table">
+                      <div class="view-row">
+                        <%= f.number_field :score2 %></td>
+                			</div>
+                  	</div>
+                  </td>
+                  <td>
+                    <%= f.select "team2_id", options_from_collection_for_select(Team.all, "id", "name", :selected => f.object.team2_id), { :class => 'dropdown' }%>
+                  </td>
+                  <td style="padding:0px;"> <%= f.select :gametype, options_for_select([["Gametype", ""], "Poule", "Achtste finale", "Kwart finale", "Halve finale", "Finale"], :selected => f.object.gametype)%></td>
+                  <td class="predict-score" style="padding:0px;">
+                  	<div class="view-table">
+                      <div class="view-row">
+                        <%= f.text_field :poule %></td>
+                			</div>
+                  	</div>
+                  </td>
+                  <td class="predict-score" style="padding:0px;">
+                    <div class="view-table">
+                      <div class="view-row">
+                        <%= f.text_field :id %></td>
+                      </div>
+                    </div>
+                  </td>                  
+                  <td style="padding:0px;">
+                    <div class="form-field">
+                      <button class="grey" type="submit">
+                        Edit
+                      </button>
+                    </div>
+                  </td> 
+                  <td style="padding:0px;">
+                     <%= link_to 'Game verwijderen', @game, method: :delete, data: { confirm: 'Weet je zeker dat je deze game wilt verwijderen?' }, :class => 'btn red pool-sign-in'  %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table> 
+        </div>  
+      <% end %>
+		</div>
+	</div>
+</div>

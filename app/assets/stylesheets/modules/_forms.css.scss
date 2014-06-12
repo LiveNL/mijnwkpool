@@ -1,5 +1,6 @@
 input[type=text],
-input[type=password] {
+input[type=password],
+input[type=email] {
   @include font-size($font-size);
   border-color: $color-grey-light;
   border-style: solid;
@@ -18,6 +19,12 @@ input[type=password] {
   &:focus {
     border-color: $color-grey-medium;
   }
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .checkbox {
@@ -166,6 +173,41 @@ input[type=password] {
     }
   }
 }
+
+input[type=number] {
+  @include font-size($font-size);
+  border-color: $color-grey-light;
+  border-style: solid;
+  border-width: 1px 1px 3px 1px;
+  border-radius: 0;
+  color: $color-grey-dark;
+  display: block;
+  font-family: $font-family;
+  font-weight: $font-weight-bold;
+  height: 53px;
+  padding: 0 10px;
+  outline: none;
+  width: 100%;
+  -webkit-appearance: none;
+
+  &:focus {
+    border-color: $color-grey-medium;
+  }
+
+  &.predict {
+    height: 40px;
+    margin: 0 5px;
+    text-align: center;
+    width: 40px;
+
+    @include respond-to(small) {
+      margin: 0 auto;
+    }
+  }
+}
+
+
+
 
 ::-webkit-input-placeholder { /* WebKit browsers */
     color:    $color-grey-light;

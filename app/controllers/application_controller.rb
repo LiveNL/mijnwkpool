@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :ensure_user, :except => [:show, :home]
+  before_filter :ensure_user, :except => [:home]
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -19,9 +19,18 @@ class ApplicationController < ActionController::Base
   def ensure_user
     if current_user
     else
-    "ensure_user" 
-    flash[:error] = 'Registreer of log in als gebruiker om deze pagina te bekijken.'
-    redirect_to root_path  
+    "ensure_user"
+    flash[:error] = 'Registreer of log in om deze pagina te bekijken.'
+    redirect_to root_path
+    end
+  end
+
+  def ensure_admin
+    if current_user.try(:admin?)
+    else
+      "ensure_admin"
+      flash[:error] = 'Je hebt niet genoeg rechten om deze pagina te bekijken.'
+      redirect_to app_root_path
     end
   end
 end

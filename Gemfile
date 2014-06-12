@@ -6,12 +6,16 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'font-awesome-rails'
 gem 'paperclip', '~> 4.1'
 gem 'will_paginate'
+gem 'best_in_place', github: 'bernat/best_in_place', branch: 'rails-4'
+gem 'gibbon'
+gem 'figaro'
 
 group :development do
   gem 'capistrano'
@@ -25,6 +29,7 @@ group :development do
   gem 'rubocop'
   gem 'quiet_assets'
   gem 'debugger'
+  gem 'rails-erd'
 end
 
 group :doc do
