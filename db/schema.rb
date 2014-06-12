@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140605155022) do
+ActiveRecord::Schema.define(version: 20140612092704) do
 
   create_table "games", force: true do |t|
     t.datetime "created_at"
@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(version: 20140605155022) do
     t.datetime "avatar_updated_at"
     t.integer  "originalscore"
     t.boolean  "completed",           default: false
-    t.integer  "originalposition"
     t.integer  "original_position"
   end
 
