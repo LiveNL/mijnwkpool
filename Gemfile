@@ -30,6 +30,7 @@ group :development do
   gem 'quiet_assets'
   gem 'debugger'
   gem 'rails-erd'
+  gem 'railroady'
 end
 
 group :doc do
