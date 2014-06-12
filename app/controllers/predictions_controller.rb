@@ -77,7 +77,7 @@ class PredictionsController < ApplicationController
   end
 
   def edit
-    if Time.now < deadline
+    if Time.now > deadline
       @pool = Pool.find(params[:id])
       render 'deadline'
     else

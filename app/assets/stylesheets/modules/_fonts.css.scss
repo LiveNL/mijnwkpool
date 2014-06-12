@@ -25,6 +25,10 @@ h3 {
 p {
   @include font-size($font-size * 1);
   color: $color-grey-medium;
+
+  & + p {
+    margin-top: 1em;
+  }
 }
 
 a {
@@ -42,5 +46,9 @@ a {
     &:active {
       color: $color-grey-dark;
     }
+  }
+
+  &.no-under {
+    text-decoration: none;
   }
 }

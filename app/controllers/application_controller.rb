@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def deadline
-    DateTime.parse('2014-06-12 21:00:00')
+    Time.zone.parse('2014-06-12 21:00:00')
   end
 
   def welcome
