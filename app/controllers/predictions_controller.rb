@@ -186,7 +186,7 @@ class PredictionsController < ApplicationController
                   game.completed = true
                   game.save
                 end
-              elsif game.score2 == prediction.prediction2
+              elsif game.score1 == prediction.prediction1
                 if prediction.pointsgiven == 1
                 else
                   scoreupdate = Poolmembership.find(prediction.poolmembership_id)
