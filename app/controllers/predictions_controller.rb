@@ -141,6 +141,20 @@ class PredictionsController < ApplicationController
                   game.completed = true
                   game.save
                 end
+              elsif game.score1 == prediction.prediction1
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 7
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 7
+                  prediction.save
+                  game.completed = true
+                  game.save
+                end
               elsif game.score2 == prediction.prediction2
                 if prediction.pointsgiven == 1
                 else
@@ -200,6 +214,20 @@ class PredictionsController < ApplicationController
                   game.completed = true
                   game.save
                 end
+              elsif game.score2 == prediction.prediction2
+                if prediction.pointsgiven == 1
+                else
+                  scoreupdate = Poolmembership.find(prediction.poolmembership_id)
+                  myes = scoreupdate.score + 7
+                  score5 = scoreupdate
+                  score5.score = myes
+                  score5.save
+                  prediction.pointsgiven = 1
+                  prediction.pointsearned = 7
+                  prediction.save
+                  game.completed = true
+                  game.save
+                end                
               else
                 if prediction.pointsgiven == 1
                 else
