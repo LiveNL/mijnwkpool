@@ -1,0 +1,52 @@
+<% title "Poulefase aanpassen - #{@pool.name}" %>
+<div class='grid-r'>
+  <div class='medium-3-4'>
+    <div class='box'>
+      <div class="content-header">
+        <h1>Mijn voorspellingen</h1>
+      </div>
+      <div id="contentflash" class="contentflash success">
+        <div class="view-table">
+          <div class="view-row">
+            <div class="contentflash-text-center">Je voorspelt nu voor: <strong><%= @pool.name %></strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prediction-steps">
+        <div class="steps">
+          <div class="step active">
+            <%= link_to prediction_path(@pool.id) do %>
+              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
+            <% end %>
+          </div>
+          <div class="step ">
+            <%= link_to teamprediction_path(@pool.id) do %>
+              <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
+            <% end %>
+          </div>
+          <div class="step ">
+            <%= link_to knockoutprediction_path(@pool.id) do %>
+              <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
+            <% end %>
+          </div>
+          <div class="step">
+            <%= link_to bonusvragen_path(@pool.id) do %>
+              <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="pooldashboard-content">
+        <h2>Poule wedstrijden verlopen</h2>
+
+      </div>
+    </div>
+  </div>
+  <div class='default-0 medium-1-4'>
+    <%= render "shared/aside" %>
+    <%= render "shared/aside_admin" %>
+    <%= render "shared/aside_ad" %>
+  </div>
+</div>

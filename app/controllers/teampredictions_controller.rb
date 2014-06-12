@@ -11,7 +11,7 @@ class TeampredictionsController < ApplicationController
     # @predictions = Prediction.all
     @gamelist = @games.group_by { |t| t.poule }
   end
-  
+
   def show
     @pool = Pool.find(params[:id])
     @teams = Team.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule)
@@ -19,30 +19,35 @@ class TeampredictionsController < ApplicationController
   end
 
   def edit
-    @pool = Pool.find(params[:id])
-    @teams = Team.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule)
-    @teamlist = @teams.group_by { |t| t.poule }
-    @team = Team.all
+    if Time.now < deadline
+      @pool = Pool.find(params[:id])
+      render 'deadline'
+    else
+      @pool = Pool.find(params[:id])
+      @teams = Team.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule)
+      @teamlist = @teams.group_by { |t| t.poule }
+      @team = Team.all
 
-    @teamlist.sort.each_with_index do |(poule, teams), index|
-      if @present
-        return
-      else
-        teams.each_with_index do |team, index2|
-          current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id)
-          teamprediction = Teamprediction.find_by_poolmembership_id_and_team_id(current_poolmembership, team.id)
+      @teamlist.sort.each_with_index do |(poule, teams), index|
+        if @present
+          return
+        else
+          teams.each_with_index do |team, index2|
+            current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id)
+            teamprediction = Teamprediction.find_by_poolmembership_id_and_team_id(current_poolmembership, team.id)
 
-          if teamprediction.present?
-            @present = true
+            if teamprediction.present?
+              @present = true
+            end
           end
         end
       end
-    end
 
-    if @present
-      render 'edit'
-    else
-      render 'new'
+      if @present
+        render 'edit'
+      else
+        render 'new'
+      end
     end
   end
 
@@ -78,5 +83,5 @@ class TeampredictionsController < ApplicationController
 
   def teamprediction_params
     params.require(:teamprediction).permit(:pouleposition, :prediction, :id, :score1, :game, :prediction1, :prediction2, :game_id, :poolmembership_id, :pool_id, :team1_id, :team2_id)
-  end 
+  end
 end

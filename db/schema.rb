@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140612092704) do
     t.time     "time"
     t.integer  "team1_id"
     t.integer  "team2_id"
-    t.boolean  "completed",  default: false
     t.string   "poule"
+    t.boolean  "completed",  default: false
   end
 
   create_table "poolmemberships", force: true do |t|
@@ -84,7 +84,6 @@ ActiveRecord::Schema.define(version: 20140612092704) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "originalscore"
     t.boolean  "completed",           default: false
     t.integer  "original_position"
   end
