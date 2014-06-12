@@ -25,19 +25,19 @@ class QuarterpredictionsController < ApplicationController
     if p2.present?    
       winner2 = p2.winner
     end
-    p3 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 103)
+    p3 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 105)
     if p3.present?        
       winner3 = p3.winner
     end
-    p4 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 104)
+    p4 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 106)
     if p4.present?
       winner4 = p4.winner
     end
-    p5 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 105)
+    p5 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 103)
     if p5.present?
       winner5 = p5.winner
     end
-    p6 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 106)
+    p6 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 104)
     if p6.present?
       winner6 = p6.winner
     end
@@ -67,13 +67,13 @@ class QuarterpredictionsController < ApplicationController
       },
       { #2
         team1: {
-          game_id: 103,
+          game_id: 105,
           final: 4,
           poolmembership_id: poolmem,
           winner: winner3                                              
         },
         team2: {
-          game_id: 104,
+          game_id: 106,
           final: 4,
           poolmembership_id: poolmem,
           winner: winner4                                              
@@ -81,13 +81,13 @@ class QuarterpredictionsController < ApplicationController
       },
       { #3
         team1: {
-          game_id: 105,
+          game_id: 103,
           final: 4,
           poolmembership_id: poolmem,
           winner: winner5                                             
         },
         team2: {
-          game_id: 106,
+          game_id: 104,
           final: 4,
           poolmembership_id: poolmem,
           winner: winner6                                              
