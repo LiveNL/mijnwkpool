@@ -10,18 +10,22 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def deadline
-    if current_user.admin == true
-      Time.now
-    else
-      Time.zone.parse('2014-06-12 21:00:00')
+    if current_user
+      if current_user.admin == true
+        Time.now
+      else
+        Time.zone.parse('2014-06-12 21:00:00')
+      end
     end
   end
 
   def temp_deadline
-    if current_user.admin == true
-      Time.now
-    else
-      Time.zone.parse('2014-06-17 21:00:00')
+    if current_user
+      if current_user.admin == true
+        Time.now
+      else
+        Time.zone.parse('2014-06-17 21:00:00')
+      end
     end
   end
 
