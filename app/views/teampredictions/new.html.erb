@@ -13,26 +13,26 @@
       </div>
 
       <div class="prediction-steps">
-        <div class="steps">            
+        <div class="steps">
           <div class="step active">
-            <%= link_to prediction_path(@pool.id) do %>    
-              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span> 
+            <%= link_to prediction_path(@pool.id) do %>
+              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
             <% end %>
-          </div>      
+          </div>
           <div class="step active">
-            <%= link_to teamprediction_path(@pool.id) do %>          
+            <%= link_to teamprediction_path(@pool.id) do %>
               <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
             <% end %>
-          </div>            
+          </div>
           <div class="step">
             <%= link_to knockoutprediction_path(@pool.id) do %>
               <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
             <% end %>
-          </div>            
+          </div>
           <div class="step">
-            <%= link_to bonusvragen_path(@pool.id) do %>          
+            <%= link_to bonusvragen_path(@pool.id) do %>
               <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
-            <% end %>            
+            <% end %>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
                 <% teams.each_with_index do |team, index2| %>
                   <% current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id) %>
                   <% teamprediction = Teamprediction.find_by_poolmembership_id_and_team_id(current_poolmembership, team.id) %>
-                  
+
                   <%= fields_for "teampredictions[#{index}#{index2}]", Teamprediction.new do |p| %>
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
                     <tr>
@@ -67,7 +67,7 @@
                             <% if teamprediction.present? %>
                               <span class="predict"><%= teamprediction.pouleposition %></span>
                             <% else %>
-                              <%= p.number_field :pouleposition, :class => 'predict' %>
+                              <%= p.number_field :pouleposition, :class => 'predict', :min => '0', :max => '4' %>
                             <% end %>
                           </div>
                         </div>

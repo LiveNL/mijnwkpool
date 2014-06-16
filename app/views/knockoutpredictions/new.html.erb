@@ -13,26 +13,26 @@
       </div>
 
       <div class="prediction-steps">
-        <div class="steps">            
+        <div class="steps">
           <div class="step active">
-            <%= link_to prediction_path(@pool.id) do %>    
-              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span> 
+            <%= link_to prediction_path(@pool.id) do %>
+              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
             <% end %>
-          </div>      
+          </div>
           <div class="step active">
-            <%= link_to teamprediction_path(@pool.id) do %>          
+            <%= link_to teamprediction_path(@pool.id) do %>
               <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
             <% end %>
-          </div>            
+          </div>
           <div class="step active">
             <%= link_to knockoutprediction_path(@pool.id) do %>
               <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
             <% end %>
-          </div>            
+          </div>
           <div class="step">
-            <%= link_to bonusvragen_path(@pool.id) do %>          
+            <%= link_to bonusvragen_path(@pool.id) do %>
               <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
-            <% end %>            
+            <% end %>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
 
                   <% teamfinal1 = Team.pouleleader(teamfinal1[:pos], teamfinal1[:poule], teamfinal1[:poolmembership_id]) %>
                   <% if teamfinal1 == nil %>
-                    <% team1 = Team.find(game.team1_id) %>                  
+                    <% team1 = Team.find(game.team1_id) %>
                   <% end %>
 
                   <% teamfinal2 = Team.pouleleader(teamfinal2[:pos], teamfinal2[:poule], teamfinal2[:poolmembership_id]) %>
@@ -80,13 +80,13 @@
                       <td class="infoshower">
                         <i class="fa fa-question-circle"></i>
                         <div class="infobox hiddeninfo">
-                          <% if team1.present? %>                            
+                          <% if team1.present? %>
                             <%= team1.name %>
                           <% else %>
                             <%= teamfinal1[0]['name'] %>
                           <% end %>
 
-                          <% if team2.present? %>   
+                          <% if team2.present? %>
                             <%= team2.name %>
                           <% else %>
                             <%= teamfinal2[0]['name'] %>
@@ -95,21 +95,21 @@
                         </div>
                       </td>
                       <td class="default-hide small-show">
-                        <% if team1.present? %>                            
+                        <% if team1.present? %>
                           <%= team1.name %>
                         <% else %>
                           <%= teamfinal1[0]['name'] %>
                         <% end %><br />
                       </td>
-                      <% if team1.present? %>                            
-                        <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td> 
+                      <% if team1.present? %>
+                        <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td>
                       <% else %>
                       <% if teamfinal1[0]['id'].to_i < 10 %>
                           <td class="flag" style="background-image: url('/system/teams/avatars/000/000/00<%= teamfinal1[0]['id'] %>/mini/<%= teamfinal1[0]['avatar_file_name']%>')"></td>
                         <% else %>
-                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= teamfinal1[0]['id'] %>/mini/<%= teamfinal1[0]['avatar_file_name']%>')"></td> 
-                        <% end %>  
-                      <% end %>     
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= teamfinal1[0]['id'] %>/mini/<%= teamfinal1[0]['avatar_file_name']%>')"></td>
+                        <% end %>
+                      <% end %>
 
                       <td class="predict-score">
                         <div class="view-table">
@@ -118,7 +118,7 @@
                               <% if prediction.present? %>
                                 <span class="predict"><%= prediction.prediction1 %></span>
                               <% else %>
-                                <%= p.number_field :prediction1, :class => 'predict' %>
+                                <%= p.number_field :prediction1, :class => 'predict', :min => 0, :max => 20 %>
                               <% end %>
                             </div>
                             <div>
@@ -128,24 +128,24 @@
                               <% if prediction.present? %>
                                 <span class="predict"><%= prediction.prediction2 %></span>
                               <% else %>
-                                <%= p.number_field :prediction2, :class => 'predict' %>
+                                <%= p.number_field :prediction2, :class => 'predict', :min => 0, :max => 20 %>
                               <% end %>
                             </div>
                           </div>
                         </div>
                       </td>
 
-                      <% if team2.present? %>                            
-                        <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td> 
+                      <% if team2.present? %>
+                        <td class="flag" style="background-image: url('<%=team2.avatar.url(:mini)%>')"></td>
                       <% else %>
                       <% if teamfinal2[0]['id'].to_i < 10 %>
                           <td class="flag" style="background-image: url('/system/teams/avatars/000/000/00<%= teamfinal2[0]['id'] %>/mini/<%= teamfinal2[0]['avatar_file_name']%>')"></td>
                         <% else %>
-                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= teamfinal2[0]['id'] %>/mini/<%= teamfinal2[0]['avatar_file_name']%>')"></td> 
-                        <% end %>  
-                      <% end %>      
+                          <td class="flag" style="background-image: url('/system/teams/avatars/000/000/0<%= teamfinal2[0]['id'] %>/mini/<%= teamfinal2[0]['avatar_file_name']%>')"></td>
+                        <% end %>
+                      <% end %>
                       <td class="default-hide small-show">
-                        <% if team2.present? %>   
+                        <% if team2.present? %>
                           <%= team2.name %>
                         <% else %>
                           <%= teamfinal2[0]['name'] %>
@@ -153,15 +153,15 @@
                       </td>
                       <td class="predict-score">
                         <% if team1.present? && team2.present? %>
-                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [team2.name, team2.id]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border: 0px;' }%>                     
+                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [team2.name, team2.id]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border: 0px;' }%>
                         <% elsif team1.present? %>
-                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [teamfinal2[0]['name'], teamfinal2[0]['id']]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border: 0px;' }%>                                                              
+                          <%= p.select "winner", options_for_select([[team1.name, team1.id], [teamfinal2[0]['name'], teamfinal2[0]['id']]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border: 0px;' }%>
                         <% elsif team2.present? %>
-                          <%= p.select "winner", options_for_select([[teamfinal1[0]['name'], teamfinal1[0]['id']], [team2.name, team2.id]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border: 0px;' }%>                                                    
-                        <% else %>                            
+                          <%= p.select "winner", options_for_select([[teamfinal1[0]['name'], teamfinal1[0]['id']], [team2.name, team2.id]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border: 0px;' }%>
+                        <% else %>
                           <%= p.select "winner", options_for_select([[teamfinal1[0]['name'], teamfinal1[0]['id']], [teamfinal2[0]['name'], teamfinal2[0]['id']]]), { :class => 'dropdown', :style => 'height: 50px; width: 110px; border: 0px;' }%>
-                        <% end %>            
-                      </td>                          
+                        <% end %>
+                      </td>
                       <td class="default-hide small-show">
                         <% if game.score1 == nil && game.score2 == nil %>
 
