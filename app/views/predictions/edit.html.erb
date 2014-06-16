@@ -39,7 +39,7 @@
       </div>
 
       <div class="pooldashboard-content">
-        <h2>Poule wedstrijden edit</h2>
+        <h2>Poule wedstrijden</h2>
         <%= form_tag controller: :predictions, action: :update_multiple_predictions do %>
           <input name="_method" type="hidden" value="patch" />
           <%= hidden_field_tag 'pool_id', @pool.id %>

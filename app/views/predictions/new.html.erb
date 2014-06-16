@@ -13,32 +13,32 @@
       </div>
 
       <div class="prediction-steps">
-        <div class="steps">            
+        <div class="steps">
           <div class="step active">
-            <%= link_to prediction_path(@pool.id) do %>    
-              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span> 
+            <%= link_to prediction_path(@pool.id) do %>
+              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
             <% end %>
-          </div>      
+          </div>
           <div class="step ">
-            <%= link_to teamprediction_path(@pool.id) do %>          
+            <%= link_to teamprediction_path(@pool.id) do %>
               <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
             <% end %>
-          </div>            
+          </div>
           <div class="step ">
             <%= link_to knockoutprediction_path(@pool.id) do %>
               <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
             <% end %>
-          </div>            
+          </div>
           <div class="step">
-            <%= link_to bonusvragen_path(@pool.id) do %>          
+            <%= link_to bonusvragen_path(@pool.id) do %>
               <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
-            <% end %>            
+            <% end %>
           </div>
         </div>
       </div>
 
       <div class="pooldashboard-content">
-        <h2>Poule wedstrijden new</h2>
+        <h2>Poule wedstrijden</h2>
         <%= form_tag controller: :predictions, action: :create_multiple_predictions do %>
           <%= hidden_field_tag 'pool_id', @pool.id %>
           <% @gamelist.sort.each_with_index do |(poule, games), index| %>
@@ -65,7 +65,7 @@
                     <%= p.hidden_field :team1_id, :value => game.team1_id %>
                     <%= p.hidden_field :team2_id, :value => game.team2_id %>
                     <%= p.hidden_field :final, :value => 5 %>
-                    
+
                     <tr>
                       <td class="infoshower">
                         <i class="fa fa-question-circle"></i>

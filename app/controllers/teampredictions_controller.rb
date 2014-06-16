@@ -19,10 +19,10 @@ class TeampredictionsController < ApplicationController
   end
 
   def edit
-    if Time.now > deadline && current_user.admin == false
+    if Time.now > deadline && Time.now > temp_deadline
       @pool = Pool.find(params[:id])
       render 'deadline'
-    elsif current_user.admin == true
+    else
       @pool = Pool.find(params[:id])
       @teams = Team.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule)
       @teamlist = @teams.group_by { |t| t.poule }

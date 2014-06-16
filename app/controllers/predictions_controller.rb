@@ -77,10 +77,10 @@ class PredictionsController < ApplicationController
   end
 
   def edit
-    if Time.now > deadline && current_user.admin == false
+    if Time.now > deadline
       @pool = Pool.find(params[:id])
       render 'deadline'
-    elsif current_user.admin == true
+    else
       @pool = Pool.find(params[:id])
       @games = Game.where(:poule => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']).order(:poule, :date)
       @gamelist = @games.group_by { |t| t.poule }
@@ -227,7 +227,7 @@ class PredictionsController < ApplicationController
                   prediction.save
                   game.completed = true
                   game.save
-                end                
+                end
               else
                 if prediction.pointsgiven == 1
                 else
