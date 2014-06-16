@@ -5,14 +5,16 @@
       <div class="content-header">
         <h1>Mijn voorspellingen</h1>
       </div>
+
       <div id="contentflash" class="contentflash success">
         <div class="view-table">
           <div class="view-row">
-            <div class="contentflash-text-center">Je voorspelt nu voor: <strong><%= @pool.name %></strong></div>
+            <div class="flashcontent-icon"><i class="fa fa-file-text"></i></div>
+            <div class="contentflash-text">Het is nu mogelijk om je poule eindstanden te wijzigen! Zie <a href="<%= url_for app_root_path %>" class="white no-under"> nieuwe melding.</a></div>
           </div>
         </div>
+        <script>contentflashMessage();</script>
       </div>
-
       <div class="prediction-steps">
         <div class="steps">
           <div class="step active">
@@ -37,7 +39,13 @@
           </div>
         </div>
       </div>
-
+      <div id="contentflash" class="contentflash success">
+        <div class="view-table">
+          <div class="view-row">
+            <div class="contentflash-text-center">Je voorspelt nu voor: <strong><%= @pool.name %></strong></div>
+          </div>
+        </div>
+      </div>
       <div class="pooldashboard-content">
         <h2>Poule wedstrijden</h2>
         <div class="content-btn">
