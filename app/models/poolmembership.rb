@@ -11,6 +11,17 @@ class Poolmembership < ActiveRecord::Base
     self.new.user_id
   end
 
+  def self.ranking(limit = 10)
+    Poolmembership.connection.execute """
+      SELECT u.nickname, p.name pool, pm.score
+      FROM poolmemberships pm
+      LEFT JOIN users u ON pm.user_id = u.id
+      LEFT JOIN pools p ON pm.pool_id = p.id
+      ORDER BY pm.score
+      DESC LIMIT #{limit};
+    """
+  end
+
   validate on: :create do
     if user.poolmemberships.size >= MAXIMUM_COURSES
       errors.add :user, "can only apply for #{MAXIMUM_COURSES} courses. Please remove one."

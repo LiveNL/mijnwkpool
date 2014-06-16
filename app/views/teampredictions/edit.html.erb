@@ -14,26 +14,26 @@
       </div>
 
       <div class="prediction-steps">
-        <div class="steps">            
+        <div class="steps">
           <div class="step active">
-            <%= link_to prediction_path(@pool.id) do %>    
-              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span> 
+            <%= link_to prediction_path(@pool.id) do %>
+              <span class="small-hide">1.</span> <span class="default-hide small-show">Poule wedstrijden</span>
             <% end %>
-          </div>      
+          </div>
           <div class="step active">
-            <%= link_to teamprediction_path(@pool.id) do %>          
+            <%= link_to teamprediction_path(@pool.id) do %>
               <span class="small-hide">2.</span> <span class="default-hide small-show">Poule eindstanden</span>
             <% end %>
-          </div>            
+          </div>
           <div class="step">
             <%= link_to knockoutprediction_path(@pool.id) do %>
               <span class="small-hide">3.</span> <span class="default-hide small-show">Knock-out fase</span>
             <% end %>
-          </div>            
+          </div>
           <div class="step">
-            <%= link_to bonusvragen_path(@pool.id) do %>          
+            <%= link_to bonusvragen_path(@pool.id) do %>
               <span class="small-hide">4.</span> <span class="default-hide small-show">Bonus vragen</span>
-            <% end %>            
+            <% end %>
           </div>
         </div>
       </div>
@@ -65,16 +65,16 @@
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
                     <tr><%= p.hidden_field :id, :value => teamprediction.id %>
                       <td class="flag" style="background-image: url('<%= team.avatar.url(:mini)%>')">
-                      </td>                    
+                      </td>
                         <td class="predict-score">
                         <div class="view-table">
                           <div class="view-row">
                             <div>
-                              <%= p.number_field :pouleposition, :class => 'predict' %></td>
+                              <%= p.number_field :pouleposition, :class => 'predict', :min => '0', :max => '4' %></td>
                             </div>
                           </div>
                         </div>
-                      </td>                              
+                      </td>
                       <td class="default-hide small-show">
                         <%= team.name %>
                       </td>
