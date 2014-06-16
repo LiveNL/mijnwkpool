@@ -7,7 +7,7 @@ Wkpool::Application.routes.draw do
     get 'pouleeindstanden/:id' => 'predictions#pouleeindstanden', :as => 'pouleeindstanden'
     get 'knockoutfase/:id' => 'predictions#knockoutfase', :as => 'knockoutfase'
     get 'bonusvragen/:id' => 'predictions#bonusvragen', :as => 'bonusvragen'
-    resources :pools, :users, :poolmemberships, :predictions, :teampredictions, :knockoutpredictions, :quarterpredictions, :semipredictions, :finalpredictions
+    resources :pools, :users, :predictions, :teampredictions, :poolmemberships, :knockoutpredictions, :quarterpredictions, :semipredictions, :finalpredictions
     post 'create_multiple_predictions', to: 'predictions#create_multiple_predictions'
     get 'givepoints' => 'predictions#givepoints', :as => 'givepoints'
     post 'create_multiple_teampredictions', to: 'teampredictions#create_multiple_teampredictions'
@@ -17,6 +17,7 @@ Wkpool::Application.routes.draw do
     get 'pointsscript' => 'predictions#pointsscript', :as => 'pointsscript'
     get 'pointsscript2' => 'predictions#pointsscript2', :as => 'pointsscript2'
     get 'speluitleg' => 'pages#speluitleg', :as => 'speluitleg'
+    get 'ranking' => 'poolmemberships#ranking', :as => 'ranking'
     resources :games do
       member do
         patch :toggle

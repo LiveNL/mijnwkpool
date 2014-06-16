@@ -1,4 +1,6 @@
 class PoolmembershipsController < ApplicationController
+  before_filter :ensure_admin, :only => [:ranking]
+
   def new
   end
 
@@ -41,5 +43,9 @@ class PoolmembershipsController < ApplicationController
     @poolmembership = Poolmembership.find(params[:id])
     @poolmembership.destroy
     redirect_to app_root_path
+  end
+
+  def ranking
+    @rankings = Poolmembership.ranking(100)
   end
 end
