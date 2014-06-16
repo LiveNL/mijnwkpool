@@ -13,7 +13,7 @@ class Poolmembership < ActiveRecord::Base
 
   def self.ranking(limit = 10)
     Poolmembership.connection.execute """
-      SELECT u.nickname, p.name pool, pm.score
+      SELECT u.nickname, p.name pool, pm.score, p.id pool_id, u.id user_id
       FROM poolmemberships pm
       LEFT JOIN users u ON pm.user_id = u.id
       LEFT JOIN pools p ON pm.pool_id = p.id
