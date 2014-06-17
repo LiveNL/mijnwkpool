@@ -70,12 +70,18 @@ class PoolsController < ApplicationController
 
   def update
   @pool = Pool.find(params[:id])
-    if @pool.update_attributes(pool_params)
-      redirect_to pool_path(@pool.id)
-      flash[:success] = "Succes! '#{@pool.name}' is aangepast!"
+  @poolmember = @pool.poolmemberships.where(user_id: current_user.id).first
+    if @poolmember.role == 1
+      if @pool.update_attributes(pool_params)
+        redirect_to pool_path(@pool.id)
+        flash[:success] = "Succes! '#{@pool.name}' is aangepast!"
+      else
+        redirect_to pool_path(@pool.id)
+        flash[:error] = "Er is iets verkeerd gegaan bij het aanpassen van '#{@pool.name}'."
+      end
     else
       redirect_to pool_path(@pool.id)
-      flash[:error] = "Er is iets verkeerd gegaan bij het aanpassen van '#{@pool.name}'."
+      flash[:error] = "Je hebt geen toestemming om '#{@pool.name}' aan te passen."
     end
   end
 
