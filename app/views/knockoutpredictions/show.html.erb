@@ -57,6 +57,7 @@
                   <th class="default-hide small-show">&nbsp;</th>
                   <th class="default-hide small-show">Uitslag</th>
                   <th>Punten</th>
+                  <th>Landen punten</th>                  
                 </tr>
               </thead>
               <tbody>
@@ -179,6 +180,24 @@
                           x
                         <% end %>
                       </td>
+                      <td class="bold
+                        <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
+                          <% if prediction.teampointsearned == 10 %>
+                            green
+                          <% elsif prediction.teampointsearned == 0 %>
+                            red
+                          <% else %>
+                          <% end %>
+                        <% else %>
+                          x
+                        <% end %>
+                      ">
+                        <% if prediction.present? && !(game.score1 == nil && game.score2 == nil) %>
+                          <%= prediction.teampointsearned %>
+                        <% else %>
+                          x
+                        <% end %>
+                      </td>                      
                     </tr>
                   <% end %>
                 <% end %>
