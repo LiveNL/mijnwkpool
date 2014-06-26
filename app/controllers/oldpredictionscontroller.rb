@@ -314,8 +314,7 @@ class PredictionsController < ApplicationController
           end
         else
         end
-        
-     if game.team1_id == prediction.team1_id && game.team2_id == prediction.team2_id && prediction.final == 4
+        if game.team1_id == prediction.team1_id && game.team2_id == prediction.team2_id && prediction.final == 4
           if prediction.pointsgiven == 2
           else
             scoreupdate = Poolmembership.find(prediction.poolmembership_id)
@@ -359,8 +358,10 @@ class PredictionsController < ApplicationController
             game.save
           end
           else
-        end         
+                game.completed = true
+                game.save
 
+        end             
       end
     end
     redirect_to givepoints_path
