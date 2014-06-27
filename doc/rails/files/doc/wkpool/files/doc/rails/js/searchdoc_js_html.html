@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>searchdoc_js.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            searchdoc_js.html
+        </h1>
+        <ul class="files">
+            <li>doc/wkpool/files/doc/rails/js/searchdoc_js.html</li>
+            <li>Last modified: 2014-06-16 15:58:13 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”</p>
+
+<pre><code>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+<p>&lt;html xmlns=“<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>”
+xml:lang=“en” lang=“en”&gt; &lt;head&gt;</p>
+
+<pre><code>&lt;title&gt;searchdoc.js&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../../css/reset.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;</code></pre>
+
+<p>&lt;link rel=“stylesheet” href=“../../../../css/main.css” type=“text/css”
+media=“screen” /&gt; &lt;link rel=“stylesheet”
+href=“../../../../css/github.css” type=“text/css” media=“screen” /&gt;
+&lt;script src=“../../../../js/jquery-1.3.2.min.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../js/jquery-effect.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script src=“../../../../js/main.js”
+type=“text/javascript” charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../js/highlight.pack.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+
+    &lt;h1&gt;
+        searchdoc.js
+    &lt;/h1&gt;
+    &lt;ul class=&quot;files&quot;&gt;
+        &lt;li&gt;doc/rails/js/searchdoc.js&lt;/li&gt;
+        &lt;li&gt;Last modified: 2014-06-16 15:53:30 +0200&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;bodyContent&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+
+&lt;div class=&quot;description&quot;&gt;</code></pre>
+
+<p>&lt;p&gt;Searchdoc = {};&lt;/p&gt;</p>
+
+<p>&lt;p&gt;// navigation.js ——————————————&lt;/p&gt;</p>
+
+<p>&lt;p&gt;Searchdoc.Navigation = new function() {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;this.initNavigation = function() {</p>
+
+<pre><code>var _this = this;
+
+$(document).keydown(function(e) {
+    _this.onkeydown(e);
+}).keyup(function(e) {
+    _this.onkeyup(e);
+});
+
+this.navigationActive = true;</code></pre>
+
+<p>}</p>
+
+<p>this.setNavigationActive = function(state) {</p>
+
+<pre><code>this.navigationActive = state;
+this.clearMoveTimeout();</code></pre>
+
+<p>}</p>
+
+<p>this.onkeyup = function(e) {</p>
+
+<pre><code>if (!this.navigationActive) return;
+switch(e.keyCode) {
+    case 37: //Event.KEY_LEFT:
+    case 38: //Event.KEY_UP:
+    case 39: //Event.KEY_RIGHT:
+    case 40: //Event.KEY_DOWN:
+    case 73: // i - qwerty
+    case 74: // j
+    case 75: // k
+    case 76: // l
+    case 67: // c - dvorak
+    case 72: // h 
+    case 84: // t
+    case 78: // n
+        this.clearMoveTimeout();
+        break;
+    }</code></pre>
+
+<p>}</p>
+
+<p>this.onkeydown = function(e) {</p>
+
+<pre><code>if (!this.navigationActive) return;
+switch(e.keyCode) {
+    case 37: //Event.KEY_LEFT:
+    case 74: // j (qwerty)
+    case 72: // h (dvorak)
+        if (this.moveLeft()) e.preventDefault();
+        break;
+    case 38: //Event.KEY_UP:
+    case 73: // i (qwerty)
+    case 67: // c (dvorak)
+        if (e.keyCode == 38 || e.ctrlKey) {
+            if (this.moveUp()) e.preventDefault();
+            this.startMoveTimeout(false);
+        }
+        break;
+    case 39: //Event.KEY_RIGHT:
+    case 76: // l (qwerty)
+    case 78: // n (dvorak)
+        if (this.moveRight()) e.preventDefault();
+        break;
+    case 40: //Event.KEY_DOWN:
+    case 75: // k (qwerty)
+    case 84: // t (dvorak)
+        if (e.keyCode == 40 || e.ctrlKey) {
+            if (this.moveDown()) e.preventDefault();
+            this.startMoveTimeout(true);
+        }
+        break;
+    case 9: //Event.KEY_TAB:
+    case 13: //Event.KEY_RETURN:
+        if (this.$current) this.select(this.$current);
+        break;
+    case 83: // s (qwerty)
+    case 79: // o (dvorak)
+        if (e.ctrlKey) {
+            $(&amp;#39;#search&amp;#39;).focus();
+            e.preventDefault();
+        }
+        break;
+}
+if (e.ctrlKey &amp;amp;&amp;amp; e.shiftKey) this.select(this.$current);</code></pre>
+
+<p>}</p>
+
+<p>this.clearMoveTimeout = function() {</p>
+
+<pre><code>clearTimeout(this.moveTimeout); 
+this.moveTimeout = null;</code></pre>
+
+<p>}</p>
+
+<p>this.startMoveTimeout = function(isDown) {</p>
+
+<pre><code>if (!$.browser.mozilla &amp;amp;&amp;amp; !$.browser.opera) return;
+if (this.moveTimeout) this.clearMoveTimeout();
+var _this = this;
+
+var go = function() {
+    if (!_this.moveTimeout) return;
+    _this[isDown ? &amp;#39;moveDown&amp;#39; : &amp;#39;moveUp&amp;#39;]();
+    _this.moveTimout = setTimeout(go, 100);
+}
+this.moveTimeout = setTimeout(go, 200);</code></pre>
+
+<p>}</p>
+
+<p>this.moveRight = function() { }</p>
+
+<p>this.moveLeft = function() { }</p>
+
+<p>this.move = function(isDown) { }</p>
+
+<p>this.moveUp = function() {</p>
+
+<pre><code>return this.move(false);</code></pre>
+
+<p>}</p>
+
+<p>this.moveDown = function() {</p>
+
+<pre><code>return this.move(true);</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;// scrollIntoView.js ————————————–&lt;/p&gt;</p>
+
+<p>&lt;p&gt;function scrollIntoView(element, view) {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;var offset, viewHeight, viewScroll, height; offset =
+element.offsetTop; height = element.offsetHeight; viewHeight =
+view.offsetHeight; viewScroll = view.scrollTop; if (offset - viewScroll +
+height &amp;gt; viewHeight) {</p>
+
+<pre><code>view.scrollTop = offset - viewHeight + height;</code></pre>
+
+<p>} if (offset &amp;lt; viewScroll) {</p>
+
+<pre><code>view.scrollTop = offset;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;// panel.js ———————————————–&lt;/p&gt;</p>
+
+<p>&lt;p&gt;Searchdoc.Panel = function(element, data, tree, frame) {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;this.$element = $(element); this.$input =
+$(&amp;#39;input&amp;#39;, element).eq(0); this.$result =
+$(&amp;#39;.result ul&amp;#39;, element).eq(0); this.frame = frame;
+this.$current = null; this.$view = this.$result.parent(); this.data = data;
+this.searcher = new Searcher(data.index);</p>
+
+<p>this.tree = new Searchdoc.Tree($(&amp;#39;.tree&amp;#39;, element), tree,
+this); this.init();&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;Searchdoc.Panel.prototype = $.extend({}, Searchdoc.Navigation, new
+function() {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;var suid = 1;</p>
+
+<p>this.init = function() {</p>
+
+<pre><code>var _this = this;
+var observer = function() {
+    _this.search(_this.$input[0].value);
+};
+this.$input.keyup(observer);
+this.$input.click(observer); // mac&amp;#39;s clear field
+
+this.searcher.ready(function(results, isLast) {
+    _this.addResults(results, isLast);
+})
+
+this.$result.click(function(e) {
+    _this.$current.removeClass(&amp;#39;current&amp;#39;);
+    _this.$current = $(e.target).closest(&amp;#39;li&amp;#39;).addClass(&amp;#39;current&amp;#39;);
+    _this.select();
+    _this.$input.focus();
+});
+
+this.initNavigation();
+this.setNavigationActive(false);</code></pre>
+
+<p>}</p>
+
+<p>this.search = function(value, selectFirstMatch) {</p>
+
+<pre><code>value = jQuery.trim(value).toLowerCase();
+this.selectFirstMatch = selectFirstMatch;
+if (value) {
+    this.$element.removeClass(&amp;#39;panel_tree&amp;#39;).addClass(&amp;#39;panel_results&amp;#39;);
+    this.tree.setNavigationActive(false);
+    this.setNavigationActive(true);
+} else {
+    this.$element.addClass(&amp;#39;panel_tree&amp;#39;).removeClass(&amp;#39;panel_results&amp;#39;);
+    this.tree.setNavigationActive(true);
+    this.setNavigationActive(false);
+}
+if (value != this.lastQuery) {
+    this.lastQuery = value;
+    this.firstRun = true;
+    this.searcher.find(value);
+}</code></pre>
+
+<p>}</p>
+
+<p>this.addResults = function(results, isLast) {</p>
+
+<pre><code>var target = this.$result.get(0);
+if (this.firstRun &amp;amp;&amp;amp; (results.length &amp;gt; 0 || isLast)) {
+    this.$current = null;
+    this.$result.empty();
+}
+for (var i=0, l = results.length; i &amp;lt; l; i++) {
+    target.appendChild(renderItem.call(this, results[i]));
+};
+if (this.firstRun &amp;amp;&amp;amp; results.length &amp;gt; 0) {
+    this.firstRun = false;
+    this.$current = $(target.firstChild);
+    this.$current.addClass(&amp;#39;current&amp;#39;);
+    if (this.selectFirstMatch) this.select();
+    scrollIntoView(this.$current[0], this.$view[0])
+}
+if (jQuery.browser.msie) this.$element[0].className += &amp;#39;&amp;#39;;</code></pre>
+
+<p>}</p>
+
+<p>this.open = function(src) {</p>
+
+<pre><code>this.frame.location.href = &amp;#39;../&amp;#39; + src;
+if (this.frame.highlight) this.frame.highlight(src);</code></pre>
+
+<p>}</p>
+
+<p>this.select = function() {</p>
+
+<pre><code>this.open(this.$current.data(&amp;#39;path&amp;#39;));</code></pre>
+
+<p>}</p>
+
+<p>this.move = function(isDown) {</p>
+
+<pre><code>if (!this.$current) return;
+var $next = this.$current[isDown ? &amp;#39;next&amp;#39; : &amp;#39;prev&amp;#39;]();
+if ($next.length) {
+    this.$current.removeClass(&amp;#39;current&amp;#39;);
+    $next.addClass(&amp;#39;current&amp;#39;);
+    scrollIntoView($next[0], this.$view[0]);
+    this.$current = $next;
+}
+return true;</code></pre>
+
+<p>}</p>
+
+<p>function renderItem(result) {</p>
+
+<pre><code>var li = document.createElement(&amp;#39;li&amp;#39;),
+    html = &amp;#39;&amp;#39;, badge = result.badge;
+html += &amp;#39;&amp;lt;h1&amp;gt;&amp;#39; + hlt(result.title);
+if (result.params) html += &amp;#39;&amp;lt;i&amp;gt;&amp;#39; + result.params + &amp;#39;&amp;lt;/i&amp;gt;&amp;#39;;
+html += &amp;#39;&amp;lt;/h1&amp;gt;&amp;#39;;
+html += &amp;#39;&amp;lt;p&amp;gt;&amp;#39;;
+if (typeof badge != &amp;#39;undefined&amp;#39;) {
+    html += &amp;#39;&amp;lt;span class=&amp;quot;badge badge_&amp;#39; + (badge % 6 + 1) + &amp;#39;&amp;quot;&amp;gt;&amp;#39; + escapeHTML(this.data.badges[badge] || &amp;#39;unknown&amp;#39;) + &amp;#39;&amp;lt;/span&amp;gt;&amp;#39;;
+}
+html += hlt(result.namespace) + &amp;#39;&amp;lt;/p&amp;gt;&amp;#39;;
+if (result.snippet) html += &amp;#39;&amp;lt;p class=&amp;quot;snippet&amp;quot;&amp;gt;&amp;#39; + escapeHTML(result.snippet) + &amp;#39;&amp;lt;/p&amp;gt;&amp;#39;;
+li.innerHTML = html;
+jQuery.data(li, &amp;#39;path&amp;#39;, result.path);
+return li;</code></pre>
+
+<p>}</p>
+
+<p>function hlt(html) {</p>
+
+<pre><code>return escapeHTML(html).replace(/\u0001/g, &amp;#39;&amp;lt;b&amp;gt;&amp;#39;).replace(/\u0002/g, &amp;#39;&amp;lt;/b&amp;gt;&amp;#39;)</code></pre>
+
+<p>}</p>
+
+<p>function escapeHTML(html) {</p>
+
+<pre><code>return html.replace(/[&amp;amp;&amp;lt;&amp;gt;]/g, function(c) {
+    return &amp;#39;&amp;amp;#&amp;#39; + c.charCodeAt(0) + &amp;#39;;&amp;#39;;
+});</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;});&lt;/p&gt;</p>
+
+<p>&lt;p&gt;// tree.js ————————————————&lt;/p&gt;</p>
+
+<p>&lt;p&gt;Searchdoc.Tree = function(element, tree, panel) {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>this.$element = $(element); this.$list =
+$(&amp;#39;ul&amp;#39;, element); this.tree = tree; this.panel = panel;
+this.init();</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;Searchdoc.Tree.prototype = $.extend({}, Searchdoc.Navigation, new
+function() {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;this.init = function() {</p>
+
+<pre><code>var stopper = document.createElement(&amp;#39;li&amp;#39;);
+stopper.className = &amp;#39;stopper&amp;#39;;
+this.$list[0].appendChild(stopper);
+for (var i=0, l = this.tree.length; i &amp;lt; l; i++) {
+    buildAndAppendItem.call(this, this.tree[i], 0, stopper);
+};
+var _this = this;
+this.$list.click(function(e) {
+    var $target = $(e.target),
+        $li = $target.closest(&amp;#39;li&amp;#39;);
+    if ($target.hasClass(&amp;#39;icon&amp;#39;)) {
+        _this.toggle($li);
+    } else {
+        _this.select($li);
+    }
+})
+
+this.initNavigation();
+if (jQuery.browser.msie) document.body.className += &amp;#39;&amp;#39;;</code></pre>
+
+<p>}</p>
+
+<p>this.select = function($li) {</p>
+
+<pre><code>this.highlight($li);
+var path = $li[0].searchdoc_tree_data.path;
+if (path) this.panel.open(path);</code></pre>
+
+<p>}</p>
+
+<p>this.highlight = function($li) {</p>
+
+<pre><code>if (this.$current) this.$current.removeClass(&amp;#39;current&amp;#39;);
+this.$current = $li.addClass(&amp;#39;current&amp;#39;);</code></pre>
+
+<p>}</p>
+
+<p>this.toggle = function($li) {</p>
+
+<pre><code>var closed = !$li.hasClass(&amp;#39;closed&amp;#39;),
+    children = $li[0].searchdoc_tree_data.children;
+$li.toggleClass(&amp;#39;closed&amp;#39;);
+for (var i=0, l = children.length; i &amp;lt; l; i++) {
+    toggleVis.call(this, $(children[i].li), !closed);
+};</code></pre>
+
+<p>}</p>
+
+<p>this.moveRight = function() {</p>
+
+<pre><code>if (!this.$current) {
+    this.highlight(this.$list.find(&amp;#39;li:first&amp;#39;));
+    return;
+}
+if (this.$current.hasClass(&amp;#39;closed&amp;#39;)) {
+    this.toggle(this.$current);
+}</code></pre>
+
+<p>}</p>
+
+<p>this.moveLeft = function() {</p>
+
+<pre><code>if (!this.$current) {
+    this.highlight(this.$list.find(&amp;#39;li:first&amp;#39;));
+    return;
+}
+if (!this.$current.hasClass(&amp;#39;closed&amp;#39;)) {
+    this.toggle(this.$current);
+} else {
+    var level = this.$current[0].searchdoc_tree_data.level;
+    if (level == 0) return;
+    var $next = this.$current.prevAll(&amp;#39;li.level_&amp;#39; + (level - 1) + &amp;#39;:visible:first&amp;#39;);
+    this.$current.removeClass(&amp;#39;current&amp;#39;);
+    $next.addClass(&amp;#39;current&amp;#39;);
+    scrollIntoView($next[0], this.$element[0]);
+    this.$current = $next;
+}</code></pre>
+
+<p>}</p>
+
+<p>this.move = function(isDown) {</p>
+
+<pre><code>if (!this.$current) {
+    this.highlight(this.$list.find(&amp;#39;li:first&amp;#39;));
+    return true;
+}        
+var next = this.$current[0];
+if (isDown) {
+    do {
+        next = next.nextSibling;
+        if (next &amp;amp;&amp;amp; next.style &amp;amp;&amp;amp; next.style.display != &amp;#39;none&amp;#39;) break;
+    } while(next);
+} else {
+    do {
+        next = next.previousSibling;
+        if (next &amp;amp;&amp;amp; next.style &amp;amp;&amp;amp; next.style.display != &amp;#39;none&amp;#39;) break;
+    } while(next);
+}
+if (next &amp;amp;&amp;amp; next.className.indexOf(&amp;#39;stopper&amp;#39;) == -1) {
+    this.$current.removeClass(&amp;#39;current&amp;#39;);
+    $(next).addClass(&amp;#39;current&amp;#39;);
+    scrollIntoView(next, this.$element[0]);
+    this.$current = $(next);
+}
+return true;</code></pre>
+
+<p>}</p>
+
+<p>function toggleVis($li, show) {</p>
+
+<pre><code>var closed = $li.hasClass(&amp;#39;closed&amp;#39;),
+    children = $li[0].searchdoc_tree_data.children;
+$li.css(&amp;#39;display&amp;#39;, show ? &amp;#39;&amp;#39; : &amp;#39;none&amp;#39;)
+if (!show &amp;amp;&amp;amp; this.$current &amp;amp;&amp;amp; $li[0] == this.$current[0]) {
+    this.$current.removeClass(&amp;#39;current&amp;#39;);
+    this.$current = null;
+}
+for (var i=0, l = children.length; i &amp;lt; l; i++) {
+    toggleVis.call(this, $(children[i].li), show &amp;amp;&amp;amp; !closed);
+};</code></pre>
+
+<p>}</p>
+
+<p>function buildAndAppendItem(item, level, before) {</p>
+
+<pre><code>var li   = renderItem(item, level),
+    list = this.$list[0];
+item.li = li;
+list.insertBefore(li, before);
+for (var i=0, l = item[3].length; i &amp;lt; l; i++) {
+    buildAndAppendItem.call(this, item[3][i], level + 1, before);
+};
+return li;</code></pre>
+
+<p>}</p>
+
+<p>function renderItem(item, level) {</p>
+
+<pre><code>var li = document.createElement(&amp;#39;li&amp;#39;),
+    cnt = document.createElement(&amp;#39;div&amp;#39;),
+    h1 = document.createElement(&amp;#39;h1&amp;#39;),
+    p = document.createElement(&amp;#39;p&amp;#39;),
+    icon, i;
+
+li.appendChild(cnt);
+li.style.paddingLeft = getOffset(level);
+cnt.className = &amp;#39;content&amp;#39;;
+if (!item[1]) li.className  = &amp;#39;empty &amp;#39;;
+cnt.appendChild(h1);
+// cnt.appendChild(p);
+h1.appendChild(document.createTextNode(item[0]));
+// p.appendChild(document.createTextNode(item[4]));
+if (item[2]) {
+    i = document.createElement(&amp;#39;i&amp;#39;);
+    i.appendChild(document.createTextNode(item[2]));
+    h1.appendChild(i);
+}
+if (item[3].length &amp;gt; 0) {
+    icon = document.createElement(&amp;#39;div&amp;#39;);
+    icon.className = &amp;#39;icon&amp;#39;;
+    cnt.appendChild(icon);
+}
+
+// user direct assignement instead of $()
+// it&amp;#39;s 8x faster
+// $(li).data(&amp;#39;path&amp;#39;, item[1])
+//     .data(&amp;#39;children&amp;#39;, item[3])
+//     .data(&amp;#39;level&amp;#39;, level)
+//     .css(&amp;#39;display&amp;#39;, level == 0 ? &amp;#39;&amp;#39; : &amp;#39;none&amp;#39;)
+//     .addClass(&amp;#39;level_&amp;#39; + level)
+//     .addClass(&amp;#39;closed&amp;#39;);
+li.searchdoc_tree_data = {
+    path: item[1],
+    children: item[3],
+    level: level
+}
+li.style.display = level == 0 ? &amp;#39;&amp;#39; : &amp;#39;none&amp;#39;;
+li.className += &amp;#39;level_&amp;#39; + level + &amp;#39; closed&amp;#39;;
+return li;</code></pre>
+
+<p>}</p>
+
+<p>function getOffset(level) {</p>
+
+<pre><code>return 5 + 18*level + &amp;#39;px&amp;#39;;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;});&lt;/p&gt;</p>
+
+<pre><code>  &lt;/div&gt;
+
+  &lt;!-- Methods --&gt;
+            &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+<p>&lt;/html&gt;</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

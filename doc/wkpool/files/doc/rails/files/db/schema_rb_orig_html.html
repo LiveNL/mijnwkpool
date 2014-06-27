@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>schema_rb_orig.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            schema_rb_orig.html
+        </h1>
+        <ul class="files">
+            <li>doc/rails/files/db/schema_rb_orig.html</li>
+            <li>Last modified: 2014-06-16 15:53:41 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”</p>
+
+<pre><code>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+<p>&lt;html xmlns=“<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>”
+xml:lang=“en” lang=“en”&gt; &lt;head&gt;</p>
+
+<pre><code>&lt;title&gt;schema.rb.orig&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../css/reset.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;</code></pre>
+
+<p>&lt;link rel=“stylesheet” href=“../../css/main.css” type=“text/css”
+media=“screen” /&gt; &lt;link rel=“stylesheet” href=“../../css/github.css”
+type=“text/css” media=“screen” /&gt; &lt;script
+src=“../../js/jquery-1.3.2.min.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../js/jquery-effect.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script src=“../../js/main.js”
+type=“text/javascript” charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../js/highlight.pack.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+
+    &lt;h1&gt;
+        schema.rb.orig
+    &lt;/h1&gt;
+    &lt;ul class=&quot;files&quot;&gt;
+        &lt;li&gt;db/schema.rb.orig&lt;/li&gt;
+        &lt;li&gt;Last modified: 2014-06-10 17:47:16 +0200&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;bodyContent&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+
+&lt;div class=&quot;description&quot;&gt;</code></pre>
+
+<p>&lt;p&gt;# This file is auto-generated from the current state of the
+database. Instead # of editing this file, please use the migrations feature
+of Active Record to # incrementally modify your database, and then
+regenerate this schema definition. # # Note that this schema.rb definition
+is the authoritative source for your # database schema. If you need to
+create the application database on another # system, you should be using
+db:schema:load, not running all the migrations # from scratch. The latter
+is a flawed and unsustainable approach (the more migrations #
+you&amp;#39;ll amass, the slower it&amp;#39;ll run and the greater
+likelihood for issues). # # It&amp;#39;s strongly recommended that you
+check this file into your version control system.&lt;/p&gt;</p>
+
+<p>&lt;p&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD
+ActiveRecord::Schema.define(version: 20140605155022) do&lt;/p&gt;</p>
+
+<p>&lt;h6 id=“label-”&gt;&lt;/h6&gt;</p>
+
+<p>&lt;p&gt;ActiveRecord::Schema.define(version: 20140605133747) do
+&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;
+92d1a2201d8c8ca9d6a97009fcd391e9ca32aadd&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;create_table &amp;quot;games&amp;quot;, force: true
+do |t|</p>
+
+<pre><code>t.datetime &amp;quot;created_at&amp;quot;
+t.datetime &amp;quot;updated_at&amp;quot;
+t.integer  &amp;quot;score1&amp;quot;
+t.integer  &amp;quot;score2&amp;quot;
+t.string   &amp;quot;gametype&amp;quot;
+t.date     &amp;quot;date&amp;quot;
+t.time     &amp;quot;time&amp;quot;
+t.integer  &amp;quot;team1_id&amp;quot;
+t.integer  &amp;quot;team2_id&amp;quot;
+t.boolean  &amp;quot;completed&amp;quot;,  default: false
+t.string   &amp;quot;poule&amp;quot;</code></pre>
+
+<p>end</p>
+
+<p>create_table &amp;quot;poolmemberships&amp;quot;, force: true do |t|</p>
+
+<pre><code>t.integer  &amp;quot;user_id&amp;quot;
+t.integer  &amp;quot;pool_id&amp;quot;
+t.integer  &amp;quot;role&amp;quot;
+t.datetime &amp;quot;created_at&amp;quot;
+t.datetime &amp;quot;updated_at&amp;quot;
+t.integer  &amp;quot;score&amp;quot;,      default: 0</code></pre>
+
+<p>end</p>
+
+<p>create_table &amp;quot;pools&amp;quot;, force: true do |t|</p>
+
+<pre><code>t.string   &amp;quot;name&amp;quot;
+t.boolean  &amp;quot;is_public&amp;quot;
+t.datetime &amp;quot;created_at&amp;quot;
+t.datetime &amp;quot;updated_at&amp;quot;
+t.string   &amp;quot;password_digest&amp;quot;
+t.string   &amp;quot;avatar_file_name&amp;quot;
+t.string   &amp;quot;avatar_content_type&amp;quot;
+t.integer  &amp;quot;avatar_file_size&amp;quot;
+t.datetime &amp;quot;avatar_updated_at&amp;quot;
+t.integer  &amp;quot;maximum_membership&amp;quot;,    default: 0
+t.integer  &amp;quot;poolmemberships_count&amp;quot;, default: 0</code></pre>
+
+<p>end</p>
+
+<p>create_table &amp;quot;predictions&amp;quot;, force: true do |t|</p>
+
+<pre><code>t.datetime &amp;quot;created_at&amp;quot;
+t.datetime &amp;quot;updated_at&amp;quot;
+t.integer  &amp;quot;team1_id&amp;quot;
+t.integer  &amp;quot;team2_id&amp;quot;
+t.integer  &amp;quot;prediction1&amp;quot;,       default: 0
+t.integer  &amp;quot;prediction2&amp;quot;,       default: 0
+t.integer  &amp;quot;game_id&amp;quot;
+t.integer  &amp;quot;poolmembership_id&amp;quot;
+t.integer  &amp;quot;pointsgiven&amp;quot;,       default: 0
+t.integer  &amp;quot;pointsearned&amp;quot;,      default: 0
+t.integer  &amp;quot;final&amp;quot;
+t.integer  &amp;quot;winner&amp;quot;</code></pre>
+
+<p>end</p>
+
+<p>create_table &amp;quot;teampredictions&amp;quot;, force: true do |t|</p>
+
+<pre><code>t.integer  &amp;quot;pouleposition&amp;quot;
+t.integer  &amp;quot;team_id&amp;quot;
+t.integer  &amp;quot;poolmembership_id&amp;quot;
+t.datetime &amp;quot;created_at&amp;quot;
+t.datetime &amp;quot;updated_at&amp;quot;
+t.integer  &amp;quot;pointsgiven&amp;quot;,       default: 0
+t.integer  &amp;quot;pointsearned&amp;quot;,      default: 0</code></pre>
+
+<p>end</p>
+
+<p>create_table &amp;quot;teams&amp;quot;, force: true do |t|</p>
+
+<pre><code>t.datetime &amp;quot;created_at&amp;quot;
+t.datetime &amp;quot;updated_at&amp;quot;
+t.string   &amp;quot;name&amp;quot;
+t.string   &amp;quot;poule&amp;quot;
+t.string   &amp;quot;avatar_file_name&amp;quot;
+t.string   &amp;quot;avatar_content_type&amp;quot;
+t.integer  &amp;quot;avatar_file_size&amp;quot;
+t.datetime &amp;quot;avatar_updated_at&amp;quot;
+t.integer  &amp;quot;originalscore&amp;quot;
+t.boolean  &amp;quot;completed&amp;quot;,           default: false
+t.integer  &amp;quot;original_position&amp;quot;</code></pre>
+
+<p>end</p>
+
+<p>create_table &amp;quot;users&amp;quot;, force: true do |t|</p>
+
+<pre><code>t.string   &amp;quot;name&amp;quot;
+t.string   &amp;quot;nickname&amp;quot;
+t.string   &amp;quot;email&amp;quot;
+t.datetime &amp;quot;created_at&amp;quot;
+t.datetime &amp;quot;updated_at&amp;quot;
+t.boolean  &amp;quot;admin&amp;quot;,                  default: false
+t.string   &amp;quot;password_digest&amp;quot;
+t.string   &amp;quot;password_reset_token&amp;quot;
+t.datetime &amp;quot;password_reset_sent_at&amp;quot;
+t.boolean  &amp;quot;subscribed&amp;quot;,             default: false</code></pre>
+
+<p>end &lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;end&lt;/p&gt;</p>
+
+<pre><code>  &lt;/div&gt;
+
+  &lt;!-- Methods --&gt;
+            &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+<p>&lt;/html&gt;</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

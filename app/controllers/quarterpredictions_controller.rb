@@ -1,5 +1,5 @@
 class QuarterpredictionsController < ApplicationController
-  before_action :quarterteams, :only => [:show, :edit]  
+  before_action :quarterteams, :only => [:show, :edit]
   before_filter :ensure_admin, :only => [:pointsscript, :pointsscript2, :givepoints, :givepoints2]
   respond_to :html, :json
   def index
@@ -10,8 +10,8 @@ class QuarterpredictionsController < ApplicationController
 
   def show
     @pool = Pool.find(params[:id])
-    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)    
-    @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }    
+    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)
+    @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }
   end
 
    def quarterteams
@@ -22,11 +22,11 @@ class QuarterpredictionsController < ApplicationController
       winner1 = p1.winner
     end
     p2 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 102)
-    if p2.present?    
+    if p2.present?
       winner2 = p2.winner
     end
     p3 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 103)
-    if p3.present?        
+    if p3.present?
       winner3 = p3.winner
     end
     p4 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 104)
@@ -41,9 +41,9 @@ class QuarterpredictionsController < ApplicationController
     if p6.present?
       winner6 = p6.winner
     end
-    p7 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 107)    
+    p7 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 107)
     if p7.present?
-      winner7 = p7.winner                       
+      winner7 = p7.winner
     end
     p8 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 108)
     if p8.present?
@@ -56,13 +56,13 @@ class QuarterpredictionsController < ApplicationController
           game_id: 101,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner1                                             
+          winner: winner1
         },
         team2: {
           game_id: 102,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner2                                              
+          winner: winner2
         }
       },
       { #2
@@ -70,13 +70,13 @@ class QuarterpredictionsController < ApplicationController
           game_id: 103,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner3                                              
+          winner: winner3
         },
         team2: {
           game_id: 104,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner4                                              
+          winner: winner4
         }
       },
       { #3
@@ -84,13 +84,13 @@ class QuarterpredictionsController < ApplicationController
           game_id: 105,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner5                                             
+          winner: winner5
         },
         team2: {
           game_id: 106,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner6                                              
+          winner: winner6
         }
       },
       { #4
@@ -98,16 +98,16 @@ class QuarterpredictionsController < ApplicationController
           game_id: 107,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner7                                              
+          winner: winner7
         },
         team2: {
           game_id: 108,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner8                                              
+          winner: winner8
         }
-      }               
-    ] 
+      }
+    ]
   end
 
 
@@ -121,14 +121,14 @@ class QuarterpredictionsController < ApplicationController
   end
 
   def edit
-    if Time.now > deadline && if Time.now > knockout_deadline
+    if Time.now > deadline && Time.now > knockout_deadline
       @pool = Pool.find(params[:id])
       render 'deadline'
-    else       
+    else
       @pool = Pool.find(params[:id])
       @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)
       @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }
-      @gamesquarterlist.sort.each_with_index do |(gametype, games), index|    
+      @gamesquarterlist.sort.each_with_index do |(gametype, games), index|
         if @present
           return
         else
@@ -147,7 +147,7 @@ class QuarterpredictionsController < ApplicationController
       else
         render 'new'
       end
-    end       
+    end
   end
 
   private
@@ -167,4 +167,3 @@ end
 
 
 
- 

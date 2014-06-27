@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>_home_css_scss.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            _home_css_scss.html
+        </h1>
+        <ul class="files">
+            <li>doc/wkpool/files/app/assets/stylesheets/_home_css_scss.html</li>
+            <li>Last modified: 2014-06-16 15:57:51 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”</p>
+
+<pre><code>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+<p>&lt;html xmlns=“<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>”
+xml:lang=“en” lang=“en”&gt; &lt;head&gt;</p>
+
+<pre><code>&lt;title&gt;_home.css.scss&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../../css/reset.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;</code></pre>
+
+<p>&lt;link rel=“stylesheet” href=“../../../../css/main.css” type=“text/css”
+media=“screen” /&gt; &lt;link rel=“stylesheet”
+href=“../../../../css/github.css” type=“text/css” media=“screen” /&gt;
+&lt;script src=“../../../../js/jquery-1.3.2.min.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../js/jquery-effect.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script src=“../../../../js/main.js”
+type=“text/javascript” charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../js/highlight.pack.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+
+    &lt;h1&gt;
+        _home.css.scss
+    &lt;/h1&gt;
+    &lt;ul class=&quot;files&quot;&gt;
+        &lt;li&gt;app/assets/stylesheets/_home.css.scss&lt;/li&gt;
+        &lt;li&gt;Last modified: 2014-06-10 17:47:16 +0200&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;bodyContent&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+
+&lt;div class=&quot;description&quot;&gt;</code></pre>
+
+<p>&lt;p&gt;header{&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;height:65px; background-color: #FFFFFF; position:
+fixed; z-index: 99999; width:100%;</p>
+
+<p>@include respond-to(small) {</p>
+
+<pre><code>  height:100px;
+}&lt;/code&gt;&lt;/pre&gt;</code></pre>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.home{&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;.content-wrapper {</p>
+
+<pre><code>max-width:100%;
+margin:0 auto;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.arrowdown{&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>background-image:
+image_url(&amp;#39;arrowdown.png&amp;#39;); width: 48px; height:48px;
+display: none; position: absolute; bottom:30px; left: 50%; margin-left:
+-24px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.arrowup{&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>background-image:
+image_url(&amp;#39;arrowup.png&amp;#39;); width: 48px; height:48px;
+display: block; position: absolute; bottom:30px; left: 50%; margin-left:
+-24px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.hiddenarrow&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;{</p>
+
+<pre><code>margin-bottom: 60px;
+opacity:0.4;
+filter:alpha(opacity=40);    For IE8 and earlier   
+display: none;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;.home-section{&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;overflow: hidden;</p>
+
+<p>.content-wrapper{</p>
+
+<pre><code>max-width: 992px;
+
+@include respond-to(large) {
+  max-width: 1200px;
+  }</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;slide1{&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;display: none; @include respond-to(small) {</p>
+
+<pre><code>display: block;
+  background-image: image_url(&amp;#39;slide1.png&amp;#39;);
+background-repeat: no-repeat;
+background-size: cover;
+height:750px;
+width:100%;
+
+  .home-content{
+    width:382px;
+  height:802px;
+  margin-top: 25%;
+  margin-right:175px;
+  padding-top:135px;
+  padding-left: 55px;
+  padding-right: 55px;
+  background-image: image_url(&amp;#39;phone.png&amp;#39;);
+  background-repeat: no-repeat;
+  }
+}</code></pre>
+
+<p>position:relative; width:90%; margin:0 auto;</p>
+
+<p>.home-title{</p>
+
+<pre><code>width:380px;
+margin-top: 30%;
+margin-left: 20px;
+
+h1{
+  color:#FFFFFF;
+  @include font-size($font-size * 2.5);
+  text-shadow: 0px 2px 0px rgba(102, 102, 102, 1);
+}</code></pre>
+
+<p>}</p>
+
+<p>.home-content{</p>
+
+<pre><code>h2{
+  color:$color-orange-light;
+}
+
+p{
+  padding:5px 0;
+  width:100%;
+}</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;slide2{&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;background-color: $color-orange-light;
+background-image: image_url(&amp;#39;slide2.png&amp;#39;);
+background-repeat: no-repeat; background-position:110% bottom;
+background-size: 67%; position:relative; height:750px; display:none;</p>
+
+<p>@include respond-to(small) {</p>
+
+<pre><code>  display:block;
+}</code></pre>
+
+<p>.home-content{</p>
+
+<pre><code>width:400px;
+padding-top: 20%;
+margin-left: 20px;</code></pre>
+
+<p>}</p>
+
+<p>h1{</p>
+
+<pre><code>@include font-size($font-size * 2.5);
+color:#262b35;</code></pre>
+
+<p>}</p>
+
+<p>p{</p>
+
+<pre><code>color:#FFFFFF;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;slide3{&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;background-color: eeeeee; background-image:
+image_url(&amp;#39;slide6.png&amp;#39;); background-repeat: no-repeat;
+background-position:center 460px; background-size: 890px;
+position:relative; height:750px; display:none;</p>
+
+<p>@include respond-to(small) {</p>
+
+<pre><code>  display:block;
+}</code></pre>
+
+<p>.home-content{</p>
+
+<pre><code>width:420px;
+margin: 0 auto;
+padding-top: 180px;</code></pre>
+
+<p>}</p>
+
+<p>h1{</p>
+
+<pre><code>@include font-size($font-size * 2.5);</code></pre>
+
+<p>}</p>
+
+<p>p{</p>
+
+<pre><code>color:#3f3f3e;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;slide4{&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;background-color: #262b35; background-image:
+image_url(&amp;#39;slide5.png&amp;#39;); background-repeat: no-repeat;
+background-position:-280px 10%; background-size:80%; position:relative;
+height:750px; display:none;</p>
+
+<p>@include respond-to(small) {</p>
+
+<pre><code>  display:block;
+}</code></pre>
+
+<p>.home-content{</p>
+
+<pre><code>width:420px;
+padding-top: 270px;
+margin-right:70px;</code></pre>
+
+<p>}</p>
+
+<p>h1{</p>
+
+<pre><code>@include font-size($font-size * 2.5);</code></pre>
+
+<p>}</p>
+
+<p>p{</p>
+
+<pre><code>color:#FFFFFF;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;@include respond-to(small) {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;  .arrowdown{</p>
+
+<pre><code>  display: block;
+}</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;.homewrapper {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>margin: 0 auto; max-width: 1200px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;mobile {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;background-image:
+image_url(&amp;#39;slide1.png&amp;#39;); background-position: center;
+background-size: cover; @include respond-to(small) {</p>
+
+<pre><code>display: none;</code></pre>
+
+<p>}</p>
+
+<p>h1 {</p>
+
+<pre><code>color: #FFF;
+padding: 90px 20px 0 20px;
+text-shadow: 0px 3px 1px rgba(0,0,0,0.5);</code></pre>
+
+<p>} .bottommobile {</p>
+
+<pre><code>bottom: 5%;
+left: 5%;
+position: absolute;
+width: 90%;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .sessionsbtn {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;display: none;</p>
+
+<p>@include respond-to(small) {</p>
+
+<pre><code>display: block;
+position: absolute;
+right: 20px;
+bottom: 39px;</code></pre>
+
+<p>}</p>
+
+<p>ul {</p>
+
+<pre><code>list-style: none;
+
+li {
+  float: right;
+  margin-left: 20px;
+
+  &amp;amp;.active a {
+    color: $color-orange-light;
+  }
+}</code></pre>
+
+<p>}</p>
+
+<p>a {</p>
+
+<pre><code>text-decoration: none;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.email_home {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;a {text-decoration: none;} @include
+respond-to(small) {</p>
+
+<pre><code>position: absolute;
+left: 20px;
+top: 39px;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<pre><code>  &lt;/div&gt;
+
+  &lt;!-- Methods --&gt;
+            &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+<p>&lt;/html&gt;</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

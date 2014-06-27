@@ -1,0 +1,1832 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>nouislider_js.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            nouislider_js.html
+        </h1>
+        <ul class="files">
+            <li>doc/rails/files/app/assets/javascripts/vendor/nouislider_js.html</li>
+            <li>Last modified: 2014-06-16 16:01:05 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”</p>
+
+<pre><code>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+<p>&lt;html xmlns=“<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>”
+xml:lang=“en” lang=“en”&gt; &lt;head&gt;</p>
+
+<pre><code>&lt;title&gt;nouislider.js&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../../../css/reset.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;</code></pre>
+
+<p>&lt;link rel=“stylesheet” href=“../../../../../css/main.css”
+type=“text/css” media=“screen” /&gt; &lt;link rel=“stylesheet”
+href=“../../../../../css/github.css” type=“text/css” media=“screen” /&gt;
+&lt;script src=“../../../../../js/jquery-1.3.2.min.js”
+type=“text/javascript” charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/jquery-effect.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/main.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/highlight.pack.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+
+    &lt;h1&gt;
+        nouislider.js
+    &lt;/h1&gt;
+    &lt;ul class=&quot;files&quot;&gt;
+        &lt;li&gt;app/assets/javascripts/vendor/nouislider.js&lt;/li&gt;
+        &lt;li&gt;Last modified: 2014-06-10 17:47:08 +0200&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;bodyContent&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+
+&lt;div class=&quot;description&quot;&gt;</code></pre>
+
+<p>&lt;pre&gt;&lt;code&gt;! $.noUiSlider - WTFPL - refreshless.com/nouislider/</p>
+
+<p>jslint browser: true&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;  jslint devel: true      jslint continue: true    /*jslint
+plusplus: true</p>
+
+<pre><code>/ /*jslint sub: true */ /*jslint white: true */&lt;/p&gt;</code></pre>
+
+<p>&lt;p&gt;// ==ClosureCompiler== // @externs_url &lt;a href=“<a
+href="http://refreshless.com/externs/jquery-1.8.js">refreshless.com/externs/jquery-1.8.js</a">refreshless.com/externs/jquery-1.8.js”>refreshless.com/externs/jquery-1.8.js</a</a>&gt;
+// @compilation_level ADVANCED_OPTIMIZATIONS // @warning_level VERBOSE //</p>
+
+<h2 id="label-%2FClosureCompiler%3D%3D%3C%2Fp%3E">/ClosureCompiler==&lt;/p&gt;</h2>
+
+<p>&lt;p&gt;(function( $ ){&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;&amp;#39;use strict&amp;#39;;</p>
+
+<p>var // Cache the document selector;&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;/** @const */ doc = $(document),&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>// Namespace for binding and unbinding slider
+events;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;/** @const */ namespace = &amp;#39;.nui&amp;#39;,&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>// Copy of the current value function;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;/** @const */ $val = $.fn.val,&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>// Determine the events to bind. IE11 implements
+pointerEvents without // a prefix, which breaks compatibility with the IE10
+implementation.</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;/** @const */ actions = window.navigator.pointerEnabled ?
+{&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;        start: &amp;#39;pointerdown&amp;#39;,</p>
+
+<pre><code>move: &amp;#39;pointermove&amp;#39;,
+end: &amp;#39;pointerup&amp;#39;</code></pre>
+
+<p>} : window.navigator.msPointerEnabled ? {</p>
+
+<pre><code>start: &amp;#39;MSPointerDown&amp;#39;,
+move: &amp;#39;MSPointerMove&amp;#39;,
+end: &amp;#39;MSPointerUp&amp;#39;</code></pre>
+
+<p>} : {</p>
+
+<pre><code>start: &amp;#39;mousedown touchstart&amp;#39;,
+move: &amp;#39;mousemove touchmove&amp;#39;,
+end: &amp;#39;mouseup touchend&amp;#39;</code></pre>
+
+<p>}, // Re-usable list of classes;&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;/** @const */ Classes = [ /*  0 */  &amp;#39;noUi-target&amp;#39;
+/*  1 */ ,&amp;#39;noUi-base&amp;#39; /*  2 */
+,&amp;#39;noUi-origin&amp;#39; /*  3 */ ,&amp;#39;noUi-handle&amp;#39; /* 
+4 */ ,&amp;#39;noUi-horizontal&amp;#39; /*  5 */
+,&amp;#39;noUi-vertical&amp;#39; /*  6 */
+,&amp;#39;noUi-background&amp;#39; /*  7 */ ,&amp;#39;noUi-connect&amp;#39;
+/*  8 */ ,&amp;#39;noUi-ltr&amp;#39; /*  9 */ ,&amp;#39;noUi-rtl&amp;#39;
+/* 10 */ ,&amp;#39;noUi-dragable&amp;#39; /* 11 */ ,&amp;#39;&amp;#39; /*
+12 */ ,&amp;#39;noUi-state-drag&amp;#39; /* 13 */ ,&amp;#39;&amp;#39; /* 14
+*/ ,&amp;#39;noUi-state-tap&amp;#39; /* 15 */
+,&amp;#39;noUi-active&amp;#39; /* 16 */ ,&amp;#39;noUi-extended&amp;#39; /*
+17 */ ,&amp;#39;noUi-stacking&amp;#39;&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>],</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;/** @const */ Formatting = [ /*  0 */  &amp;#39;decimals&amp;#39;
+/*  1 */ ,&amp;#39;mark&amp;#39; /*  2 */ ,&amp;#39;thousand&amp;#39; /*  3
+*/ ,&amp;#39;prefix&amp;#39; /*  4 */ ,&amp;#39;postfix&amp;#39; /*  5 */
+,&amp;#39;encoder&amp;#39; /*  6 */ ,&amp;#39;decoder&amp;#39; /*  7 */
+,&amp;#39;negative&amp;#39; /*  8 */
+,&amp;#39;negativeBefore&amp;#39;&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>],</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;/** @const */ FormatDefaults = [ /*  0 */  2 /*  1 */
+,&amp;#39;.&amp;#39; /*  2 */ ,&amp;#39;&amp;#39; /*  3 */
+,&amp;#39;&amp;#39; /*  4 */ ,&amp;#39;&amp;#39; /*  5 */ ,function(a){
+return a; } /*  6 */ ,function(a){ return a; } /*  7 */
+,&amp;#39;-&amp;#39; /*  8 */ ,&amp;#39;&amp;#39;&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>];</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Error handling&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;function throwError( message ){</p>
+
+<pre><code>throw new RangeError(&amp;#39;noUiSlider: &amp;#39; + message);</code></pre>
+
+<p>}</p>
+
+<p>// Throw an error if formatting options are incompatible. function
+throwEqualError( F, a, b ) {</p>
+
+<pre><code>if ( (F[a] || F[b]) &amp;amp;&amp;amp; (F[a] === F[b]) ) {
+        throwError(&amp;quot;(Link) &amp;#39;&amp;quot;+a+&amp;quot;&amp;#39; can&amp;#39;t match &amp;#39;&amp;quot;+b+&amp;quot;&amp;#39;.&amp;#39;&amp;quot;);
+}</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// General helpers&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;// Limits a value to 0 - 100 function limit ( a ) {</p>
+
+<pre><code>return Math.max(Math.min(a, 100), 0);</code></pre>
+
+<p>}</p>
+
+<p>// Round a value to the closest &amp;#39;to&amp;#39;. function closest (
+value, to ) {</p>
+
+<pre><code>return Math.round(value / to) * to;</code></pre>
+
+<p>}</p>
+
+<p>// Determine the size of a sub-range in relation to a full range. function
+subRangeRatio ( pa, pb ) {</p>
+
+<pre><code>return (100 / (pb - pa));</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Type validation&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;function typeMatch ( a, b ) {</p>
+
+<pre><code>return (typeof a) === (typeof b);</code></pre>
+
+<p>}</p>
+
+<p>// Test in an object is an instance of jQuery or Zepto. function isInstance
+( a ) {</p>
+
+<pre><code>return a instanceof $ || ( $[&amp;#39;zepto&amp;#39;] &amp;amp;&amp;amp; $[&amp;#39;zepto&amp;#39;][&amp;#39;isZ&amp;#39;](a) );</code></pre>
+
+<p>}</p>
+
+<p>// Checks whether a value is numerical. function isNumeric ( a ) {</p>
+
+<pre><code>return typeof a === &amp;#39;number&amp;#39; &amp;amp;&amp;amp; !isNaN( a ) &amp;amp;&amp;amp; isFinite( a );</code></pre>
+
+<p>}</p>
+
+<p>// Wraps a variable as an array, if it isn&amp;#39;t one yet. function
+asArray ( a ) {</p>
+
+<pre><code>return $.isArray(a) ? a : [a];</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Class handling&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;// Sets a class and removes it after [duration] ms.
+function addClassFor ( element, className, duration ) {</p>
+
+<pre><code>element.addClass(className);
+setTimeout(function(){
+        element.removeClass(className);
+}, duration);</code></pre>
+
+<p>}</p>
+
+<p>// Tests if element has a class, adds it if not. Returns original state.
+function getsClass ( element, className ) {</p>
+
+<pre><code>var has = element.hasClass(className);
+
+if ( !has ) {
+        element.addClass( className );
+}
+
+return has;</code></pre>
+
+<p>} &lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Value calculation&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;// (percentage) How many percent is this value of
+this range? function fromPercentage ( range, value ) {</p>
+
+<pre><code>return (value * 100) / ( range[1] - range[0] );</code></pre>
+
+<p>}</p>
+
+<p>// (percentage) Where is this value on this range? function toPercentage (
+range, value ) {</p>
+
+<pre><code>return fromPercentage( range, range[0] &amp;lt; 0 ?
+        value + Math.abs(range[0]) :
+                value - range[0] );</code></pre>
+
+<p>}</p>
+
+<p>// (value) How much is this percentage on this range? function isPercentage
+( range, value ) {</p>
+
+<pre><code>return ((value * ( range[1] - range[0] )) / 100) + range[0];</code></pre>
+
+<p>}</p>
+
+<p>// (percentage) function toStepping ( options, value ) {</p>
+
+<pre><code>if ( value &amp;gt;= options.xVal.slice(-1)[0] ){
+        return 100;
+}
+
+var j = 1, va, vb, pa, pb;
+while ( value &amp;gt;= options.xVal[j] ){
+        j++;
+}
+
+va = options.xVal[j-1];
+vb = options.xVal[j];
+pa = options.xPct[j-1];
+pb = options.xPct[j];
+
+return pa + (toPercentage([va, vb], value) / subRangeRatio (pa, pb));</code></pre>
+
+<p>}</p>
+
+<p>// (value) function fromStepping ( options, value ) {</p>
+
+<pre><code>// There is no range group that fits 100
+if ( value &amp;gt;= 100 ){
+        return options.xVal.slice(-1)[0];
+}
+
+var j = 1, va, vb, pa, pb;
+while ( value &amp;gt;= options.xPct[j] ){
+        j++;
+}
+
+va = options.xVal[j-1];
+vb = options.xVal[j];
+pa = options.xPct[j-1];
+pb = options.xPct[j];
+
+return isPercentage([va, vb], (value - pa) * subRangeRatio (pa, pb));</code></pre>
+
+<p>}</p>
+
+<p>// (percentage) Get the step that applies at a certain value. function
+getStep ( options, value ){</p>
+
+<pre><code>var j = 1, a, b;
+while ( value &amp;gt;= options.xPct[j] ){
+        j++;
+}
+
+if ( options.snap ) {
+
+        a = options.xPct[j-1];
+        b = options.xPct[j];
+
+        if ((value - a) &amp;gt; ((b-a)/2)){
+                return b;
+        }
+
+        return a;
+}
+
+if ( !options.xSteps[j-1] ){
+        return value;
+}
+
+return options.xPct[j-1] + closest(
+        value - options.xPct[j-1],
+        options.xSteps[j-1]
+);</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Event handling&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;// Provide a clean event with standardized offset
+values. function fixEvent ( e ) {</p>
+
+<pre><code>// Prevent scrolling and panning on touch events, while
+// attempting to slide. The tap event also depends on this.
+e.preventDefault();
+
+// Filter the event to register the type, which can be
+// touch, mouse or pointer. Offset changes need to be
+// made on an event specific basis.
+var  touch = e.type.indexOf(&amp;#39;touch&amp;#39;) === 0
+        ,mouse = e.type.indexOf(&amp;#39;mouse&amp;#39;) === 0
+        ,pointer = e.type.indexOf(&amp;#39;pointer&amp;#39;) === 0
+        ,x,y, event = e;
+
+// IE10 implemented pointer events with a prefix;
+if ( e.type.indexOf(&amp;#39;MSPointer&amp;#39;) === 0 ) {
+        pointer = true;
+}
+
+// Get the originalEvent, if the event has been wrapped
+// by jQuery. Zepto doesn&amp;#39;t wrap the event.
+if ( e.originalEvent ) {
+        e = e.originalEvent;
+}
+
+if ( touch ) {
+        // noUiSlider supports one movement at a time,
+        // so we can select the first &amp;#39;changedTouch&amp;#39;.
+        x = e.changedTouches[0].pageX;
+        y = e.changedTouches[0].pageY;
+}
+
+if ( mouse || pointer ) {
+
+        // Polyfill the pageXOffset and pageYOffset
+        // variables for IE7 and IE8;
+        if( !pointer &amp;amp;&amp;amp; window.pageXOffset === undefined ){
+                window.pageXOffset = document.documentElement.scrollLeft;
+                window.pageYOffset = document.documentElement.scrollTop;
+        }
+
+        x = e.clientX + window.pageXOffset;
+        y = e.clientY + window.pageYOffset;
+}
+
+event.points = [x, y];
+event.cursor = mouse;
+
+return event;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Organize formatting in an object.&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;/** @constructor */ function Format( options ){</p>
+
+<pre><code>// If no settings where provided, the defaults will be loaded.
+if ( options === undefined ){
+        options = {};
+}
+
+if ( typeof options !== &amp;#39;object&amp;#39; ){
+        throwError(&amp;quot;(Format) &amp;#39;format&amp;#39; option must be an object.&amp;quot;);
+}
+
+var settings = {};
+
+// Copy all values into a new object.
+$(Formatting).each(function(i, val){
+
+        if ( options[val] === undefined ){
+
+                settings[val] = FormatDefaults[i];
+
+        // When we aren&amp;#39;t loading defaults, validate the entry.
+        } else if ( typeMatch(options[val],  FormatDefaults[i]) ) {
+
+                // Support for up to 7 decimals.
+                // More can&amp;#39;t be guaranteed due to floating point issues.
+                if ( val === &amp;#39;decimals&amp;#39; ){
+                        if ( options[val] &amp;lt; 0 || options[val] &amp;gt; 7 ){
+                                throwError(&amp;quot;(Format) &amp;#39;format.decimals&amp;#39; option must be between 0 and 7.&amp;quot;);
+                        }
+                }
+
+                settings[val] = options[val];
+
+        // If the value isn&amp;#39;t valid, emit an error.
+        } else {
+                throwError(&amp;quot;(Format) &amp;#39;format.&amp;quot;+val+&amp;quot;&amp;#39; must be a &amp;quot; + typeof FormatDefaults[i] + &amp;quot;.&amp;quot;);
+        }
+});
+
+// Some values can&amp;#39;t be extracted from a
+// string if certain combinations are present.
+throwEqualError(settings, &amp;#39;mark&amp;#39;, &amp;#39;thousand&amp;#39;);
+throwEqualError(settings, &amp;#39;prefix&amp;#39;, &amp;#39;negative&amp;#39;);
+throwEqualError(settings, &amp;#39;prefix&amp;#39;, &amp;#39;negativeBefore&amp;#39;);
+
+this.settings = settings;</code></pre>
+
+<p>}</p>
+
+<p>// Shorthand for internal value get Format.prototype.v = function ( a ) {</p>
+
+<pre><code>return this.settings[a];</code></pre>
+
+<p>};</p>
+
+<p>Format.prototype.to = function ( number ) {</p>
+
+<pre><code>function reverse ( a ) {
+        return a.split(&amp;#39;&amp;#39;).reverse().join(&amp;#39;&amp;#39;);
+}
+
+number = this.v(&amp;#39;encoder&amp;#39;)( number );
+
+var negative = &amp;#39;&amp;#39;, preNegative = &amp;#39;&amp;#39;, base = &amp;#39;&amp;#39;, mark = &amp;#39;&amp;#39;;
+
+if ( number &amp;lt; 0 ) {
+        negative = this.v(&amp;#39;negative&amp;#39;);
+        preNegative = this.v(&amp;#39;negativeBefore&amp;#39;);
+}
+
+// Round to proper decimal count
+number = Math.abs(number).toFixed( this.v(&amp;#39;decimals&amp;#39;) ).toString();
+number = number.split(&amp;#39;.&amp;#39;);
+
+// Rounding away decimals might cause a value of -0
+// when using very small ranges. Remove those cases.
+if ( parseFloat(number) === 0 ) {
+        number[0] = &amp;#39;0&amp;#39;;
+}
+
+// Group numbers in sets of three.
+if ( this.v(&amp;#39;thousand&amp;#39;) ) {
+        base = reverse(number[0]).match(/.{1,3}/g);
+        base = reverse(base.join(reverse( this.v(&amp;#39;thousand&amp;#39;) )));
+} else {
+        base = number[0];
+}
+
+// Ignore the decimal separator if decimals are set to 0.
+if ( this.v(&amp;#39;mark&amp;#39;) &amp;amp;&amp;amp; number.length &amp;gt; 1 ) {
+        mark = this.v(&amp;#39;mark&amp;#39;) + number[1];
+}
+
+// Return the finalized formatted number.
+return preNegative +
+        this.v(&amp;#39;prefix&amp;#39;) +
+        negative +
+        base +
+        mark +
+        this.v(&amp;#39;postfix&amp;#39;);</code></pre>
+
+<p>};</p>
+
+<p>Format.prototype.from = function ( input ) {</p>
+
+<pre><code>function esc(s){
+        return s.replace(/[\-\/\\\^$*+?.()|\[\]{}]/g, &amp;#39;\\$&amp;amp;&amp;#39;);
+}
+
+var isNeg;
+// The set request might want to ignore this handle.
+// Test for &amp;#39;undefined&amp;#39; too, as a two-handle slider
+// can still be set with an integer.
+if( input === null || input === undefined ) {
+        return false;
+}
+
+// Remove formatting and set period for float parsing.
+input = input.toString();
+
+// Replace the preNegative indicator.
+isNeg = input.replace(new RegExp(&amp;#39;^&amp;#39; + esc( this.v(&amp;#39;negativeBefore&amp;#39;) )), &amp;#39;&amp;#39;);
+
+// Check if the value changed by removing the negativeBefore symbol.
+if( input !== isNeg ) {
+        input = isNeg;
+        isNeg = &amp;#39;-&amp;#39;;
+} else {
+        isNeg = &amp;#39;&amp;#39;;
+}
+
+// If prefix is set and the number is actually prefixed.
+input = input.replace(new RegExp(&amp;#39;^&amp;#39;+esc( this.v(&amp;#39;prefix&amp;#39;) )), &amp;#39;&amp;#39;);
+
+// Only replace if a negative sign is set.
+if ( this.v[&amp;#39;negative&amp;#39;] ) {
+
+        // Reset isNeg to prevent double &amp;#39;-&amp;#39; insertion.
+        isNeg = &amp;#39;&amp;#39;;
+
+        // Reset the negative sign to &amp;#39;-&amp;#39;
+        input = input.replace(new RegExp(&amp;#39;^&amp;#39;+esc( this.v(&amp;#39;negative&amp;#39;) )), &amp;#39;-&amp;#39;);
+}
+
+// Clean the input string
+input = input
+// If postfix is set and the number is postfixed.
+        .replace( new RegExp(esc( this.v(&amp;#39;postfix&amp;#39;) ) + &amp;#39;$&amp;#39;), &amp;#39;&amp;#39;)
+// Remove the separator every three digits.
+        .replace( new RegExp(esc( this.v(&amp;#39;thousand&amp;#39;) ), &amp;#39;g&amp;#39;), &amp;#39;&amp;#39;)
+// Set the decimal separator back to period.
+        .replace( this.v(&amp;#39;mark&amp;#39;), &amp;#39;.&amp;#39;);
+
+// Run the user defined decoder. Returns input by default.
+input = this.v(&amp;#39;decoder&amp;#39;)( parseFloat( isNeg + input ) );
+
+// Ignore invalid input
+if (isNaN( input )) {
+        return false;
+}
+
+return input;</code></pre>
+
+<p>};&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Serialization target&lt;/p&gt;</p>
+
+<p>&lt;p&gt;/** @constructor */&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;function Link( entry, update ){</p>
+
+<pre><code>// Make sure Link isn&amp;#39;t called as a function, in which case
+// the &amp;#39;this&amp;#39; scope would be the window.
+if ( !(this instanceof Link) ) {
+        throw new Error( &amp;quot;Link: &amp;quot; +
+                &amp;quot;Don&amp;#39;t use Link as a function. &amp;quot; +
+                &amp;quot;Use the &amp;#39;new&amp;#39; keyword.&amp;quot;);
+}
+
+if ( !entry ) {
+        throw new RangeError(&amp;quot;Link: missing parameters.&amp;quot;);
+}
+
+// Write all formatting to this object.
+// No validation needed, as we&amp;#39;ll merge these with the parent
+// format options first.
+this.formatting = entry[&amp;#39;format&amp;#39;] || {};
+
+// Store the update option.
+this.update = !update;
+
+// In IE &amp;lt; 9, .bind() isn&amp;#39;t available, need this link in .change().</code></pre>
+
+<p>var that = this,</p>
+
+<pre><code>// Get values from the input.
+target = entry[&amp;#39;target&amp;#39;] || function(){},
+method = entry[&amp;#39;method&amp;#39;],
+
+// Find the type of this link.
+isTooltip = ( typeof target === &amp;#39;string&amp;#39; &amp;amp;&amp;amp; target.indexOf(&amp;#39;-tooltip-&amp;#39;) === 0 ),
+isHidden = ( typeof target === &amp;#39;string&amp;#39; &amp;amp;&amp;amp; target.indexOf(&amp;#39;-&amp;#39;) !== 0 ),
+isMethod = ( typeof target === &amp;#39;function&amp;#39; ),
+is$ = ( isInstance(target) ),
+isInput = ( is$ &amp;amp;&amp;amp; target.is(&amp;#39;input, select, textarea&amp;#39;) ),
+methodIsFunction = ( is$ &amp;amp;&amp;amp; typeof method === &amp;#39;function&amp;#39; ),
+methodIsName = ( is$ &amp;amp;&amp;amp; typeof method === &amp;#39;string&amp;#39; &amp;amp;&amp;amp; target[method] );
+
+// If target is a string, a new hidden input will be created.
+if ( isTooltip ) {
+
+        // By default, use the &amp;#39;html&amp;#39; method.
+        this.method = method || &amp;#39;html&amp;#39;;
+
+        // Use jQuery to create the element
+        this.el = $( target.replace(&amp;#39;-tooltip-&amp;#39;, &amp;#39;&amp;#39;) || &amp;#39;&amp;lt;div/&amp;gt;&amp;#39; )[0];
+
+        return;
+}
+
+// If the string doesn&amp;#39;t begin with &amp;#39;-&amp;#39;, which is reserved, add a new hidden input.
+if ( isHidden ) {
+
+        this.method = &amp;#39;val&amp;#39;;
+
+        this.el = document.createElement(&amp;#39;input&amp;#39;);
+        this.el.name = target;
+        this.el.type = &amp;#39;hidden&amp;#39;;
+
+        return;
+}
+
+// The target can also be a function, which will be called.
+if ( isMethod ) {
+        this.target = false;
+        this.method = target;
+        return;
+}
+
+// If the target is and $ element.
+if ( is$ ) {
+
+        // The method must exist on the element.
+        if ( method &amp;amp;&amp;amp; ( methodIsFunction || methodIsName ) ) {
+                this.target = target;
+                this.method = method;
+                return;
+        }
+
+        // If a jQuery/Zepto input element is provided, but no method is set,
+        // the element can assume it needs to respond to &amp;#39;change&amp;#39;...
+        if ( !method &amp;amp;&amp;amp; isInput ) {
+
+                // Default to .val if this is an input element.
+                this.method = &amp;#39;val&amp;#39;;
+                this.target = target;
+
+                // Set the slider to a new value on change.
+                this.target.on(&amp;#39;change&amp;#39;, function( e ){
+
+                        // Returns null array.
+                        function at(a,b,c){
+                                return [c?a:b, c?b:a];
+                        }
+
+                        var output = at(null, $(e.target).val(), that.N);
+
+                        that.obj.val(output, { &amp;#39;link&amp;#39;: that });
+                });
+
+                return;
+        }
+
+        // ... or not.
+        if ( !method &amp;amp;&amp;amp; !isInput ) {
+
+                // Default arbitrarily to &amp;#39;html&amp;#39;.
+                this.method = &amp;#39;html&amp;#39;;
+                this.target = target;
+
+                return;
+        }
+}
+
+throw new RangeError(&amp;quot;Link: Invalid Link.&amp;quot;);</code></pre>
+
+<p>}</p>
+
+<p>// Provides external items with the slider value. Link.prototype.write =
+function ( options, value, handle, slider, update ) {</p>
+
+<pre><code>// Don&amp;#39;t synchronize this Link.
+if ( this.update &amp;amp;&amp;amp; update === false ) {
+        return;
+}
+
+// Convert the value to the slider stepping/range.
+value = fromStepping( options, value );
+
+// Format values for display.
+value = this.format( value );
+
+// Store the numerical value.
+this.saved = value;
+
+// Branch between serialization to a function or an object.
+if ( typeof this.method === &amp;#39;function&amp;#39; ) {
+        // When target is undefined, the target was a function.
+        // In that case, provided the slider as the calling scope.
+        // Use [0] to get the DOM element, not the $ instance.
+        this.method.call( this.target[0] || slider[0], value, handle, slider );
+} else {
+        this.target[ this.method ]( value, handle, slider );
+}</code></pre>
+
+<p>};</p>
+
+<p>// Parses slider value to user defined display. Link.prototype.format =
+function ( a ) {</p>
+
+<pre><code>return this.formatting.to(a);</code></pre>
+
+<p>};</p>
+
+<p>// Converts a formatted value back to a real number. Link.prototype.valueOf
+= function ( a ) {</p>
+
+<pre><code>return this.formatting.from(a);</code></pre>
+
+<p>};&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Input validation&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;function testStep ( parsed, entry ) {</p>
+
+<pre><code>if ( !isNumeric( entry ) ) {
+        throwError(&amp;quot;&amp;#39;step&amp;#39; is not numeric.&amp;quot;);
+}
+
+// The step option can still be used to set stepping
+// for linear sliders. Overwritten if set in &amp;#39;range&amp;#39;.
+parsed.xSteps[0] = entry;</code></pre>
+
+<p>}</p>
+
+<p>function testRange ( parsed, entry ) {</p>
+
+<pre><code>// Filter incorrect input.
+if ( typeof entry !== &amp;#39;object&amp;#39; || $.isArray(entry) ) {
+        throwError(&amp;quot;&amp;#39;range&amp;#39; is not an object.&amp;quot;);
+}
+
+// Loop all entries.
+$.each( entry, function ( index, value ) {
+
+        var percentage;
+
+        // Wrap numerical input in an array.
+        if ( typeof value === &amp;quot;number&amp;quot; ) {
+                value = [value];
+        }
+
+        // Reject any invalid input.
+        if ( !$.isArray( value ) ){
+                throwError(&amp;quot;&amp;#39;range&amp;#39; contains invalid value.&amp;quot;);
+        }
+
+        // Covert min/max syntax to 0 and 100.
+        if ( index === &amp;#39;min&amp;#39; ) {
+                percentage = 0;
+        } else if ( index === &amp;#39;max&amp;#39; ) {
+                percentage = 100;
+        } else {
+                percentage = parseFloat( index );
+        }
+
+        // Check for correct input.
+        if ( !isNumeric( percentage ) || !isNumeric( value[0] ) ) {
+                throwError(&amp;quot;&amp;#39;range&amp;#39; value isn&amp;#39;t numeric.&amp;quot;);
+        }
+
+        // Store values.
+        parsed.xPct.push( percentage );
+        parsed.xVal.push( value[0] );
+
+        // NaN will evaluate to false too, but to keep
+        // logging clear, set step explicitly. Make sure
+        // not to override the &amp;#39;step&amp;#39; setting with false.
+        if ( !percentage ) {
+                if ( !isNaN( value[1] ) ) {
+                        parsed.xSteps[0] = value[1];
+                }
+        } else {
+                parsed.xSteps.push( isNaN(value[1]) ? false : value[1] );
+        }
+});
+
+$.each(parsed.xSteps, function(i,n){
+
+        // Ignore &amp;#39;false&amp;#39; stepping.
+        if ( !n ) {
+                return true;
+        }
+
+        // Check if step fits. Not required, but this might serve some goal.
+        // !((parsed.xVal[i+1] - parsed.xVal[i]) % n);
+
+        // Factor to range ratio
+        parsed.xSteps[i] = fromPercentage([
+                 parsed.xVal[i]
+                ,parsed.xVal[i+1]
+        ], n) / subRangeRatio (
+                parsed.xPct[i],
+                parsed.xPct[i+1] );
+});</code></pre>
+
+<p>}</p>
+
+<p>function testStart ( parsed, entry ) {</p>
+
+<pre><code>if ( typeof entry === &amp;quot;number&amp;quot; ) {
+        entry = [entry];
+}
+
+// Validate input. Values aren&amp;#39;t tested, the internal Link will do
+// that and provide a valid location.
+if ( !$.isArray( entry ) || !entry.length || entry.length &amp;gt; 2 ) {
+        throwError(&amp;quot;&amp;#39;start&amp;#39; option is incorrect.&amp;quot;);
+}
+
+// Store the number of handles.
+parsed.handles = entry.length;
+
+// When the slider is initialized, the .val method will
+// be called with the start options.
+parsed.start = entry;</code></pre>
+
+<p>}</p>
+
+<p>function testSnap ( parsed, entry ) {</p>
+
+<pre><code>// Enforce 100% stepping within subranges.
+parsed.snap = entry;
+
+if ( typeof entry !== &amp;#39;boolean&amp;#39; ){
+        throwError(&amp;quot;&amp;#39;snap&amp;#39; option must be a boolean.&amp;quot;);
+}</code></pre>
+
+<p>}</p>
+
+<p>function testConnect ( parsed, entry ) {</p>
+
+<pre><code>if ( entry === &amp;#39;lower&amp;#39; &amp;amp;&amp;amp; parsed.handles === 1 ) {
+        parsed.connect = 1;
+} else if ( entry === &amp;#39;upper&amp;#39; &amp;amp;&amp;amp; parsed.handles === 1 ) {
+        parsed.connect = 2;
+} else if ( entry === true &amp;amp;&amp;amp; parsed.handles === 2 ) {
+        parsed.connect = 3;
+} else if ( entry === false ) {
+        parsed.connect = 0;
+} else {
+        throwError(&amp;quot;&amp;#39;connect&amp;#39; option was doesn&amp;#39;t match handle count.&amp;quot;);
+}</code></pre>
+
+<p>}</p>
+
+<p>function testOrientation ( parsed, entry ) {</p>
+
+<pre><code>// Set orientation to an a numerical value for easy
+// array selection.
+switch ( entry ){
+  case &amp;#39;horizontal&amp;#39;:
+        parsed.ort = 0;
+        break;
+  case &amp;#39;vertical&amp;#39;:
+        parsed.ort = 1;
+        break;
+  default:
+        throwError(&amp;quot;&amp;#39;orientation&amp;#39; option is invalid.&amp;quot;);
+}</code></pre>
+
+<p>}</p>
+
+<p>function testMargin ( parsed, entry ) {</p>
+
+<pre><code>if ( parsed.xPct.length &amp;gt; 2 ) {
+        throwError(&amp;quot;&amp;#39;margin&amp;#39; option is only supported on linear sliders.&amp;quot;);
+}
+
+// Parse value to range and store. As xVal is checked
+// to be no bigger than 2, use it as range.
+parsed.margin = fromPercentage(parsed.xVal, entry);
+
+if ( !isNumeric(entry) ){
+        throwError(&amp;quot;&amp;#39;margin&amp;#39; option must be numeric.&amp;quot;);
+}</code></pre>
+
+<p>}</p>
+
+<p>function testDirection ( parsed, entry ) {</p>
+
+<pre><code>// Set direction as a numerical value for easy parsing.
+// Invert connection for RTL sliders, so that the proper
+// handles get the connect/background classes.
+switch ( entry ) {
+  case &amp;#39;ltr&amp;#39;:
+        parsed.dir = 0;
+        break;
+  case &amp;#39;rtl&amp;#39;:
+        parsed.dir = 1;
+        parsed.connect = [0,2,1,3][parsed.connect];
+        break;
+  default:
+        throwError(&amp;quot;&amp;#39;direction&amp;#39; option was not recognized.&amp;quot;);
+}</code></pre>
+
+<p>}</p>
+
+<p>function testBehaviour ( parsed, entry ) {</p>
+
+<pre><code>// Make sure the input is a string.
+if ( typeof entry !== &amp;#39;string&amp;#39; ) {
+        throwError(&amp;quot;&amp;#39;behaviour&amp;#39; must be a string containing options.&amp;quot;);
+}
+
+// Check if the string contains any keywords.
+// None are required.
+var tap = entry.indexOf(&amp;#39;tap&amp;#39;) &amp;gt;= 0,
+        extend = entry.indexOf(&amp;#39;extend&amp;#39;) &amp;gt;= 0,
+        drag = entry.indexOf(&amp;#39;drag&amp;#39;) &amp;gt;= 0,
+        fixed = entry.indexOf(&amp;#39;fixed&amp;#39;) &amp;gt;= 0,
+        snap = entry.indexOf(&amp;#39;snap&amp;#39;) &amp;gt;= 0;
+
+parsed.events = {
+        tap: tap || snap,
+        extend: extend,
+        drag: drag,
+        fixed: fixed,
+        snap: snap
+};</code></pre>
+
+<p>}</p>
+
+<p>function testSerialization ( parsed, entry, sliders ) {</p>
+
+<pre><code>parsed.ser = [ entry[&amp;#39;lower&amp;#39;], entry[&amp;#39;upper&amp;#39;] ];
+parsed.formatting = new Format( entry[&amp;#39;format&amp;#39;] );
+
+$.each( parsed.ser, function( i, a ){
+
+        // Check if the provided option is an array.
+        if ( !$.isArray(a) ) {
+                throwError(&amp;quot;&amp;#39;serialization.&amp;quot;+(!i?&amp;#39;lower&amp;#39;:&amp;#39;upper&amp;#39;)+&amp;quot;&amp;#39; must be an array.&amp;quot;);
+        }
+
+        $.each(a, function(){
+
+                // Check if entry is a Link.
+                if ( !(this instanceof Link) ) {
+                        throwError(&amp;quot;&amp;#39;serialization.&amp;quot;+(!i?&amp;#39;lower&amp;#39;:&amp;#39;upper&amp;#39;)+&amp;quot;&amp;#39; can only contain Link instances.&amp;quot;);
+                }
+
+                // Assign other properties.
+                this.N = i;
+                this.obj = sliders;
+                this.scope = this.scope || sliders;
+
+                // Run internal validator.
+                this.formatting = new Format($.extend({}
+                        ,entry[&amp;#39;format&amp;#39;]
+                        ,this.formatting
+                ));
+        });
+});
+
+// If the slider has two handles and is RTL,
+// reverse the serialization input. For one handle,
+// lower is still lower.
+if ( parsed.dir &amp;amp;&amp;amp; parsed.handles &amp;gt; 1 ) {
+        parsed.ser.reverse();
+}</code></pre>
+
+<p>}</p>
+
+<p>// Test all developer settings and parse to assumption-safe values.
+function test ( options, sliders ){</p>
+
+<p>/*      Every input option is tested and parsed. This&amp;#39;ll prevent</p>
+
+<pre><code>endless validation in internal methods. These tests are
+structured with an item for every option available. An
+option can be marked as required by setting the &amp;#39;r&amp;#39; flag.
+The testing function is provided with three arguments:
+        - The provided value for the option;
+        - A reference to the options object;
+        - The name for the option;
+
+The testing function returns false when an error is detected,
+or true when everything is OK. It can also modify the option
+object, to make sure all values can be correctly looped elsewhere. */
+
+var parsed = {
+         xPct: []
+        ,xVal: []
+        ,xSteps: [ false ]
+        ,margin: 0
+}, tests;
+
+tests = {
+        &amp;#39;step&amp;#39;: { r: false, t: testStep },
+        &amp;#39;range&amp;#39;: { r: true, t: testRange },
+        &amp;#39;start&amp;#39;: { r: true, t: testStart },
+        &amp;#39;snap&amp;#39;: { r: false, t: testSnap },
+        &amp;#39;connect&amp;#39;: { r: true, t: testConnect },
+        &amp;#39;orientation&amp;#39;: { r: false, t: testOrientation },
+        &amp;#39;margin&amp;#39;: { r: false, t: testMargin },
+        &amp;#39;direction&amp;#39;: { r: true, t: testDirection },
+        &amp;#39;behaviour&amp;#39;: { r: true, t: testBehaviour },
+        &amp;#39;serialization&amp;#39;: { r: true, t: testSerialization }
+};
+
+// Set defaults where applicable.
+options = $.extend({
+         &amp;#39;connect&amp;#39;: false
+        ,&amp;#39;direction&amp;#39;: &amp;#39;ltr&amp;#39;
+        ,&amp;#39;behaviour&amp;#39;: &amp;#39;tap&amp;#39;
+        ,&amp;#39;orientation&amp;#39;: &amp;#39;horizontal&amp;#39;
+}, options);
+
+// Make sure the test for serialization runs.
+options[&amp;#39;serialization&amp;#39;] = $.extend({
+         &amp;#39;lower&amp;#39;: []
+        ,&amp;#39;upper&amp;#39;: []
+        ,&amp;#39;format&amp;#39;: {}
+}, options[&amp;#39;serialization&amp;#39;]);
+
+// Run all options through a testing mechanism to ensure correct
+// input. It should be noted that options might get modified to
+// be handled properly. E.g. wrapping integers in arrays.
+$.each( tests, function( name, test ){
+
+        if ( options[name] === undefined ) {
+                if ( test.r ) {
+                        throwError(&amp;quot;&amp;#39;&amp;quot; + name + &amp;quot;&amp;#39; is required.&amp;quot;);
+                } else {
+                        return true;
+                }
+        }
+
+        test.t( parsed, options[name], sliders );
+});
+
+// Pre-define the styles.
+parsed.style = parsed.ort ? &amp;#39;top&amp;#39; : &amp;#39;left&amp;#39;;
+
+return parsed;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// DOM additions&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;// Append a handle to the base. function addHandle (
+options, index ) {</p>
+
+<pre><code>var handle = $(&amp;#39;&amp;lt;div&amp;gt;&amp;lt;div/&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;).addClass( Classes[2] ),
+        additions = [ &amp;#39;-lower&amp;#39;, &amp;#39;-upper&amp;#39; ];
+
+if ( options.dir ) {
+        additions.reverse();
+}
+
+handle.children().addClass(
+        Classes[3] + &amp;quot; &amp;quot; + Classes[3]+additions[index]
+);
+
+return handle;</code></pre>
+
+<p>}</p>
+
+<p>// Create a copy of an element-creating Link. function addElement ( handle,
+link ) {</p>
+
+<pre><code>// If the Link requires creation of a new element,
+// create this element and return a new Link instance.
+if ( link.el ) {
+        link = new Link({
+                &amp;#39;target&amp;#39;: $(link.el).clone().appendTo( handle ),
+                &amp;#39;method&amp;#39;: link.method,
+                &amp;#39;format&amp;#39;: link.formatting
+        }, true);
+}
+
+// Otherwise, return the reference.
+return link;</code></pre>
+
+<p>}</p>
+
+<p>// Loop all links for a handle. function addElements ( elements, handle,
+formatting ) {</p>
+
+<pre><code>var index, list = [];
+
+// Use the Link interface to provide unified
+// formatting for the .val() method.
+list.push(
+        new Link({
+                &amp;#39;format&amp;#39;: formatting
+        }, true)
+);
+
+// Loop all links in either &amp;#39;lower&amp;#39; or &amp;#39;upper&amp;#39;.
+for ( index = 0; index &amp;lt; elements.length; index++ ) {
+        list.push(addElement(handle, elements[index]));
+}
+
+return list;</code></pre>
+
+<p>}</p>
+
+<p>// Go over all Links and assign them to a handle. function addLinks (
+options, handles ) {</p>
+
+<pre><code>var index, links = [];
+
+// Copy the links into a new array, instead of modifying
+// the &amp;#39;options.ser&amp;#39; list. This allows replacement of the invalid
+// &amp;#39;.el&amp;#39; Links, while the others are still passed by reference.
+for ( index = 0; index &amp;lt; options.handles; index++ ) {
+
+        // Append a new array.
+        links[index] = addElements(
+                options.ser[index],
+                handles[index].children(),
+                options.formatting
+        );
+}
+
+return links;</code></pre>
+
+<p>}</p>
+
+<p>// Add the proper connection classes. function addConnection ( connect,
+target, handles ) {</p>
+
+<pre><code>// Apply the required connection classes to the elements
+// that need them. Some classes are made up for several
+// segments listed in the class list, to allow easy
+// renaming and provide a minor compression benefit.
+switch ( connect ) {
+        case 1: target.addClass( Classes[7] );
+                        handles[0].addClass( Classes[6] );
+                        break;
+        case 3: handles[1].addClass( Classes[6] );
+                        /* falls through */
+        case 2: handles[0].addClass( Classes[7] );
+                        /* falls through */
+        case 0: target.addClass(Classes[6]);
+                        break;
+}
+</code></pre>
+
+<p>}</p>
+
+<p>// Add handles and loop Link elements. function addHandles ( options, base
+) {</p>
+
+<pre><code>var index, handles = [];
+
+// Append handles.
+for ( index = 0; index &amp;lt; options.handles; index++ ) {
+
+        // Keep a list of all added handles.
+        handles.push( addHandle( options, index ).appendTo(base) );
+}
+
+return handles;</code></pre>
+
+<p>}</p>
+
+<p>// Initialize a single slider. function addSlider ( options, target ) {</p>
+
+<pre><code>// Apply classes and data to the target.
+target.addClass([
+        Classes[0],
+        Classes[8 + options.dir],
+        Classes[4 + options.ort]
+].join(&amp;#39; &amp;#39;));
+
+return $(&amp;#39;&amp;lt;div/&amp;gt;&amp;#39;).appendTo(target).addClass( Classes[1] );</code></pre>
+
+<p>} &lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Slider scope&lt;/p&gt;</p>
+
+<p>&lt;p&gt;function closure ( target, options, originalOptions ){&lt;/p&gt;</p>
+
+<p>&lt;p&gt;// Internal variables&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;// All variables local to &amp;#39;closure&amp;#39;
+are marked $. var $Target = $(target),</p>
+
+<pre><code>$Locations = [-1, -1],
+$Base,
+$Serialization,
+$Handles;</code></pre>
+
+<p>// Shorthand for base dimensions. function baseSize ( ) {</p>
+
+<pre><code>return $Base[[&amp;#39;width&amp;#39;, &amp;#39;height&amp;#39;][options.ort]]();</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// External event handling&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;function fireEvents ( events ) {</p>
+
+<pre><code>// Use the external api to get the values.
+// Wrap the values in an array, as .trigger takes
+// only one additional argument.
+var index, values = [ $Target.val() ];
+
+for ( index = 0; index &amp;lt; events.length; index++ ){
+        $Target.trigger(events[index], values);
+}</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Handle placement&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;// Test suggested values and apply margin, step.
+function setHandle ( handle, to, delimit ) {</p>
+
+<pre><code>var n = handle[0] !== $Handles[0][0] ? 1 : 0,
+        lower = $Locations[0] + options.margin,
+        upper = $Locations[1] - options.margin;
+
+// Don&amp;#39;t delimit range dragging.
+if ( delimit &amp;amp;&amp;amp; $Handles.length &amp;gt; 1 ) {
+        to = n ? Math.max( to, lower ) : Math.min( to, upper );
+}
+
+// Handle the step option.
+if ( to &amp;lt; 100 ){
+        to = getStep(options, to);
+}
+
+// Limit to 0/100 for .val input, trim anything beyond 7 digits, as
+// JavaScript has some issues in its floating point implementation.
+to = limit(parseFloat(to.toFixed(7)));
+
+// Return falsy if handle can&amp;#39;t move. False for 0 or 100 limit,
+// &amp;#39;0&amp;#39; for limiting by another handle.
+if ( to === $Locations[n] ) {
+        if ( $Handles.length === 1 ) {
+                return false;
+        }
+        return ( to === lower || to === upper ) ? 0 : false;
+}
+
+// Set the handle to the new position.
+handle.css( options.style, to + &amp;#39;%&amp;#39; );
+
+// Force proper handle stacking
+if ( handle.is(&amp;#39;:first-child&amp;#39;) ) {
+        handle.toggleClass(Classes[17], to &amp;gt; 50 );
+}
+
+// Update locations.
+$Locations[n] = to;
+
+// Invert the value if this is a right-to-left slider.
+if ( options.dir ) {
+        to = 100 - to;
+}
+
+// Write values to serialization Links.
+// Convert the value to the correct relative representation.
+$($Serialization[n]).each(function(){
+        this.write( options, to, handle.children(), $Target );
+});
+
+return true;</code></pre>
+
+<p>}</p>
+
+<p>// Delimit proposed values for handle positions. function getPositions ( a,
+b, delimit ) {</p>
+
+<pre><code>// Add movement to current position.
+var c = a + b[0], d = a + b[1];
+
+// Only alter the other position on drag,
+// not on standard sliding.
+if ( delimit ) {
+        if ( c &amp;lt; 0 ) {
+                d += Math.abs(c);
+        }
+        if ( d &amp;gt; 100 ) {
+                c -= ( d - 100 );
+        }
+
+        // Limit values to 0 and 100.
+        return [limit(c), limit(d)];
+}
+
+return [c,d];</code></pre>
+
+<p>}</p>
+
+<p>// Handles movement by tapping. function jump ( handle, to, instant ) {</p>
+
+<pre><code>if ( !instant ) {
+        // Flag the slider as it is now in a transitional state.
+        // Transition takes 300 ms, so re-enable the slider afterwards.
+        addClassFor( $Target, Classes[14], 300 );
+}
+
+// Move the handle to the new position.
+setHandle( handle, to, false );
+
+fireEvents([&amp;#39;slide&amp;#39;, &amp;#39;set&amp;#39;, &amp;#39;change&amp;#39;]);</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Events&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;// Handler for attaching events trough a proxy.
+function attach ( events, element, callback, data ) {</p>
+
+<pre><code>// Add the noUiSlider namespace to all events.
+events = events.replace( /\s/g, namespace + &amp;#39; &amp;#39; ) + namespace;
+
+// Bind a closure on the target.
+return element.on( events, function( e ){
+
+        // jQuery and Zepto handle unset attributes differently.
+        var disabled = $Target.attr(&amp;#39;disabled&amp;#39;);
+                disabled = !( disabled === undefined || disabled === null );
+
+        // Test if there is anything that should prevent an event
+        // from being handled, such as a disabled state or an active
+        // &amp;#39;tap&amp;#39; transition.
+        if( $Target.hasClass( Classes[14] ) || disabled ) {
+                return false;
+        }
+
+        e = fixEvent(e);
+        e.calcPoint = e.points[ options.ort ];
+
+        // Call the event handler with the event [ and additional data ].
+        callback ( e, data );
+});</code></pre>
+
+<p>}</p>
+
+<p>// Handle movement on document for handle and range drag. function move (
+event, data ) {</p>
+
+<pre><code>var handles = data.handles || $Handles, positions, state = false,
+        proposal = ((event.calcPoint - data.start) * 100) / baseSize(),
+        h = handles[0][0] !== $Handles[0][0] ? 1 : 0;
+
+// Calculate relative positions for the handles.
+positions = getPositions( proposal, data.positions, handles.length &amp;gt; 1);
+
+state = setHandle ( handles[0], positions[h], handles.length === 1 );
+
+if ( handles.length &amp;gt; 1 ) {
+        state = setHandle ( handles[1], positions[h?0:1], false ) || state;
+}
+
+// Fire the &amp;#39;slide&amp;#39; event if any handle moved.
+if ( state ) {
+        fireEvents([&amp;#39;slide&amp;#39;]);
+}</code></pre>
+
+<p>}</p>
+
+<p>// Unbind move events on document, call callbacks. function end ( event ) {</p>
+
+<pre><code>// The handle is no longer active, so remove the class.
+$(&amp;#39;.&amp;#39; + Classes[15]).removeClass(Classes[15]);
+
+// Remove cursor styles and text-selection events bound to the body.
+if ( event.cursor ) {
+        $(&amp;#39;body&amp;#39;).css(&amp;#39;cursor&amp;#39;, &amp;#39;&amp;#39;).off( namespace );
+}
+
+// Unbind the move and end events, which are added on &amp;#39;start&amp;#39;.
+doc.off( namespace );
+
+// Remove dragging class.
+$Target.removeClass(Classes[12]);
+
+// Fire the change and set events.
+fireEvents([&amp;#39;set&amp;#39;, &amp;#39;change&amp;#39;]);</code></pre>
+
+<p>}</p>
+
+<p>// Bind move events on document. function start ( event, data ) {</p>
+
+<pre><code>// Mark the handle as &amp;#39;active&amp;#39; so it can be styled.
+if( data.handles.length === 1 ) {
+        data.handles[0].children().addClass(Classes[15]);
+}
+
+// A drag should never propagate up to the &amp;#39;tap&amp;#39; event.
+event.stopPropagation();
+
+// Attach the move event.
+attach ( actions.move, doc, move, {
+        start: event.calcPoint,
+        handles: data.handles,
+        positions: [
+                $Locations[0],
+                $Locations[$Handles.length - 1]
+        ]
+});
+
+// Unbind all movement when the drag ends.
+attach ( actions.end, doc, end, null );
+
+// Text selection isn&amp;#39;t an issue on touch devices,
+// so adding cursor styles can be skipped.
+if ( event.cursor ) {
+
+        // Prevent the &amp;#39;I&amp;#39; cursor and extend the range-drag cursor.
+        $(&amp;#39;body&amp;#39;).css(&amp;#39;cursor&amp;#39;, $(event.target).css(&amp;#39;cursor&amp;#39;));
+
+        // Mark the target with a dragging state.
+        if ( $Handles.length &amp;gt; 1 ) {
+                $Target.addClass(Classes[12]);
+        }
+
+        // Prevent text selection when dragging the handles.
+        $(&amp;#39;body&amp;#39;).on(&amp;#39;selectstart&amp;#39; + namespace, false);
+}</code></pre>
+
+<p>}</p>
+
+<p>// Move closest handle to tapped location. function tap ( event ) {</p>
+
+<pre><code>var location = event.calcPoint, total = 0, to;
+
+// The tap event shouldn&amp;#39;t propagate up and cause &amp;#39;edge&amp;#39; to run.
+event.stopPropagation();
+
+// Add up the handle offsets.
+$.each( $Handles, function(){
+        total += this.offset()[ options.style ];
+});
+
+// Find the handle closest to the tapped position.
+total = ( location &amp;lt; total/2 || $Handles.length === 1 ) ? 0 : 1;
+
+location -= $Base.offset()[ options.style ];
+
+// Calculate the new position.
+to = ( location * 100 ) / baseSize();
+
+// Find the closest handle and calculate the tapped point.
+// The set handle to the new position.
+jump( $Handles[total], to, options.events.snap );
+
+if ( options.events.snap ) {
+        start(event, { handles: [$Handles[total]] });
+}</code></pre>
+
+<p>}</p>
+
+<p>// Move handle to edges when target gets tapped. function edge ( event ) {</p>
+
+<pre><code>var i = event.calcPoint &amp;lt; $Base.offset()[ options.style ],
+        to = i ? 0 : 100;
+
+i = i ? 0 : $Handles.length - 1;
+
+jump( $Handles[i], to, false );</code></pre>
+
+<p>}</p>
+
+<p>// Attach events to several slider parts. function events ( behaviour ) {</p>
+
+<pre><code>var i, drag;
+
+// Attach the standard drag event to the handles.
+if ( !behaviour.fixed ) {
+
+        for ( i = 0; i &amp;lt; $Handles.length; i++ ) {
+
+                // These events are only bound to the visual handle
+                // element, not the &amp;#39;real&amp;#39; origin element.
+                attach ( actions.start, $Handles[i].children(), start, {
+                        handles: [ $Handles[i] ]
+                });
+        }
+}
+
+// Attach the tap event to the slider base.
+if ( behaviour.tap ) {
+        attach ( actions.start, $Base, tap, {
+                handles: $Handles
+        });
+}
+
+// Extend tapping behaviour to target
+if ( behaviour.extend ) {
+
+        $Target.addClass( Classes[16] );
+
+        if ( behaviour.tap ) {
+                attach ( actions.start, $Target, edge, {
+                        handles: $Handles
+                });
+        }
+}
+
+// Make the range dragable.
+if ( behaviour.drag ){
+
+        drag = $Base.find( &amp;#39;.&amp;#39; + Classes[7] ).addClass( Classes[10] );
+
+        // When the range is fixed, the entire range can
+        // be dragged by the handles. The handle in the first
+        // origin will propagate the start event upward,
+        // but it needs to be bound manually on the other.
+        if ( behaviour.fixed ) {
+                drag = drag.add($Base.children().not( drag ).children());
+        }
+
+        attach ( actions.start, drag, start, {
+                handles: $Handles
+        });
+}</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Initialize slider&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;// Throw an error if the slider was already
+initialized. if ( !$Target.is(&amp;#39;:empty&amp;#39;) ) {</p>
+
+<pre><code>throw new Error(&amp;#39;Slider was already initialized.&amp;#39;);</code></pre>
+
+<p>}</p>
+
+<p>// Create the base element, initialise HTML and set classes. // Add handles
+and links. $Base = addSlider( options, $Target ); $Handles = addHandles(
+options, $Base ); $Serialization = addLinks( options, $Handles );</p>
+
+<p>// Set the connect classes. addConnection ( options.connect, $Target,
+$Handles );</p>
+
+<p>// Attach user events. events( options.events );&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Methods&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;// Set the slider value. target.vSet = function (
+values, callback, link, update, animate ){</p>
+
+<pre><code>var i, to;
+
+// The RTL settings is implemented by reversing the front-end,
+// internal mechanisms are the same.
+if ( options.dir &amp;amp;&amp;amp; options.handles &amp;gt; 1 ) {
+        values.reverse();
+}
+
+// Animation is optional.
+if ( animate ) {
+        addClassFor( $Target, Classes[14], 300 );
+}
+
+// If there are multiple handles to be set run the setting
+// mechanism twice for the first handle, to make sure it
+// can be bounced of the second one properly.
+for ( i = 0; i &amp;lt; ( $Handles.length &amp;gt; 1 ? 3 : 1 ); i++ ) {
+
+        to = link || $Serialization[i%2][0];
+        to = to.valueOf( values[i%2] );
+
+        if ( to === false ) {
+                continue;
+        }
+
+        // Calculate the new handle position
+        to = toStepping( options, to );
+
+        // Invert the value if this is a right-to-left slider.
+        if ( options.dir ) {
+                to = 100 - to;
+        }
+
+        // Force delimitation.
+        if ( setHandle( $Handles[i%2], to, true ) === true ) {
+                continue;
+        }
+
+        // Reset the input if it doesn&amp;#39;t match the slider.
+        $($Serialization[i%2]).each(function(){
+                this.write(
+                        options,
+                        $Locations[i%2],
+                        $Handles[i%2].children(),
+                        $Target,
+                        update
+                );
+        });
+}
+
+// Optionally fire the &amp;#39;set&amp;#39; event.
+if( callback === true ) {
+        fireEvents([&amp;#39;set&amp;#39;]);
+}
+
+return this;</code></pre>
+
+<p>};</p>
+
+<p>// Get the slider value. target.vGet = function ( ){</p>
+
+<pre><code>var i, retour = [];
+
+// Get the value from all handles.
+for ( i = 0; i &amp;lt; options.handles; i++ ){
+        retour[i] = $Serialization[i][0].saved;
+}
+
+// If only one handle is used, return a single value.
+if ( retour.length === 1 ){
+        return retour[0];
+}
+
+if ( options.dir &amp;amp;&amp;amp; options.handles &amp;gt; 1 ) {
+        return retour.reverse();
+}
+
+return retour;</code></pre>
+
+<p>};</p>
+
+<p>// Destroy the slider and unbind all events. target.destroy = function ( ){</p>
+
+<pre><code>// Loop all linked serialization objects and unbind all
+// events in the noUiSlider namespace.
+$.each($Serialization, function(){
+        $.each(this, function(){
+                // Won&amp;#39;t remove &amp;#39;change&amp;#39; when bound implicitly.
+                if ( this.target ) {
+                        this.target.off( namespace );
+                }
+        });
+});
+
+// Unbind events on the slider, remove all classes and child elements.
+$(this).off(namespace)
+        .removeClass(Classes.join(&amp;#39; &amp;#39;))
+        .empty();
+
+// Return the original options from the closure.
+return originalOptions;</code></pre>
+
+<p>};&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// Value setting&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>// Use the public value method to set the start values.
+$Target.val( options.start );</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;// Access points&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;// Run the standard initializer function initialize
+( originalOptions ) {</p>
+
+<pre><code>// Throw error if group is empty.
+if ( !this.length ){
+        throwError(&amp;quot;Can&amp;#39;t initialize slider on empty selection.&amp;quot;);
+}
+
+// Test the options once, not for every slider.
+var options = test( originalOptions, this );
+
+// Loop all items, and provide a new closed-scope environment.
+return this.each(function(){
+        closure(this, options, originalOptions);
+});</code></pre>
+
+<p>}</p>
+
+<p>// Destroy the slider, then re-enter initialization. function rebuild (
+options ) {</p>
+
+<pre><code>return this.each(function(){
+
+        // Get the current values from the slider,
+        // including the initialization options.
+        var values = $(this).val(),
+                originalOptions = this.destroy(),
+
+                // Extend the previous options with the newly provided ones.
+                newOptions = $.extend( {}, originalOptions, options );
+
+        // Run the standard initializer.
+        $(this).noUiSlider( newOptions );
+
+        // If the start option hasn&amp;#39;t changed,
+        // reset the previous values.
+        if ( originalOptions.start === newOptions.start ) {
+                $(this).val(values);
+        }
+});</code></pre>
+
+<p>}</p>
+
+<p>// Expose serialization constructor. /** @expose */ $.noUiSlider = {
+&amp;#39;Link&amp;#39;: Link };</p>
+
+<p>// Extend jQuery/Zepto with the noUiSlider method. /** @expose */
+$.fn.noUiSlider = function ( options, re ) {</p>
+
+<pre><code>return ( re ? rebuild : initialize ).call(this, options);</code></pre>
+
+<p>};</p>
+
+<p>$.fn.val = function ( ) {</p>
+
+<pre><code>// Convert the function arguments to an array.
+var args = Array.prototype.slice.call( arguments, 0 ),
+        set, link, update, animate;
+
+// Test if there are arguments, and if not, call the &amp;#39;get&amp;#39; method.
+if ( !args.length ) {
+
+        // Determine whether to use the native val method.
+        if ( this.hasClass(Classes[0]) ) {
+                return this[0].vGet();
+        }
+
+        return $val.apply( this );
+}
+
+// Extract modifiers for value method.
+if ( typeof args[1] === &amp;#39;object&amp;#39; ) {
+        set = args[1][&amp;#39;set&amp;#39;];
+        link = args[1][&amp;#39;link&amp;#39;];
+        update = args[1][&amp;#39;update&amp;#39;];
+        animate = args[1][&amp;#39;animate&amp;#39;];
+
+// Support the &amp;#39;true&amp;#39; option.
+} else if ( args[1] === true ) {
+        set = true;
+}
+
+// Loop all individual items, and handle setting appropriately.
+return this.each(function(){
+
+        if ( $(this).hasClass(Classes[0]) ) {
+                this.vSet( asArray(args[0]), set, link, update, animate );
+        } else {
+                $val.apply( $(this), args );
+        }
+});</code></pre>
+
+<p>};&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}( &lt;a href=“&#39;jQuery&#39;”&gt;window&lt;/a&gt; || &lt;a
+href=“&#39;Zepto&#39;”&gt;window&lt;/a&gt; ));&lt;/p&gt;</p>
+
+<pre><code>  &lt;/div&gt;
+
+  &lt;!-- Methods --&gt;
+            &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+<p>&lt;/html&gt;</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>pool.js</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            pool.js
+        </h1>
+        <ul class="files">
+            <li>app/assets/javascripts/pool.js</li>
+            <li>Last modified: 2014-06-10 17:47:16 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>// Filter handles function filterHandle() {</p>
+
+<pre><code>$(&#39;.filter-handle&#39;).on(&#39;click&#39;, function() {
+  var $fa = $(this).find(&#39;.fa&#39;);
+  if($fa.hasClass(&#39;fa-caret-right&#39;)) {
+    $fa.removeClass(&#39;fa-caret-right&#39;).addClass(&#39;fa-caret-down&#39;);
+  } else {
+    $fa.removeClass(&#39;fa-caret-down&#39;).addClass(&#39;fa-caret-right&#39;);
+  }
+  $(this).next().toggleClass(&#39;show&#39;);
+});</code></pre>
+
+<p>}</p>
+
+<p>function poolPassword() {</p>
+
+<pre><code>$input = $(&quot;input:radio[name=&#39;pool[is_public]&#39;]&quot;);
+$.each($input,function(k,v) {
+  togglePasswordFields(v);
+});
+
+$input.on(&#39;change&#39;, function() {
+  togglePasswordFields(this);
+});
+
+$(&#39;a.togglepassword&#39;).on(&#39;click&#39;, function(e) {
+  $(&#39;a.togglepassword.hide&#39;).removeClass(&#39;hide&#39;);
+  $(this).addClass(&#39;hide&#39;);
+
+  e.preventDefault();
+  $(&#39;.password&#39;).each(function(){
+    $this = $(this);
+    if($this.hasClass(&#39;hide&#39;)) {
+      $this.removeClass(&#39;hide&#39;);
+    } else {
+      $this.addClass(&#39;hide&#39;);
+    }
+  });
+});</code></pre>
+
+<p>}</p>
+
+<p>function togglePasswordFields(e) {</p>
+
+<pre><code>if(e.checked) {
+  if (e.value == &#39;true&#39;) {
+    $(&quot;#private_pool_enabled&quot;).hide();
+  } else {
+    $(&quot;#private_pool_enabled&quot;).show();
+  }
+}</code></pre>
+
+<p>}</p>
+
+<p>function rangeSlider(minus,maxus) {</p>
+
+<pre><code>var Link = $.noUiSlider.Link;
+
+$(&#39;.rangeslider&#39;).noUiSlider({
+  start: [ minus, maxus ],
+  step: 5,
+  behaviour: &#39;snap&#39;,
+  range: {
+    &#39;min&#39;: 5,
+    &#39;max&#39;: 65
+  },
+  connect: true,
+  serialization: {
+    lower: [
+      new Link({
+        target: $(&#39;.slider&#39;).find(&#39;.min&#39;),
+      }),
+      new Link({
+        target: $(&#39;.slider&#39;).find(&#39;.mintext&#39;),
+        method: &quot;text&quot;
+      })
+    ],
+    upper: [
+      new Link({
+        target: $(&#39;.slider&#39;).find(&#39;.max&#39;)
+      }),
+      new Link({
+        target: $(&#39;.slider&#39;).find(&#39;.maxtext&#39;),
+        method: &quot;text&quot;
+      })
+    ],
+    format: {
+      decimals: 0
+    }
+  }
+});</code></pre>
+
+<p>} function rangeSlider2(minus, startus) {</p>
+
+<pre><code>minus = round5(minus);
+startus = round5(startus);
+
+var Link = $.noUiSlider.Link;
+
+$(&#39;.rangeslider&#39;).noUiSlider({
+  start: [ startus ],
+  step: 5,
+  behaviour: &#39;snap&#39;,
+  range: {
+    &#39;min&#39;: minus,
+    &#39;max&#39;: 65
+  },
+  connect: &#39;lower&#39;,
+  serialization: {
+    lower: [
+      new Link({
+        target: $(&#39;.slider&#39;).find(&#39;.min&#39;),
+      }),
+      new Link({
+        target: $(&#39;.slider&#39;).find(&#39;.mintext&#39;),
+        method: &quot;text&quot;
+      })
+    ],
+    format: {
+      decimals: 0
+    }
+  }
+});</code></pre>
+
+<p>}</p>
+
+<p>function round5(x) {</p>
+
+<pre><code>return Math.ceil(x/5)*5;</code></pre>
+
+<p>}</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

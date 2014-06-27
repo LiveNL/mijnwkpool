@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>_forms.css.scss</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            _forms.css.scss
+        </h1>
+        <ul class="files">
+            <li>app/assets/stylesheets/modules/_forms.css.scss</li>
+            <li>Last modified: 2014-06-10 17:47:16 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p><a href="type=text">input</a>, <a href="type=password">input</a>, <a
+href="type=email">input</a> {</p>
+
+<pre><code>@include font-size($font-size);
+border-color: $color-grey-light;
+border-style: solid;
+border-width: 1px 1px 3px 1px;
+border-radius: 0;
+color: $color-grey-medium;
+display: block;
+font-family: $font-family;
+font-weight: $font-weight;
+height: 53px;
+padding: 0 10px;
+outline: none;
+width: 100%;
+-webkit-appearance: none;
+
+&amp;:focus {
+  border-color: $color-grey-medium;
+}</code></pre>
+
+<p>}</p>
+
+<p><a href="type=number">input</a>::-webkit-inner-spin-button, <a
+href="type=number">input</a>::-webkit-outer-spin-button {</p>
+
+<pre><code>-webkit-appearance: none;
+margin: 0;</code></pre>
+
+<p>}</p>
+
+<p>.checkbox {</p>
+
+<pre><code>&amp; + .checkbox {
+  margin-top: 5px;
+}
+input[type=checkbox],
+input[type=radio] {
+  display: none;
+
+  &amp; + label {
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+    display: inline-block;
+    height: 17px;
+    line-height: 17px;
+    padding-left: 17+15px;
+  }
+
+  &amp;:checked + label {
+    background-position: 0 -17px;
+  }
+}
+
+label {
+  background-image: image_url(&#39;checkbox.png&#39;);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}</code></pre>
+
+<p>}</p>
+
+<p>.form-field {</p>
+
+<pre><code>@include clearfix;
+
+&amp; + .form-field {
+  padding-top: 20px;
+}
+
+&amp;.inline {
+  input[type=radio],
+  input[type=checkbox] {
+    display:none;
+
+    &amp;:checked + label {
+      @extend .btn.green;
+    }
+
+    &amp; + label {
+      @extend .btn;
+      @extend .btn.grey;
+      @extend .left;
+    }
+  }
+}
+
+&amp;.error {
+
+  label {
+    color: $color-red-light;
+  }
+
+  input {
+    color: $color-red-light;
+    border-color: $color-red-light;
+  }
+
+  span {
+    color: $color-red-light;
+    display: block;
+    margin-top: 10px;
+  }
+}
+
+&amp;.action &gt; div + div {
+  margin-top: 10px;
+  @include respond-to(small) {
+    margin-top: 0;
+  }
+}
+
+&amp;.action-stacked &gt; div + div {
+  margin-top: 10px;
+}
+
+&amp;.login {
+  input:first-child {
+    border-bottom-width: 0;
+    height: 50px;
+
+    &amp;:focus {
+      border-bottom-width: 1px;
+    }
+  }
+}
+
+label {
+  color: $color-grey-medium;
+  display: block;
+  margin-bottom: 5px;
+}</code></pre>
+
+<p>}</p>
+
+<p>.slider {</p>
+
+<pre><code>margin-right: 2px;
+.minmax {
+  @include clearfix;
+  margin-bottom: 15px;
+}
+.mintext {
+  @extend .left;
+  color: $color-grey-medium;
+}
+.maxtext {
+  @extend .right;
+  color: $color-grey-medium;
+}</code></pre>
+
+<p>}</p>
+
+<p>.form-search {</p>
+
+<pre><code>@include clearfix;
+div {
+  overflow: hidden;
+}
+button {
+  float: right;
+  margin-left: 10px;
+}
+
+@include respond-to(mobile) {
+  button {
+    box-shadow: none;
+    height: 53px;
+    line-height: 50px;
+    margin-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  input {
+    border-width: 1px;
+  }
+}</code></pre>
+
+<p>}</p>
+
+<p><a href="type=number">input</a> {</p>
+
+<pre><code>@include font-size($font-size);
+border-color: $color-grey-light;
+border-style: solid;
+border-width: 1px 1px 3px 1px;
+border-radius: 0;
+color: $color-grey-dark;
+display: block;
+font-family: $font-family;
+font-weight: $font-weight-bold;
+height: 53px;
+padding: 0 10px;
+outline: none;
+width: 100%;
+-webkit-appearance: none;
+
+&amp;:focus {
+  border-color: $color-grey-medium;
+}
+
+&amp;.predict {
+  height: 40px;
+  margin: 0 5px;
+  text-align: center;
+  width: 40px;
+
+  @include respond-to(small) {
+    margin: 0 auto;
+  }
+}</code></pre>
+
+<p>}</p>
+
+<p>::-webkit-input-placeholder {    WebKit browsers</p>
+
+<pre><code>color:    $color-grey-light;</code></pre>
+
+<p>} :-moz-placeholder {    Mozilla Firefox 4 to 18</p>
+
+<pre><code>color:    $color-grey-light;</code></pre>
+
+<p>} ::-moz-placeholder { /* Mozilla Firefox 19+ */</p>
+
+<pre><code>color:    $color-grey-light;</code></pre>
+
+<p>} :-ms-input-placeholder { /* Internet Explorer 10+ */</p>
+
+<pre><code>color:    $color-grey-light;</code></pre>
+
+<p>}</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

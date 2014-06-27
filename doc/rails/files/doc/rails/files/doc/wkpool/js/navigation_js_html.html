@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>navigation_js.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            navigation_js.html
+        </h1>
+        <ul class="files">
+            <li>doc/rails/files/doc/wkpool/js/navigation_js.html</li>
+            <li>Last modified: 2014-06-16 16:01:52 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”</p>
+
+<pre><code>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+<p>&lt;html xmlns=“<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>”
+xml:lang=“en” lang=“en”&gt; &lt;head&gt;</p>
+
+<pre><code>&lt;title&gt;navigation.js&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../../css/reset.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;</code></pre>
+
+<p>&lt;link rel=“stylesheet” href=“../../../../css/main.css” type=“text/css”
+media=“screen” /&gt; &lt;link rel=“stylesheet”
+href=“../../../../css/github.css” type=“text/css” media=“screen” /&gt;
+&lt;script src=“../../../../js/jquery-1.3.2.min.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../js/jquery-effect.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script src=“../../../../js/main.js”
+type=“text/javascript” charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../js/highlight.pack.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+
+    &lt;h1&gt;
+        navigation.js
+    &lt;/h1&gt;
+    &lt;ul class=&quot;files&quot;&gt;
+        &lt;li&gt;doc/wkpool/js/navigation.js&lt;/li&gt;
+        &lt;li&gt;Last modified: 2014-06-16 15:57:51 +0200&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;bodyContent&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+
+&lt;div class=&quot;description&quot;&gt;</code></pre>
+
+<p>&lt;pre&gt;&lt;code&gt;Navigation allows movement using the arrow keys
+through the search results.</p>
+
+<p>When using this library you will need to set scrollIntoView to the
+appropriate function for your layout.  Use scrollInWindow if the container
+is not scrollable and scrollInElement if the container is a separate
+scrolling region.&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;Navigation = new function() {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;this.initNavigation = function() {</p>
+
+<pre><code>var _this = this;
+
+$(document).keydown(function(e) {
+  _this.onkeydown(e);
+}).keyup(function(e) {
+  _this.onkeyup(e);
+});
+
+this.navigationActive = true;</code></pre>
+
+<p>}</p>
+
+<p>this.setNavigationActive = function(state) {</p>
+
+<pre><code>this.navigationActive = state;
+this.clearMoveTimeout();</code></pre>
+
+<p>}</p>
+
+<p>this.onkeyup = function(e) {</p>
+
+<pre><code>if (!this.navigationActive) return;
+
+switch(e.keyCode) {
+  case 37: //Event.KEY_LEFT:
+  case 38: //Event.KEY_UP:
+  case 39: //Event.KEY_RIGHT:
+  case 40: //Event.KEY_DOWN:
+    this.clearMoveTimeout();
+    break;
+}</code></pre>
+
+<p>}</p>
+
+<p>this.onkeydown = function(e) {</p>
+
+<pre><code>if (!this.navigationActive) return;
+switch(e.keyCode) {
+  case 37: //Event.KEY_LEFT:
+    if (this.moveLeft()) e.preventDefault();
+    break;
+  case 38: //Event.KEY_UP:
+    if (e.keyCode == 38 || e.ctrlKey) {
+      if (this.moveUp()) e.preventDefault();
+      this.startMoveTimeout(false);
+    }
+    break;
+  case 39: //Event.KEY_RIGHT:
+    if (this.moveRight()) e.preventDefault();
+    break;
+  case 40: //Event.KEY_DOWN:
+    if (e.keyCode == 40 || e.ctrlKey) {
+      if (this.moveDown()) e.preventDefault();
+      this.startMoveTimeout(true);
+    }
+    break;
+  case 13: //Event.KEY_RETURN:
+    if (this.$current)
+      e.preventDefault();
+      this.select(this.$current);
+    break;
+}
+if (e.ctrlKey &amp;amp;&amp;amp; e.shiftKey) this.select(this.$current);</code></pre>
+
+<p>}</p>
+
+<p>this.clearMoveTimeout = function() {</p>
+
+<pre><code>clearTimeout(this.moveTimeout);
+this.moveTimeout = null;</code></pre>
+
+<p>}</p>
+
+<p>this.startMoveTimeout = function(isDown) {</p>
+
+<pre><code>if (!$.browser.mozilla &amp;amp;&amp;amp; !$.browser.opera) return;
+if (this.moveTimeout) this.clearMoveTimeout();
+var _this = this;
+
+var go = function() {
+  if (!_this.moveTimeout) return;
+  _this[isDown ? &amp;#39;moveDown&amp;#39; : &amp;#39;moveUp&amp;#39;]();
+  _this.moveTimout = setTimeout(go, 100);
+}
+this.moveTimeout = setTimeout(go, 200);</code></pre>
+
+<p>}</p>
+
+<p>this.moveRight = function() { }</p>
+
+<p>this.moveLeft = function() { }</p>
+
+<p>this.move = function(isDown) { }</p>
+
+<p>this.moveUp = function() {</p>
+
+<pre><code>return this.move(false);</code></pre>
+
+<p>}</p>
+
+<p>this.moveDown = function() {</p>
+
+<pre><code>return this.move(true);</code></pre>
+
+<p>}</p>
+
+<p>/*</p>
+
+<pre><code> Scrolls to the given element in the scrollable element view.
+/</code></pre>
+
+<p>this.scrollInElement = function(element, view) {</p>
+
+<pre><code>var offset, viewHeight, viewScroll, height;
+offset = element.offsetTop;
+height = element.offsetHeight;
+viewHeight = view.offsetHeight;
+viewScroll = view.scrollTop;
+
+if (offset - viewScroll + height &amp;gt; viewHeight) {
+  view.scrollTop = offset - viewHeight + height;
+}
+if (offset &amp;lt; viewScroll) {
+  view.scrollTop = offset;
+}</code></pre>
+
+<p>}</p>
+
+<p>/*</p>
+
+<pre><code> Scrolls to the given element in the window.  The second argument is
+ ignored
+/</code></pre>
+
+<p>this.scrollInWindow = function(element, ignored) {</p>
+
+<pre><code>var offset, viewHeight, viewScroll, height;
+offset = element.offsetTop;
+height = element.offsetHeight;
+viewHeight = window.innerHeight;
+viewScroll = window.scrollY;
+
+if (offset - viewScroll + height &amp;gt; viewHeight) {
+  window.scrollTo(window.scrollX, offset - viewHeight + height);
+}
+if (offset &amp;lt; viewScroll) {
+  window.scrollTo(window.scrollX, offset);
+}</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<pre><code>  &lt;/div&gt;
+
+  &lt;!-- Methods --&gt;
+            &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+<p>&lt;/html&gt;</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

@@ -1,8 +1,8 @@
 class KnockoutpredictionsController < ApplicationController
   before_action :eightteams, :only => [:show, :edit]
-  before_action :quarterteams, :only => [:show, :edit] 
-  before_action :semiteams, :only => [:show]  
-  before_action :finalteams, :only => [:show]  
+  before_action :quarterteams, :only => [:show, :edit]
+  before_action :semiteams, :only => [:show]
+  before_action :finalteams, :only => [:show]
 
   before_filter :ensure_admin, :only => [:pointsscript, :pointsscript2, :givepoints, :givepoints2]
   respond_to :html, :json
@@ -16,12 +16,12 @@ class KnockoutpredictionsController < ApplicationController
     @pool = Pool.find(params[:id])
     @gameseight = Game.where(gametype: 'Achtste finale').order(date: :asc)
     @gameseightlist = @gameseight.group_by { |t| t.gametype }
-    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)        
-    @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }    
-    @gamessemi = Game.where(gametype: 'Halve finale').order(date: :asc)        
+    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)
+    @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }
+    @gamessemi = Game.where(gametype: 'Halve finale').order(date: :asc)
     @gamessemilist = @gamessemi.group_by { |t| t.gametype }
-    @gamesfinal = Game.where(gametype: 'Finale').order(date: :asc)        
-    @gamesfinallist = @gamesfinal.group_by { |t| t.gametype }             
+    @gamesfinal = Game.where(gametype: 'Finale').order(date: :asc)
+    @gamesfinallist = @gamesfinal.group_by { |t| t.gametype }
   end
 
 
@@ -38,19 +38,19 @@ class KnockoutpredictionsController < ApplicationController
         team2: {
           pos: 2,
           poule: 'B',
-          poolmembership_id: poolmem         
+          poolmembership_id: poolmem
         }
       },
       { #2
         team1: {
           pos: 1,
           poule: 'C',
-          poolmembership_id: poolmem        
+          poolmembership_id: poolmem
         },
         team2: {
           pos: 2,
           poule: 'D',
-          poolmembership_id: poolmem         
+          poolmembership_id: poolmem
         }
       },
       { #3
@@ -62,7 +62,7 @@ class KnockoutpredictionsController < ApplicationController
         team2: {
           pos: 2,
           poule: 'A',
-          poolmembership_id: poolmem         
+          poolmembership_id: poolmem
         }
       },
       { #4
@@ -74,7 +74,7 @@ class KnockoutpredictionsController < ApplicationController
         team2: {
           pos: 2,
           poule: 'C',
-          poolmembership_id: poolmem         
+          poolmembership_id: poolmem
         }
       },
       { #5
@@ -86,7 +86,7 @@ class KnockoutpredictionsController < ApplicationController
         team2: {
           pos: 2,
           poule: 'F',
-          poolmembership_id: poolmem         
+          poolmembership_id: poolmem
         }
       },
       { #6
@@ -98,7 +98,7 @@ class KnockoutpredictionsController < ApplicationController
         team2: {
           pos: 2,
           poule: 'H',
-          poolmembership_id: poolmem         
+          poolmembership_id: poolmem
         }
       },
       { #7
@@ -110,7 +110,7 @@ class KnockoutpredictionsController < ApplicationController
         team2: {
           pos: 2,
           poule: 'E',
-          poolmembership_id: poolmem         
+          poolmembership_id: poolmem
         }
       },
       { #8
@@ -122,10 +122,10 @@ class KnockoutpredictionsController < ApplicationController
         team2: {
           pos: 2,
           poule: 'G',
-          poolmembership_id: poolmem         
+          poolmembership_id: poolmem
         }
-      }                                          
-    ] 
+      }
+    ]
   end
 
   def quarterteams
@@ -136,11 +136,11 @@ class KnockoutpredictionsController < ApplicationController
       winner1 = p1.winner
     end
     p2 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 102)
-    if p2.present?    
+    if p2.present?
       winner2 = p2.winner
     end
     p3 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 103)
-    if p3.present?        
+    if p3.present?
       winner3 = p3.winner
     end
     p4 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 104)
@@ -155,9 +155,9 @@ class KnockoutpredictionsController < ApplicationController
     if p6.present?
       winner6 = p6.winner
     end
-    p7 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 107)    
+    p7 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 107)
     if p7.present?
-      winner7 = p7.winner                       
+      winner7 = p7.winner
     end
     p8 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 108)
     if p8.present?
@@ -170,13 +170,13 @@ class KnockoutpredictionsController < ApplicationController
           game_id: 101,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner1                                             
+          winner: winner1
         },
         team2: {
           game_id: 102,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner2                                              
+          winner: winner2
         }
       },
       { #2
@@ -184,13 +184,13 @@ class KnockoutpredictionsController < ApplicationController
           game_id: 103,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner3                                              
+          winner: winner3
         },
         team2: {
           game_id: 104,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner4                                              
+          winner: winner4
         }
       },
       { #3
@@ -198,13 +198,13 @@ class KnockoutpredictionsController < ApplicationController
           game_id: 105,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner5                                             
+          winner: winner5
         },
         team2: {
           game_id: 106,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner6                                              
+          winner: winner6
         }
       },
       { #4
@@ -212,32 +212,32 @@ class KnockoutpredictionsController < ApplicationController
           game_id: 107,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner7                                              
+          winner: winner7
         },
         team2: {
           game_id: 108,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner8                                              
+          winner: winner8
         }
-      }               
-    ] 
+      }
+    ]
   end
 
-  
+
   def semiteams
    @pool = Pool.find(params[:id])
     poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
     p9 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 109)
     if p9.present?
       winner9 = p9.winner
-    end    
+    end
     p10 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 110)
-    if p10.present?    
+    if p10.present?
       winner10 = p10.winner
-    end    
+    end
     p11 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 111)
-    if p11.present?        
+    if p11.present?
       winner11 = p11.winner
     end
     p12 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 112)
@@ -250,13 +250,13 @@ class KnockoutpredictionsController < ApplicationController
           game_id: 109,
           final: 3,
           poolmembership_id: poolmem,
-          winner: winner9                                             
+          winner: winner9
         },
         team2: {
           game_id: 110,
           final: 3,
           poolmembership_id: poolmem,
-          winner: winner10                                              
+          winner: winner10
         }
       },
       { #2
@@ -264,16 +264,16 @@ class KnockoutpredictionsController < ApplicationController
           game_id: 111,
           final: 3,
           poolmembership_id: poolmem,
-          winner: winner11                                             
+          winner: winner11
         },
         team2: {
           game_id: 112,
           final: 3,
           poolmembership_id: poolmem,
-          winner: winner12                                              
+          winner: winner12
         }
-      }               
-    ] 
+      }
+    ]
   end
 
   def finalteams
@@ -293,16 +293,16 @@ class KnockoutpredictionsController < ApplicationController
           game_id: 113,
           final: 2,
           poolmembership_id: poolmem,
-          winner: winner1                                             
+          winner: winner1
         },
         team2: {
           game_id: 114,
           final: 2,
           poolmembership_id: poolmem,
-          winner: winner2                                              
+          winner: winner2
         }
-      }               
-    ] 
+      }
+    ]
   end
 
   def create
@@ -315,14 +315,14 @@ class KnockoutpredictionsController < ApplicationController
   end
 
   def edit
-    if Time.now > deadline && if Time.now > knockout_deadline
+    if Time.now > deadline && Time.now > knockout_deadline
       @pool = Pool.find(params[:id])
       render 'deadline'
-    else    
+    else
       @pool = Pool.find(params[:id])
       @gameseight = Game.where(gametype: 'Achtste finale').order(date: :asc)
       @gameseightlist = @gameseight.group_by { |t| t.gametype }
-      @gameseightlist.sort.each_with_index do |(gametype, games), index|    
+      @gameseightlist.sort.each_with_index do |(gametype, games), index|
         if @present
           return
         else
@@ -341,7 +341,7 @@ class KnockoutpredictionsController < ApplicationController
       else
         render 'new'
       end
-    end           
+    end
   end
 
   private
@@ -361,4 +361,3 @@ end
 
 
 
- 

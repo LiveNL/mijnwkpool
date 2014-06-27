@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>_forms_css_scss.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            _forms_css_scss.html
+        </h1>
+        <ul class="files">
+            <li>doc/rails/files/app/assets/stylesheets/modules/_forms_css_scss.html</li>
+            <li>Last modified: 2014-06-16 16:01:08 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”</p>
+
+<pre><code>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+<p>&lt;html xmlns=“<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>”
+xml:lang=“en” lang=“en”&gt; &lt;head&gt;</p>
+
+<pre><code>&lt;title&gt;_forms.css.scss&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../../../css/reset.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;</code></pre>
+
+<p>&lt;link rel=“stylesheet” href=“../../../../../css/main.css”
+type=“text/css” media=“screen” /&gt; &lt;link rel=“stylesheet”
+href=“../../../../../css/github.css” type=“text/css” media=“screen” /&gt;
+&lt;script src=“../../../../../js/jquery-1.3.2.min.js”
+type=“text/javascript” charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/jquery-effect.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/main.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/highlight.pack.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+
+    &lt;h1&gt;
+        _forms.css.scss
+    &lt;/h1&gt;
+    &lt;ul class=&quot;files&quot;&gt;
+        &lt;li&gt;app/assets/stylesheets/modules/_forms.css.scss&lt;/li&gt;
+        &lt;li&gt;Last modified: 2014-06-10 17:47:16 +0200&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;bodyContent&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+
+&lt;div class=&quot;description&quot;&gt;</code></pre>
+
+<p>&lt;p&gt;&lt;a href=“type=text”&gt;input&lt;/a&gt;, &lt;a
+href=“type=password”&gt;input&lt;/a&gt;, &lt;a
+href=“type=email”&gt;input&lt;/a&gt; {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;@include font-size($font-size); border-color:
+$color-grey-light; border-style: solid; border-width: 1px 1px 3px 1px;
+border-radius: 0; color: $color-grey-medium; display: block; font-family:
+$font-family; font-weight: $font-weight; height: 53px; padding: 0 10px;
+outline: none; width: 100%; -webkit-appearance: none;</p>
+
+<p>&amp;amp;:focus {</p>
+
+<pre><code>border-color: $color-grey-medium;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;&lt;a
+href=“type=number”&gt;input&lt;/a&gt;::-webkit-inner-spin-button, &lt;a
+href=“type=number”&gt;input&lt;/a&gt;::-webkit-outer-spin-button
+{&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>-webkit-appearance: none; margin: 0;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.checkbox {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;&amp;amp; + .checkbox {</p>
+
+<pre><code>margin-top: 5px;</code></pre>
+
+<p>} <a href="type=checkbox">input</a>, <a href="type=radio">input</a> {</p>
+
+<pre><code>display: none;
+
+&amp;amp; + label {
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  display: inline-block;
+  height: 17px;
+  line-height: 17px;
+  padding-left: 17+15px;
+}
+
+&amp;amp;:checked + label {
+  background-position: 0 -17px;
+}</code></pre>
+
+<p>}</p>
+
+<p>label {</p>
+
+<pre><code>background-image: image_url(&amp;#39;checkbox.png&amp;#39;);
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.form-field {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;@include clearfix;</p>
+
+<p>&amp;amp; + .form-field {</p>
+
+<pre><code>padding-top: 20px;</code></pre>
+
+<p>}</p>
+
+<p>&amp;amp;.inline {</p>
+
+<pre><code>input[type=radio],
+input[type=checkbox] {
+  display:none;
+
+  &amp;amp;:checked + label {
+    @extend .btn.green;
+  }
+
+  &amp;amp; + label {
+    @extend .btn;
+    @extend .btn.grey;
+    @extend .left;
+  }
+}</code></pre>
+
+<p>}</p>
+
+<p>&amp;amp;.error {</p>
+
+<pre><code>label {
+  color: $color-red-light;
+}
+
+input {
+  color: $color-red-light;
+  border-color: $color-red-light;
+}
+
+span {
+  color: $color-red-light;
+  display: block;
+  margin-top: 10px;
+}</code></pre>
+
+<p>}</p>
+
+<p>&amp;amp;.action &amp;gt; div + div {</p>
+
+<pre><code>margin-top: 10px;
+@include respond-to(small) {
+  margin-top: 0;
+}</code></pre>
+
+<p>}</p>
+
+<p>&amp;amp;.action-stacked &amp;gt; div + div {</p>
+
+<pre><code>margin-top: 10px;</code></pre>
+
+<p>}</p>
+
+<p>&amp;amp;.login {</p>
+
+<pre><code>input:first-child {
+  border-bottom-width: 0;
+  height: 50px;
+
+  &amp;amp;:focus {
+    border-bottom-width: 1px;
+  }
+}</code></pre>
+
+<p>}</p>
+
+<p>label {</p>
+
+<pre><code>color: $color-grey-medium;
+display: block;
+margin-bottom: 5px;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.slider {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;margin-right: 2px; .minmax {</p>
+
+<pre><code>@include clearfix;
+margin-bottom: 15px;</code></pre>
+
+<p>} .mintext {</p>
+
+<pre><code>@extend .left;
+color: $color-grey-medium;</code></pre>
+
+<p>} .maxtext {</p>
+
+<pre><code>@extend .right;
+color: $color-grey-medium;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.form-search {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;@include clearfix; div {</p>
+
+<pre><code>overflow: hidden;</code></pre>
+
+<p>} button {</p>
+
+<pre><code>float: right;
+margin-left: 10px;</code></pre>
+
+<p>}</p>
+
+<p>@include respond-to(mobile) {</p>
+
+<pre><code>button {
+  box-shadow: none;
+  height: 53px;
+  line-height: 50px;
+  margin-left: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+input {
+  border-width: 1px;
+}</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;&lt;a href=“type=number”&gt;input&lt;/a&gt; {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;@include font-size($font-size); border-color:
+$color-grey-light; border-style: solid; border-width: 1px 1px 3px 1px;
+border-radius: 0; color: $color-grey-dark; display: block; font-family:
+$font-family; font-weight: $font-weight-bold; height: 53px; padding: 0
+10px; outline: none; width: 100%; -webkit-appearance: none;</p>
+
+<p>&amp;amp;:focus {</p>
+
+<pre><code>border-color: $color-grey-medium;</code></pre>
+
+<p>}</p>
+
+<p>&amp;amp;.predict {</p>
+
+<pre><code>height: 40px;
+margin: 0 5px;
+text-align: center;
+width: 40px;
+
+@include respond-to(small) {
+  margin: 0 auto;
+}</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;::-webkit-input-placeholder {    WebKit browsers&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>color:    $color-grey-light;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} :-moz-placeholder {    Mozilla Firefox 4 to 18&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>color:    $color-grey-light;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} ::-moz-placeholder {    Mozilla Firefox 19+   &lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>color:    $color-grey-light;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} :-ms-input-placeholder {    Internet Explorer 10+   &lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>color:    $color-grey-light;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<pre><code>  &lt;/div&gt;
+
+  &lt;!-- Methods --&gt;
+            &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+<p>&lt;/html&gt;</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

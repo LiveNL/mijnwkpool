@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>show_html_erb_orig.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            show_html_erb_orig.html
+        </h1>
+        <ul class="files">
+            <li>doc/wkpool/files/app/views/users/show_html_erb_orig.html</li>
+            <li>Last modified: 2014-06-16 15:57:54 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”</p>
+
+<pre><code>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+<p>&lt;html xmlns=“<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>”
+xml:lang=“en” lang=“en”&gt; &lt;head&gt;</p>
+
+<pre><code>&lt;title&gt;show.html.erb.orig&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../../css/reset.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;</code></pre>
+
+<p>&lt;link rel=“stylesheet” href=“../../../../css/main.css” type=“text/css”
+media=“screen” /&gt; &lt;link rel=“stylesheet”
+href=“../../../../css/github.css” type=“text/css” media=“screen” /&gt;
+&lt;script src=“../../../../js/jquery-1.3.2.min.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../js/jquery-effect.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script src=“../../../../js/main.js”
+type=“text/javascript” charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../js/highlight.pack.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+
+    &lt;h1&gt;
+        show.html.erb.orig
+    &lt;/h1&gt;
+    &lt;ul class=&quot;files&quot;&gt;
+        &lt;li&gt;app/views/users/show.html.erb.orig&lt;/li&gt;
+        &lt;li&gt;Last modified: 2014-06-10 17:47:16 +0200&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;bodyContent&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+
+&lt;div class=&quot;description&quot;&gt;</code></pre>
+
+<p>&lt;p&gt;&amp;lt;% title @user.nickname %&amp;gt; &amp;lt;div
+class=“medium-3-4”&amp;gt;&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;box&amp;quot;&amp;gt;</p>
+
+<pre><code>&amp;lt;div class=&amp;quot;content-header&amp;quot;&amp;gt;
+  &amp;lt;h1&amp;gt;Profiel van &amp;lt;%= @user.name %&amp;gt;&amp;lt;/h1&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;quot;pool-list&amp;quot;&amp;gt;
+  &amp;lt;ul&amp;gt;
+    &amp;lt;li&amp;gt;
+      &amp;lt;p&amp;gt;Naam:&amp;lt;/p&amp;gt;
+      &amp;lt;h3&amp;gt;&amp;lt;%= @user.name %&amp;gt;&amp;lt;/h3&amp;gt;
+    &amp;lt;/li&amp;gt;
+    &amp;lt;li&amp;gt;
+      &amp;lt;p&amp;gt;Nickname:&amp;lt;/p&amp;gt;
+      &amp;lt;h3&amp;gt;&amp;lt;%= @user.nickname %&amp;gt;&amp;lt;/h3&amp;gt;
+    &amp;lt;/li&amp;gt;
+    &amp;lt;li&amp;gt;&amp;lt;h2&amp;gt;Pools&amp;lt;div style=&amp;quot;float:right;&amp;quot;&amp;gt;Punten&amp;lt;/div&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;/li&amp;gt;
+  &amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;#39;pool-list&amp;#39;&amp;gt;
+  &amp;lt;ul&amp;gt;
+    &amp;lt;% @poolmemberships.each do |poolmembership| %&amp;gt;
+    &amp;lt;li&amp;gt;
+      &amp;lt;div class=&amp;#39;view-table&amp;#39;&amp;gt;
+
+        &amp;lt;div class=&amp;#39;pool-list-img&amp;#39;&amp;gt;
+          &amp;lt;%= image_tag Pool.find(poolmembership.pool_id).avatar.url(:thumb) %&amp;gt;
+        &amp;lt;/div&amp;gt;
+        &amp;lt;div class=&amp;#39;pool-list-txt&amp;#39;&amp;gt;
+          &amp;lt;div class=&amp;quot;toggle_predictions&amp;quot;&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
+
+<p>&lt;p&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;
+HEAD&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;  &amp;lt;h2&amp;gt;</p>
+
+<pre><code>&amp;lt;%= Pool.find(poolmembership.pool_id).name %&amp;gt; &amp;lt;div style=&amp;quot;float:right;&amp;quot;&amp;gt; &amp;lt;%= poolmembership.score %&amp;gt;</code></pre>
+
+<p>&amp;lt;/div&amp;gt; &amp;lt;/h2&amp;gt;</p>
+
+<pre><code>&amp;lt;p&amp;gt;
+  &amp;lt;%= Pool.find(poolmembership.pool_id).poolmemberships_count %&amp;gt; / &amp;lt;%= Pool.find(poolmembership.pool_id).maximum_membership %&amp;gt;
+&amp;lt;/p&amp;gt;</code></pre>
+
+<p>&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;h6 id=“label-”&gt;&lt;/h6&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;  &amp;lt;h2&amp;gt;&amp;lt;%=
+Pool.find(poolmembership.pool_id).name %&amp;gt; &amp;lt;div
+style=&amp;quot;float:right;&amp;quot;&amp;gt; &amp;lt;%=
+poolmembership.score %&amp;gt; &amp;lt;/div&amp;gt;&amp;lt;/h2&amp;gt;</p>
+
+<pre><code>&amp;lt;p&amp;gt;&amp;lt;%= Pool.find(poolmembership.pool_id).poolmemberships_count %&amp;gt; / &amp;lt;%= Pool.find(poolmembership.pool_id).maximum_membership %&amp;gt;&amp;lt;/p&amp;gt;</code></pre>
+
+<p>&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;
+469bb22a67fece8ecc5093dae40e1f7400636896&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;            &amp;lt;div
+class=&amp;quot;predictions&amp;quot;&amp;gt;</p>
+
+<pre><code>          &amp;lt;% @gamelist.sort.each_with_index do |(poule, games), index| %&amp;gt;
+          &amp;lt;table class=&amp;quot;table poule&amp;quot;&amp;gt;
+            &amp;lt;thead&amp;gt;
+              &amp;lt;tr&amp;gt;
+                &amp;lt;th class=&amp;quot;groupname&amp;quot; colspan=&amp;quot;4&amp;quot;&amp;gt;Groep &amp;lt;%= poule %&amp;gt;&amp;lt;/th&amp;gt;
+                &amp;lt;th class=&amp;quot;default-hide small-show&amp;quot;&amp;gt;&amp;amp;nbsp;&amp;lt;/th&amp;gt;
+                &amp;lt;th class=&amp;quot;default-hide small-show&amp;quot;&amp;gt;&amp;amp;nbsp;&amp;lt;/th&amp;gt;
+                &amp;lt;th class=&amp;quot;default-hide small-show&amp;quot;&amp;gt;Uitslag&amp;lt;/th&amp;gt;
+                &amp;lt;th&amp;gt;Punten&amp;lt;/th&amp;gt;
+              &amp;lt;/tr&amp;gt;
+            &amp;lt;/thead&amp;gt;
+            &amp;lt;tbody&amp;gt;
+              &amp;lt;% games.each_with_index do |game, index2| %&amp;gt;
+                &amp;lt;% prediction = Prediction.find_by_poolmembership_id_and_game_id(poolmembership.id, game.id) %&amp;gt;
+                &amp;lt;% team1 = Team.find(game.team1_id) %&amp;gt;
+                &amp;lt;% team2 = Team.find(game.team2_id) %&amp;gt;
+                  &amp;lt;tr&amp;gt;
+                    &amp;lt;td class=&amp;quot;infoshower&amp;quot;&amp;gt;
+                      &amp;lt;i class=&amp;quot;fa fa-question-circle&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
+                      &amp;lt;div class=&amp;quot;infobox hiddeninfo&amp;quot;&amp;gt;
+                        &amp;lt;%= team1.name %&amp;gt; - &amp;lt;%= team2.name %&amp;gt; &amp;lt;br /&amp;gt;
+                        &amp;lt;span&amp;gt;&amp;lt;%= game.date %&amp;gt;, &amp;lt;%= game.time.strftime(&amp;#39;%H:%M&amp;#39;) %&amp;gt;&amp;lt;/span&amp;gt;
+                      &amp;lt;/div&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td class=&amp;quot;default-hide small-show&amp;quot;&amp;gt;&amp;lt;%= team1.name %&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;td class=&amp;quot;flag&amp;quot; style=&amp;quot;background-image: url(&amp;#39;&amp;lt;%=team1.avatar.url(:mini)%&amp;gt;&amp;#39;)&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+
+                    &amp;lt;td class=&amp;quot;predict-score&amp;quot;&amp;gt;
+                      &amp;lt;div class=&amp;quot;view-table&amp;quot;&amp;gt;
+                        &amp;lt;div class=&amp;quot;view-row&amp;quot;&amp;gt;
+                          &amp;lt;div&amp;gt;
+                            &amp;lt;% if prediction.present? %&amp;gt;
+                              &amp;lt;span class=&amp;quot;predict&amp;quot;&amp;gt;&amp;lt;%= prediction.prediction1 %&amp;gt;&amp;lt;/span&amp;gt;
+                            &amp;lt;% else %&amp;gt;
+                              x
+                            &amp;lt;% end %&amp;gt;
+                          &amp;lt;/div&amp;gt;
+                          &amp;lt;div&amp;gt;
+                            &amp;amp;ndash;
+                          &amp;lt;/div&amp;gt;
+                          &amp;lt;div&amp;gt;
+                            &amp;lt;% if prediction.present? %&amp;gt;
+                              &amp;lt;span class=&amp;quot;predict&amp;quot;&amp;gt;&amp;lt;%= prediction.prediction2 %&amp;gt;&amp;lt;/span&amp;gt;
+                            &amp;lt;% else %&amp;gt;
+                              x
+                            &amp;lt;% end %&amp;gt;
+                          &amp;lt;/div&amp;gt;
+                        &amp;lt;/div&amp;gt;
+                      &amp;lt;/div&amp;gt;
+                    &amp;lt;/td&amp;gt;
+
+                    &amp;lt;td class=&amp;quot;flag&amp;quot; style=&amp;quot;background-image: url(&amp;#39;&amp;lt;%=team2.avatar.url(:mini)%&amp;gt;&amp;#39;)&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;td class=&amp;quot;default-hide small-show&amp;quot;&amp;gt;&amp;lt;%= team2.name %&amp;gt;&amp;lt;/td&amp;gt;
+                    &amp;lt;td class=&amp;quot;default-hide small-show&amp;quot;&amp;gt;
+                      &amp;lt;% if game.score1 == nil &amp;amp;&amp;amp; game.score2 == nil %&amp;gt;
+                      &amp;lt;% else %&amp;gt;
+                        &amp;lt;%= game.score1 %&amp;gt; - &amp;lt;%= game.score2 %&amp;gt;
+                      &amp;lt;% end %&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                    &amp;lt;td class=&amp;quot;bold
+                    &amp;lt;% if prediction.present? &amp;amp;&amp;amp; !(game.score1 == nil &amp;amp;&amp;amp; game.score2 == nil) %&amp;gt;
+                      &amp;lt;% if prediction.pointsearned == 12 %&amp;gt;
+                        green
+                      &amp;lt;% elsif prediction.pointsearned == 0 %&amp;gt;
+                        red
+                      &amp;lt;% else %&amp;gt;
+                      &amp;lt;% end %&amp;gt;
+                    &amp;lt;% else %&amp;gt;
+                      x
+                    &amp;lt;% end %&amp;gt;
+                  &amp;quot;&amp;gt;
+                      &amp;lt;% if prediction.present? &amp;amp;&amp;amp; !(game.score1 == nil &amp;amp;&amp;amp; game.score2 == nil) %&amp;gt;
+                        &amp;lt;%= prediction.pointsearned %&amp;gt;
+                      &amp;lt;% else %&amp;gt;
+                        x
+                      &amp;lt;% end %&amp;gt;
+                    &amp;lt;/td&amp;gt;
+                  &amp;lt;/tr&amp;gt;
+              &amp;lt;% end %&amp;gt;
+            &amp;lt;/tbody&amp;gt;
+          &amp;lt;/table&amp;gt;
+          &amp;lt;% end %&amp;gt;
+        &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/li&amp;gt;
+  &amp;lt;% end %&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+</code></pre>
+
+<p>&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;</p>
+
+<p>&lt;p&gt;&amp;lt;div class=&amp;#39;default-0
+medium-1-4&amp;#39;&amp;gt;&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>&amp;lt;%= render &amp;quot;shared/aside&amp;quot;
+%&amp;gt; &amp;lt;%= render &amp;quot;shared/aside_ad&amp;quot;
+%&amp;gt;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;</p>
+
+<p>&lt;p&gt;&amp;lt;script type=“text/javascript”&amp;gt; $(function()
+{&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;$(&amp;quot;.toggle_predictions&amp;quot;).on(&amp;#39;click&amp;#39;,
+function() {</p>
+
+<pre><code>$(this).next().toggle();</code></pre>
+
+<p>})&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}); $(“.infoshower”).hover(function () {
+$(this).find(“.hiddeninfo”).fadeIn(&amp;#39;fast&amp;#39;) }, function () {
+$(this).find(“.hiddeninfo”).fadeOut(&amp;#39;fast&amp;#39;) });
+&amp;lt;/script&amp;gt;&lt;/p&gt;</p>
+
+<pre><code>  &lt;/div&gt;
+
+  &lt;!-- Methods --&gt;
+            &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+<p>&lt;/html&gt;</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

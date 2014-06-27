@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>_table.css.scss</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            _table.css.scss
+        </h1>
+        <ul class="files">
+            <li>app/assets/stylesheets/modules/_table.css.scss</li>
+            <li>Last modified: 2014-06-10 17:47:16 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>.view-table {</p>
+
+<pre><code>display:table;
+width:100%;</code></pre>
+
+<p>} .view-row {</p>
+
+<pre><code>display:table-row;</code></pre>
+
+<p>} .view-row &gt; div {</p>
+
+<pre><code>display: table-cell;
+vertical-align: middle;</code></pre>
+
+<p>}</p>
+
+<p>table {</p>
+
+<pre><code>border-collapse: collapse;
+max-width: 100%;</code></pre>
+
+<p>} .table {</p>
+
+<pre><code>color: $color-grey-dark;
+width: 100%;
+
+th,
+td {
+  padding: 14px 0;
+  vertical-align: middle;
+}
+
+.green {
+  color: $color-green-light !important;
+}
+.red {
+  color: $color-red-light !important;
+}
+.bold {
+  font-weight: $font-weight-bold !important;
+}
+
+thead &gt; tr &gt; th {
+  font-weight: normal;
+  text-align: left;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  @include respond-to(small) {
+    padding-left: 0;
+    padding-left: 0;
+  }
+}
+
+tbody &gt; tr &gt; td {
+  border: 1px solid $color-grey-light;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+&amp;.rank {
+  tbody &gt; tr {
+    &amp; td a {
+      color: $color-grey-dark;
+      text-decoration: none;
+
+      &amp;:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &amp; &gt; td:first-child {
+      color: $color-grey-medium;
+      text-align: center;
+      width: 60px;
+    }
+    &amp; &gt; td:last-child {
+      text-align: center;
+      width: 70px;
+    }
+
+    &amp;:first-child {
+      background-color: $color-green-light;
+
+      &amp; &gt; td {
+        color: #FFF;
+        &amp; a {
+          color: #FFF;
+          text-decoration: none;
+
+          &amp;:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+&amp;.poule {
+
+  &amp; + .poule {
+    margin-top: 10px;
+  }
+
+  tbody &gt; tr &gt; td {
+    color: $color-grey-medium;
+    white-space: nowrap;
+
+    &amp;.infoshower {
+      color: $color-grey-light;
+      padding-left: 10px;
+      padding-right: 10px;
+      text-align: center;
+      width: 1px;
+      @include respond-to(large) {
+        width: 50px;
+      }
+
+      &amp;:hover {
+        color: $color-grey-dark;
+      }
+    }
+    &amp;:nth-child(2) {
+      text-align: right;
+    }
+    &amp;.predict-score {
+      padding: 0;
+      text-align: center;
+
+      @include respond-to(small) {
+        width: 100px;
+      }
+
+      .view-table {
+        display:table;
+        max-width: 110px;
+        margin:0 auto;
+      }
+    }
+    &amp;:last-child,
+    &amp;:nth-last-child(2) {
+      text-align: center;
+      width: 50px;
+      @include respond-to(large) {
+        width: 80px;
+      }
+    }
+    &amp;:last-child {
+      color: $color-grey-dark;
+    }
+  }
+}
+
+.flag {
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 0;
+  width: 70px;
+}</code></pre>
+
+<p>}</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

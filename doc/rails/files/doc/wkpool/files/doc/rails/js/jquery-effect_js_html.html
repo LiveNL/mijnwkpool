@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>jquery-effect_js.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            jquery-effect_js.html
+        </h1>
+        <ul class="files">
+            <li>doc/wkpool/files/doc/rails/js/jquery-effect_js.html</li>
+            <li>Last modified: 2014-06-16 15:58:12 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”</p>
+
+<pre><code>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+<p>&lt;html xmlns=“<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>”
+xml:lang=“en” lang=“en”&gt; &lt;head&gt;</p>
+
+<pre><code>&lt;title&gt;jquery-effect.js&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../../css/reset.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;</code></pre>
+
+<p>&lt;link rel=“stylesheet” href=“../../../../css/main.css” type=“text/css”
+media=“screen” /&gt; &lt;link rel=“stylesheet”
+href=“../../../../css/github.css” type=“text/css” media=“screen” /&gt;
+&lt;script src=“../../../../js/jquery-1.3.2.min.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../js/jquery-effect.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script src=“../../../../js/main.js”
+type=“text/javascript” charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../js/highlight.pack.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+
+    &lt;h1&gt;
+        jquery-effect.js
+    &lt;/h1&gt;
+    &lt;ul class=&quot;files&quot;&gt;
+        &lt;li&gt;doc/rails/js/jquery-effect.js&lt;/li&gt;
+        &lt;li&gt;Last modified: 2014-06-16 15:53:30 +0200&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;bodyContent&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+
+&lt;div class=&quot;description&quot;&gt;</code></pre>
+
+<p>&lt;pre&gt;&lt;code&gt;jQuery UI Effects 1.6rc6</p>
+
+<p>Copyright © 2009 AUTHORS.txt (<a
+href="http://ui.jquery.com/about">ui.jquery.com/about</a>) Dual licensed
+under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.</p>
+
+<p><a
+href="http://docs.jquery.com/UI/Effects/</code></pre">docs.jquery.com/UI/Effects/</code></pre</a>&gt;</p>
+
+<p>&lt;p&gt;;(function($) {&lt;/p&gt;</p>
+
+<p>&lt;p&gt;$.effects = $.effects || {}; //Add the &amp;#39;effects&amp;#39;
+scope&lt;/p&gt;</p>
+
+<p>&lt;p&gt;$.extend($.effects, {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;version: &amp;quot;1.6rc6&amp;quot;,</p>
+
+<p>// Saves a set of properties in a data storage save: function(element, set)
+{</p>
+
+<pre><code>for(var i=0; i &amp;lt; set.length; i++) {
+        if(set[i] !== null) element.data(&amp;quot;ec.storage.&amp;quot;+set[i], element[0].style[set[i]]);
+}</code></pre>
+
+<p>},</p>
+
+<p>// Restores a set of previously saved properties from a data storage
+restore: function(element, set) {</p>
+
+<pre><code>for(var i=0; i &amp;lt; set.length; i++) {
+        if(set[i] !== null) element.css(set[i], element.data(&amp;quot;ec.storage.&amp;quot;+set[i]));
+}</code></pre>
+
+<p>},</p>
+
+<p>setMode: function(el, mode) {</p>
+
+<pre><code>if (mode == &amp;#39;toggle&amp;#39;) mode = el.is(&amp;#39;:hidden&amp;#39;) ? &amp;#39;show&amp;#39; : &amp;#39;hide&amp;#39;; // Set for toggle
+return mode;</code></pre>
+
+<p>},</p>
+
+<p>getBaseline: function(origin, original) { // Translates a [top,left] array
+into a baseline value</p>
+
+<pre><code>// this should be a little more flexible in the future to handle a string &amp;amp; hash
+var y, x;
+switch (origin[0]) {
+        case &amp;#39;top&amp;#39;: y = 0; break;
+        case &amp;#39;middle&amp;#39;: y = 0.5; break;
+        case &amp;#39;bottom&amp;#39;: y = 1; break;
+        default: y = origin[0] / original.height;
+};
+switch (origin[1]) {
+        case &amp;#39;left&amp;#39;: x = 0; break;
+        case &amp;#39;center&amp;#39;: x = 0.5; break;
+        case &amp;#39;right&amp;#39;: x = 1; break;
+        default: x = origin[1] / original.width;
+};
+return {x: x, y: y};</code></pre>
+
+<p>},</p>
+
+<p>// Wraps the element around a wrapper that copies position properties
+createWrapper: function(element) {</p>
+
+<pre><code>//if the element is already wrapped, return it
+if (element.parent().is(&amp;#39;.ui-effects-wrapper&amp;#39;))
+        return element.parent();
+
+//Cache width,height and float properties of the element, and create a wrapper around it
+var props = { width: element.outerWidth(true), height: element.outerHeight(true), &amp;#39;float&amp;#39;: element.css(&amp;#39;float&amp;#39;) };
+element.wrap(&amp;#39;&amp;lt;div class=&amp;quot;ui-effects-wrapper&amp;quot; style=&amp;quot;font-size:100%;background:transparent;border:none;margin:0;padding:0&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;);
+var wrapper = element.parent();
+
+//Transfer the positioning of the element to the wrapper
+if (element.css(&amp;#39;position&amp;#39;) == &amp;#39;static&amp;#39;) {
+        wrapper.css({ position: &amp;#39;relative&amp;#39; });
+        element.css({ position: &amp;#39;relative&amp;#39;} );
+} else {
+        var top = element.css(&amp;#39;top&amp;#39;); if(isNaN(parseInt(top,10))) top = &amp;#39;auto&amp;#39;;
+        var left = element.css(&amp;#39;left&amp;#39;); if(isNaN(parseInt(left,10))) left = &amp;#39;auto&amp;#39;;
+        wrapper.css({ position: element.css(&amp;#39;position&amp;#39;), top: top, left: left, zIndex: element.css(&amp;#39;z-index&amp;#39;) }).show();
+        element.css({position: &amp;#39;relative&amp;#39;, top: 0, left: 0 });
+}
+
+wrapper.css(props);
+return wrapper;</code></pre>
+
+<p>},</p>
+
+<p>removeWrapper: function(element) {</p>
+
+<pre><code>if (element.parent().is(&amp;#39;.ui-effects-wrapper&amp;#39;))
+        return element.parent().replaceWith(element);
+return element;</code></pre>
+
+<p>},</p>
+
+<p>setTransition: function(element, list, factor, value) {</p>
+
+<pre><code>value = value || {};
+$.each(list, function(i, x){
+        unit = element.cssUnit(x);
+        if (unit[0] &amp;gt; 0) value[x] = unit[0] * factor + unit[1];
+});
+return value;</code></pre>
+
+<p>},</p>
+
+<p>//Base function to animate from one class to another in a seamless
+transition animateClass: function(value, duration, easing, callback) {</p>
+
+<pre><code>var cb = (typeof easing == &amp;quot;function&amp;quot; ? easing : (callback ? callback : null));
+var ea = (typeof easing == &amp;quot;string&amp;quot; ? easing : null);
+
+return this.each(function() {
+
+        var offset = {}; var that = $(this); var oldStyleAttr = that.attr(&amp;quot;style&amp;quot;) || &amp;#39;&amp;#39;;
+        if(typeof oldStyleAttr == &amp;#39;object&amp;#39;) oldStyleAttr = oldStyleAttr[&amp;quot;cssText&amp;quot;];    Stupidly in IE, style is a object..   
+        if(value.toggle) { that.hasClass(value.toggle) ? value.remove = value.toggle : value.add = value.toggle; }
+
+        //Let&amp;#39;s get a style offset
+        var oldStyle = $.extend({}, (document.defaultView ? document.defaultView.getComputedStyle(this,null) : this.currentStyle));
+        if(value.add) that.addClass(value.add); if(value.remove) that.removeClass(value.remove);
+        var newStyle = $.extend({}, (document.defaultView ? document.defaultView.getComputedStyle(this,null) : this.currentStyle));
+        if(value.add) that.removeClass(value.add); if(value.remove) that.addClass(value.remove);
+
+        // The main function to form the object for animation
+        for(var n in newStyle) {
+                if( typeof newStyle[n] != &amp;quot;function&amp;quot; &amp;amp;&amp;amp; newStyle[n]    No functions and null properties   
+                &amp;amp;&amp;amp; n.indexOf(&amp;quot;Moz&amp;quot;) == -1 &amp;amp;&amp;amp; n.indexOf(&amp;quot;length&amp;quot;) == -1    No mozilla spezific render properties.   
+                &amp;amp;&amp;amp; newStyle[n] != oldStyle[n] /* Only values that have changed are used for the animation */
+                &amp;amp;&amp;amp; (n.match(/color/i) || (!n.match(/color/i) &amp;amp;&amp;amp; !isNaN(parseInt(newStyle[n],10)))) /* Only things that can be parsed to integers or colors */
+                &amp;amp;&amp;amp; (oldStyle.position != &amp;quot;static&amp;quot; || (oldStyle.position == &amp;quot;static&amp;quot; &amp;amp;&amp;amp; !n.match(/left|top|bottom|right/))) /* No need for positions when dealing with static positions */
+                ) offset[n] = newStyle[n];
+        }
+
+        that.animate(offset, duration, ea, function() { // Animate the newly constructed offset object
+                // Change style attribute back to original. For stupid IE, we need to clear the damn object.
+                if(typeof $(this).attr(&amp;quot;style&amp;quot;) == &amp;#39;object&amp;#39;) { $(this).attr(&amp;quot;style&amp;quot;)[&amp;quot;cssText&amp;quot;] = &amp;quot;&amp;quot;; $(this).attr(&amp;quot;style&amp;quot;)[&amp;quot;cssText&amp;quot;] = oldStyleAttr; } else $(this).attr(&amp;quot;style&amp;quot;, oldStyleAttr);
+                if(value.add) $(this).addClass(value.add); if(value.remove) $(this).removeClass(value.remove);
+                if(cb) cb.apply(this, arguments);
+        });
+
+});</code></pre>
+
+<p>} &lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;});&lt;/p&gt;</p>
+
+<p>&lt;p&gt;function _normalizeArguments(a, m) {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;var o = <a href="1">a</a> &amp;amp;&amp;amp; <a
+href="1">a</a>.constructor == <a
+href="../../../../../../../classes/Object.html">Object</a> ? <a
+href="1">a</a> : {}; if(m) o.mode = m; var speed = <a href="1">a</a>
+&amp;amp;&amp;amp; <a href="1">a</a>.constructor != <a
+href="../../../../../../../classes/Object.html">Object</a> ? <a
+href="1">a</a> : o.duration; //either comes from options.duration or the
+second argument</p>
+
+<pre><code>speed = $.fx.off ? 0 : typeof speed === &amp;quot;number&amp;quot; ? speed : $.fx.speeds[speed] || $.fx.speeds._default;</code></pre>
+
+<p>var callback = o.callback || ( $.<a href="2">isFunction(a</a>)
+&amp;amp;&amp;amp; <a href="2">a</a> ) || ( $.<a href="3">isFunction(a</a>)
+&amp;amp;&amp;amp; <a href="3">a</a> );</p>
+
+<p>return [<a href="0">a</a>, o, speed, callback];&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;//Extend the methods of jQuery $.fn.extend({&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;//Save old methods _show: $.fn.show, _hide:
+$.fn.hide, __toggle: $.fn.toggle, _addClass: $.fn.addClass, _removeClass:
+$.fn.removeClass, _toggleClass: $.fn.toggleClass,</p>
+
+<p>// New effect methods effect: function(fx, options, speed, callback) {</p>
+
+<pre><code>return $.effects[fx] ? $.effects[fx].call(this, {method: fx, options: options || {}, duration: speed, callback: callback }) : null;</code></pre>
+
+<p>},</p>
+
+<p>show: function() {</p>
+
+<pre><code>if(!arguments[0] || (arguments[0].constructor == Number || (/(slow|normal|fast)/).test(arguments[0])))
+        return this._show.apply(this, arguments);
+else {
+        return this.effect.apply(this, _normalizeArguments(arguments, &amp;#39;show&amp;#39;));
+}</code></pre>
+
+<p>},</p>
+
+<p>hide: function() {</p>
+
+<pre><code>if(!arguments[0] || (arguments[0].constructor == Number || (/(slow|normal|fast)/).test(arguments[0])))
+        return this._hide.apply(this, arguments);
+else {
+        return this.effect.apply(this, _normalizeArguments(arguments, &amp;#39;hide&amp;#39;));
+}</code></pre>
+
+<p>},</p>
+
+<p>toggle: function(){</p>
+
+<pre><code>if(!arguments[0] || (arguments[0].constructor == Number || (/(slow|normal|fast)/).test(arguments[0])) || (arguments[0].constructor == Function))
+        return this.__toggle.apply(this, arguments);
+else {
+        return this.effect.apply(this, _normalizeArguments(arguments, &amp;#39;toggle&amp;#39;));
+}</code></pre>
+
+<p>},</p>
+
+<p>addClass: function(classNames, speed, easing, callback) {</p>
+
+<pre><code>return speed ? $.effects.animateClass.apply(this, [{ add: classNames },speed,easing,callback]) : this._addClass(classNames);</code></pre>
+
+<p>}, removeClass: function(classNames,speed,easing,callback) {</p>
+
+<pre><code>return speed ? $.effects.animateClass.apply(this, [{ remove: classNames },speed,easing,callback]) : this._removeClass(classNames);</code></pre>
+
+<p>}, toggleClass: function(classNames,speed,easing,callback) {</p>
+
+<pre><code>return ( (typeof speed !== &amp;quot;boolean&amp;quot;) &amp;amp;&amp;amp; speed ) ? $.effects.animateClass.apply(this, [{ toggle: classNames },speed,easing,callback]) : this._toggleClass(classNames, speed);</code></pre>
+
+<p>}, morph: function(remove,add,speed,easing,callback) {</p>
+
+<pre><code>return $.effects.animateClass.apply(this, [{ add: add, remove: remove },speed,easing,callback]);</code></pre>
+
+<p>}, switchClass: function() {</p>
+
+<pre><code>return this.morph.apply(this, arguments);</code></pre>
+
+<p>},</p>
+
+<p>// helper functions cssUnit: function(key) {</p>
+
+<pre><code>var style = this.css(key), val = [];
+$.each( [&amp;#39;em&amp;#39;,&amp;#39;px&amp;#39;,&amp;#39;%&amp;#39;,&amp;#39;pt&amp;#39;], function(i, unit){
+        if(style.indexOf(unit) &amp;gt; 0)
+                val = [parseFloat(style), unit];
+});
+return val;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;});&lt;/p&gt;</p>
+
+<p>&lt;p&gt;/*&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt; jQuery Color Animations</p>
+
+<pre><code>Copyright 2007 John Resig
+Released under the MIT and GPL licenses.</code></pre>
+
+<p>/&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// We override the animation for all of these color styles
+$.each([&amp;#39;backgroundColor&amp;#39;,
+&amp;#39;borderBottomColor&amp;#39;, &amp;#39;borderLeftColor&amp;#39;,
+&amp;#39;borderRightColor&amp;#39;, &amp;#39;borderTopColor&amp;#39;,
+&amp;#39;color&amp;#39;, &amp;#39;outlineColor&amp;#39;],
+function(i,attr){&lt;/p&gt;</p>
+
+<p>&lt;<a href="attr">pre><code>$.fx.step</a> = function(fx) {</p>
+
+<pre><code>        if ( fx.state == 0 ) {
+                        fx.start = getColor( fx.elem, attr );
+                        fx.end = getRGB( fx.end );
+        }
+
+        fx.elem.style[attr] = &amp;quot;rgb(&amp;quot; + [
+                        Math.max(Math.min( parseInt((fx.pos * (fx.end[0] - fx.start[0])) + fx.start[0],10), 255), 0),
+                        Math.max(Math.min( parseInt((fx.pos * (fx.end[1] - fx.start[1])) + fx.start[1],10), 255), 0),
+                        Math.max(Math.min( parseInt((fx.pos * (fx.end[2] - fx.start[2])) + fx.start[2],10), 255), 0)
+        ].join(&amp;quot;,&amp;quot;) + &amp;quot;)&amp;quot;;
+};&lt;/code&gt;&lt;/pre&gt;</code></pre>
+
+<p>&lt;p&gt;});&lt;/p&gt;</p>
+
+<p>&lt;p&gt;// Color Conversion functions from highlightFade // By Blair
+Mitchelmore // &lt;a href=“<a
+href="http://jquery.offput.ca/highlightFade">jquery.offput.ca/highlightFade</a>/</p">jquery.offput.ca/highlightFade”>jquery.offput.ca/highlightFade</a>/</p</a>&gt;</p>
+
+<p>&lt;p&gt;// Parse strings looking for color tuples [255,255,255] function
+getRGB(color) {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;var result;</p>
+
+<p>// Check if we&amp;#39;re already dealing with an array of colors if (
+color &amp;amp;&amp;amp; color.constructor == Array &amp;amp;&amp;amp;
+color.length == 3 )</p>
+
+<pre><code>return color;</code></pre>
+
+<p>// Look for rgb(num,num,num) if (result = /<a
+href="0-9">rgb(s*(</a>{1,3})<a href=“0-9”>s*,s*(</a>{1,3})<a
+href=“0-9”>s*,s*(</a>{1,3})s*)/.exec(color))</p>
+
+<pre><code>return [parseInt(result[1],10), parseInt(result[2],10), parseInt(result[3],10)];</code></pre>
+
+<p>// Look for rgb(num%,num%,num%) if (result = /<a
+href="0-9">rgb(s*(</a>+(?:.[<a href="0-9">0-9]+)?)%s*,s*(</a>+(?:.[<a
+href="0-9">0-9]+)?)%s*,s*(</a>+(?:.[0-9]+)?)%s*)/.exec(color))</p>
+
+<pre><code>return [parseFloat(result[1])*2.55, parseFloat(result[2])*2.55, parseFloat(result[3])*2.55];</code></pre>
+
+<p>// Look for a0b1c2 if (result =
+/#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/.exec(color))</p>
+
+<pre><code>return [parseInt(result[1],16), parseInt(result[2],16), parseInt(result[3],16)];</code></pre>
+
+<p>// Look for fff if (result = /#([<a
+href="a-fA-F0-9">a-fA-F0-9])(</a>)([a-fA-F0-9])/.exec(color))</p>
+
+<pre><code>return [parseInt(result[1]+result[1],16), parseInt(result[2]+result[2],16), parseInt(result[3]+result[3],16)];</code></pre>
+
+<p>// Look for rgba(0, 0, 0, 0) == transparent in Safari 3 if (result =
+/rgba(0, 0, 0, 0)/.exec(color))</p>
+
+<pre><code>return colors[&amp;#39;transparent&amp;#39;];</code></pre>
+
+<p>// Otherwise, we&amp;#39;re most likely dealing with a named color return
+<a href="$.trim(color).toLowerCase()">colors</a>;&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;function getColor(elem, attr) {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;var color;</p>
+
+<p>do {</p>
+
+<pre><code>color = $.curCSS(elem, attr);
+
+// Keep going until we find an element that has color, or we hit the body
+if ( color != &amp;#39;&amp;#39; &amp;amp;&amp;amp; color != &amp;#39;transparent&amp;#39; || $.nodeName(elem, &amp;quot;body&amp;quot;) )
+                break;
+
+attr = &amp;quot;backgroundColor&amp;quot;;</code></pre>
+
+<p>} while ( elem = elem.parentNode );</p>
+
+<p>return getRGB(color);&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;};&lt;/p&gt;</p>
+
+<p>&lt;p&gt;// Some named colors to work with // From Interface by Stefan
+Petre // &lt;a href=“<a
+href="http://interface.eyecon.ro">interface.eyecon.ro</a>/</p">interface.eyecon.ro”>interface.eyecon.ro</a>/</p</a>&gt;</p>
+
+<p>&lt;p&gt;var colors = {&lt;/p&gt;</p>
+
+<p>&lt;<a href="0,255,255">pre>aqua:</a><code>, azure:[240,255,255],
+beige:[245,245,220], black:[0,0,0], blue:[0,0,255], brown:[165,42,42],
+cyan:[0,255,255], darkblue:[0,0,139], darkcyan:[0,139,139],
+darkgrey:[169,169,169], darkgreen:[0,100,0], darkkhaki:[189,183,107],
+darkmagenta:[139,0,139], darkolivegreen:[85,107,47],
+darkorange:[255,140,0], darkorchid:[153,50,204], darkred:[139,0,0],
+darksalmon:[233,150,122], darkviolet:[148,0,211], fuchsia:[255,0,255],
+gold:[255,215,0], green:[0,128,0], indigo:[75,0,130], khaki:[240,230,140],
+lightblue:[173,216,230], lightcyan:[224,255,255], lightgreen:[144,238,144],
+lightgrey:[211,211,211], lightpink:[255,182,193],
+lightyellow:[255,255,224], lime:[0,255,0], magenta:[255,0,255],
+maroon:[128,0,0], navy:[0,0,128], olive:[128,128,0], orange:[255,165,0],
+pink:[255,192,203], purple:[128,0,128], violet:[128,0,128], red:[255,0,0],
+silver:[192,192,192], white:[255,255,255], yellow:[255,255,0], transparent:
+[255,255,255]</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;};&lt;/p&gt;</p>
+
+<p>&lt;p&gt;/*&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;  jQuery Easing v1.3 - <a
+href="http://gsgd.co.uk/sandbox/jquery/easing">gsgd.co.uk/sandbox/jquery/easing</a>/</p>
+
+<pre><code>Uses the built in easing capabilities added In jQuery 1.1
+to offer multiple easing options
+
+TERMS OF USE - jQuery Easing
+
+Open source under the BSD License.
+
+Copyright 2008 George McGinley Smith
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this list of
+conditions and the following disclaimer.
+Redistributions in binary form must reproduce the above copyright notice, this list
+of conditions and the following disclaimer in the documentation and/or other materials
+provided with the distribution.
+
+Neither the name of the author nor the names of contributors may be used to endorse
+or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &amp;quot;AS IS&amp;quot; AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+OF THE POSSIBILITY OF SUCH DAMAGE.</code></pre>
+
+<p>/&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;// t: current time, b: begInnIng value, c: change In value, d:
+duration $.easing.jswing = $.easing.swing;&lt;/p&gt;</p>
+
+<p>&lt;p&gt;$.extend($.easing, {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;def: &amp;#39;easeOutQuad&amp;#39;, swing: function
+(x, t, b, c, d) {</p>
+
+<pre><code>//alert($.easing.default);
+return $.easing[$.easing.def](x, t, b, c, d);</code></pre>
+
+<p>}, easeInQuad: function (x, t, b, c, d) {</p>
+
+<pre><code>return c*(t/=d)*t + b;</code></pre>
+
+<p>}, easeOutQuad: function (x, t, b, c, d) {</p>
+
+<pre><code>return -c *(t/=d)*(t-2) + b;</code></pre>
+
+<p>}, easeInOutQuad: function (x, t, b, c, d) {</p>
+
+<pre><code>if ((t/=d/2) &amp;lt; 1) return c/2*t*t + b;
+return -c/2 * ((--t)*(t-2) - 1) + b;</code></pre>
+
+<p>}, easeInCubic: function (x, t, b, c, d) {</p>
+
+<pre><code>return c*(t/=d)*t*t + b;</code></pre>
+
+<p>}, easeOutCubic: function (x, t, b, c, d) {</p>
+
+<pre><code>return c*((t=t/d-1)*t*t + 1) + b;</code></pre>
+
+<p>}, easeInOutCubic: function (x, t, b, c, d) {</p>
+
+<pre><code>if ((t/=d/2) &amp;lt; 1) return c/2*t*t*t + b;
+return c/2*((t-=2)*t*t + 2) + b;</code></pre>
+
+<p>}, easeInQuart: function (x, t, b, c, d) {</p>
+
+<pre><code>return c*(t/=d)*t*t*t + b;</code></pre>
+
+<p>}, easeOutQuart: function (x, t, b, c, d) {</p>
+
+<pre><code>return -c * ((t=t/d-1)*t*t*t - 1) + b;</code></pre>
+
+<p>}, easeInOutQuart: function (x, t, b, c, d) {</p>
+
+<pre><code>if ((t/=d/2) &amp;lt; 1) return c/2*t*t*t*t + b;
+return -c/2 * ((t-=2)*t*t*t - 2) + b;</code></pre>
+
+<p>}, easeInQuint: function (x, t, b, c, d) {</p>
+
+<pre><code>return c*(t/=d)*t*t*t*t + b;</code></pre>
+
+<p>}, easeOutQuint: function (x, t, b, c, d) {</p>
+
+<pre><code>return c*((t=t/d-1)*t*t*t*t + 1) + b;</code></pre>
+
+<p>}, easeInOutQuint: function (x, t, b, c, d) {</p>
+
+<pre><code>if ((t/=d/2) &amp;lt; 1) return c/2*t*t*t*t*t + b;
+return c/2*((t-=2)*t*t*t*t + 2) + b;</code></pre>
+
+<p>}, easeInSine: function (x, t, b, c, d) {</p>
+
+<pre><code>return -c * Math.cos(t/d * (Math.PI/2)) + c + b;</code></pre>
+
+<p>}, easeOutSine: function (x, t, b, c, d) {</p>
+
+<pre><code>return c * Math.sin(t/d * (Math.PI/2)) + b;</code></pre>
+
+<p>}, easeInOutSine: function (x, t, b, c, d) {</p>
+
+<pre><code>return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;</code></pre>
+
+<p>}, easeInExpo: function (x, t, b, c, d) {</p>
+
+<pre><code>return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;</code></pre>
+
+<p>}, easeOutExpo: function (x, t, b, c, d) {</p>
+
+<pre><code>return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;</code></pre>
+
+<p>}, easeInOutExpo: function (x, t, b, c, d) {</p>
+
+<pre><code>if (t==0) return b;
+if (t==d) return b+c;
+if ((t/=d/2) &amp;lt; 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;</code></pre>
+
+<p>}, easeInCirc: function (x, t, b, c, d) {</p>
+
+<pre><code>return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;</code></pre>
+
+<p>}, easeOutCirc: function (x, t, b, c, d) {</p>
+
+<pre><code>return c * Math.sqrt(1 - (t=t/d-1)*t) + b;</code></pre>
+
+<p>}, easeInOutCirc: function (x, t, b, c, d) {</p>
+
+<pre><code>if ((t/=d/2) &amp;lt; 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
+return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;</code></pre>
+
+<p>}, easeInElastic: function (x, t, b, c, d) {</p>
+
+<pre><code>var s=1.70158;var p=0;var a=c;
+if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+if (a &amp;lt; Math.abs(c)) { a=c; var s=p/4; }
+else var s = p/(2*Math.PI) * Math.asin (c/a);
+return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;</code></pre>
+
+<p>}, easeOutElastic: function (x, t, b, c, d) {</p>
+
+<pre><code>var s=1.70158;var p=0;var a=c;
+if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+if (a &amp;lt; Math.abs(c)) { a=c; var s=p/4; }
+else var s = p/(2*Math.PI) * Math.asin (c/a);
+return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;</code></pre>
+
+<p>}, easeInOutElastic: function (x, t, b, c, d) {</p>
+
+<pre><code>var s=1.70158;var p=0;var a=c;
+if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(.3*1.5);
+if (a &amp;lt; Math.abs(c)) { a=c; var s=p/4; }
+else var s = p/(2*Math.PI) * Math.asin (c/a);
+if (t &amp;lt; 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*.5 + c + b;</code></pre>
+
+<p>}, easeInBack: function (x, t, b, c, d, s) {</p>
+
+<pre><code>if (s == undefined) s = 1.70158;
+return c*(t/=d)*t*((s+1)*t - s) + b;</code></pre>
+
+<p>}, easeOutBack: function (x, t, b, c, d, s) {</p>
+
+<pre><code>if (s == undefined) s = 1.70158;
+return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;</code></pre>
+
+<p>}, easeInOutBack: function (x, t, b, c, d, s) {</p>
+
+<pre><code>if (s == undefined) s = 1.70158;
+if ((t/=d/2) &amp;lt; 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
+return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;</code></pre>
+
+<p>}, easeInBounce: function (x, t, b, c, d) {</p>
+
+<pre><code>return c - $.easing.easeOutBounce (x, d-t, 0, c, d) + b;</code></pre>
+
+<p>}, easeOutBounce: function (x, t, b, c, d) {</p>
+
+<pre><code>if ((t/=d) &amp;lt; (1/2.75)) {
+        return c*(7.5625*t*t) + b;
+} else if (t &amp;lt; (2/2.75)) {
+        return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+} else if (t &amp;lt; (2.5/2.75)) {
+        return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+} else {
+        return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+}</code></pre>
+
+<p>}, easeInOutBounce: function (x, t, b, c, d) {</p>
+
+<pre><code>if (t &amp;lt; d/2) return $.easing.easeInBounce (x, t*2, 0, c, d) * .5 + b;
+return $.easing.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}); /*&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt; TERMS OF USE - EASING EQUATIONS</p>
+
+<pre><code>Open source under the BSD License.
+
+Copyright 2001 Robert Penner
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this list of
+conditions and the following disclaimer.
+Redistributions in binary form must reproduce the above copyright notice, this list
+of conditions and the following disclaimer in the documentation and/or other materials
+provided with the distribution.
+
+Neither the name of the author nor the names of contributors may be used to endorse
+or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &amp;quot;AS IS&amp;quot; AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+OF THE POSSIBILITY OF SUCH DAMAGE.</code></pre>
+
+<p>/&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;})(jQuery);&lt;/p&gt;</p>
+
+<p>&lt;p&gt;/*&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt; jQuery UI Effects Highlight 1.6rc6</p>
+
+<pre><code>Copyright (c) 2009 AUTHORS.txt (http://ui.jquery.com/about)
+Dual licensed under the MIT (MIT-LICENSE.txt)
+and GPL (GPL-LICENSE.txt) licenses.
+
+http://docs.jquery.com/UI/Effects/Highlight
+
+Depends:
+     effects.core.js</code></pre>
+
+<p>/&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;(function($) {&lt;/p&gt;</p>
+
+<p>&lt;p&gt;$.effects.highlight = function(o) {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;return this.queue(function() {</p>
+
+<pre><code>// Create element
+var el = $(this), props = [&amp;#39;backgroundImage&amp;#39;,&amp;#39;backgroundColor&amp;#39;,&amp;#39;opacity&amp;#39;];
+
+// Set options
+var mode = $.effects.setMode(el, o.options.mode || &amp;#39;show&amp;#39;); // Set Mode
+var color = o.options.color || &amp;quot;#ffff99&amp;quot;; // Default highlight color
+var oldColor = el.css(&amp;quot;backgroundColor&amp;quot;);
+
+// Adjust
+$.effects.save(el, props); el.show(); // Save &amp;amp; Show
+el.css({backgroundImage: &amp;#39;none&amp;#39;, backgroundColor: color}); // Shift
+
+// Animation
+var animation = {backgroundColor: oldColor };
+if (mode == &amp;quot;hide&amp;quot;) animation[&amp;#39;opacity&amp;#39;] = 0;
+
+// Animate
+el.animate(animation, { queue: false, duration: o.duration, easing: o.options.easing, complete: function() {
+        if(mode == &amp;quot;hide&amp;quot;) el.hide();
+        $.effects.restore(el, props);
+if (mode == &amp;quot;show&amp;quot; &amp;amp;&amp;amp; $.browser.msie) this.style.removeAttribute(&amp;#39;filter&amp;#39;);
+        if(o.callback) o.callback.apply(this, arguments);
+        el.dequeue();
+}});</code></pre>
+
+<p>});&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;};&lt;/p&gt;</p>
+
+<p>&lt;p&gt;})(jQuery);&lt;/p&gt;</p>
+
+<pre><code>  &lt;/div&gt;
+
+  &lt;!-- Methods --&gt;
+            &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+<p>&lt;/html&gt;</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 class FinalpredictionsController < ApplicationController
-  before_action :finalteams, :only => [:show, :edit]  
+  before_action :finalteams, :only => [:show, :edit]
   before_filter :ensure_admin, :only => [:pointsscript, :pointsscript2, :givepoints, :givepoints2]
   respond_to :html, :json
   def index
@@ -29,16 +29,16 @@ class FinalpredictionsController < ApplicationController
           game_id: 113,
           final: 2,
           poolmembership_id: poolmem,
-          winner: winner1                                             
+          winner: winner1
         },
         team2: {
           game_id: 114,
           final: 2,
           poolmembership_id: poolmem,
-          winner: winner2                                              
+          winner: winner2
         }
-      }               
-    ] 
+      }
+    ]
   end
 
   def create
@@ -51,14 +51,14 @@ class FinalpredictionsController < ApplicationController
   end
 
   def edit
-    if Time.now > deadline && if Time.now > knockout_deadline
+    if Time.now > deadline && Time.now > knockout_deadline
       @pool = Pool.find(params[:id])
       render 'deadline'
-    else       
+    else
       @pool = Pool.find(params[:id])
       @gamesfinal = Game.where(gametype: 'Finale').order(date: :asc)
       @gamesfinallist = @gamesfinal.group_by { |t| t.gametype }
-      @gamesfinallist.sort.each_with_index do |(gametype, games), index|    
+      @gamesfinallist.sort.each_with_index do |(gametype, games), index|
         if @present
           return
         else
@@ -77,7 +77,7 @@ class FinalpredictionsController < ApplicationController
       else
         render 'new'
       end
-    end     
+    end
   end
 
   private
@@ -97,4 +97,3 @@ end
 
 
 
- 

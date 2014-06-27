@@ -1,5 +1,5 @@
 class SemipredictionsController < ApplicationController
-  before_action :semiteams, :only => [:show, :edit]  
+  before_action :semiteams, :only => [:show, :edit]
   before_filter :ensure_admin, :only => [:pointsscript, :pointsscript2, :givepoints, :givepoints2]
   respond_to :html, :json
   def index
@@ -18,13 +18,13 @@ class SemipredictionsController < ApplicationController
     p1 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 109)
     if p1.present?
       winner1 = p1.winner
-    end    
+    end
     p2 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 110)
-    if p2.present?    
+    if p2.present?
       winner2 = p2.winner
-    end    
+    end
     p3 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 111)
-    if p3.present?        
+    if p3.present?
       winner3 = p3.winner
     end
     p4 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 112)
@@ -37,13 +37,13 @@ class SemipredictionsController < ApplicationController
           game_id: 109,
           final: 3,
           poolmembership_id: poolmem,
-          winner: winner1                                             
+          winner: winner1
         },
         team2: {
           game_id: 110,
           final: 3,
           poolmembership_id: poolmem,
-          winner: winner2                                              
+          winner: winner2
         }
       },
       { #2
@@ -51,16 +51,16 @@ class SemipredictionsController < ApplicationController
           game_id: 111,
           final: 3,
           poolmembership_id: poolmem,
-          winner: winner3                                              
+          winner: winner3
         },
         team2: {
           game_id: 112,
           final: 3,
           poolmembership_id: poolmem,
-          winner: winner4                                              
+          winner: winner4
         }
-      }               
-    ] 
+      }
+    ]
   end
 
   def create
@@ -73,14 +73,14 @@ class SemipredictionsController < ApplicationController
   end
 
   def edit
-    if Time.now > deadline && if Time.now > knockout_deadline
+    if Time.now > deadline && Time.now > knockout_deadline
       @pool = Pool.find(params[:id])
       render 'deadline'
-    else       
+    else
       @pool = Pool.find(params[:id])
       @gamessemi = Game.where(gametype: 'Halve finale').order(date: :asc)
       @gamessemilist = @gamessemi.group_by { |t| t.gametype }
-      @gamessemilist.sort.each_with_index do |(gametype, games), index|    
+      @gamessemilist.sort.each_with_index do |(gametype, games), index|
         if @present
           return
         else
@@ -99,7 +99,7 @@ class SemipredictionsController < ApplicationController
       else
         render 'new'
       end
-    end       
+    end
   end
 
   private
@@ -119,4 +119,3 @@ end
 
 
 
- 

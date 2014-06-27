@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>modal_js.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            modal_js.html
+        </h1>
+        <ul class="files">
+            <li>doc/rails/files/app/assets/javascripts/vendor/modal_js.html</li>
+            <li>Last modified: 2014-06-16 15:53:37 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”</p>
+
+<pre><code>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+<p>&lt;html xmlns=“<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>”
+xml:lang=“en” lang=“en”&gt; &lt;head&gt;</p>
+
+<pre><code>&lt;title&gt;modal.js&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../../../css/reset.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;</code></pre>
+
+<p>&lt;link rel=“stylesheet” href=“../../../../../css/main.css”
+type=“text/css” media=“screen” /&gt; &lt;link rel=“stylesheet”
+href=“../../../../../css/github.css” type=“text/css” media=“screen” /&gt;
+&lt;script src=“../../../../../js/jquery-1.3.2.min.js”
+type=“text/javascript” charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/jquery-effect.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/main.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/highlight.pack.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+
+    &lt;h1&gt;
+        modal.js
+    &lt;/h1&gt;
+    &lt;ul class=&quot;files&quot;&gt;
+        &lt;li&gt;app/assets/javascripts/vendor/modal.js&lt;/li&gt;
+        &lt;li&gt;Last modified: 2014-06-10 17:47:08 +0200&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;bodyContent&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+
+&lt;div class=&quot;description&quot;&gt;</code></pre>
+
+<p>&lt;pre&gt;<code>A simple jQuery modal
+(http://github.com/kylefox/jquery-modal) Version 0.5.5</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;(function($) {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;var current = null;</p>
+
+<p>$.modal = function(el, options) {</p>
+
+<pre><code>$.modal.close(); // Close any open modals.
+var remove, target;
+this.$body = $(&amp;#39;body&amp;#39;);
+this.options = $.extend({}, $.modal.defaults, options);
+this.options.doFade = !isNaN(parseInt(this.options.fadeDuration, 10));
+if (el.is(&amp;#39;a&amp;#39;)) {
+  target = el.attr(&amp;#39;href&amp;#39;);
+  //Select element by id from href
+  if (/^#/.test(target)) {
+    this.$elm = $(target);
+    if (this.$elm.length !== 1) return null;
+    this.open();
+  //AJAX
+  } else {
+    this.$elm = $(&amp;#39;&amp;lt;div&amp;gt;&amp;#39;);
+    this.$body.append(this.$elm);
+    remove = function(event, modal) { modal.elm.remove(); };
+    this.showSpinner();
+    el.trigger($.modal.AJAX_SEND);
+    $.get(target).done(function(html) {
+      if (!current) return;
+      el.trigger($.modal.AJAX_SUCCESS);
+      current.$elm.empty().append(html).on($.modal.CLOSE, remove);
+      current.hideSpinner();
+      current.open();
+      el.trigger($.modal.AJAX_COMPLETE);
+    }).fail(function() {
+      el.trigger($.modal.AJAX_FAIL);
+      current.hideSpinner();
+      el.trigger($.modal.AJAX_COMPLETE);
+    });
+  }
+} else {
+  this.$elm = el;
+  this.open();
+}</code></pre>
+
+<p>};</p>
+
+<p>$.modal.prototype = {</p>
+
+<pre><code>constructor: $.modal,
+
+open: function() {
+  var m = this;
+  if(this.options.doFade) {
+    this.block();
+    setTimeout(function() {
+      m.show();
+    }, this.options.fadeDuration * this.options.fadeDelay);
+  } else {
+    this.block();
+    this.show();
+  }
+  if (this.options.escapeClose) {
+    $(document).on(&amp;#39;keydown.modal&amp;#39;, function(event) {
+      if (event.which == 27) $.modal.close();
+    });
+  }
+  if (this.options.clickClose) this.blocker.click($.modal.close);
+},
+
+close: function() {
+  this.unblock();
+  this.hide();
+  $(document).off(&amp;#39;keydown.modal&amp;#39;);
+},
+
+block: function() {
+  var initialOpacity = this.options.doFade ? 0 : this.options.opacity;
+  this.$elm.trigger($.modal.BEFORE_BLOCK, [this._ctx()]);
+  this.blocker = $(&amp;#39;&amp;lt;div class=&amp;quot;jquery-modal blocker&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;).css({
+    top: 0, right: 0, bottom: 0, left: 0,
+    width: &amp;quot;100%&amp;quot;, height: &amp;quot;100%&amp;quot;,
+    position: &amp;quot;fixed&amp;quot;,
+    zIndex: this.options.zIndex,
+    background: this.options.overlay,
+    opacity: initialOpacity
+  });
+  this.$body.append(this.blocker);
+  if(this.options.doFade) {
+    this.blocker.animate({opacity: this.options.opacity}, this.options.fadeDuration);
+  }
+  this.$elm.trigger($.modal.BLOCK, [this._ctx()]);
+},
+
+unblock: function() {
+  if(this.options.doFade) {
+    this.blocker.fadeOut(this.options.fadeDuration, function() {
+      $(this).remove();
+    });
+  } else {
+    this.blocker.remove();
+  }
+},
+
+show: function() {
+  this.$elm.trigger($.modal.BEFORE_OPEN, [this._ctx()]);
+  if (this.options.showClose) {
+    this.closeButton = $(&amp;#39;&amp;lt;a href=&amp;quot;#close-modal&amp;quot; rel=&amp;quot;modal:close&amp;quot; class=&amp;quot;close-modal &amp;#39; + this.options.closeClass + &amp;#39;&amp;quot;&amp;gt;&amp;#39; + this.options.closeText + &amp;#39;&amp;lt;/a&amp;gt;&amp;#39;);
+    this.$elm.append(this.closeButton);
+  }
+  this.$elm.addClass(this.options.modalClass + &amp;#39; current&amp;#39;);
+  this.center();
+  if(this.options.doFade) {
+    this.$elm.fadeIn(this.options.fadeDuration);
+  } else {
+    this.$elm.show();
+  }
+  this.$elm.trigger($.modal.OPEN, [this._ctx()]);
+},
+
+hide: function() {
+  this.$elm.trigger($.modal.BEFORE_CLOSE, [this._ctx()]);
+  if (this.closeButton) this.closeButton.remove();
+  this.$elm.removeClass(&amp;#39;current&amp;#39;);
+
+  if(this.options.doFade) {
+    this.$elm.fadeOut(this.options.fadeDuration);
+  } else {
+    this.$elm.hide();
+  }
+  this.$elm.trigger($.modal.CLOSE, [this._ctx()]);
+},
+
+showSpinner: function() {
+  if (!this.options.showSpinner) return;
+  this.spinner = this.spinner || $(&amp;#39;&amp;lt;div class=&amp;quot;&amp;#39; + this.options.modalClass + &amp;#39;-spinner&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;)
+    .append(this.options.spinnerHtml);
+  this.$body.append(this.spinner);
+  this.spinner.show();
+},
+
+hideSpinner: function() {
+  if (this.spinner) this.spinner.remove();
+},
+
+center: function() {
+  this.$elm.css({
+    position: &amp;#39;fixed&amp;#39;,
+    top: &amp;quot;50%&amp;quot;,
+    left: &amp;quot;50%&amp;quot;,
+    marginTop: - (this.$elm.outerHeight() / 2),
+    marginLeft: - (this.$elm.outerWidth() / 2),
+    zIndex: this.options.zIndex + 1
+  });
+},
+
+//Return context for custom events
+_ctx: function() {
+  return { elm: this.$elm, blocker: this.blocker, options: this.options };
+}</code></pre>
+
+<p>};</p>
+
+<p>//resize is alias for center for now $.modal.prototype.resize =
+$.modal.prototype.center;</p>
+
+<p>$.modal.close = function(event) {</p>
+
+<pre><code>if (!current) return;
+if (event) event.preventDefault();
+current.close();
+var that = current.$elm;
+current = null;
+return that;</code></pre>
+
+<p>};</p>
+
+<p>$.modal.resize = function() {</p>
+
+<pre><code>if (!current) return;
+current.resize();</code></pre>
+
+<p>};</p>
+
+<p>// Returns if there currently is an active modal $.modal.isActive =
+function () {</p>
+
+<pre><code>return current ? true : false;</code></pre>
+
+<p>};</p>
+
+<p>$.modal.defaults = {</p>
+
+<pre><code>overlay: &amp;quot;#000&amp;quot;,
+opacity: 0.6,
+zIndex: 1,
+escapeClose: true,
+clickClose: true,
+closeText: &amp;#39;Close&amp;#39;,
+closeClass: &amp;#39;&amp;#39;,
+modalClass: &amp;quot;modal&amp;quot;,
+spinnerHtml: null,
+showSpinner: true,
+showClose: true,
+fadeDuration: 300,   // Number of milliseconds the fade animation takes.
+fadeDelay: 0.25        // Point during the overlay&amp;#39;s fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)</code></pre>
+
+<p>};</p>
+
+<p>// Event constants $.modal.BEFORE_BLOCK =
+&amp;#39;modal:before-block&amp;#39;; $.modal.BLOCK =
+&amp;#39;modal:block&amp;#39;; $.modal.BEFORE_OPEN =
+&amp;#39;modal:before-open&amp;#39;; $.modal.OPEN =
+&amp;#39;modal:open&amp;#39;; $.modal.BEFORE_CLOSE =
+&amp;#39;modal:before-close&amp;#39;; $.modal.CLOSE =
+&amp;#39;modal:close&amp;#39;; $.modal.AJAX_SEND =
+&amp;#39;modal:ajax:send&amp;#39;; $.modal.AJAX_SUCCESS =
+&amp;#39;modal:ajax:success&amp;#39;; $.modal.AJAX_FAIL =
+&amp;#39;modal:ajax:fail&amp;#39;; $.modal.AJAX_COMPLETE =
+&amp;#39;modal:ajax:complete&amp;#39;;</p>
+
+<p>$.fn.modal = function(options){</p>
+
+<pre><code>if (this.length === 1) {
+  current = new $.modal(this, options);
+}
+return this;</code></pre>
+
+<p>};</p>
+
+<p>// Automatically bind links with rel=&amp;quot;modal:close&amp;quot; to,
+well, close the modal. $(document).on(&amp;#39;click.modal&amp;#39;,
+&amp;#<a href="rel=&quot;modal:close&quot;">39;a</a>&amp;#39;,
+$.modal.close); $(document).on(&amp;#39;click.modal&amp;#39;, &amp;#<a
+href="rel=&quot;modal:open&quot;">39;a</a>&amp;#39;, function(event) {</p>
+
+<pre><code>event.preventDefault();
+$(this).modal();</code></pre>
+
+<p>});&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;})(jQuery);&lt;/p&gt;</p>
+
+<pre><code>  &lt;/div&gt;
+
+  &lt;!-- Methods --&gt;
+            &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+<p>&lt;/html&gt;</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>_nouislider_css_scss.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            _nouislider_css_scss.html
+        </h1>
+        <ul class="files">
+            <li>doc/rails/files/app/assets/stylesheets/modules/_nouislider_css_scss.html</li>
+            <li>Last modified: 2014-06-16 15:53:40 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”</p>
+
+<pre><code>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+<p>&lt;html xmlns=“<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>”
+xml:lang=“en” lang=“en”&gt; &lt;head&gt;</p>
+
+<pre><code>&lt;title&gt;_nouislider.css.scss&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../../../css/reset.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;</code></pre>
+
+<p>&lt;link rel=“stylesheet” href=“../../../../../css/main.css”
+type=“text/css” media=“screen” /&gt; &lt;link rel=“stylesheet”
+href=“../../../../../css/github.css” type=“text/css” media=“screen” /&gt;
+&lt;script src=“../../../../../js/jquery-1.3.2.min.js”
+type=“text/javascript” charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/jquery-effect.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/main.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/highlight.pack.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+
+    &lt;h1&gt;
+        _nouislider.css.scss
+    &lt;/h1&gt;
+    &lt;ul class=&quot;files&quot;&gt;
+        &lt;li&gt;app/assets/stylesheets/modules/_nouislider.css.scss&lt;/li&gt;
+        &lt;li&gt;Last modified: 2014-06-10 17:47:08 +0200&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;bodyContent&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+
+&lt;div class=&quot;description&quot;&gt;</code></pre>
+
+<p>&lt;pre&gt;<code>Functional styling; These styles are required for
+noUiSlider to function. You don&amp;#39;t need to change these rules to
+apply your design.</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;.noUi-target, .noUi-target * { -webkit-touch-callout: none;
+-webkit-user-select: none; -ms-touch-action: none; -ms-user-select: none;
+-moz-user-select: none; -moz-box-sizing: border-box;&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>box-sizing: border-box;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-base {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>width: 100%; height: 100%; position:
+relative;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-origin {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>position: absolute; right: 0; top: 0; left: 0; bottom:
+0;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-handle {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>position: relative; z-index: 1;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-stacking .noUi-handle {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;This class is applied to the lower origin when its
+values is &amp;gt; 50%.</p>
+
+<pre><code>z-index: 10;</code></pre>
+
+<p>&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-stacking + .noUi-origin {    Fix stacking order in IE7,
+which incorrectly&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt; creates a new context for the origins.</p>
+
+<p>z-index: -1;&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-state-tap .noUi-origin { -webkit-transition: left 0.3s,
+top 0.3s;&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>transition: left 0.3s, top 0.3s;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-state-drag * {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>cursor: inherit !important;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;/* Slider size and handle placement;&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>/</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;.noUi-horizontal {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>height: 18px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-horizontal .noUi-handle {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>width: 2px; height: 18px; // left: -17px; // top:
+-4px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-horizontal.noUi-extended {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>padding: 0 15px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-horizontal.noUi-extended .noUi-origin  {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>right: -15px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-vertical {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>width: 18px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-vertical .noUi-handle {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>width: 28px; height: 34px; left: -6px; top:
+-17px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-vertical.noUi-extended {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>padding: 15px 0;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-vertical.noUi-extended .noUi-origin  {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>bottom: -15px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;/* Styling;&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>/</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;.noUi-background {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>background: $color-grey-light; // box-shadow: inset 0 1px
+1px #f0f0f0;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-connect {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>background: $color-green-light;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-origin {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>// border-radius: 2px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-target {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>// border-radius: 4px; // border: 1px solid #D3D3D3; //
+box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px
+#BBB;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-target.noUi-connect {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>// box-shadow: inset 0 0 3px rgba(51,51,51,0.45), 0 3px
+6px -5px #BBB;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;/* Handles and cursors;&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>/</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;.noUi-dragable {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>cursor: w-resize;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-vertical .noUi-dragable {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>cursor: n-resize;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-handle {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>// border: 1px solid #D9D9D9; // border-radius: 3px;
+background: $color-green-dark; cursor: default; // box-shadow: inset 0 0
+1px #FFF, //                      inset 0 1px 7px #EBEBEB, //              
+0 3px 6px -3px #BBB;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-active {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>// box-shadow: inset 0 0 1px #FFF, //                     
+inset 0 1px 7px #DDD, //                      0 3px 6px -3px
+#BBB;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;/* Handle stripes;&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>/</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;.noUi-handle:before, .noUi-handle:after {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>// content: &amp;quot;&amp;quot;; // display: block; //
+position: absolute; // height: 14px; // width: 1px; // background: #E8E7E6;
+// left: 14px; // top: 6px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-handle:after {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>// left: 17px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-vertical .noUi-handle:before, .noUi-vertical
+.noUi-handle:after {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>width: 14px; height: 1px; left: 6px; top:
+14px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} .noUi-vertical .noUi-handle:after {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>top: 17px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.noUi-handle:before {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>background: $color-green-dark; border-radius: 50%;
+content: &amp;quot;&amp;quot;; display: block; height: 8px; left: -3px;
+position: absolute; top: -4px; width: 8px;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;} /* Disabled state;&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>/</code>&lt;/pre&gt;</p>
+
+<p>&lt;<a href="disabled">p></a>.noUi-connect,&lt;/p&gt; &lt;dl
+class=“rdoc-list label-list”&gt;&lt;dt&gt;disabled &lt;dd&gt;
+&lt;p&gt;.noUi-connect {&lt;/p&gt; &lt;/dd&gt;&lt;/dl&gt;</p>
+
+<p>&lt;pre&gt;<code>background: #B8B8B8;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt; &lt;dl class=“rdoc-list
+label-list”&gt;&lt;dt&gt;disabled &lt;dd&gt; &lt;p&gt;.noUi-handle
+{&lt;/p&gt; &lt;/dd&gt;&lt;/dl&gt;</p>
+
+<p>&lt;pre&gt;<code>cursor: not-allowed;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<pre><code>  &lt;/div&gt;
+
+  &lt;!-- Methods --&gt;
+            &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+<p>&lt;/html&gt;</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

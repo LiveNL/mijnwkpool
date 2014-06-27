@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>_fonts_css_scss.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            _fonts_css_scss.html
+        </h1>
+        <ul class="files">
+            <li>doc/rails/files/app/assets/stylesheets/modules/_fonts_css_scss.html</li>
+            <li>Last modified: 2014-06-16 16:01:08 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”</p>
+
+<pre><code>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+<p>&lt;html xmlns=“<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>”
+xml:lang=“en” lang=“en”&gt; &lt;head&gt;</p>
+
+<pre><code>&lt;title&gt;_fonts.css.scss&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../../../css/reset.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;</code></pre>
+
+<p>&lt;link rel=“stylesheet” href=“../../../../../css/main.css”
+type=“text/css” media=“screen” /&gt; &lt;link rel=“stylesheet”
+href=“../../../../../css/github.css” type=“text/css” media=“screen” /&gt;
+&lt;script src=“../../../../../js/jquery-1.3.2.min.js”
+type=“text/javascript” charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/jquery-effect.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/main.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../../js/highlight.pack.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+
+    &lt;h1&gt;
+        _fonts.css.scss
+    &lt;/h1&gt;
+    &lt;ul class=&quot;files&quot;&gt;
+        &lt;li&gt;app/assets/stylesheets/modules/_fonts.css.scss&lt;/li&gt;
+        &lt;li&gt;Last modified: 2014-06-16 13:19:10 +0200&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;bodyContent&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+
+&lt;div class=&quot;description&quot;&gt;</code></pre>
+
+<p>&lt;p&gt;h1 {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;@include respond-to(small) {</p>
+
+<pre><code>@include font-size($font-size * 3);</code></pre>
+
+<p>} @include font-size($font-size * 2); color: $color-orange-light;
+font-weight: $font-weight-bold;&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;h2 {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;@include respond-to(small) {</p>
+
+<pre><code>@include font-size($font-size * 2);</code></pre>
+
+<p>} @include font-size($font-size * 1); color: $color-grey-medium;
+font-weight: $font-weight-bold;&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;h3 {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>@include font-size($font-size * 1); color:
+$color-grey-darker; font-weight: $font-weight-normal;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;p {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;@include font-size($font-size * 1); color:
+$color-grey-medium;</p>
+
+<p>&amp;amp; + p {</p>
+
+<pre><code>margin-top: 1em;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;a {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;color: $color-blue-light;</p>
+
+<p>&amp;amp;:hover, &amp;amp;:active {</p>
+
+<pre><code>color: $color-blue-dark;</code></pre>
+
+<p>}</p>
+
+<p>&amp;amp;.grey {</p>
+
+<pre><code>color: $color-grey-medium;
+
+&amp;amp;:hover,
+&amp;amp;:active {
+  color: $color-grey-dark;
+}</code></pre>
+
+<p>}</p>
+
+<p>&amp;amp;.white {</p>
+
+<pre><code>color: #FFF;</code></pre>
+
+<p>}</p>
+
+<p>&amp;amp;.no-under {</p>
+
+<pre><code>text-decoration: none;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<pre><code>  &lt;/div&gt;
+
+  &lt;!-- Methods --&gt;
+            &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+<p>&lt;/html&gt;</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>

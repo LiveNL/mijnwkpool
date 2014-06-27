@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>_header_css_scss.html</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../../../../../../../css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../css/main.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../../../../../../css/github.css" type="text/css" media="screen" />
+<script src="../../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../../../../../js/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>     
+    <div class="banner">
+        
+        <h1>
+            _header_css_scss.html
+        </h1>
+        <ul class="files">
+            <li>doc/rails/files/app/assets/stylesheets/_header_css_scss.html</li>
+            <li>Last modified: 2014-06-16 15:53:37 +0200</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+  
+    <div class="description">
+      
+<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN”</p>
+
+<pre><code>&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</code></pre>
+
+<p>&lt;html xmlns=“<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>”
+xml:lang=“en” lang=“en”&gt; &lt;head&gt;</p>
+
+<pre><code>&lt;title&gt;_header.css.scss&lt;/title&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../../css/reset.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;</code></pre>
+
+<p>&lt;link rel=“stylesheet” href=“../../../../css/main.css” type=“text/css”
+media=“screen” /&gt; &lt;link rel=“stylesheet”
+href=“../../../../css/github.css” type=“text/css” media=“screen” /&gt;
+&lt;script src=“../../../../js/jquery-1.3.2.min.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../js/jquery-effect.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt; &lt;script src=“../../../../js/main.js”
+type=“text/javascript” charset=“utf-8”&gt;&lt;/script&gt; &lt;script
+src=“../../../../js/highlight.pack.js” type=“text/javascript”
+charset=“utf-8”&gt;&lt;/script&gt;</p>
+
+<p>&lt;/head&gt;</p>
+
+<p>&lt;body&gt;</p>
+
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+
+    &lt;h1&gt;
+        _header.css.scss
+    &lt;/h1&gt;
+    &lt;ul class=&quot;files&quot;&gt;
+        &lt;li&gt;app/assets/stylesheets/_header.css.scss&lt;/li&gt;
+        &lt;li&gt;Last modified: 2014-06-10 17:47:16 +0200&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;bodyContent&quot;&gt;
+    &lt;div id=&quot;content&quot;&gt;
+
+&lt;div class=&quot;description&quot;&gt;</code></pre>
+
+<p>&lt;p&gt;.header-wrapper {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;background: #FFF; box-shadow: 0 3px 0
+$color-grey-light; left: 0; position: fixed; top: 0; width: 100%; z-index:
+10;</p>
+
+<p>@include respond-to(medium) {</p>
+
+<pre><code>position: absolute;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.header-inner {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;height: 70px; position: relative;</p>
+
+<p>@include respond-to(small) {</p>
+
+<pre><code>height: 100px;
+margin-left: auto;
+margin-right: auto;</code></pre>
+
+<p>}</p>
+
+<p>@include respond-to(large) {</p>
+
+<pre><code>max-width: 1220px;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.logo {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;position: absolute; left: 50%; margin-left: -18px;
+top: 10px; width: 36px;</p>
+
+<p>@include respond-to(small) {</p>
+
+<pre><code>left: 50%;
+margin-left: -154px;
+top: 20px;
+width: 306px;</code></pre>
+
+<p>} @include respond-to(medium) {</p>
+
+<pre><code>left: 20px;
+margin-left: 0;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.nav {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;position: absolute; left: 10px; top: 13px;</p>
+
+<p>@include respond-to(small) {</p>
+
+<pre><code>left: 20px;
+top: 28px;</code></pre>
+
+<p>}</p>
+
+<p>@include respond-to(medium) {</p>
+
+<pre><code>left: 360px;
+top: 0;</code></pre>
+
+<p>}</p>
+
+<p>ul {</p>
+
+<pre><code>list-style: none;
+
+li {
+  float: left;
+  position: relative;
+
+  &amp;amp;:hover{
+    background-color: $color-grey-lighter;
+
+    ul.sub-menu {
+      display:block;
+    }
+  }
+
+  a {
+    display: block;
+    line-height: 100px;
+    padding: 0 20px;
+    text-decoration: none;
+
+    &amp;amp;:hover {
+      background-color: $color-grey-lighter;
+
+      ul.sub-menu {
+        display:block;
+      }
+    }
+  }
+  &amp;amp;.active a {
+    background-color: $color-grey-lighter;
+    color: $color-grey-dark;
+  }
+
+  ul.sub-menu {
+    display:none;
+    position: absolute;
+    z-index: 99;
+    top: 85px;
+    left: 0;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 17px 5px rgba(50, 50, 50, 0.15);
+    border-bottom: 3px solid $color-grey-light;
+    min-width: 100%;
+
+    li {
+      width:100%;
+      white-space:nowrap;
+      background-color: #FFFFFF;
+
+      &amp;amp;:last-child a{
+        border-bottom: none;
+      }
+
+      a{
+        margin:0 20px;
+        padding:20px 0;
+        line-height: 10px;
+        color:$color-grey-light;
+        border-bottom: 1px solid $color-grey-light;
+        background-color: #FFFFFF;
+
+        &amp;amp;:hover{
+          background-color: #FFF;
+          color:$color-grey-dark;
+        }
+
+        .fa{
+          line-height: inherit;
+        }
+      }
+    }
+
+    &amp;amp;:before {
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid #FFF;
+      content: &amp;quot;&amp;quot;;
+      display: block;
+      margin-left: -4px;
+      position: absolute;
+      top: -8px;
+      width: 0;
+      left: 25%;
+    }
+  }
+}</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.nav-btn {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;<code>border: 1px solid $color-grey-light; color:
+$color-grey-dark; display: block; padding: 10px; text-decoration:
+none;</code>&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.nav-user-options {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;position: absolute; right: 10px; top: 15px;</p>
+
+<p>@include respond-to(small) {</p>
+
+<pre><code>right: 20px;
+top: 30px;</code></pre>
+
+<p>}</p>
+
+<p>.nav-user-btn {</p>
+
+<pre><code>display: table-cell;
+height: 40px;
+text-align: center;
+text-decoration: none;
+vertical-align: middle;
+width: 40px;
+border:1px solid $color-grey-light;
+
+@include respond-to(large) {
+  width: auto;
+  padding: 0 10px;
+}
+
+&amp;amp; + .nav-user-btn {
+  border-left:none;
+}</code></pre>
+
+<p>}</p>
+
+<p>.nav-user-name {</p>
+
+<pre><code>@include respond-to(small) {
+  padding: 0 10px;
+  width: auto;
+
+  .user-name {
+    display: inline-block;
+  }
+
+  .user-icon {
+    display: inline-block;
+  }
+}</code></pre>
+
+<p>}</p>
+
+<p>.user-icon {</p>
+
+<pre><code>margin-left: 0;
+@include respond-to(large) {
+  display: inline-block;
+}</code></pre>
+
+<p>}</p>
+
+<p>.user-name {</p>
+
+<pre><code>display: none;
+@include respond-to(large) {
+  display: inline-block;
+}</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<p>&lt;p&gt;.mobile-nav {&lt;/p&gt;</p>
+
+<p>&lt;pre&gt;&lt;code&gt;background-color: $color-grey-darker; height: 100%;
+left: 0; overflow: scroll; padding-top: 60px; position: fixed; top: 0;
+width: 300px; z-index: 99; -webkit-transition: all 300ms ease;
+-moz-transition: all 300ms ease; -ms-transition: all 300ms ease;
+-o-transition: all 300ms ease; transition: all 300ms ease;
+-webkit-overflow-scrolling: touch;</p>
+
+<p>&amp;amp;.closed {</p>
+
+<pre><code>left: -300px;</code></pre>
+
+<p>}</p>
+
+<p>h3 {</p>
+
+<pre><code>@include font-size($font-size * 1.5);
+color: #ff6819;
+font-weight: bold;
+padding: 50px 20px 10px;</code></pre>
+
+<p>}</p>
+
+<p>ul {</p>
+
+<pre><code>border-top: 1px solid $color-grey-dark;
+list-style: none;
+
+li {
+  a {
+    border-bottom: 1px solid $color-grey-dark;
+    color: #FFF;
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+
+    &amp;amp;:active,
+    &amp;amp;:hover {
+      background-color: $color-grey-dark;
+    }
+  }
+}</code></pre>
+
+<p>} .nav-close-btn {</p>
+
+<pre><code>border: 1px solid $color-grey-dark;
+color: #FFF;
+height: 40px;
+line-height: 40px;
+position: absolute;
+text-align: center;
+top: 10px;
+left: 10px;
+width: 40px;</code></pre>
+
+<p>}&lt;/code&gt;&lt;/pre&gt;</p>
+
+<p>&lt;p&gt;}&lt;/p&gt;</p>
+
+<pre><code>  &lt;/div&gt;
+
+  &lt;!-- Methods --&gt;
+            &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+<p>&lt;/html&gt;</p>
+
+    </div>
+  
+
+
+  
+
+
+  
+  
+
+
+  
+
+
+  
+
+  
+
+
+
+  
+
+    
+
+    
+
+    
+
+
+    
+
+
+    <!-- Methods -->
+              </div>
+
+    </div>
+  </body>
+</html>
