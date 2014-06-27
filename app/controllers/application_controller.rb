@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
       if current_user.admin == true
         Time.now
       else
-        Time.zone.parse('2014-06-27 21:00:00')
+        Time.zone.parse('2014-06-27 23:59:59')
       end
     end
   end
