@@ -121,28 +121,33 @@ class QuarterpredictionsController < ApplicationController
   end
 
   def edit
-    @pool = Pool.find(params[:id])
-    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)
-    @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }
-    @gamesquarterlist.sort.each_with_index do |(gametype, games), index|    
-      if @present
-        return
-      else
-        @gamesquarter.each_with_index do |game, index2|
-          current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id)
-          prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id)
+    if Time.now > deadline && if Time.now > knockout_deadline
+      @pool = Pool.find(params[:id])
+      render 'deadline'
+    else       
+      @pool = Pool.find(params[:id])
+      @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)
+      @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }
+      @gamesquarterlist.sort.each_with_index do |(gametype, games), index|    
+        if @present
+          return
+        else
+          @gamesquarter.each_with_index do |game, index2|
+            current_poolmembership = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id)
+            prediction = Prediction.find_by_poolmembership_id_and_game_id(current_poolmembership, game.id)
 
-          if prediction.present?
-            @present = true
+            if prediction.present?
+              @present = true
+            end
           end
         end
       end
-    end
-    if @present
-      render 'edit'
-    else
-      render 'new'
-    end     
+      if @present
+        render 'edit'
+      else
+        render 'new'
+      end
+    end       
   end
 
   private

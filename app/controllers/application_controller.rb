@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_filter :ensure_user, :except => [:home]
   before_filter :deadline
   before_filter :temp_deadline
+  before_filter :knockout_deadline
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -25,6 +26,16 @@ class ApplicationController < ActionController::Base
         Time.now
       else
         Time.zone.parse('2014-06-17 21:00:00')
+      end
+    end
+  end
+
+  def knockout_deadline
+    if current_user
+      if current_user.admin == true
+        Time.now
+      else
+        Time.zone.parse('2014-06-27 21:00:00')
       end
     end
   end
