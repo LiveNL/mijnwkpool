@@ -77,6 +77,8 @@
                     <%= p.hidden_field :poolmembership_id, :value => Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id %>
                     <%= p.hidden_field :game_id, :value => game.id %>
                     <%= p.hidden_field :final, :value => 3 %>
+                    <%= p.hidden_field :team1_id, :value => predictionteam1[0]['id'] %>
+                    <%= p.hidden_field :team2_id, :value => predictionteam2[0]['id'] %>
                                
                    <tr>
                       <td class="infoshower">
