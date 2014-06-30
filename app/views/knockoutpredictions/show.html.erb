@@ -96,7 +96,10 @@
                             <%= team2.name %>
                           <% else %>
                             <%= teamfinal2[0]['name'] %>
-                          <% end %> 
+                          <% end %>
+                          <% if current_user && current_user.admin == true %>
+                            <%= game.id %>
+                          <% end %>                            
                           <br/>
                           <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span>
                         </div>
