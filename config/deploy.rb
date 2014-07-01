@@ -48,3 +48,21 @@ namespace :deploy do
   after :restart, :ping
   after :finishing, 'deploy:cleanup'
 end
+
+namespace :rails do
+  desc "Remote console"
+  task :console, :roles => :app do
+    run_interactively "bundle exec rails console #{rails_env}"
+  end
+
+  desc "Remote dbconsole"
+  task :dbconsole, :roles => :app do
+    run_interactively "bundle exec rails dbconsole #{rails_env}"
+  end
+end
+
+def run_interactively(command)
+  server ||= find_servers_for_task(current_task).first
+  exec %Q(ssh #{user}@#{myproductionhost} -t '#{command}')
+end
+
