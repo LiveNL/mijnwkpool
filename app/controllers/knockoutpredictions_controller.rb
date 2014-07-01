@@ -56,24 +56,24 @@ class KnockoutpredictionsController < ApplicationController
       { #3
         team1: {
           pos: 1,
-          poule: 'B',
-          poolmembership_id: poolmem
-        },
-        team2: {
-          pos: 2,
-          poule: 'A',
-          poolmembership_id: poolmem
-        }
-      },
-      { #4
-        team1: {
-          pos: 1,
           poule: 'D',
           poolmembership_id: poolmem
         },
         team2: {
           pos: 2,
           poule: 'C',
+          poolmembership_id: poolmem
+        }
+      },
+      { #4
+        team1: {
+          pos: 1,
+          poule: 'B',
+          poolmembership_id: poolmem
+        },
+        team2: {
+          pos: 2,
+          poule: 'A',
           poolmembership_id: poolmem
         }
       },
