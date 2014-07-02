@@ -392,7 +392,8 @@
                             <%= team2.name %>
                           <% else %>
                             <%= predictionteam2[0]['name'] %>
-                          <% end %> 
+                          <% end %> ||
+                            <%= teaminfo1.name %>-<%= teaminfo2.name %> 
                           <br/>
                           <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span>
                         </div>
@@ -402,8 +403,7 @@
                           <%= team1.name %>
                         <% else %>
                           <%= predictionteam1[0]['name'] %>
-                        <% end %>||
-                            <%= teaminfo1.name %>-<%= teaminfo2.name %> 
+                        <% end %>
                       </td>
                       <% if team1.present? %>                            
                         <td class="flag" style="background-image: url('<%=team1.avatar.url(:mini)%>')"></td> 
