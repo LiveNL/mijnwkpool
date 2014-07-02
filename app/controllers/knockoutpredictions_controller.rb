@@ -14,7 +14,7 @@ class KnockoutpredictionsController < ApplicationController
 
   def show
     @pool = Pool.find(params[:id])
-    @gameseight = Game.where(gametype: 'Achtste finale').order(date: :asc)
+    @gameseight = Game.where(gametype: 'Achtste finale').order(date: :asc, time: :asc)
     @gameseightlist = @gameseight.group_by { |t| t.gametype }
     @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)
     @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }
@@ -23,7 +23,6 @@ class KnockoutpredictionsController < ApplicationController
     @gamesfinal = Game.where(gametype: 'Finale').order(date: :asc)
     @gamesfinallist = @gamesfinal.group_by { |t| t.gametype }
   end
-
 
   def eightteams
     @pool = Pool.find(params[:id])

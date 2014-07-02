@@ -53,7 +53,8 @@
                           <i class="fa fa-check-circle-o"></i>
                         <% end %>
                       <% end %>
-                    </td>                     <td style="width: 90px; padding: 3px;"><%= game.date %></td>
+                    </td>                     
+                    <td style="width: 90px; padding: 3px;"><%= game.date %></td>
                     <td style="width: 30px; padding: 3px;"><%= game.time.strftime("%I:%M") %></td>
                     <td><%= Team.find(game.team1_id).name %></td>
                     <td><%= game.score1 %> - <%= game.score2 %></td>
