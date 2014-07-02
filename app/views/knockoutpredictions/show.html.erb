@@ -71,7 +71,8 @@
                   <% if teamfinal1 == nil %>
                     <% team1 = Team.find(game.team1_id) %>                  
                   <% end %>
-
+                  <% teaminfo1 = Team.find(game.team1_id) %>                  
+                  <% teaminfo2 = Team.find(game.team2_id) %>
                   <% teamfinal2 = Team.pouleleader(teamfinal2[:pos], teamfinal2[:poule], teamfinal2[:poolmembership_id]) %>
                   <% if teamfinal2 == nil %>
                     <% team2 = Team.find(game.team2_id) %>
@@ -99,7 +100,8 @@
                           <% end %>
                           <% if current_user && current_user.admin == true %>
                             <%= game.id %>
-                          <% end %>                            
+                          <% end %>||
+                            <%= teaminfo1.name %>-<%= teaminfo2.name %>
                           <br/>
                           <span><%= game.date %>, <%= game.time.strftime('%H:%M') %></span>
                         </div>
