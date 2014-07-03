@@ -247,6 +247,9 @@
                             <%= team2.name %>
                           <% else %>
                             <%= predictionteam2[0]['name'] %>
+                          <% end %> 
+                          <% if current_user && current_user.admin == true %>
+                            <%= game.id %>
                           <% end %>||
                             <%= teaminfo1.name %>-<%= teaminfo2.name %> 
                           <br/>
@@ -392,6 +395,9 @@
                             <%= team2.name %>
                           <% else %>
                             <%= predictionteam2[0]['name'] %>
+                          <% end %> 
+                          <% if current_user && current_user.admin == true %>
+                            <%= game.id %>
                           <% end %> ||
                             <%= teaminfo1.name %>-<%= teaminfo2.name %> 
                           <br/>
@@ -536,6 +542,9 @@
                             <%= team2.name %>
                           <% else %>
                             <%= predictionteam2[0]['name'] %>
+                          <% end %> 
+                          <% if current_user && current_user.admin == true %>
+                            <%= game.id %>
                           <% end %> ||
                             <%= teaminfo1.name %>-<%= teaminfo2.name %> 
                           <br/>
