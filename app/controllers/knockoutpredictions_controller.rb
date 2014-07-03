@@ -166,20 +166,6 @@ class KnockoutpredictionsController < ApplicationController
     @predictionarray = [
       { #1
         team1: {
-          game_id: 102,
-          final: 4,
-          poolmembership_id: poolmem,
-          winner: winner2
-        },
-        team2: {
-          game_id: 101,
-          final: 4,
-          poolmembership_id: poolmem,
-          winner: winner1
-        }
-      },
-      { #2
-        team1: {
           game_id: 104,
           final: 4,
           poolmembership_id: poolmem,
@@ -192,21 +178,21 @@ class KnockoutpredictionsController < ApplicationController
           winner: winner3
         }
       },
-      { #3
+      { #2
         team1: {
-          game_id: 105,
+          game_id: 102,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner5
+          winner: winner2
         },
         team2: {
-          game_id: 106,
+          game_id: 101,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner6
+          winner: winner1
         }
       },
-      { #4
+      { #3
         team1: {
           game_id: 107,
           final: 4,
@@ -218,6 +204,20 @@ class KnockoutpredictionsController < ApplicationController
           final: 4,
           poolmembership_id: poolmem,
           winner: winner8
+        }
+      },
+      { #4
+        team1: {
+          game_id: 106,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner6
+        },
+        team2: {
+          game_id: 105,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner5
         }
       }
     ]
