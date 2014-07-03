@@ -189,7 +189,7 @@ class KnockoutpredictionsController < ApplicationController
           game_id: 102,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner4
+          winner: winner2
         }
       },
       { #3
@@ -197,13 +197,13 @@ class KnockoutpredictionsController < ApplicationController
           game_id: 107,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner5
+          winner: winner7
         },
         team2: {
           game_id: 108,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner6
+          winner: winner8
         }
       },
       { #4
@@ -211,13 +211,13 @@ class KnockoutpredictionsController < ApplicationController
           game_id: 106,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner7
+          winner: winner6
         },
         team2: {
           game_id: 105,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner8
+          winner: winner5
         }
       }
     ]
