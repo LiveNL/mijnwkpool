@@ -16,9 +16,9 @@ class KnockoutpredictionsController < ApplicationController
     @pool = Pool.find(params[:id])
     @gameseight = Game.where(gametype: 'Achtste finale').order(date: :asc, time: :asc)
     @gameseightlist = @gameseight.group_by { |t| t.gametype }
-    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)
+    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc, time: :asc)
     @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }
-    @gamessemi = Game.where(gametype: 'Halve finale').order(date: :asc)
+    @gamessemi = Game.where(gametype: 'Halve finale').order(date: :asc, time: :asc)
     @gamessemilist = @gamessemi.group_by { |t| t.gametype }
     @gamesfinal = Game.where(gametype: 'Finale').order(date: :asc)
     @gamesfinallist = @gamesfinal.group_by { |t| t.gametype }
