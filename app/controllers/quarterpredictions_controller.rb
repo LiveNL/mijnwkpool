@@ -10,7 +10,7 @@ class QuarterpredictionsController < ApplicationController
 
   def show
     @pool = Pool.find(params[:id])
-    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc)
+    @gamesquarter = Game.where(gametype: 'Kwart finale').order(date: :asc, time: :asc)
     @gamesquarterlist = @gamesquarter.group_by { |t| t.gametype }
   end
 
@@ -53,20 +53,6 @@ class QuarterpredictionsController < ApplicationController
     @predictionarray = [
       { #1
         team1: {
-          game_id: 101,
-          final: 4,
-          poolmembership_id: poolmem,
-          winner: winner1
-        },
-        team2: {
-          game_id: 102,
-          final: 4,
-          poolmembership_id: poolmem,
-          winner: winner2
-        }
-      },
-      { #2
-        team1: {
           game_id: 103,
           final: 4,
           poolmembership_id: poolmem,
@@ -79,21 +65,21 @@ class QuarterpredictionsController < ApplicationController
           winner: winner4
         }
       },
-      { #3
+      { #2
         team1: {
-          game_id: 105,
+          game_id: 101,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner5
+          winner: winner1
         },
         team2: {
-          game_id: 106,
+          game_id: 102,
           final: 4,
           poolmembership_id: poolmem,
-          winner: winner6
+          winner: winner2
         }
       },
-      { #4
+      { #3
         team1: {
           game_id: 107,
           final: 4,
@@ -105,6 +91,20 @@ class QuarterpredictionsController < ApplicationController
           final: 4,
           poolmembership_id: poolmem,
           winner: winner8
+        }
+      },
+      { #4
+        team1: {
+          game_id: 105,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner5
+        },
+        team2: {
+          game_id: 106,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner6
         }
       }
     ]
