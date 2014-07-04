@@ -208,16 +208,16 @@ class KnockoutpredictionsController < ApplicationController
       },
       { #4
         team1: {
-          game_id: 106,
-          final: 4,
-          poolmembership_id: poolmem,
-          winner: winner6
-        },
-        team2: {
           game_id: 105,
           final: 4,
           poolmembership_id: poolmem,
           winner: winner5
+        },
+        team2: {
+          game_id: 106,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner6
         }
       }
     ]
