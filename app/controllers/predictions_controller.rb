@@ -351,51 +351,7 @@ class PredictionsController < ApplicationController
     redirect_to givepoints2_path
   end
 
-  def pointsscript3
-  @pool = Pool.find(params[:id])
-    poolmem = Poolmembership.find_by_user_id_and_pool_id(current_user.id, @pool.id).id
-    p1 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 101)
-    if p1.present?
-      winner1 = p1.winner
-    end
-    p2 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 102)
-    if p2.present?
-      winner2 = p2.winner
-    end
-    p3 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 103)
-    if p3.present?
-      winner3 = p3.winner
-    end
-    p4 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 104)
-    if p4.present?
-      winner4 = p4.winner
-    end
-    p5 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 105)
-    if p5.present?
-      winner5 = p5.winner
-    end
-    p6 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 106)
-    if p6.present?
-      winner6 = p6.winner
-    end
-    p7 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 107)
-    if p7.present?
-      winner7 = p7.winner
-    end
-    p8 = Prediction.find_by_poolmembership_id_and_game_id(poolmem, 108)
-    if p8.present?
-      winner8 = p8.winner
-    end
-        
-    @games = Game.all
-    @predictions = Prediction.all
-    @games.each do |game|
-      @predictions.each do |prediction|
-        if game.id == prediction.game_id
-          if game.score1 == nil && game.score2 == nil
-          else
-            if game.team_id1 == prediction.
-
+  
   def givepoints
     @games = Game.all
     @predictions = Prediction.all
