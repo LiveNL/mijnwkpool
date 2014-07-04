@@ -351,7 +351,6 @@ class PredictionsController < ApplicationController
     redirect_to givepoints2_path
   end
 
-  
   def givepoints
     @games = Game.all
     @predictions = Prediction.all

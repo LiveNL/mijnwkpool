@@ -249,7 +249,7 @@
                             <%= predictionteam2[0]['name'] %>
                           <% end %> 
                           <% if current_user && current_user.admin == true %>
-                            <%= game.id %>
+                            <%= game.id %><%= team1.id %> - <%= team2.id %>
                           <% end %>||
                             <%= teaminfo1.name %>-<%= teaminfo2.name %> 
                           <br/>
