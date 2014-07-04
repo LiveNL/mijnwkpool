@@ -166,30 +166,30 @@ class KnockoutpredictionsController < ApplicationController
     @predictionarray = [
       { #1
         team1: {
-          game_id: 104,
-          final: 4,
-          poolmembership_id: poolmem,
-          winner: winner4
-        },
-        team2: {
           game_id: 103,
           final: 4,
           poolmembership_id: poolmem,
           winner: winner3
+        },
+        team2: {
+          game_id: 104,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner4
         }
       },
       { #2
         team1: {
-          game_id: 102,
-          final: 4,
-          poolmembership_id: poolmem,
-          winner: winner2
-        },
-        team2: {
           game_id: 101,
           final: 4,
           poolmembership_id: poolmem,
           winner: winner1
+        },
+        team2: {
+          game_id: 102,
+          final: 4,
+          poolmembership_id: poolmem,
+          winner: winner2
         }
       },
       { #3
