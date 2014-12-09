@@ -13,10 +13,8 @@ gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'font-awesome-rails'
 gem 'paperclip', '~> 4.1'
 gem 'will_paginate'
-gem 'best_in_place', github: 'bernat/best_in_place', branch: 'rails-4'
 gem 'gibbon'
 gem 'figaro'
-
 
 group :development do
   gem 'capistrano'
