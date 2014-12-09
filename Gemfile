@@ -17,6 +17,7 @@ gem 'best_in_place', github: 'bernat/best_in_place', branch: 'rails-4'
 gem 'gibbon'
 gem 'figaro'
 
+
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
@@ -31,6 +32,7 @@ group :development do
   gem 'debugger'
   gem 'rails-erd'
   gem 'railroady'
+  gem 'rails_best_practices'
 end
 
 group :doc do
